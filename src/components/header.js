@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import Logo from "../assets/music-logo.svg";
+import "../style/header.css";
+import LogButton from "./logbutton";
 
-const header = () => {
+const Header = () => {
+  const [IsLogged, setIsLogged] = useState(false);
+
   return (
     <header>
-      <a href="https://github.com/Mahkalix/lofi" target="_blank">
-        <img src="src/assets/logolofi.jpg" className="github-link" />
+      <LogButton setIsLogged={setIsLogged} IsLogged={IsLogged} />
+
+      <a
+        href="https://github.com/Mahkalix/lofi"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img src={Logo} className="github-link" alt="Lo-Fi" />
+        <div className="text-lofi">Lo-Fi</div>
       </a>
     </header>
   );
 };
 
-export default header;
+export default Header;
