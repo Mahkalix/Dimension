@@ -5,10 +5,11 @@ const footer = () => {
   return (
     <footer>
       <h1 className="text-footer">
-        Made by &nbsp;
+        Made by
         <a
           href="https://github.com/Mahkalix"
           target={"_blank"}
+          rel="noreferrer"
           className="name-footer"
         >
           Maxence Badin-Léger

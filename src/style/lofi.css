@@ -12,17 +12,32 @@ main {
   width: 150px;
   height: 40px;
   border-radius: 20px;
-  background: rgba(0, 0, 0, 0.342);
   font-size: 15px;
-  color: white;
+  color: rgb(0, 0, 0);
   margin-bottom: 40px;
 }
 
+.card:hover {
+  transform: scale(1.1);
+  transition: transform infinite;
+}
+.boy {
+  background: rgba(90, 3, 112, 0.342);
+}
+.girl {
+  background: rgba(255, 136, 0, 0.342);
+}
+.lofilogo {
+  display: flex;
+  width: 30px;
+  margin-right: 10px;
+}
 .container-card {
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
   width: 100%;
+  border-radius: 20px;
 }
 
 .card {
@@ -30,7 +45,7 @@ main {
   height: 200px;
   margin: 20px;
   border-radius: 20px;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 

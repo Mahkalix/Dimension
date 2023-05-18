@@ -3,23 +3,21 @@ button {
   justify-content: center;
   align-items: center;
   border: none;
-  width: 90px;
-  height: 25px;
+  margin-right: 20px;
   border-radius: 10px;
 }
 .btn-in {
-  background: rgb(238, 140, 42);
-  background: linear-gradient(
-    86deg,
-    rgba(238, 140, 42, 1) 22%,
-    rgba(97, 29, 253, 1) 81%
-  );
-  color: white;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .btn-out {
+  font-weight: 700;
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
+  cursor: pointer;
 }
 
 .Log {
