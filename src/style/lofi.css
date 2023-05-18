@@ -1,0 +1,53 @@
+main {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.title-lofi {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.342);
+  font-size: 15px;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.container-card {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.card {
+  min-width: 200px;
+  height: 200px;
+  margin: 20px;
+  border-radius: 20px;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* width */
+.container-card::-webkit-scrollbar {
+  width: 5px;
+  height: 15px;
+}
+
+/* Track */
+.container-card::-webkit-scrollbar-track {
+  background-color: rgb(209, 209, 209);
+  border-radius: 10px;
+}
+
+/* Handle */
+.container-card::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0);
+  border-radius: 10px;
+}

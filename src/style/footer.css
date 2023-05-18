@@ -1,0 +1,25 @@
+footer {
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  margin-top: 70px;
+}
+.text-footer {
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-footer {
+  width: 200px;
+  font-size: 15px;
+  border-radius: 100px;
+  color: white;
+  background: linear-gradient(
+    86deg,
+    rgba(238, 140, 42, 1) 22%,
+    rgba(97, 29, 253, 1) 81%
+  );
+}
