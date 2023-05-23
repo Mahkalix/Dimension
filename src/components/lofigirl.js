@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/lofi.css";
 import LofiGirl from "../assets/lofigirl.png";
+import MusicPlayer from "../components/musicplayer.js";
 
 const lofigirl = () => {
   return (
@@ -11,11 +12,8 @@ const lofigirl = () => {
           Lo-Fi Girl
         </h1>
       </a>
-      <ul className="container-card ">
-        <li className="card">card</li>
-        <li className="card">card</li>
-        <li className="card">card</li>
-        <li className="card">card</li>
+      <ul className="container-card">
+        <MusicPlayer />
       </ul>
     </div>
   );
