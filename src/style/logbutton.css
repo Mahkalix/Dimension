@@ -8,14 +8,14 @@ button {
 .btn-in {
   font-weight: 700;
   color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
+  background-color: #faf0e4;
   cursor: pointer;
 }
 
 .btn-out {
   font-weight: 700;
-  background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
+  background-color: #faf0e4;
   cursor: pointer;
 }
 

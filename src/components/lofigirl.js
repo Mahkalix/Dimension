@@ -1,18 +1,18 @@
 import React from "react";
 import "../style/lofi.css";
-import LofiGirl from "../assets/lofigirl.png";
-import MusicPlayer from "../components/musicplayer.js";
+import Girl from "../assets/girl.jpg";
+import MusicPlayer from "./musicplayergirl.js";
 
 const lofigirl = () => {
   return (
     <div className="container-lofi">
-      <a target={"_blank"} rel="noreferrer" href="https://youtu.be/jfKfPfyJRdk">
+      <a>
         <h1 className="title-lofi girl">
-          <img className="lofilogo" src={LofiGirl} alt="logogirl" />
-          Lo-Fi Girl
+          <img className="lofilogo" src={Girl} alt="logogirl" />
+          Dickinson
         </h1>
       </a>
-      <ul className="container-card">
+      <ul className="container-card Girl">
         <MusicPlayer />
       </ul>
     </div>

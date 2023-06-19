@@ -29,8 +29,10 @@ const LogButton = ({ IsLogged, setIsLogged }) => {
         console.log(e.message);
       }
     };
+
     getUserMetadata();
   }, [setIsLogged, getAccessTokenSilently, user?.sub]);
+
   return (
     <div className="Log">
       {IsLogged ? (

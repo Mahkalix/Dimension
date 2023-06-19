@@ -1,0 +1,36 @@
+[{
+    "url":"/music/boy/Futile Devices (Doveman Remix).mp3",
+    "gif": "/gif/1.webp",
+    "categorie":"boy",
+    "title":"Futile Devices",
+    "id": 6
+},
+{
+    "url":"/music/boy/Visions of Gideon.mp3",
+    "gif": "/gif/2.webp",
+    "categorie":"boy",
+    "title":"Visions of Gideon",
+    "id": 7
+},
+
+{
+    "url":"/music/boy/Une barque sur l'océan from Miroirs.mp3",
+    "gif": "/gif/3.webp",
+    "categorie":"boy",
+    "title":"Une barque sur l'océan",
+    "id": 8
+},
+{
+    "url":"/music/boy/Love My Way.mp3",
+    "gif": "/gif/4.webp",
+    "categorie":"boy",
+    "title":"Love My Way",
+    "id": 9
+},
+{
+    "url":"/music/boy/M.A.Y. in the Backyard.mp3",
+    "gif": "/gif/5.webp",
+    "categorie":"boy",
+    "title":"M.A.Y. in the Backyard",
+    "id": 10
+}]

@@ -16,7 +16,7 @@ const Header = () => {
         rel="noreferrer"
       >
         <img src={Logo} className="github-link" alt="Lo-Fi" />
-        <div className="text-lofi">Lo-Fi</div>
+        <div className="text-lofi"> Dimension </div>
       </a>
     </header>
   );

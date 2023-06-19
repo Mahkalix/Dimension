@@ -5,10 +5,13 @@ import "../style/Home.css";
 import Main from "../components/main";
 
 const Home = () => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+
   return (
     <>
       <Header />
-      <Main />
+      {token && <Main />}
       <Footer />
     </>
   );

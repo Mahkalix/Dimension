@@ -11,6 +11,7 @@ header {
 }
 
 .text-lofi {
+  font-family: "Castoro Titling", cursive;
   position: absolute;
   color: black;
   top: 25px;

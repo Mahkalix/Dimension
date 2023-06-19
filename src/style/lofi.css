@@ -1,3 +1,7 @@
+.App {
+  background-color: #faf0e4;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -10,11 +14,13 @@ main {
   align-items: center;
   justify-content: center;
   width: 150px;
-  height: 40px;
+  height: 50px;
   border-radius: 20px;
   font-size: 15px;
   color: rgb(0, 0, 0);
   margin-bottom: 40px;
+  font-family: "Rock Salt", cursive;
+  font-size: 12px;
 }
 
 .card:active {
@@ -22,10 +28,10 @@ main {
   transition: transform infinite;
 }
 .boy {
-  background: rgba(90, 3, 112, 0.342);
+  background: #9bced28c;
 }
 .girl {
-  background: rgba(255, 136, 0, 0.342);
+  background: #ff855185;
 }
 .lofilogo {
   display: flex;
@@ -41,9 +47,12 @@ main {
 }
 
 .card {
-  position: realtive;
+  display: flex;
+  justify-content: center;
+  position: relative;
   min-width: 200px;
   height: 200px;
+  width: 200px;
   margin: 20px;
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
@@ -51,31 +60,51 @@ main {
 }
 
 /* width */
-.container-card::-webkit-scrollbar {
+.Girl::-webkit-scrollbar {
   width: 5px;
-  height: 15px;
+  height: 12px;
 }
 
 /* Track */
-.container-card::-webkit-scrollbar-track {
-  background-color: rgb(209, 209, 209);
+.Girl::-webkit-scrollbar-track {
+  background-color: rgba(114, 112, 112, 0.048);
   border-radius: 10px;
 }
 
 /* Handle */
-.container-card::-webkit-scrollbar-thumb {
-  background: rgb(0, 0, 0);
+.Girl::-webkit-scrollbar-thumb {
+  background: #e7ceb0;
+  border-radius: 10px;
+}
+
+/* width */
+.Boy::-webkit-scrollbar {
+  width: 5px;
+  height: 12px;
+}
+
+/* Track */
+.Boy::-webkit-scrollbar-track {
+  background-color: rgba(114, 112, 112, 0.048);
+  border-radius: 10px;
+}
+
+/* Handle */
+.Boy::-webkit-scrollbar-thumb {
+  background: #9bced269;
   border-radius: 10px;
 }
 
 .title {
   position: absolute;
-  top: 10px;
-  left: 5px;
-  height: 10px;
+  bottom: 10px;
+  left: 50px;
+  height: 30px;
   width: 100px;
-  color: red;
-  font-size: 10px;
+  color: rgb(0, 0, 0);
+  font-size: 8px;
+  border-radius: 10px;
+  font-family: "Castoro Titling";
 }
 
 .gif {
