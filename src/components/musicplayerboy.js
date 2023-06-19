@@ -1,17 +1,16 @@
 import React, { useRef, useState } from "react";
-
 import Cardb from "./cardboy.js";
-
 import datab from "../data/datamusicboy.json";
 
 function MusicPlayer() {
   const audioRef = useRef(new Audio());
   const [error, setError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.5);
 
   const PlayPause = (url) => {
     const audio = audioRef.current;
-    if (audio.src === url) {
+    if (isPlaying === true) {
       if (isPlaying) {
         audio.pause();
       } else {
@@ -30,8 +29,22 @@ function MusicPlayer() {
     setIsPlaying(!isPlaying);
   };
 
+  const handleVolumeChange = (event) => {
+    const newVolume = parseFloat(event.target.value);
+    setVolume(newVolume);
+    audioRef.current.volume = newVolume;
+  };
+
   return (
     <>
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value={volume}
+        onChange={handleVolumeChange}
+      />
       {error ? (
         <p>Error loading audio file</p>
       ) : (

@@ -2,7 +2,7 @@ import React from "react";
 import LofiGirl from "../components/lofigirl";
 import LofiBoy from "./../components/lofiboy";
 
-const main = () => {
+const Main = () => {
   return (
     <main>
       <LofiGirl />
@@ -11,4 +11,4 @@ const main = () => {
   );
 };
 
-export default main;
+export default Main;
