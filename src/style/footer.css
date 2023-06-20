@@ -10,10 +10,12 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: "Castoro Titling";
 }
 
 .name-footer {
-  width: 145px;
+  font-family: "Rock Salt";
+  width: 175px;
   font-size: 12px;
   color: rgb(0, 0, 0);
 }

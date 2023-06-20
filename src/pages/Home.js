@@ -6,7 +6,6 @@ import Main from "../components/main";
 
 const Home = () => {
   const token = localStorage.getItem("token");
-  console.log(token);
 
   return (
     <>

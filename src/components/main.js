@@ -1,12 +1,10 @@
 import React from "react";
-import LofiGirl from "../components/lofigirl";
-import LofiBoy from "./../components/lofiboy";
+import MusicPlayer from "./musicplayer";
 
 const Main = () => {
   return (
     <main>
-      <LofiGirl />
-      <LofiBoy />
+      <MusicPlayer />
     </main>
   );
 };
