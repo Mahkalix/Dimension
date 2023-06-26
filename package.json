@@ -1,5 +1,6 @@
 {
   "name": "dimension",
+  "homepage":"https://mahkalix.github.io/Dimension/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
