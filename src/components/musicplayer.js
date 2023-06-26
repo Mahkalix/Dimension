@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Card from "./card.js";
 import data from "../data/datamusic.json";
 import Girl from "../assets/girl.jpg";
@@ -9,28 +9,32 @@ function MusicPlayer() {
   const audioRef = useRef(new Audio());
   const [error, setError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState(null);
   const [volume, setVolume] = useState(0.5);
 
-  const PlayPause = (url) => {
+  useEffect(() => {
     const audio = audioRef.current;
-    if (isPlaying === true) {
-      if (isPlaying) {
-        audio.pause();
-      } else {
-        audio.play().catch((error) => {
-          setError(true);
-          console.error("Error playing audio:", error);
-        });
-      }
-    } else {
-      audio.src = url;
+
+    if (isPlaying) {
       audio.play().catch((error) => {
         setError(true);
         console.error("Error playing audio:", error);
       });
+    } else {
+      audio.pause();
     }
-    setIsPlaying(!isPlaying);
+  }, [isPlaying]);
+
+  const togglePlay = (url) => {
+    if (currentUrl === url) {
+      setIsPlaying(!isPlaying);
+    } else {
+      setIsPlaying(true);
+      setCurrentUrl(url);
+    }
+    audioRef.current.src = url;
   };
+
   const handleVolumeChange = (event) => {
     const newVolume = parseFloat(event.target.value);
     setVolume(newVolume);
@@ -63,12 +67,12 @@ function MusicPlayer() {
             <p>Error loading audio file</p>
           ) : (
             <>
-              {girl.map((item, index) => (
+              {girl.map((item) => (
                 <Card
-                  key={index}
+                  key={item.id}
                   musicData={item}
-                  play={() => PlayPause(item.url)}
-                  isPlaying={isPlaying && audioRef.current.src === item.url}
+                  play={() => togglePlay(item.url)}
+                  isPlaying={isPlaying && currentUrl === item.url}
                 />
               ))}
             </>
@@ -88,12 +92,12 @@ function MusicPlayer() {
             <p>Error loading audio file</p>
           ) : (
             <>
-              {boy.map((item, index) => (
+              {boy.map((item) => (
                 <Card
-                  key={index}
+                  key={item.id}
                   musicData={item}
-                  play={() => PlayPause(item.url)}
-                  isPlaying={isPlaying && audioRef.current.src === item.url}
+                  play={() => togglePlay(item.url)}
+                  isPlaying={isPlaying && currentUrl === item.url}
                 />
               ))}
             </>
