@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "../style/musicplayer.css";
 import off from "../assets/svg/off.svg";
 import medium from "../assets/svg/medium.svg";
