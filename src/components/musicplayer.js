@@ -4,13 +4,13 @@ import data from "../data/datamusic.json";
 import Girl from "../assets/girl.jpg";
 import Boy from "../assets/boy.jpg";
 import "../style/musicplayer.css";
-import Volume from "../components/handlevolume.js";
 
 function MusicPlayer() {
   const audioRef = useRef(new Audio());
   const [error, setError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(null);
+  const [volume, setVolume] = useState(0.5);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -35,12 +35,26 @@ function MusicPlayer() {
     audioRef.current.src = url;
   };
 
+  const handleVolumeChange = (event) => {
+    const newVolume = parseFloat(event.target.value);
+    setVolume(newVolume);
+    audioRef.current.volume = newVolume;
+  };
   const boy = data.filter((item) => item.categorie === "boy");
   const girl = data.filter((item) => item.categorie === "girl");
 
   return (
     <>
-      <Volume audioRef={audioRef} />
+      <div className="Volume">
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+        />
+      </div>
       <div className="container-lofi">
         <div>
           <h1 className="title-lofi girl">
