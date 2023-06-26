@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 
-const router = () => {
+const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -10,4 +10,4 @@ const router = () => {
   );
 };
 
-export default router;
+export default Router;
