@@ -14,14 +14,14 @@
 },
 {
     "url":"/music/boy/Une barque sur l'océan from Miroirs.mp3",
-    "gif": "/gif/3.webp",
+    "gif": "/gif/3.gif",
     "categorie":"boy",
     "title":"Une barque sur l'océan",
     "id": 3
 },
 {
     "url":"/music/boy/Love My Way.mp3",
-    "gif": "/gif/4.webp",
+    "gif": "/gif/4.gif",
     "categorie":"boy",
     "title":"Love My Way",
     "id": 4
@@ -35,35 +35,35 @@
 },
 {
     "url":"/music/girl/Darkside.mp3",
-    "gif": "/gif/1.jpg",
+    "gif": "/gif/darkside.gif",
     "categorie":"girl",
     "title":"Darkside",
     "id": 6
 },
 {
     "url":"/music/girl/Boys.mp3",
-    "gif": "/gif/2.gif",
+    "gif": "/gif/boys.gif",
     "categorie":"girl",
     "title":"Boys",
     "id": 7
 },
 {
     "url":"/music/girl/Afterlife.mp3",
-    "gif": "/gif/3.jpg",
+    "gif": "/gif/afterlife.gif",
     "categorie":"girl",
     "title":"Afterlife",
     "id": 8
 },
 {
     "url":"/music/girl/I'm So.mp3",
-    "gif": "/gif/4.jpg",
+    "gif": "/gif/i'mso.gif",
     "categorie":"girl",
     "title":"I'm So",
     "id": 9
 },
 {
     "url":"/music/girl/Experience.mp3",
-    "gif": "/gif/5.jpg",
+    "gif": "/gif/experience.gif",
     "categorie":"girl",
     "title":"Experience",
     "id": 10

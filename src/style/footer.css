@@ -9,14 +9,16 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-family: "Space Mono", cursive;
+  font-family: "Julius Sans One", cursive;
+  font-weight: 600;
 }
 
 .name-footer {
-  font-family: "Rock Salt";
+  font-family: "Rock Salt", curisive;
   width: 175px;
   font-size: 12px;
   color: rgb(255, 255, 255);
+  font-weight: 500;
 }
 
 @media (max-width: 425px) {

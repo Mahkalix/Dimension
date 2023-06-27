@@ -8,17 +8,16 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0 15px 0 15px;
+  margin: 0 15px 55px 15px;
   background-color: rgb(255, 255, 255);
   width: 90%;
   height: 500px;
   border-radius: 20px;
-  margin-bottom: 55px;
 }
 
 h1 {
   display: flex;
-  font-family: "Space Mono", cursive;
+  font-family: "Montserrat", sans-serif;
   font-weight: 800;
   font-size: 40px;
   margin: 0px 40px 0 40px;
@@ -29,7 +28,7 @@ h1 {
   display: flex;
   font-weight: 500;
   margin: 20px 40px 0 40px;
-  font-size: 20px;
+  font-size: 18px;
   color: rgb(155, 39, 39);
   font-family: "Poppins", cursive;
 }
@@ -40,7 +39,17 @@ h1 {
 }
 
 @media (max-width: 425px) {
+  .container {
+    height: 400px;
+  }
+
+  h1 {
+    font-size: 18px;
+    margin: 0px;
+    margin-top: 20px;
+  }
   .sous-titre {
-    font-size: 12px;
+    font-size: 10px;
+    margin: 20px 5px 0 5px;
   }
 }

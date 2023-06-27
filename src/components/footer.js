@@ -5,7 +5,7 @@ const footer = () => {
   return (
     <footer>
       <h1 className="text-footer">
-        Made by
+        © Copyright 2023 -
         <a
           href="https://github.com/Mahkalix"
           target={"_blank"}

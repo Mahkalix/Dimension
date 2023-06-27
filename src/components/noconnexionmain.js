@@ -7,8 +7,8 @@ const noconnexionmain = () => {
     <div className="accueil">
       <div className="container">
         <img src={LogoDimension} className="png" alt="logo" />
-        <h1>Dimension</h1>
-        <p className="sous-titre">Discover a new world of music</p>
+        <h1>Bienvenue!</h1>
+        <p className="sous-titre">Chill & Relaxing</p>
       </div>
     </div>
   );
