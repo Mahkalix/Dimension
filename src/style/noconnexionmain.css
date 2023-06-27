@@ -25,7 +25,7 @@ h1 {
   color: rgb(0, 0, 0);
 }
 
-p {
+.sous-titre {
   display: flex;
   font-weight: 500;
   margin: 20px 40px 0 40px;
@@ -40,7 +40,7 @@ p {
 }
 
 @media (max-width: 425px) {
-  p {
+  .sous-titre {
     font-size: 12px;
   }
 }

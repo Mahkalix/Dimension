@@ -142,20 +142,3 @@ input[type="range"]:focus::-moz-range-thumb {
   outline: 3px solid #000000;
   outline-offset: 0.125rem;
 }
-
-.container-volume {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.container-logovolume {
-  width: 190px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logovolume {
-  height: 17px;
-  width: 17px;
-}

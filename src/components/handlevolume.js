@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/musicplayer.css";
+import "../style/handlevolume.css";
 import off from "../assets/svg/off.svg";
 import medium from "../assets/svg/medium.svg";
 import high from "../assets/svg/high.svg";
@@ -31,6 +31,7 @@ const Handlevolume = ({ audioRef }) => {
           />
         </div>
       </div>
+      <p className="pc">📵</p>
     </>
   );
 };

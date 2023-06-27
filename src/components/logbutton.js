@@ -3,11 +3,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "../style/logbutton.css";
 import Logout from "../assets/log-out.svg";
 
-const LogButton = ({ IsLogged, setIsLogged }) => {
-  const { logout } = useAuth0();
-  const { loginWithRedirect } = useAuth0();
-
-  const { user, getAccessTokenSilently } = useAuth0();
+const LogButton = () => {
+  const { logout, loginWithRedirect, isAuthenticated, getAccessTokenSilently } =
+    useAuth0();
 
   useEffect(() => {
     const getUserMetadata = async () => {
@@ -23,39 +21,40 @@ const LogButton = ({ IsLogged, setIsLogged }) => {
 
         // Enregistrement du token d'authentification dans le stockage local
         localStorage.setItem("token", accessToken);
-        localStorage.setItem("login", true);
-        setIsLogged(true);
       } catch (e) {
         console.log(e.message);
       }
     };
 
     getUserMetadata();
-  }, [setIsLogged, getAccessTokenSilently, user?.sub]);
+  }, [getAccessTokenSilently]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    logout({
+      returnTo: window.location.origin,
+    });
+  };
+
+  const handleLogin = () => {
+    loginWithRedirect();
+  };
 
   return (
     <div className="Log">
-      {IsLogged ? (
-        <button
-          className="btn-out"
-          onClick={() => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("login");
-            setIsLogged(false);
-            logout({
-              logoutParams: {
-                returnTo: "http://localhost:3000/",
-              },
-            });
-          }}
-        >
-          <img className="logo-logout" src={Logout} alt="logp-logout" />
-          Log Out
-        </button>
+      {isAuthenticated ? (
+        <div>
+          <button className="btn-out" onClick={handleLogout}>
+            <img className="logo-logout" src={Logout} alt="logo-logout" />
+            Log Out
+          </button>
+        </div>
       ) : (
-        <button className="btn-in" onClick={() => loginWithRedirect()}>
-          Log In
-        </button>
+        <div>
+          <button className="btn-in" onClick={handleLogin}>
+            Log In
+          </button>
+        </div>
       )}
     </div>
   );
