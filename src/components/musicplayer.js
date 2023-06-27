@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import Card from "./card.js";
 import data from "../data/datamusic.json";
-import Girl from "../assets/girl.jpg";
-import Boy from "../assets/boy.jpg";
+// import Girl from "../assets/girl.jpg";
+// import Boy from "../assets/boy.jpg";
 import "../style/musicplayer.css";
 import Volume from "../components/handlevolume.js";
 

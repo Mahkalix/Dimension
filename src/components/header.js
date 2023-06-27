@@ -15,8 +15,8 @@ const Header = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <img src={Logo} className="github-link" alt="Lo-Fi" />
-        <div className="text-lofi"> Dimension </div>
+        <img src={Logo} className="logo-dimension" alt="Dimension" />
+        <div className="title-landing-page"> Dimension </div>
       </a>
     </header>
   );

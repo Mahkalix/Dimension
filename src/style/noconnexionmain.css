@@ -1,21 +1,46 @@
+.accueil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-left: 15px;
-  background-color: rgb(0, 0, 0);
-  width: 95%;
-  height: 250px;
+  margin: 0 15px 0 15px;
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  height: 500px;
   border-radius: 20px;
+  margin-bottom: 55px;
 }
 
 h1 {
-  font-family: "Press Start 2P", cursive;
-  color: white;
+  display: flex;
+  font-family: "Space Mono", cursive;
+  font-weight: 800;
+  font-size: 40px;
+  margin: 0px 40px 0 40px;
+  color: rgb(0, 0, 0);
 }
 
 p {
-  margin-top: 20px;
-  color: white;
+  display: flex;
+  font-weight: 500;
+  margin: 20px 40px 0 40px;
+  font-size: 20px;
+  color: rgb(155, 39, 39);
+  font-family: "Poppins", cursive;
+}
+
+.png {
+  width: 150px;
+  height: 150px;
+}
+
+@media (max-width: 425px) {
+  p {
+    font-size: 12px;
+  }
 }
