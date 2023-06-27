@@ -31,7 +31,6 @@ const Handlevolume = ({ audioRef }) => {
           />
         </div>
       </div>
-      <p className="pc">📵</p>
     </>
   );
 };
