@@ -6,12 +6,12 @@ header {
 .github-link {
   position: absolute;
   top: 20px;
-  left: 5px;
-  width: 30px;
+  left: 10px;
+  width: 25px;
 }
 
 .text-lofi {
-  font-family: "Castoro Titling", cursive;
+  font-family: "Press Start 2P", cursive;
   position: absolute;
   color: black;
   top: 25px;

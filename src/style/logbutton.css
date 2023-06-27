@@ -8,15 +8,17 @@ button {
 .btn-in {
   font-weight: 700;
   color: rgb(0, 0, 0);
-  background-color: #faf0e4;
+  background-color: rgb(212, 196, 196);
   cursor: pointer;
+  font-family: "Rock Salt";
 }
 
 .btn-out {
   font-weight: 700;
   color: rgb(0, 0, 0);
-  background-color: #faf0e4;
+  background-color: rgb(212, 196, 196);
   cursor: pointer;
+  font-family: "Rock Salt";
 }
 
 .Log {

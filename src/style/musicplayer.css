@@ -1,5 +1,5 @@
 .App {
-  background-color: #faf0e4;
+  background-color: rgb(212, 196, 196);
 }
 
 main {
@@ -18,9 +18,9 @@ main {
   height: 50px;
   border-radius: 20px;
   font-size: 15px;
-  color: rgb(0, 0, 0);
+  color: rgb(212, 196, 196);
   margin-bottom: 40px;
-  font-family: "Rock Salt", cursive;
+  font-family: "Poppins", cursive;
   font-size: 12px;
 }
 
@@ -29,10 +29,10 @@ main {
   transition: transform infinite;
 }
 .boy {
-  background: #9bced28c;
+  background: #000000;
 }
 .girl {
-  background: #ff855185;
+  background: #000000;
 }
 .lofilogo {
   display: flex;
@@ -61,7 +61,7 @@ main {
 
 /* Handle */
 .Girl::-webkit-scrollbar-thumb {
-  background: #ff855185;
+  background: #00000079;
   border-radius: 10px;
 }
 
@@ -79,7 +79,7 @@ main {
 
 /* Handle */
 .Boy::-webkit-scrollbar-thumb {
-  background: #9bced28c;
+  background: #00000079;
   border-radius: 10px;
 }
 

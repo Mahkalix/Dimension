@@ -44,7 +44,7 @@ function MusicPlayer() {
       <div className="container-lofi">
         <div>
           <h1 className="title-lofi girl">
-            <img className="lofilogo" src={Girl} alt="logogirl" />
+            {/* <img className="lofilogo" src={Girl} alt="logogirl" /> */}
             Dickinson
           </h1>
         </div>
@@ -69,7 +69,7 @@ function MusicPlayer() {
       <div className="container-lofi">
         <div>
           <h1 className="title-lofi boy">
-            <img className="lofilogo" src={Boy} alt="lofiboy" />
+            {/* <img className="lofilogo" src={Boy} alt="lofiboy" /> */}
             Cmbyn
           </h1>
         </div>
