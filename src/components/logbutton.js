@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "../style/logbutton.css";
-import Logout from "../assets/log-out.svg";
+
+import arrow from "../assets/svg/arrow-right.svg";
 
 const LogButton = () => {
   const { logout, loginWithRedirect, isAuthenticated, getAccessTokenSilently } =
@@ -41,22 +42,39 @@ const LogButton = () => {
   };
 
   return (
-    <div className="Log">
-      {isAuthenticated ? (
-        <div>
-          <button className="btn-out" onClick={handleLogout}>
-            <img className="logo-logout" src={Logout} alt="logo-logout" />
-            Log Out
-          </button>
-        </div>
-      ) : (
-        <div>
-          <button className="btn-in" onClick={handleLogin}>
-            Log In
-          </button>
-        </div>
-      )}
-    </div>
+    <>
+      <div className="btn-container">
+        {isAuthenticated ? (
+          <div>
+            <button className="btn-out" onClick={handleLogout}>
+              <span className="text">Log out</span>
+              <div className="icon-container">
+                <div className="icon icon--left">
+                  <img className="arrow" src={arrow} alt="arrow" />
+                </div>
+                <div className="icon icon--right">
+                  <img className="arrow" src={arrow} alt="arrow" />
+                </div>
+              </div>
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button className="btn-in" onClick={handleLogin}>
+              <span className="text">Log in</span>
+              <div className="icon-container">
+                <div className="icon icon--left">
+                  <img className="arrow" src={arrow} alt="arrow" />
+                </div>
+                <div className="icon icon--right">
+                  <img className="arrow" src={arrow} alt="arrow" />
+                </div>
+              </div>
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

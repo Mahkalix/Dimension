@@ -2,13 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0 15px 55px 15px;
+  margin: 0px 15px 55px 15px;
   background-color: rgb(255, 255, 255);
   width: 90%;
   height: 500px;
@@ -16,12 +17,94 @@
 }
 
 h1 {
-  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
   font-size: 40px;
   margin: 0px 40px 0 40px;
   color: rgb(0, 0, 0);
+}
+
+.container-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h2 {
+  display: flex;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 100px;
+  padding: 0px 40px 0 90px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.171);
+}
+
+.description {
+  display: flex;
+  color: rgb(250, 250, 250);
+  font-size: 20px;
+  margin: 10px 100px 20px 100px;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Texte défilant */
+.messagedefilant {
+  display: block;
+  margin: 40px auto;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 60px;
+}
+
+.messagedefilant h2 {
+  position: absolute;
+  min-width: 100%; /* au minimum la largeur du conteneur */
+}
+
+.messagedefilant h2 span,
+.messagedefilant h2:after {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  white-space: nowrap;
+  top: 0;
+}
+
+.messagedefilant h2 span {
+  animation: defilement 6s infinite linear;
+}
+
+.messagedefilant h2:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: attr(data-text);
+  animation: defilement2 6s infinite linear;
+}
+
+@keyframes defilement {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -100%;
+  }
+}
+
+@keyframes defilement2 {
+  0% {
+    margin-left: 100%;
+  }
+  100% {
+    margin-left: 0%;
+  }
 }
 
 .sous-titre {
@@ -41,6 +124,7 @@ h1 {
 @media (max-width: 425px) {
   .container {
     height: 400px;
+    margin-bottom: 0px;
   }
 
   h1 {
@@ -51,5 +135,33 @@ h1 {
   .sous-titre {
     font-size: 10px;
     margin: 20px 5px 0 5px;
+  }
+
+  .description {
+    display: flex;
+    color: rgb(250, 250, 250);
+    font-size: 15px;
+    margin: 10px 30px 20px 30px;
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+@media (max-width: 970px) {
+  @keyframes defilement {
+    0% {
+      margin-left: 0;
+    }
+    100% {
+      margin-left: -100%;
+    }
+  }
+
+  @keyframes defilement2 {
+    0% {
+      margin-left: 2000000%;
+    }
+    100% {
+      margin-left: 0%;
+    }
   }
 }

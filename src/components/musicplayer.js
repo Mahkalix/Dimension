@@ -43,10 +43,7 @@ function MusicPlayer() {
       <Volume audioRef={audioRef} />
       <div className="container-lofi">
         <div>
-          <h1 className="title-lofi girl">
-            {/* <img className="lofilogo" src={Girl} alt="logogirl" /> */}
-            Dickinson
-          </h1>
+          <h1 className="title-lofi girl">Dickinson</h1>
         </div>
         <ul className="container-card Girl">
           {error ? (
@@ -68,10 +65,7 @@ function MusicPlayer() {
 
       <div className="container-lofi">
         <div>
-          <h1 className="title-lofi boy">
-            {/* <img className="lofilogo" src={Boy} alt="lofiboy" /> */}
-            Cmbyn
-          </h1>
+          <h1 className="title-lofi boy">Cmbyn</h1>
         </div>
         <ul className="container-card Boy">
           {error ? (
