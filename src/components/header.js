@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../assets/music-logo.svg";
+import Dimension from "../assets/png/2.png";
 import "../style/header.css";
 import LogButton from "./logbutton";
 
@@ -15,8 +15,13 @@ const Header = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <img src={Logo} className="logo-dimension" alt="Dimension" />
-        <div className="title-landing-page"> Dimension </div>
+        <div>
+          <img
+            className="title-landing-page"
+            src={Dimension}
+            alt="logo dimension"
+          />{" "}
+        </div>
       </a>
     </header>
   );

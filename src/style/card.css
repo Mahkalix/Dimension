@@ -59,6 +59,6 @@
 }
 
 .card.playing {
-  border: 6px rgb(255, 255, 255) solid;
+  border: 6px #be0517 solid;
   transform: scale(1);
 }
