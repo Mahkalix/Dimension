@@ -37,7 +37,6 @@ const LogButton = () => {
   };
 
   const handleLogin = () => {
-    localStorage.addItem(´token’)
     loginWithRedirect();
   };
 
