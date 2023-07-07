@@ -6,6 +6,7 @@ import Main from "../components/main";
 import NoConnexionMain from "../components/noconnexionmain";
 
 const Home = () => {
+  localStorage.setItem("token", accessToken);
   const token = localStorage.getItem("token");
 
   return (
