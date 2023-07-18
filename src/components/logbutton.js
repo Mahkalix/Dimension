@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "../style/logbutton.css";
 import arrow from "../assets/svg/arrow-right.svg";
-import { useParams } from "react-router-dom";
-
 const LogButton = () => {
-  const params = useParams();
-
   const { logout, loginWithRedirect, isAuthenticated, getAccessTokenSilently } =
     useAuth0();
 
@@ -26,13 +22,6 @@ const LogButton = () => {
     redirectUser();
   }, [isAuthenticated, getAccessTokenSilently]);
 
-  const handleRedirect = () => {
-    const destinationId = params.id; // Récupérer l'ID à partir des paramètres d'URL
-    const destinationUrl = `/destination/${destinationId}`; // Construire l'URL de destination en utilisant l'ID récupéré
-
-    window.location.href = destinationUrl; // Rediriger l'utilisateur vers l'URL de destination
-  };
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     logout({
@@ -42,7 +31,6 @@ const LogButton = () => {
 
   const handleLogin = () => {
     loginWithRedirect();
-    handleRedirect();
   };
 
   return (
@@ -63,7 +51,7 @@ const LogButton = () => {
         </div>
       ) : (
         <div>
-          <button className="btn-in" onClick={handleLogin}>
+          <button className="btn-in" to="/Accueil" onClick={handleLogin}>
             <span className="text">Log in</span>
             <div className="icon-container">
               <div className="icon icon--left">
