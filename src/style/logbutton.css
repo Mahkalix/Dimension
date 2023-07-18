@@ -13,7 +13,7 @@
 }
 
 .btn-container:nth-child(1) {
-  --btn-bg: #f8f8f8;
+  --btn-bg: #be0519;
 }
 
 button {
@@ -24,8 +24,8 @@ button {
   min-width: var(--width);
   min-height: var(--height);
   border-radius: var(--height);
-  color: #000000;
-  background: #be05171a;
+  color: #fcfcfc;
+  background: #000000fd;
   cursor: pointer;
   overflow: hidden;
   display: flex;
@@ -77,6 +77,7 @@ button .icon-container .icon--left {
 }
 
 button::after {
+  display: flex;
   content: "";
   position: absolute;
   left: 0;
@@ -90,10 +91,12 @@ button::after {
 }
 
 button:hover::after {
+  display: flex;
   transform: translateX(65%);
 }
 
 button:hover .icon-container {
+  display: flex;
   transform: translateX(125%);
 }
 
@@ -103,12 +106,38 @@ button:hover .icon-container .icon--left {
 }
 
 button:hover .icon-container .icon--right {
+  display: flex;
   transform: translateX(200%);
   opacity: 0;
 }
 
 @media (max-width: 425px) {
   button {
+    --width: 150px;
+    --height: 40px;
+    border: 0;
+    position: relative;
+    min-width: var(--width);
+    min-height: var(--height);
+    border-radius: var(--height);
+    color: #ffffff;
+    background: #be0519;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+  }
+
+  button {
     --width: 110px;
+  }
+
+  button::after {
+    display: none;
+  }
+  button:hover::after {
+    display: none;
   }
 }

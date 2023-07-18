@@ -15,14 +15,14 @@ header {
 
 .title-landing-page {
   position: absolute;
-  top: -167px;
-  left: -140px;
+  top: 25px;
+  left: 32px;
 }
 
 @media (max-width: 425px) {
   .title-landing-page {
     position: absolute;
-    top: -167px;
-    left: -155px;
+    top: 25px;
+    left: 10px;
   }
 }
