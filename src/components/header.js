@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Dimension from "../assets/png/2.png";
 import "../style/header.css";
 import LogButton from "./logbutton";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [IsLogged, setIsLogged] = useState(false);
@@ -10,19 +11,15 @@ const Header = () => {
     <header>
       <LogButton setIsLogged={setIsLogged} IsLogged={IsLogged} />
 
-      <a
-        href="https://github.com/Mahkalix/lofi"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <Link to="/">
         <div>
           <img
             className="title-landing-page"
             src={Dimension}
             alt="logo dimension"
-          />{" "}
+          />
         </div>
-      </a>
+      </Link>
     </header>
   );
 };

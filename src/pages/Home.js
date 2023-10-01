@@ -13,9 +13,7 @@ const Home = () => {
   useEffect(() => {
     if (isAuthenticated && !refreshed) {
       setRefreshed(true);
-      // Perform any necessary actions on initial login
 
-      // Example: Refresh the page after 1 second
       const timeoutId = setTimeout(() => {
         window.location.reload();
       }, 1000);

@@ -24,8 +24,8 @@ button {
   min-width: var(--width);
   min-height: var(--height);
   border-radius: var(--height);
-  color: #fcfcfc;
-  background: #000000fd;
+  color: #ffffff;
+  background: rgba(194, 22, 22, 0.514);
   cursor: pointer;
   overflow: hidden;
   display: flex;

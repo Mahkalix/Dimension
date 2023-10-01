@@ -3,11 +3,13 @@ import "../style/card.css";
 import PlayIcon from "../assets/svg/play.svg";
 import PauseIcon from "../assets/svg/pause.svg";
 
-const Card = ({ musicData, play, isPlaying }) => {
+const Card = ({ musicData, play, currentUrl }) => {
+  const isPlaying = currentUrl === musicData.url;
+
   return (
     <>
       <div
-        onClick={play}
+        onClick={() => play(musicData.url)}
         className={`card ${isPlaying ? "playing" : ""}`}
         alt=""
       >

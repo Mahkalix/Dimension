@@ -13,7 +13,10 @@ const noconnexionmain = () => {
         <div className="container-description">
           <div className="messagedefilant">
             <h2>
-              <span className="span">A Music App for Focus and Motivation</span>
+              <span className="span">
+                A Music App for Focus and Motivation - A Music App for Focus and
+                Motivation - A Music App for Focus and Motivation
+              </span>
             </h2>
           </div>
           <p className="description">

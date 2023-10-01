@@ -1,8 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import Card from "./card.js";
 import data from "../data/datamusic.json";
-// import Girl from "../assets/girl.jpg";
-// import Boy from "../assets/boy.jpg";
 import "../style/musicplayer.css";
 import Volume from "../components/handlevolume.js";
 
@@ -12,27 +10,28 @@ function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(null);
 
-  useEffect(() => {
+  const togglePlay = (url) => {
     const audio = audioRef.current;
 
-    if (isPlaying) {
+    if (currentUrl === url) {
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play().catch((error) => {
+          setError(true);
+          console.error("Error playing audio:", error);
+        });
+      }
+      setIsPlaying(!isPlaying);
+    } else {
+      setCurrentUrl(url);
+      audio.src = url;
       audio.play().catch((error) => {
         setError(true);
         console.error("Error playing audio:", error);
       });
-    } else {
-      audio.pause();
-    }
-  }, [isPlaying]);
-
-  const togglePlay = (url) => {
-    if (currentUrl === url) {
-      setIsPlaying(!isPlaying);
-    } else {
       setIsPlaying(true);
-      setCurrentUrl(url);
     }
-    audioRef.current.src = url;
   };
 
   const boy = data.filter((item) => item.categorie === "boy");
@@ -56,8 +55,8 @@ function MusicPlayer() {
                 <Card
                   key={item.id}
                   musicData={item}
-                  play={() => togglePlay(item.url)}
-                  isPlaying={isPlaying && currentUrl === item.url}
+                  play={togglePlay}
+                  currentUrl={currentUrl}
                 />
               ))}
             </>
@@ -81,8 +80,8 @@ function MusicPlayer() {
                 <Card
                   key={item.id}
                   musicData={item}
-                  play={() => togglePlay(item.url)}
-                  isPlaying={isPlaying && currentUrl === item.url}
+                  play={togglePlay}
+                  currentUrl={currentUrl}
                 />
               ))}
             </>
