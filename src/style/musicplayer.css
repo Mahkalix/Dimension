@@ -16,9 +16,8 @@ main {
   border-radius: 20px;
   font-weight: 500;
   font-size: 12px;
-  color: #be0519;
+  color: #be0517;
   margin-bottom: 40px;
-  font-family: "Montserrat", cursive;
 }
 
 /* Texte défilant */
@@ -43,7 +42,6 @@ main {
   font-size: 100px;
   font-weight: 500;
   white-space: nowrap;
-  font-family: "Montserrat", sans-serif;
   top: 0;
 }
 
@@ -108,7 +106,7 @@ main {
 
 /* Handle */
 .Girl::-webkit-scrollbar-thumb {
-  background-color: #be0519;
+  background-color: #be0517;
   border-radius: 10px;
 }
 
@@ -126,7 +124,7 @@ main {
 
 /* Handle */
 .Boy::-webkit-scrollbar-thumb {
-  background: #be0519;
+  background: #be0517;
   border-radius: 10px;
 }
 

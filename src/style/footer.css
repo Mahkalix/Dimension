@@ -9,12 +9,11 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-family: "Julius Sans One", cursive;
+
   font-weight: 600;
 }
 
 .name-footer {
-  font-family: "Julius Sans One", cursive;
   margin-left: 5px;
   font-size: 12px;
   font-weight: 600;

@@ -43,7 +43,7 @@ function MusicPlayer() {
       <div className="container-lofi">
         <div className="messagedefilant">
           <h1 className="title-lofi girl">
-            <span className="left">Dickinson</span>
+            <span className="left">Mix</span>
           </h1>
         </div>
         <ul className="container-card Girl">
@@ -68,7 +68,7 @@ function MusicPlayer() {
         <div className="messagedefilant">
           <h1 className="title-lofi boy">
             {" "}
-            <span className="right">Call Me by Your Name</span>
+            <span className="right">Lofi</span>
           </h1>
         </div>
         <ul className="container-card Boy">

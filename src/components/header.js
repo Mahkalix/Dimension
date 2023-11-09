@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Dimension from "../assets/png/2.png";
 import "../style/header.css";
-import LogButton from "./logbutton";
+import { LogButton } from "./logbutton";
 import { Link } from "react-router-dom";
 
 const Header = () => {

@@ -1,70 +1,71 @@
 [{
-    "url":"/music/boy/Futile Devices (Doveman Remix).mp3",
-    "gif": "/gif/1.webp",
+    "url":"/music/boy/embrace-12278.mp3",
+    "gif": "/gif/1.gif",
     "categorie":"boy",
-    "title":"Futile Devices",
+    "title":"Embrace",
     "id": 1
 },
 {
-    "url":"/music/boy/Visions of Gideon.mp3",
-    "gif": "/gif/2.webp",
+    "url":"/music/boy/good-night-160166.mp3",
+    "gif": "/gif/2.gif",
     "categorie":"boy",
-    "title":"Visions of Gideon",
+    "title":"Good Night",
     "id": 2
 },
 {
-    "url":"/music/boy/Une barque sur l'océan from Miroirs.mp3",
+ 
+    "url":"/music/girl/lofi-study-112191.mp3",
     "gif": "/gif/3.gif",
     "categorie":"boy",
-    "title":"Une barque sur l'océan",
+    "title":"Lofi Study",
     "id": 3
 },
 {
-    "url":"/music/boy/Love My Way.mp3",
+    "url":"/music/boy/lofi-chill-140858.mp3",
     "gif": "/gif/4.gif",
     "categorie":"boy",
-    "title":"Love My Way",
+    "title":"Lofi Chill",
     "id": 4
 },
 {
-    "url":"/music/boy/M.A.Y. in the Backyard.mp3",
-    "gif": "/gif/5.webp",
+    "url":"/music/boy/lofi-chill-medium-version-159456.mp3",
+    "gif": "/gif/5.gif",
     "categorie":"boy",
-    "title":"M.A.Y. in the Backyard",
+    "title":"Lofi Chill Medium",
     "id": 5
 },
 {
-    "url":"/music/girl/Darkside.mp3",
-    "gif": "/gif/darkside.gif",
+    "url":"/music/boy/let-it-go-12279.mp3",
+    "gif": "/gif/8.gif",
     "categorie":"girl",
-    "title":"Darkside",
+    "title":"Let it Go",
     "id": 6
 },
 {
-    "url":"/music/girl/Boys.mp3",
-    "gif": "/gif/boys.gif",
+    "url":"/music/girl/once-in-paris-168895.mp3",
+    "gif": "/gif/7.gif",
     "categorie":"girl",
-    "title":"Boys",
+    "title":"Once in Paris",
     "id": 7
 },
 {
-    "url":"/music/girl/Afterlife.mp3",
-    "gif": "/gif/afterlife.gif",
+    "url":"/music/girl/spirit-blossom-15285.mp3",
+    "gif": "/gif/6.gif",
     "categorie":"girl",
-    "title":"Afterlife",
+    "title":"Spirit Blossom",
     "id": 8
 },
 {
-    "url":"/music/girl/I'm So.mp3",
-    "gif": "/gif/i'mso.gif",
+    "url":"/music/girl/tvari-tokyo-cafe-159065.mp3",
+    "gif": "/gif/9.gif",
     "categorie":"girl",
-    "title":"I'm So",
+    "title":"Tokyo Cafe",
     "id": 9
 },
 {
-    "url":"/music/girl/Experience.mp3",
-    "gif": "/gif/experience.gif",
+    "url":"/music/girl/watr-fluid-10149.mp3",
+    "gif": "/gif/10.gif",
     "categorie":"girl",
-    "title":"Experience",
+    "title":"Water Fluid",
     "id": 10
 }]
