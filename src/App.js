@@ -1,4 +1,4 @@
-import Router from "./router/router.js";
+import Router from "./router/router.jsx";
 import "./style/App.css";
 
 import React from "react";

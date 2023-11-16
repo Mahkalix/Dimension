@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import Card from "./card.js";
+import Card from "./card.jsx";
 import data from "../data/datamusic.json";
 import "../style/musicplayer.css";
-import Volume from "../components/handlevolume.js";
+import Volume from "../components/handlevolume.jsx";
 
 function MusicPlayer() {
   const audioRef = useRef(new Audio());
