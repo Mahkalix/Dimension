@@ -4,6 +4,16 @@ main {
   flex-direction: column;
   margin-left: 20px;
   margin-right: 20px;
+  justify-content: center;
+}
+
+.container-lofi {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+  margin-top: 50px;
 }
 .title-lofi {
   margin: 0;
@@ -211,6 +221,7 @@ input[type="range"]:focus::-moz-range-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
+ 
   }
 
   .container-lofi {

@@ -3,7 +3,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 70%;
 }
+
+
 .container {
   position: relative;
   display: flex;
@@ -28,6 +31,7 @@ h1 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
 }
 
 h2 {
@@ -47,8 +51,8 @@ h2 {
   color: #000000;
   font-size: 20px;
   padding-top: 5vw;
-  padding-left: 10vw;
-  padding-right: 10vw;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 /* Texte défilant */
@@ -122,6 +126,8 @@ h2 {
   border-left: 1px solid #be0519;
   animation: photo-twirl 5s infinite linear;
 }
+
+
 @keyframes photo-twirl {
   0% {
     transform: rotate(0deg);

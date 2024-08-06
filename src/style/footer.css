@@ -1,23 +1,27 @@
 footer {
   display: flex;
   justify-content: center;
-  height: 90px;
+height: 10%;
+background-color: #bc0020;
+
 }
 .text-footer {
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  font-weight: 600;
+font-family: "Poppins";
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+ 
 }
 
 .name-footer {
   margin-left: 5px;
-  font-size: 12px;
-  font-weight: 600;
-  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
 }
 
 @media (max-width: 425px) {

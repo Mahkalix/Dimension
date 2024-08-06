@@ -41,11 +41,6 @@ function MusicPlayer() {
     <>
       <Volume audioRef={audioRef} />
       <div className="container-lofi">
-        <div className="messagedefilant">
-          <h1 className="title-lofi girl">
-            <span className="left">Mix</span>
-          </h1>
-        </div>
         <ul className="container-card Girl">
           {error ? (
             <p>Error loading audio file</p>
@@ -65,12 +60,6 @@ function MusicPlayer() {
       </div>
 
       <div className="container-lofi">
-        <div className="messagedefilant">
-          <h1 className="title-lofi boy">
-            {" "}
-            <span className="right">Lofi</span>
-          </h1>
-        </div>
         <ul className="container-card Boy">
           {error ? (
             <p>Error loading audio file</p>
