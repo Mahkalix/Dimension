@@ -1,39 +1,45 @@
 import React from "react";
 import "../style/noconnexionmain.css";
-import LogoDimension from "../assets/png/1.png";
+import MEN from "../assets/png/men.png";
+import Linkedin from "../assets/svg/linkedin.svg";
+import Github from "../assets/svg/github.svg";
 
-const noconnexionmain = () => {
+const Noconnexionmain = () => {
   return (
     <>
-      <div className="accueil">
-        <div className="container">
-          <img src={LogoDimension} className="png" alt="logo" />
+      <div className="main2">
+        <div className="container-social">
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link"
+          >
+            <img className="Linkedin" src={Linkedin} alt="LinkedIn" />
+          </a>
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link"
+          >
+            <img className="Github" src={Github} alt="GitHub" />
+          </a>
         </div>
-
         <div className="container-description">
           <p className="description">
-            Dimension est une application musicale qui permet aux utilisateurs à
-            rester motivés et concentrés lorsqu'ils travaillent, font de
-            l'exercice ou méditent. Construit avec React, Dimension offre une
-            expérience utilisateur fluide et intuitive, avec un design épuré et
-            simple qui est facile à naviguer. Facile à utiliser vous avez la
-            possibilité de personnaliser votre musique en sélectionnant
-            différentes pistes, en ajustant le volume. Fonctionne sur plusieurs
-            appareils et plates-formes. Pour utiliser Dimension, connectez-vous
-            simplement.
+            Stay motivated and focused while working,
           </p>
+
+          <p className="description2">exercising, or meditating.</p>
         </div>
-      </div>
-      <div className="messagedefilant">
-        <h2>
-          <span className="span">
-            A Music App for Focus and Motivation - A Music App for Focus and
-            Motivation - A Music App for Focus and Motivation
-          </span>
-        </h2>
+
+        <div className="container">
+          <img src={MEN} className="png" alt="logo" />
+        </div>
       </div>
     </>
   );
 };
 
-export default noconnexionmain;
+export default Noconnexionmain;

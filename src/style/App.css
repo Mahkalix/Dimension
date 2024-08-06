@@ -1,6 +1,12 @@
 .App {
   text-align: center;
-  background-color: #ffffff;
+  background: rgb(78,5,190);
+  background: linear-gradient(0deg, #4e05be 0%, #a3abfe 100%);
   min-width: 320px;
-  font-family: "Roboto", sans-serif;
+  max-width: 728px;
+  width: 100vw;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden; 
+  box-sizing: border-box;
 }
+
