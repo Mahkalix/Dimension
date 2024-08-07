@@ -15,10 +15,25 @@
   width: 17px;
 }
 
+
+@media (min-width: 1024px) {
+  .container-lofi {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-top: 39px;
+  }
+
+
+}
 @media (max-width: 1024px) {
   .container-logovolume,
   .container-volume,
   .logovolume {
     display: none;
   }
+
+
 }
