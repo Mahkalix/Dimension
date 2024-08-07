@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Footer from "../components/footer";
-import Header from "../components/header";
 import "../style/Home.css";
 import Main from "../components/main";
 import NoConnexionMain from "../components/noconnexionmain";
@@ -26,10 +24,8 @@ const Home = () => {
 
   return (
     <>
-      <Header />
       {!isAuthenticated && <NoConnexionMain />}
       {isAuthenticated && <Main />}
-      <Footer />
     </>
   );
 };
