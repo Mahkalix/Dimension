@@ -1,11 +1,7 @@
 footer {
   display: flex;
   justify-content: center;
-<<<<<<< HEAD
-  height: 80px;
-=======
   height: 10vh;
->>>>>>> d0e2bb3184047a525ccb004cfcd8a7241bf24d58
 }
 footer p {
   margin: 0; 

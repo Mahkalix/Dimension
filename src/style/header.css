@@ -4,11 +4,7 @@ header {
   align-items: center;
   flex-direction: row;
   width: 100%;
-<<<<<<< HEAD
-  height: 100px;
-=======
   height: 10vh;
->>>>>>> d0e2bb3184047a525ccb004cfcd8a7241bf24d58
 }
 
 header p{
