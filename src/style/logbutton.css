@@ -4,18 +4,14 @@
 }
 
 .btn-container {
-  width: 100%;
+  width: 20%;
   height: 100%;
   display: flex;
-  justify-content: right;
-  align-items:baseline;
-  margin-top: 60px;
+  justify-content: center;
+  align-items:center;
   background: var(--bg);
 }
 
-.btn-container:nth-child(1) {
-  --btn-bg: #be0519;
-}
 
 button {
   --width: 100px;
@@ -25,9 +21,8 @@ button {
   min-width: var(--width);
   min-height: var(--height);
   border-radius: var(--height);
-  color: #ffffff;
-  background: rgb(190,5,25);
-  background: linear-gradient(90deg, rgba(190,5,25,1) 30%, rgba(78,5,190,1) 70%);
+  background: white;
+  color: rgba(78,5,190,1);
   cursor: pointer;
   overflow: hidden;
   display: flex;
@@ -40,36 +35,21 @@ button {
 
 button:hover {
   transition: 1s;
-  background: rgb(78,5,190);
-  background: linear-gradient(90deg, rgba(78,5,190,1) 30%, rgba(190,5,25,1) 70%);
-  color: #ffffff;
-border-color: #be0519;
-border: 1px solid;
+  color: rgb(78,5,190);
+  color: linear-gradient(-90deg, rgba(78,5,190,1) 30%, rgba(163,171,254,1) 70%);
+  background: rgb(255, 255, 255);
 }
-
 
 
 @media (max-width: 425px) {
+  .btn-out, .btn-in{
+    margin-right: 0px;
+  }
   button {
-    --width: 150px;
+    --width: 200px;
     --height: 40px;
-    border: 0;
-    position: relative;
-    min-width: var(--width);
-    min-height: var(--height);
-    border-radius: var(--height);
-    color: #ffffff;
-    background: #be0519;
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 2rem;
   }
-
-  button {
-    --width: 110px;
-  }
-
+  
 }
+
+
