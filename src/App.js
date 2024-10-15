@@ -7,7 +7,7 @@ import React from "react";
 const App = () => {
   return (
     <div className="App">
-         <Header />
+      <Header />
       <Router />
       <Footer />
     </div>
