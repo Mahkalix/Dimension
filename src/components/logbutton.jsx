@@ -13,19 +13,19 @@ const LogButton = () => {
   };
 
   const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
+    logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
   return (
     <div className="btn-container">
       {!isAuthenticated && (
-        <button className="btn-in" to="/Accueil" onClick={handleLogin}>
+        <button type="button" className="btn-in" onClick={handleLogin}>
           <span className="text">Log in</span>
         </button>
       )}
 
       {isAuthenticated && (
-        <button className="btn-out" onClick={handleLogout}>
+        <button type="button" className="btn-out" onClick={handleLogout}>
           <span className="text">Log out</span>
         </button>
       )}

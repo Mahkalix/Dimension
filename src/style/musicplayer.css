@@ -1,159 +1,63 @@
-main {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  margin-right: 20px;
-  justify-content: center;
+.music-player {
+  min-width: 0;
+  padding: 24px var(--page-gutter) 40px;
 }
 
-.container-lofi {
+.music-player__controls {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 50px;
-  margin-top: 50px;
-}
-.title-lofi {
-  margin: 0;
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-  height: 0px;
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 12px;
-  color: #4e05be;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
+.container-lofi { margin-top: 30px; }
+.container-lofi + .container-lofi { margin-top: 42px; }
 
-.card:active {
-  transform: scale(1.1);
-  transition: transform infinite;
-}
-.boy {
-  background-color: #ffffff;
-}
-.girl {
-  background-color: #ffffff;
-}
-.lofilogo {
-  display: flex;
-  width: 30px;
-  margin-right: 10px;
-}
-
-/* Input Volume */
-.Volume {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container-card {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 200px;
+  gap: 20px;
+  width: 100%;
+  padding: 4px 2px 14px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
 }
 
-/* width */
-.Girl::-webkit-scrollbar {
-  width: 5px;
-  height: 12px;
+.container-card::-webkit-scrollbar { display: none; }
+.audio-error { padding: 16px; color: #fff; }
+
+@media (min-width: 1000px) {
+  .music-player { padding: 34px clamp(40px, 5vw, 72px) 48px; }
+
+  .container-card {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    overflow: visible;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .container-card::-webkit-scrollbar { display: none; }
+
+  .container-card.Girl {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .container-card.Boy {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 960px;
+    margin-inline: auto;
+  }
+
+  .container-lofi + .container-lofi { margin-top: 48px; }
 }
 
-/* Track */
-.Girl::-webkit-scrollbar-track {
-  background-color: #efefef;
-  border-radius: 10px;
+@media (max-width: 560px) {
+  .music-player { padding-top: 14px; padding-bottom: 28px; }
+  .music-player__controls { margin-bottom: 16px; }
+  .container-lofi { margin-top: 20px; }
+  .container-lofi + .container-lofi { margin-top: 30px; }
+  .container-card { grid-auto-columns: 150px; gap: 14px; }
 }
-
-/* Handle */
-.Girl::-webkit-scrollbar-thumb {
-  background-color: #4e05be;
-  border-radius: 10px;
-}
-
-/* width */
-.Boy::-webkit-scrollbar {
-  width: 5px;
-  height: 12px;
-}
-
-/* Track */
-.Boy::-webkit-scrollbar-track {
-  background-color: #efefef;
-  border-radius: 10px;
-}
-
-/* Handle */
-.Boy::-webkit-scrollbar-thumb {
-  background: #4e05be;
-  border-radius: 10px;
-}
-
-/*********** Baseline, reset styles ***********/
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-  width: 200px;
-  height: 13px;
-  overflow: hidden;
-  border-radius: 15px;
-}
-
-/* Removes default focus */
-input[type="range"]:focus {
-  outline: none;
-}
-
-/******** Chrome, Safari, Opera and Edge Chromium styles ********/
-/* slider track */
-input[type="range"]::-webkit-slider-runnable-track {
-  background-color: #efefef;
-  border-radius: 20px;
-  height: 13px;
-}
-
-/* slider thumb */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  margin-top: -0.75px; /* Centers thumb on the track */
-  background-color: rgb(255, 255, 255);
-  border-radius: 54px;
-  height: 14px;
-  width: 13px;
-  box-shadow: -407px 0 0 400px #4e05be;
-}
-
-input[type="range"]:focus::-webkit-slider-thumb {
-  box-shadow: -407px 0 0 400px #a3abfe;
-  background-color: #ffffff;
-}
-
-/*********** Firefox styles ***********/
-/* slider track */
-input[type="range"]::-moz-range-track {
-  outline: 2px solid #efefef;
-  outline-offset: 0.125rem;
-}
-
-/* slider thumb */
-input[type="range"]::-moz-range-thumb {
-  background-color: #efefef;
-  border: none; /*Removes extra border that FF applies*/
-  border-radius: 20px;
-  height: 6.5px;
-  width: 9px;
-}
-
-input[type="range"]:focus::-moz-range-thumb {
-  outline: 3px solid #efefef;
-  outline-offset: 0.125rem;
-}
-
-
-  
-
-

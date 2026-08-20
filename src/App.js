@@ -1,7 +1,7 @@
 import Router from "./router/router.jsx";
 import "./style/App.css";
 import Header from "./components/header.jsx";
-import Footer from "./components/footer.jsx"
+import Footer from "./components/footer.jsx";
 import React from "react";
 
 const App = () => {

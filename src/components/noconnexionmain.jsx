@@ -7,7 +7,7 @@ import Github from "../assets/svg/github.svg";
 const Noconnexionmain = () => {
   return (
     <>
-      <div className="main2">
+      <main className="main2">
         <div className="container-social">
           <a
             href="https://www.linkedin.com"
@@ -30,14 +30,13 @@ const Noconnexionmain = () => {
           <p className="description">
             Stay motivated and focused while working,
           </p>
-
           <p className="description2">exercising, or meditating.</p>
         </div>
 
         <div className="container">
-          <img src={MEN} className="png" alt="logo" />
+          <img src={MEN} className="png" alt="Person listening to music" />
         </div>
-      </div>
+      </main>
     </>
   );
 };

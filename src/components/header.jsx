@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "../style/header.css";
 import { LogButton } from "./logbutton";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const [IsLogged, setIsLogged] = useState(false);
-
   return (
-    <header>
-      <Link to="/">
-        <p>Dimension</p>
+    <header className="site-header">
+      <Link className="site-brand" to="/" aria-label="Dimension — accueil">
+        Dimension
       </Link>
-      <LogButton setIsLogged={setIsLogged} IsLogged={IsLogged} />
+      <LogButton />
     </header>
   );
 };

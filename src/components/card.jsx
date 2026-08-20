@@ -1,41 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../style/card.css";
 import PlayIcon from "../assets/svg/play.svg";
 import PauseIcon from "../assets/svg/pause.svg";
 
-const Card = ({ musicData, play, currentUrl }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    setIsPlaying(currentUrl === musicData.url);
-  }, [currentUrl, musicData.url]);
+const Card = ({ musicData, play, currentUrl, isPlaying }) => {
+  const isCurrentTrack = currentUrl === musicData.url;
+  const isCurrentPlaying = isCurrentTrack && isPlaying;
 
   const handleCardClick = () => {
-    if (isPlaying) {
-      play(musicData.url);
-      setIsPlaying(false);
-    } else {
-      play(musicData.url); // Reprendre la lecture
-      setIsPlaying(true);
-    }
+    play(musicData.url);
   };
 
   return (
-    <div
-      onClick={handleCardClick}
-      className={`card ${isPlaying ? "playing" : ""}`}
-      alt=""
+    <li
+      className={`card ${isCurrentPlaying ? "playing" : ""}`}
     >
-      <img className="gif" src={musicData.gif} alt="gif" />
-      {!isPlaying ? (
-        <img className="Pause" src={PauseIcon} alt="Pause" />
-      ) : (
-        <img className="Play" src={PlayIcon} alt="Play" />
-      )}
-      <h1 className="title" title={musicData.title}>
+      <button
+        type="button"
+        className="card__button"
+        onClick={handleCardClick}
+        aria-label={`${isCurrentPlaying ? "Pause" : "Play"} ${musicData.title}`}
+      >
+        <img className="gif" src={musicData.gif} alt="" />
+        <span className="card__overlay" aria-hidden="true">
+          <img
+            className="playback-icon"
+            src={isCurrentPlaying ? PauseIcon : PlayIcon}
+            alt=""
+          />
+        </span>
+      </button>
+      <h3 className="title" title={musicData.title}>
         {musicData.title}
-      </h1>
-    </div>
+      </h3>
+    </li>
   );
 };
 

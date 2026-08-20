@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "./card.jsx";
 import data from "../data/datamusic.json";
 import "../style/musicplayer.css";
@@ -9,6 +9,23 @@ function MusicPlayer() {
   const [error, setError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    const handleEnded = () => setIsPlaying(false);
+    const handleError = () => {
+      setError(true);
+      setIsPlaying(false);
+    };
+
+    audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
+    return () => {
+      audio.pause();
+      audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
+    };
+  }, []);
 
   const togglePlay = (url) => {
     const audio = audioRef.current;
@@ -22,7 +39,7 @@ function MusicPlayer() {
           console.error("Error playing audio:", error);
         });
       }
-      setIsPlaying(!isPlaying);
+      setIsPlaying((playing) => !playing);
     } else {
       setCurrentUrl(url);
       audio.src = url;
@@ -39,11 +56,14 @@ function MusicPlayer() {
 
   return (
     <>
-      <Volume audioRef={audioRef} />
+      <section className="music-player" aria-label="Music player">
+        <div className="music-player__controls">
+          <Volume audioRef={audioRef} />
+        </div>
       <div className="container-lofi">
         <ul className="container-card Girl">
           {error ? (
-            <p>Error loading audio file</p>
+            <li className="audio-error">Unable to load the audio file.</li>
           ) : (
             <>
               {girl.map((item) => (
@@ -52,6 +72,7 @@ function MusicPlayer() {
                   musicData={item}
                   play={togglePlay}
                   currentUrl={currentUrl}
+                  isPlaying={isPlaying}
                 />
               ))}
             </>
@@ -62,7 +83,7 @@ function MusicPlayer() {
       <div className="container-lofi">
         <ul className="container-card Boy">
           {error ? (
-            <p>Error loading audio file</p>
+            <li className="audio-error">Unable to load the audio file.</li>
           ) : (
             <>
               {boy.map((item) => (
@@ -71,12 +92,14 @@ function MusicPlayer() {
                   musicData={item}
                   play={togglePlay}
                   currentUrl={currentUrl}
+                  isPlaying={isPlaying}
                 />
               ))}
             </>
           )}
         </ul>
       </div>
+      </section>
     </>
   );
 }

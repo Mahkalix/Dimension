@@ -1,32 +1,21 @@
-header {
+.site-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-direction: row;
-  width: 100%;
-  height: 10vh;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 76px;
+  padding: 14px var(--page-gutter);
 }
 
-header p{
-  display: flex;
-  align-items:flex-end;
-  font-family: "Rubik Glitch";
-  font-size: 35px;
-  color: white;
+.site-brand {
+  font-family: "Rubik Glitch", sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.3rem);
   letter-spacing: 5px;
+  line-height: 1;
   text-transform: uppercase;
-  margin-left: 30px;
 }
 
-@media (max-width: 425px) {
-  header p{
-    margin-left: 0px;
-    margin-bottom: 10px;
-  }
-
-  header{
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
+@media (max-width: 480px) {
+  .site-header { min-height: 68px; }
+  .site-brand { font-size: 1.5rem; letter-spacing: 3px; }
 }

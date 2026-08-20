@@ -13,12 +13,11 @@ const Handlevolume = ({ audioRef }) => {
     audioRef.current.volume = newVolume;
   };
   return (
-    <>
-      <div className="container-volume">
+      <div className="container-volume" aria-label="Volume control">
         <div className="container-logovolume">
-          <img className="logovolume" src={off} alt="off" />
-          <img className="logovolume" src={medium} alt="medium" />
-          <img className="logovolume" src={high} alt="high" />
+          <img className="logovolume" src={off} alt="Muted" />
+          <img className="logovolume" src={medium} alt="Medium volume" />
+          <img className="logovolume" src={high} alt="High volume" />
         </div>
         <div className="volume">
           <input
@@ -28,10 +27,10 @@ const Handlevolume = ({ audioRef }) => {
             step="0.01"
             value={volume}
             onChange={handleVolumeChange}
+            aria-label="Volume"
           />
         </div>
       </div>
-    </>
   );
 };
 
