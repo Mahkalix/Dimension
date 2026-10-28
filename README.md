@@ -1,16 +1,16 @@
-# DIMENSION — A place has a sound.
+# DIMENSION — Find your own dimension.
 
-Player musical à la direction artistique éditoriale : papier, charbon, rouge signal, archives numérotées et photographie de studio originale.
+Player musical lo-fi avec une navigation inspirée de Spotify et une identité violette : accent `#CD83F9`, fond de bannière `#2E0247`, surfaces sombres. La structure des collections originales est conservée : Lo-fi Girl, puis Lo-fi Boy, avec les dix morceaux, leurs GIF et le personnage au casque d’origine.
 
 ## Expérience
 
 - Lecture des dix fichiers audio existants, pause, piste précédente/suivante, progression, volume et sourdine.
-- Lecteur persistant entre les vues Now Playing, The Selection, Sessions et Archive.
-- Recherche dans la collection et deux séquences d’écoute avec leur propre ordre de lecture.
+- Lecteur fixe en bas de page, conservant la lecture pendant la recherche et le filtrage.
+- Recherche par titre et filtres All / Lo-fi Girl / Lo-fi Boy.
 - Vue immersive, version mobile compacte, contrôles clavier natifs et focus visibles.
-- Oscilloscope calculé à partir du son réel via Web Audio ; désactivé avec `prefers-reduced-motion`.
+- Lecture automatique du morceau suivant ; cartes accessibles au clavier et transitions désactivées avec `prefers-reduced-motion`. Les GIF originaux restent animés.
 
-L’écoute et les archives sont publiques. La connexion Prelude reste accessible séparément ; son activation n’est pas nécessaire pour écouter les fichiers déjà publics. Les métadonnées disponibles ne renseignent pas les artistes : aucun nom d’artiste, BPM ou taux d’échantillonnage n’a été inventé. La photographie de studio est une création illustrative générée, et non la pochette officielle des morceaux.
+L’écoute et les collections sont publiques. La connexion Prelude reste accessible séparément ; son activation n’est pas nécessaire pour écouter les fichiers déjà publics. Les métadonnées disponibles ne renseignent pas les artistes : aucun nom d’artiste, BPM ou taux d’échantillonnage n’a été inventé.
 
 ## Développement
 
@@ -31,19 +31,17 @@ Ne jamais exposer de clé Management API dans une variable `REACT_APP_*`. La mig
 
 ## Structure
 
-- `src/components/MusicArchive.jsx` : interface, transport audio, archives, sessions et oscilloscope.
+- `src/components/MusicArchive.jsx` : interface, collections Girl / Boy et transport audio.
 - `src/style/dimension.css` : système visuel et responsive.
 - `src/data/datamusic.json` : catalogue audio existant.
 - `src/auth/` : intégration de session Prelude.
-- `public/images/dimension-studio.png` : visuel éditorial original généré avec l’outil intégré ImageGen.
-
-## Visuel
-
-Prompt utilisé : « Documentary 35mm black and white film photograph of an empty intimate analog recording studio at night: vintage mixing console, reel-to-reel tape machine, dark acoustic wall, small recording-booth window, practical lamp glow, charcoal shadows, ivory highlights, silver grain. No people, lettering, logos or watermark. Square album-cover photograph. »
+- `public/brand/dimension-mark.svg` et `public/favicon.svg` : monogramme D vectoriel original aux couleurs du projet.
+- `public/gif/` et `src/assets/png/men.png` : visuels originaux réutilisés.
 
 ## Liens
 
 - [GitHub](https://github.com/Mahkalix/Dimension)
+- [Aperçu de la PR](https://dimension-git-codex-dimension-editorial-mahkalixs-projects.vercel.app/)
 - [Production](https://dimension-gamma.vercel.app/)
 - [Vercel](https://vercel.com/mahkalixs-projects/dimension)
 
