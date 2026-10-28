@@ -1,12 +1,2 @@
-import React from "react";
-import Main from "../components/main";
-
-const Acceuil = () => {
-  return (
-    <>
-      <Main />
-    </>
-  );
-};
-
-export default Acceuil;
+// Both entry routes use the same authentication gate.
+export { default } from "./Home";
