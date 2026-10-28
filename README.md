@@ -1,72 +1,53 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/70fb6d19-3c17-4af6-a58b-79e157e29ef2/deploy-status)](https://app.netlify.com/sites/dimensionmusic/deploys)
+# Dimension
 
-# Getting Started with Create React App
+Dimension est une application web React avec authentification Auth0 et navigation via React Router.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Liens du projet
 
-## Available Scripts
+- [Dépôt GitHub](https://github.com/Mahkalix/Dimension)
+- [Projet Vercel](https://vercel.com/mahkalixs-projects/dimension) — tableau de bord des déploiements, accessible aux membres du projet.
 
-In the project directory, you can run:
+## Technologies
 
-### `npm start`
+- React 18 et Create React App (`react-scripts` 5)
+- React Router 6
+- Auth0 pour l’authentification
+- Sass pour les styles
+- Axios et React Audio Player
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Démarrage local
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Installer Node.js et npm, puis exécuter :
 
-### `npm test`
+```bash
+git clone https://github.com/Mahkalix/Dimension.git
+cd Dimension
+npm install
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+L’application est disponible sur [localhost:3000](http://localhost:3000).
 
-### `npm run build`
+L’intégration Auth0 est configurée dans `src/index.js`. Pour utiliser votre propre tenant, adapter son domaine et son identifiant client, ainsi que les URL autorisées dans Auth0. L’URL de retour utilisée par l’application correspond à son origine (`window.location.origin`).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Commandes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Commande | Description |
+| --- | --- |
+| `npm start` | Démarrer le serveur de développement. |
+| `npm test` | Lancer les tests en mode interactif. |
+| `npm run build` | Générer la version de production dans `build/`. |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Organisation
 
-### `npm run eject`
+- `src/App.js` : structure générale de l’application.
+- `src/router/router.jsx` : routes `/` et `/Accueil`.
+- `src/pages/` : pages de l’application.
+- `src/components/` : composants, dont l’en-tête et le pied de page.
+- `src/style/` : styles.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Vercel
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Le projet Vercel se nomme `dimension`. Pour produire les fichiers statiques de cette application Create React App, utiliser `npm run build` ; le dossier généré est `build/`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Le script historique `npm run deploy` utilise GitHub Pages ; il ne déploie pas sur Vercel.
