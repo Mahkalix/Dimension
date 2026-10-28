@@ -14,8 +14,8 @@ test('formats real durations without leaking invalid metadata', () => {
 test('preserves both original groups and their original artwork', () => {
   render(<MusicArchive />);
   fireEvent.click(screen.getByRole('button',{name:'Lo-fi original'}));
-  const girl = screen.getByRole('region', { name: 'Girl' });
-  const boy = screen.getByRole('region', { name: 'Boy' });
+  const girl = screen.getByRole('region', { name: 'Silence' });
+  const boy = screen.getByRole('region', { name: 'Retour' });
   expect(within(girl).getAllByRole('button')).toHaveLength(6);
   expect(within(boy).getAllByRole('button')).toHaveLength(4);
   expect(within(girl).getByRole('button', { name:'Play Let it Go' }).querySelector('img')).toHaveAttribute('src','/gif/8.gif');
@@ -32,7 +32,7 @@ test('changing tracks keeps the chosen audio source through search and collectio
   expect(screen.getByRole('button', { name: 'Play Once in Paris' })).toBeInTheDocument();
   expect(screen.queryByRole('button', { name: 'Play Embrace' })).not.toBeInTheDocument();
   expect(media.getAttribute('src')).toBe('/music/boy/good-night-160166.mp3');
-  fireEvent.click(screen.getByRole('button', {name:'Boy',exact:true}));
+  fireEvent.click(screen.getByRole('button', {name:'Retour',exact:true}));
   expect(screen.getByRole('status')).toHaveTextContent('No tracks found');
 });
 test('selected cards play, pause, and continue to the next track on end', async () => {

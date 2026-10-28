@@ -917,3 +917,30 @@ footer .wordmark{font-size:17px;font-weight:500}
 .quiet-photo img{max-height:300px;object-position:center 58%}
 .welcome h1{font-size:60px}
 @media(max-width:760px){.quiet-photo img{max-height:none}.welcome h1{font-size:55px}}
+/* Aged lavender, fine grain, and no editorial subtitles. */
+:root{--accent:#C8B6D0;--purple:#332A3A;background:#141215;color:#e7e0e8}
+.dimension{isolation:isolate}
+.dimension::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.065;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23grain)' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}
+.masthead,.sidebar,.silent-dock,.player-dock{background:#141215}
+main{background:#1b181e}
+.welcome h1 em,.sidebar nav>button.active,.filter-bar button[aria-pressed=true],.music-card.selected strong{color:#C8B6D0}
+.sidebar nav>button.active,.filter-bar button[aria-pressed=true]{border-color:#C8B6D0}
+.quiet-line,.card-play,.transport .play-control,.player-dock .play-control{background:#C8B6D0;color:#332A3A}
+.curated-card:hover .record-sleeve,.curated-card:focus-visible .record-sleeve,.curated-card.selected .record-sleeve{border-color:#C8B6D0}
+.quiet-status i{border-color:#C8B6D0}
+.primary-button,.silent-dock>button,.external-caption button,.external-help a{color:#C8B6D0}
+.record-sleeve{background:#38303e;border-color:#66596d;color:#ded0e3}
+.sleeve-apart{background:#302b34;color:#d6cbd9}
+.sleeve-oh-my-heart{background:#413947;color:#e3d8e7}
+.sleeve-via-chicago{background:#3b353d;color:#d5c8d8}
+.sleeve-strange-currencies{background:#493d51;border-color:#75647e;color:#ded0e3}
+.sleeve-let-down{background:#34313b;color:#d2cbdc}
+.sleeve-meta{color:#c4b6cc}
+.brand-icon{width:35px;height:35px;border-radius:0}
+.masthead .wordmark{text-transform:uppercase;letter-spacing:1.8px;font-size:19px;font-weight:600;gap:13px}
+.welcome h1{margin-bottom:12px}
+.welcome{padding-bottom:32px}
+.section-heading{margin-bottom:18px}
+.section-index{margin-bottom:10px}
+.sleeve-rule{margin-bottom:0}
+@media(max-width:760px){.masthead .wordmark{font-size:15px;letter-spacing:1px;gap:10px}.brand-icon{width:29px;height:29px}.welcome h1{margin-bottom:8px}}

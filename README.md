@@ -1,6 +1,6 @@
 # DIMENSION — Après le bruit.
 
-Un player musical pour le calme après le service. La structure reste celle du projet : navigation latérale, deux collections Girl / Boy, cartes de morceaux et lecteur persistant. Le violet `#CD83F9` et `#2E0247` reste présent, sur des surfaces charbon plus sobres.
+Un player musical pour le calme après le service. La structure reste celle du projet : navigation latérale, deux sélections Silence / Retour, cartes de morceaux et lecteur persistant. Le violet devient une lavande vieillie `#C8B6D0`, associée à `#332A3A`, avec un grain fin et statique. Les sous-titres et phrases décoratives ont été retirés.
 
 ## Écouter
 
@@ -10,7 +10,7 @@ La sélection **Après le service** réunit six morceaux : Together et Apart (Ni
 - Un clic sur un titre de la sélection charge son lecteur Spotify officiel. La lecture, les éventuels extraits et la disponibilité dépendent de Spotify et du compte de l’auditeur. Un lien direct reste disponible.
 - Aucun fichier audio commercial n’est téléchargé ni hébergé dans ce dépôt.
 - **Lo-fi original** conserve les dix fichiers audio et les GIF d’origine, répartis comme avant entre Girl (6) et Boy (4).
-- Recherche par titre ou artiste, filtres Girl / Boy, navigation clavier et responsive mobile.
+- Recherche par titre ou artiste, filtres Silence / Retour, navigation clavier et responsive mobile.
 - Les morceaux locaux gardent lecture/pause, précédent/suivant, progression, volume et sourdine. Les commandes Spotify restent celles du lecteur officiel.
 - Passer d’une source à l’autre arrête la précédente. Les cartes de la nouvelle sélection sont statiques ; les GIF de la collection originale restent animés.
 
@@ -38,7 +38,7 @@ Ne jamais exposer de clé Management API dans une variable `REACT_APP_*`. La mig
 - `src/data/afterhours.json` : titres, artistes et identifiants Spotify de la nouvelle sélection.
 - `src/style/dimension.css` : responsive et identité visuelle.
 - `src/auth/` : session Prelude.
-- `public/brand/` et `public/favicon.svg` / `.ico` : logo D original et icônes.
+- `public/brand/` et `public/favicon.svg` / `.ico` : logo ours vectoriel original et icônes. Le monogramme D précédent est conservé comme fichier historique mais n’est plus utilisé.
 - `public/images/dimension-after-hours.webp` : photographie illustrative originale générée avec l’outil intégré ImageGen, pas une image extraite de la série. Les couvertures typographiques sont des créations d’interface, pas les pochettes officielles des albums.
 
 Sources : [musique FX](https://www.fxnetworks.com/music), [discographie Nine Inch Nails](https://www.nin.com/discography/), [Strange Currencies — R.E.M.](https://www.universalmusic.it/popular-music/album/strange-currencies_36467971753/), [documentation Spotify Embed](https://developer.spotify.com/documentation/embeds/tutorials/creating-an-embed). Chaque identifiant du catalogue renvoie à `https://open.spotify.com/track/{spotifyId}`.
