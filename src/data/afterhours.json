@@ -1,0 +1,8 @@
+[
+  {"id":"together","title":"Together","artist":"Nine Inch Nails","album":"Ghosts V: Together","year":"2020","categorie":"girl","spotifyId":"7iiu6ce9zGfbvs0yBvsZeT","note":"Le calme revient."},
+  {"id":"apart","title":"Apart","artist":"Nine Inch Nails","album":"Ghosts V: Together","year":"2020","categorie":"girl","spotifyId":"1ynahsJeZyOXsXv8ndSHbL","note":"Laisser de la place."},
+  {"id":"oh-my-heart","title":"Oh My Heart","artist":"R.E.M.","album":"Part Lies, Part Heart, Part Truth, Part Garbage","year":"2011","categorie":"girl","spotifyId":"2A8lZvWtejaXtmNajUbtt5","note":"Ce qui reste."},
+  {"id":"via-chicago","title":"Via Chicago","artist":"Wilco","album":"Summerteeth","year":"1999","categorie":"boy","spotifyId":"58nPDufBVhMa2bT8G59CzS","note":"Le chemin du retour."},
+  {"id":"strange-currencies","title":"Strange Currencies","artist":"R.E.M.","album":"Monster","year":"1994","categorie":"boy","spotifyId":"0p6NIcnxbUpdYiJEhOjgj6","note":"Encore un peu."},
+  {"id":"let-down","title":"Let Down","artist":"Radiohead","album":"OK Computer","year":"1997","categorie":"boy","spotifyId":"2fuYa3Lx06QQJAm0MjztKr","note":"La ville au loin."}
+]

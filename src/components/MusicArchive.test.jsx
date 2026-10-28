@@ -13,14 +13,18 @@ test('formats real durations without leaking invalid metadata', () => {
 });
 test('preserves both original groups and their original artwork', () => {
   render(<MusicArchive />);
-  const girl = screen.getByRole('region', { name: 'Lo-fi Girl ↗' });
-  const boy = screen.getByRole('region', { name: 'Lo-fi Boy ↗' });
+  fireEvent.click(screen.getByRole('button',{name:'Lo-fi original'}));
+  const girl = screen.getByRole('region', { name: 'Girl' });
+  const boy = screen.getByRole('region', { name: 'Boy' });
   expect(within(girl).getAllByRole('button')).toHaveLength(6);
   expect(within(boy).getAllByRole('button')).toHaveLength(4);
   expect(within(girl).getByRole('button', { name:'Play Let it Go' }).querySelector('img')).toHaveAttribute('src','/gif/8.gif');
 });
 test('changing tracks keeps the chosen audio source through search and collection filters', async () => {
   const { container } = render(<MusicArchive />);
+  fireEvent.click(screen.getByRole('button',{name:'Lo-fi original'}));
+  fireEvent.click(screen.getByRole('button', { name: 'Play Embrace' }));
+  await screen.findByRole('button', {name:'Pause Embrace'});
   fireEvent.click(screen.getByRole('button', { name: 'Next track' }));
   const media = container.querySelector('audio');
   await waitFor(()=>expect(media.getAttribute('src')).toBe('/music/boy/good-night-160166.mp3'));
@@ -28,11 +32,12 @@ test('changing tracks keeps the chosen audio source through search and collectio
   expect(screen.getByRole('button', { name: 'Play Once in Paris' })).toBeInTheDocument();
   expect(screen.queryByRole('button', { name: 'Play Embrace' })).not.toBeInTheDocument();
   expect(media.getAttribute('src')).toBe('/music/boy/good-night-160166.mp3');
-  fireEvent.click(screen.getByRole('button', {name:'Lo-fi Boy',exact:true}));
+  fireEvent.click(screen.getByRole('button', {name:'Boy',exact:true}));
   expect(screen.getByRole('status')).toHaveTextContent('No tracks found');
 });
 test('selected cards play, pause, and continue to the next track on end', async () => {
   const {container}=render(<MusicArchive />);
+  fireEvent.click(screen.getByRole('button',{name:'Lo-fi original'}));
   fireEvent.click(screen.getByRole('button', { name:'Play Lofi Study' }));
   await screen.findByRole('button', { name:'Pause Lofi Study' });
   fireEvent.click(screen.getByRole('button', { name:'Pause Lofi Study' }));
@@ -42,3 +47,28 @@ test('selected cards play, pause, and continue to the next track on end', async 
   expect(container.querySelector('audio').getAttribute('src')).toBe('/music/boy/lofi-chill-140858.mp3');
 });
 
+
+test('starts in silence, loads an official player only on selection, and silence removes it', () => {
+  const {container}=render(<MusicArchive />);
+  expect(container.querySelector('iframe')).not.toBeInTheDocument();
+  expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole('button',{name:'Écouter Together — Nine Inch Nails'}));
+  expect(screen.getByTitle('Écouter Together sur Spotify')).toHaveAttribute('src','https://open.spotify.com/embed/track/7iiu6ce9zGfbvs0yBvsZeT?utm_source=generator&theme=0');
+  fireEvent.click(screen.getByRole('button',{name:'Fermer le lecteur et revenir au silence'}));
+  expect(container.querySelector('iframe')).not.toBeInTheDocument();
+  expect(screen.getByLabelText('Lecteur au repos')).toBeInTheDocument();
+});
+test('switching between local audio and Spotify never leaves both players active', async () => {
+  const {container}=render(<MusicArchive />);
+  fireEvent.click(screen.getByRole('button',{name:'Lo-fi original'}));
+  fireEvent.click(screen.getByRole('button',{name:'Play Embrace'}));
+  await screen.findByRole('button',{name:'Pause Embrace'});
+  fireEvent.click(screen.getByRole('button',{name:'Après le service'}));
+  fireEvent.click(screen.getByRole('button',{name:'Écouter Together — Nine Inch Nails'}));
+  expect(HTMLMediaElement.prototype.pause).toHaveBeenCalled();
+  expect(screen.queryByLabelText('Persistent player')).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button',{name:'Lo-fi original'}));
+  fireEvent.click(screen.getByRole('button',{name:'Play Lofi Study'}));
+  await screen.findByRole('button',{name:'Pause Lofi Study'});
+  expect(container.querySelector('iframe')).not.toBeInTheDocument();
+});
