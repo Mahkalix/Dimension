@@ -1,18 +1,19 @@
 # DIMENSION — Après le bruit.
 
-Un player musical pour le calme après le service. La structure reste celle du projet : navigation latérale, deux sélections Silence / Retour, cartes de morceaux et lecteur persistant. Le violet devient une lavande vieillie `#C8B6D0`, associée à `#332A3A`, avec un grain fin et statique. Les sous-titres et phrases décoratives ont été retirés.
+Un player musical pour le calme après le service. La structure reste celle du projet : navigation latérale, deux sélections Silence / Retour, cartes de morceaux et lecteur persistant. Le violet devient une lavande vieillie `#C8B6D0`, associée à `#332A3A`, avec un grain presque imperceptible limité aux pochettes ; le fond est uni. Les sous-titres et phrases décoratives ont été retirés.
 
 ## Écouter
 
-La sélection **Après le service** réunit six morceaux : Together et Apart (Nine Inch Nails), Oh My Heart et Strange Currencies (R.E.M.), Via Chicago (Wilco), Let Down (Radiohead). C’est une sélection éditoriale inspirée de l’atmosphère de The Bear, pas une bande originale officielle ni une liste des préférences d’un personnage.
+La sélection **Après le service** réunit Weird Fishes / Arpeggi — From the Basement (Radiohead) et Chicago (Sufjan Stevens). C’est une proposition éditoriale pour une atmosphère calme, mélancolique et alternative, pas une affirmation sur les goûts d’un personnage ni une bande originale officielle.
 
-- Aucun son au chargement. Le bouton **Silence** met en pause l’audio local et ferme le lecteur externe.
-- Un clic sur un titre de la sélection charge son lecteur Spotify officiel. La lecture, les éventuels extraits et la disponibilité dépendent de Spotify et du compte de l’auditeur. Un lien direct reste disponible.
-- Aucun fichier audio commercial n’est téléchargé ni hébergé dans ce dépôt.
-- **Lo-fi original** conserve les dix fichiers audio et les GIF d’origine, répartis comme avant entre Girl (6) et Boy (4).
-- Recherche par titre ou artiste, filtres Silence / Retour, navigation clavier et responsive mobile.
-- Les morceaux locaux gardent lecture/pause, précédent/suivant, progression, volume et sourdine. Les commandes Spotify restent celles du lecteur officiel.
-- Passer d’une source à l’autre arrête la précédente. Les cartes de la nouvelle sélection sont statiques ; les GIF de la collection originale restent animés.
+- Aucun son au chargement. Le bouton **Silence** arrête l’audio ou ferme le lecteur.
+- Les titres sont proposés via les vidéos des chaînes officielles des artistes. Le lecteur YouTube reste visible ; les morceaux ne sont ni téléchargés ni réhébergés.
+- Lecture/pause et volume réglable directement dans DIMENSION via l’API officielle YouTube. Le volume est conservé en changeant de morceau ou de source, et reste accessible sur mobile.
+- Une vidéo indisponible affiche une erreur et un lien vers sa page officielle.
+- **Lo-fi original** conserve les dix fichiers audio et les GIF d’origine.
+- Recherche par titre/artiste, filtres Silence / Retour, navigation clavier et responsive.
+- Le lecteur local conserve progression, volume, pause et changement de piste. Changer de source arrête la précédente.
+- Le logo est une silhouette d’ours de profil, sans visage de mascotte. Les titres et artistes n’apparaissent qu’une fois sur les nouvelles cartes ; labels et sous-titres décoratifs sont supprimés.
 
 ## Développement
 
@@ -33,15 +34,16 @@ Ne jamais exposer de clé Management API dans une variable `REACT_APP_*`. La mig
 
 ## Structure et sources
 
-- `src/components/MusicArchive.jsx` : interface, transport local et sélection du lecteur Spotify.
+- `src/components/MusicArchive.jsx` : interface, transport local et sélection du lecteur vidéo.
+- `src/components/MusicVideoPlayer.jsx` : intégration YouTube, lecture/pause, volume et nettoyage du lecteur.
 - `src/data/datamusic.json` : catalogue d’origine, inchangé.
-- `src/data/afterhours.json` : titres, artistes et identifiants Spotify de la nouvelle sélection.
+- `src/data/afterhours.json` : titres, artistes et identifiants des vidéos officielles YouTube de la nouvelle sélection.
 - `src/style/dimension.css` : responsive et identité visuelle.
 - `src/auth/` : session Prelude.
 - `public/brand/` et `public/favicon.svg` / `.ico` : logo ours vectoriel original et icônes. Le monogramme D précédent est conservé comme fichier historique mais n’est plus utilisé.
 - `public/images/dimension-after-hours.webp` : photographie illustrative originale générée avec l’outil intégré ImageGen, pas une image extraite de la série. Les couvertures typographiques sont des créations d’interface, pas les pochettes officielles des albums.
 
-Sources : [musique FX](https://www.fxnetworks.com/music), [discographie Nine Inch Nails](https://www.nin.com/discography/), [Strange Currencies — R.E.M.](https://www.universalmusic.it/popular-music/album/strange-currencies_36467971753/), [documentation Spotify Embed](https://developer.spotify.com/documentation/embeds/tutorials/creating-an-embed). Chaque identifiant du catalogue renvoie à `https://open.spotify.com/track/{spotifyId}`.
+Sources : [musique FX](https://www.fxnetworks.com/music), [documentation YouTube IFrame API](https://developers.google.com/youtube/iframe_api_reference). Chaque vidéo du catalogue renvoie à `https://www.youtube.com/watch?v={videoId}`.
 
 Prompt de l’image (outil ImageGen intégré) :
 

@@ -944,3 +944,26 @@ main{background:#1b181e}
 .section-index{margin-bottom:10px}
 .sleeve-rule{margin-bottom:0}
 @media(max-width:760px){.masthead .wordmark{font-size:15px;letter-spacing:1px;gap:10px}.brand-icon{width:29px;height:29px}.welcome h1{margin-bottom:8px}}
+/* Final restraint: grain stays on the artwork, never across the controls. */
+.dimension::after{display:none}
+.record-sleeve{position:relative}
+.record-sleeve::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath filter='url(%23g)' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}
+.brand-icon{width:49px;height:34px}
+.curated-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.curated-card .record-sleeve{aspect-ratio:2.3;margin-bottom:0;max-height:230px}
+.video-dock{position:fixed;bottom:0;left:244px;right:22px;z-index:7;display:grid;grid-template-columns:360px 1fr;gap:25px;background:#19161c;border:1px solid #514856;padding:14px}
+.video-frame{height:203px;width:100%;min-width:200px;min-height:200px;background:#111}
+.video-frame iframe{display:block;width:100%;height:100%;border:0}
+.video-controls{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;padding-right:20px;min-width:0}
+.video-controls strong{font-size:18px;font-weight:500}
+.video-artist{font-size:12px;color:#bdb0c4}
+.video-close{position:absolute;right:0;top:0;font-size:26px;width:36px;height:36px}
+.video-toggle{border:1px solid #8e7c99;padding:7px 20px;font-size:12px;color:#d9c9e2}
+.video-volume{display:flex;align-items:center;gap:12px;font-size:11px;width:min(100%,330px)}
+.video-volume input{flex:1;width:100px}.video-volume output{min-width:34px}
+.video-controls>a{font-size:10px;color:#ad9fb5}.video-controls [role=alert]{font-size:11px}
+.has-external-player{padding-bottom:270px}
+@media(max-width:1150px){.video-dock{left:210px;grid-template-columns:320px 1fr;gap:16px}}
+@media(max-width:760px){.brand-icon{width:42px;height:29px}.curated-grid{grid-template-columns:1fr}.curated-card .record-sleeve{aspect-ratio:2;max-height:none}.video-dock{left:10px;right:10px;grid-template-columns:1fr;gap:10px;padding:10px}.video-frame{height:200px}.video-controls{gap:8px;padding-right:35px}.video-controls strong{font-size:14px}.video-artist{font-size:11px}.video-controls>a{position:absolute;right:0;bottom:0}.video-volume{width:100%;padding-bottom:8px}.has-external-player{padding-bottom:410px}.dock-tools{display:flex;grid-column:1/-1;justify-content:flex-end}.dock-tools input{width:100px}.player-dock{min-height:125px}}
+.curated-card .record-sleeve{width:100%}
+.sidebar nav>.collection-link>span:first-child{font-size:13px;width:auto}

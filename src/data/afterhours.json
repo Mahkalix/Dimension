@@ -1,56 +1,17 @@
 [
   {
-    "id": "together",
-    "title": "Together",
-    "artist": "Nine Inch Nails",
-    "album": "Ghosts V: Together",
-    "year": "2020",
-    "categorie": "girl",
-    "spotifyId": "7iiu6ce9zGfbvs0yBvsZeT"
-  },
-  {
-    "id": "apart",
-    "title": "Apart",
-    "artist": "Nine Inch Nails",
-    "album": "Ghosts V: Together",
-    "year": "2020",
-    "categorie": "girl",
-    "spotifyId": "1ynahsJeZyOXsXv8ndSHbL"
-  },
-  {
-    "id": "oh-my-heart",
-    "title": "Oh My Heart",
-    "artist": "R.E.M.",
-    "album": "Part Lies, Part Heart, Part Truth, Part Garbage",
-    "year": "2011",
-    "categorie": "girl",
-    "spotifyId": "2A8lZvWtejaXtmNajUbtt5"
-  },
-  {
-    "id": "via-chicago",
-    "title": "Via Chicago",
-    "artist": "Wilco",
-    "album": "Summerteeth",
-    "year": "1999",
-    "categorie": "boy",
-    "spotifyId": "58nPDufBVhMa2bT8G59CzS"
-  },
-  {
-    "id": "strange-currencies",
-    "title": "Strange Currencies",
-    "artist": "R.E.M.",
-    "album": "Monster",
-    "year": "1994",
-    "categorie": "boy",
-    "spotifyId": "0p6NIcnxbUpdYiJEhOjgj6"
-  },
-  {
-    "id": "let-down",
-    "title": "Let Down",
+    "id": "weird-fishes",
+    "title": "Weird Fishes / Arpeggi",
     "artist": "Radiohead",
-    "album": "OK Computer",
-    "year": "1997",
+    "version": "From the Basement",
+    "categorie": "girl",
+    "videoId": "ejdZEe4Rd0o"
+  },
+  {
+    "id": "chicago",
+    "title": "Chicago",
+    "artist": "Sufjan Stevens",
     "categorie": "boy",
-    "spotifyId": "2fuYa3Lx06QQJAm0MjztKr"
+    "videoId": "tWX3El-slpY"
   }
 ]
