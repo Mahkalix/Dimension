@@ -12,7 +12,7 @@ export function loadYouTubeAPI() {
   }).catch(error => { apiPromise = undefined; throw error; });
   return apiPromise;
 }
-export default function MusicVideoPlayer({ track, volume, onVolumeChange, onClose, command = 0 }) {
+export default function MusicVideoPlayer({ track, volume, onVolumeChange, onClose, command = 0, onPlayingChange }) {
   const host = useRef(null);
   const player = useRef(null);
   const latestVolume = useRef(volume);
@@ -38,13 +38,13 @@ export default function MusicVideoPlayer({ track, volume, onVolumeChange, onClos
             event.target.getIframe()?.setAttribute('title', `${track.title} — ${track.artist}`);
             setReady(true);
           },
-          onStateChange: event => { if (!cancelled) setPlaying(event.data === 1); },
-          onError: () => { if (!cancelled) { setError(true); setPlaying(false); } }
+          onStateChange: event => { if (!cancelled) { setPlaying(event.data === 1); onPlayingChange?.(event.data === 1); } },
+          onError: () => { if (!cancelled) { setError(true); setPlaying(false); onPlayingChange?.(false); } }
         }
       });
     }).catch(() => { if (!cancelled) setError(true); });
     return () => { cancelled = true; player.current?.destroy(); player.current = null; container.replaceChildren(); };
-  }, [track.videoId, track.title, track.artist]);
+  }, [track.videoId, track.title, track.artist, onPlayingChange]);
   useEffect(() => { if (ready) { player.current?.unMute(); player.current?.setVolume(Math.round(volume * 100)); } }, [volume, ready]);
   useEffect(() => {
     if (!command || command === lastCommand.current || !ready || error || !player.current) return;
