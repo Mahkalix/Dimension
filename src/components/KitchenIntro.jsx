@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
-import { ContactShadows, Environment, Html, RoundedBox } from '@react-three/drei';
+import { ContactShadows, Html, RoundedBox } from '@react-three/drei';
 import gsap from 'gsap';
 import * as THREE from 'three';
 

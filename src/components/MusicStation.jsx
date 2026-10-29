@@ -1,4 +1,4 @@
-import React,{useCallback,useEffect,useMemo,useRef,useState} from 'react';
+import React,{useCallback,useEffect,useRef,useState} from 'react';
 import originals from '../data/datamusic.json';
 import editorial from '../data/afterhours.json';
 import MusicVideoPlayer from './MusicVideoPlayer';
