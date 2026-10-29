@@ -12,7 +12,7 @@ export function loadYouTubeAPI() {
   }).catch(error => { apiPromise = undefined; throw error; });
   return apiPromise;
 }
-export default function MusicVideoPlayer({ track, volume, onVolumeChange, onClose }) {
+export default function MusicVideoPlayer({ track, volume, onVolumeChange, onClose, command = 0 }) {
   const host = useRef(null);
   const player = useRef(null);
   const latestVolume = useRef(volume);
@@ -45,6 +45,7 @@ export default function MusicVideoPlayer({ track, volume, onVolumeChange, onClos
     return () => { cancelled = true; player.current?.destroy(); player.current = null; container.replaceChildren(); };
   }, [track.videoId, track.title, track.artist]);
   useEffect(() => { if (ready) { player.current?.unMute(); player.current?.setVolume(Math.round(volume * 100)); } }, [volume, ready]);
+  useEffect(() => { if (!command || !ready || error || !player.current) return; if (playing) player.current.pauseVideo(); else player.current.playVideo(); }, [command]);
   return <aside className="video-dock" aria-label="Lecteur musical">
     <div className="video-frame" ref={host} />
     <div className="video-controls"><button className="video-close" aria-label="Fermer le lecteur et revenir au silence" onClick={onClose}>×</button>
