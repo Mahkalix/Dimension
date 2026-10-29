@@ -39,6 +39,9 @@ export default function MusicArchive() {
   const [muted, setMuted] = useState(false);
   const [view, setView] = useState('all');
   const [query, setQuery] = useState('');
+  const [wheelPage, setWheelPage] = useState('menu');
+  const [wheelCursor, setWheelCursor] = useState(0);
+  const [bearLogo, setBearLogo] = useState('stamp');
   const [error, setError] = useState('');
   const queue = tracks.map(t => t.id);
   const immersive = useRef(null);
@@ -133,6 +136,19 @@ export default function MusicArchive() {
     <button className="play-control" aria-label={playing || loading ? 'Pause playback' : 'Play recording'} onClick={toggle}><Icon name={playing || loading ? 'pause' : 'play'} /></button>
     <button aria-label="Next track" onClick={() => skip(1)}><Icon name="next" /></button>
   </div>;
+  const wheelMenu = wheelPage === 'logos' ? [['Gravure', 'stamp'], ['Bloc', 'block'], ['Rond', 'soft'], ['Contour', 'outline']] : [['Après le service', 'after-hours'], ['Lo-fi original', 'original'], ['Identité / ours', 'logos'], ['Silence', 'silence']];
+  const wheelSelect = () => {
+    const selected = wheelMenu[wheelCursor % wheelMenu.length][1];
+    if (wheelPage === 'logos') { setBearLogo(selected); setWheelPage('menu'); setWheelCursor(0); return; }
+    if (selected === 'logos') { setWheelPage('logos'); setWheelCursor(0); return; }
+    if (selected === 'silence') { silence(); return; }
+    setCollection(selected); setQuery(''); setView('all');
+    if (selected === 'after-hours') selectExternal(afterHours[0]);
+    else playTrack(0);
+  };
+  const wheelBack = () => { setWheelPage('menu'); setWheelCursor(0); };
+  const wheelNext = direction => { if (wheelPage === 'logos' || (!external && !hasLocalSelection)) setWheelCursor(i => (i + direction + wheelMenu.length) % wheelMenu.length); else if (external) { const i = afterHours.findIndex(t => t.id === external.id); selectExternal(afterHours[(i + direction + afterHours.length) % afterHours.length]); } else skip(direction); };
+  const wheelToggle = () => { if (external) { silence(); } else if (hasLocalSelection) toggle(); else wheelSelect(); };
   const filtered = catalogue.filter(t => `${t.title} ${t.artist || ''}`.toLowerCase().includes(query.toLowerCase()));
   return <div className={`dimension ${playing ? 'is-playing' : ''} ${external ? 'has-external-player' : ''}`}>
     <a className="skip-link" href="#main">Skip to content</a>
@@ -145,7 +161,18 @@ export default function MusicArchive() {
       setPlaying(false);
       setLoading(false);
     }} />
-    <header className="masthead"><a href="#main" className="wordmark" aria-label="Dimension home"><img className="brand-icon" src="/brand/dimension-bear.svg" alt="" />dimension</a><label className="search"><input type="search" aria-label="Search music" value={query} onChange={e => setQuery(e.target.value)} placeholder="Un titre, un artiste…" /></label><LogButton /></header>
+    <section className="ipod-stage" aria-label="Lecteur iPod Classic DIMENSION">
+      <div className="ipod-intro"><span>DIMENSION / 001</span><h1>La musique, après le bruit.</h1><p>Un lecteur de poche pour les heures qui restent. Navigue avec la molette, choisis un disque, et laisse retomber la journée.</p></div>
+      <div className="ipod-device"><div className="ipod-lcd"><div className="ipod-lcd-head"><span>◀ DIMENSION</span><span>◼◼◼</span></div>
+      <div className="ipod-lcd-body"><div className="ipod-lcd-menu"><strong>{wheelPage === 'logos' ? 'Identité visuelle' : 'Musique'}</strong>
+      {wheelMenu.map(([label], i) => <button key={label} className={wheelCursor === i ? 'ipod-selected' : ''} aria-current={wheelCursor === i ? 'true' : undefined} onClick={() => { setWheelCursor(i); const selected = wheelMenu[i][1]; if (wheelPage === 'logos') { setBearLogo(selected); setWheelPage('menu'); setWheelCursor(0); } else if (selected === 'logos') { setWheelPage('logos'); setWheelCursor(0); } else if (selected === 'silence') silence(); else { setCollection(selected); if(selected === 'after-hours') selectExternal(afterHours[0]); else playTrack(0); } }}><span>{label}</span><span aria-hidden="true">›</span></button>)}</div>
+      <div className="ipod-lcd-art"><img src={`/brand/bear-${bearLogo}.svg`} alt="Ours rugissant, identité DIMENSION" /><span>DIMENSION</span><small>{external ? external.title : hasLocalSelection ? track.title : 'EN SILENCE'}</small></div></div>
+      <div className="ipod-lcd-foot"><span>{external ? external.artist : hasLocalSelection ? formatTime(elapsed) : 'READY'}</span><span>{external ? 'YouTube' : hasLocalSelection ? formatTime(duration) : '01 / 04'}</span></div></div>
+      <div className="ipod-wheel" role="group" aria-label="Molette du lecteur"><button className="ipod-wheel-menu" onClick={wheelBack}>MENU</button><button className="ipod-wheel-previous" aria-label="Précédent ou remonter" onClick={() => wheelNext(-1)}>◀◀</button><button className="ipod-wheel-next" aria-label="Suivant ou descendre" onClick={() => wheelNext(1)}>▶▶</button><button className="ipod-wheel-play" aria-label="Lecture ou pause" onClick={wheelToggle}>▶Ⅱ</button><button className="ipod-wheel-center" aria-label="Sélectionner" onClick={wheelSelect} /></div>
+      <span className="ipod-device-label">DIMENSION · CLASSIC EDITION</span></div>
+      <div className="ipod-side"><span>ÉDITION 2026</span><h2>Un ours.<br/>Quatre identités.</h2><p>Le trait brut, la matière, les formes simples. Sélectionne « Identité / ours » sur l'écran pour comparer les quatre logos SVG.</p><div className="ipod-logo-options">{[['stamp','Gravure'],['block','Bloc'],['soft','Rond'],['outline','Contour']].map(([id,label]) => <button key={id} className={bearLogo === id ? 'active' : ''} aria-pressed={bearLogo === id} onClick={() => setBearLogo(id)}><img src={`/brand/bear-${id}.svg`} alt="" /><span>{label}</span></button>)}</div></div>
+      </section>
+    <header className="masthead"><a href="#main" className="wordmark" aria-label="Dimension home"><img className="brand-icon" src={`/brand/bear-${bearLogo}.svg`} alt="" />dimension</a><label className="search"><input type="search" aria-label="Search music" value={query} onChange={e => setQuery(e.target.value)} placeholder="Un titre, un artiste…" /></label><LogButton /></header>
     <aside className="sidebar"><nav aria-label="Music library"><button className={view === 'all' ? 'active' : ''} aria-current={view === 'all' ? 'page' : undefined} onClick={() => {
           setView('all');
           setQuery('');
