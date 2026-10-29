@@ -4,8 +4,8 @@ import '@fontsource-variable/archivo';
 import '@fontsource-variable/unbounded';
 import '@fontsource-variable/montserrat';
 import './styles/materials.css';
-import App from './App';
+import MaterialBoardApp from './MaterialBoardApp';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode><App /></React.StrictMode>
+  <React.StrictMode><MaterialBoardApp /></React.StrictMode>
 );
