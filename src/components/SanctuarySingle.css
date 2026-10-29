@@ -48,3 +48,24 @@
 @media(max-width:950px){.single-main{grid-template-columns:1fr}.single-left{min-height:620px}.single-right{padding:60px 35px;min-height:450px}.single-stage{top:160px;left:65%;width:min(75vw,520px)}.single-left h1{margin:25px 0 300px}.single-dock{grid-template-columns:1fr 1.3fr;gap:15px}.single-dock-volume{display:none}.single-topline{display:none}}
 @media(max-width:600px){.single-left{padding:40px 20px 70px;min-height:630px}.single-left h1{font-size:68px;margin-bottom:265px}.single-stage{top:175px;left:66%;width:min(100vw,380px);height:380px}.single-right{padding:40px 22px 90px}.single-right h2{font-size:52px}.single-dock{height:86px;padding:9px 12px;grid-template-columns:1fr 1fr;gap:5px}.single-dock-info{gap:7px}.single-dock-info strong{font-size:10px}.single-dock-art{width:34px;height:34px}.single-dock-art img{width:28px;height:28px}.single-dock-progress{gap:4px;font-size:9px}.single-dock-actions{gap:8px}.single-dock-actions button{font-size:15px}.single-concept{padding:65px 24px}.single-intro-inner h1{font-size:clamp(54px,14vw,90px)}}
 @media(prefers-reduced-motion:reduce){.single-intro *{animation:none!important;transition:none!important}}
+
+/* Palette finalisée : bleu de travail, blanc cassé, inox. Aucun vert décoratif. */
+.sanctuary-single{--paper:#f2f3f1;--ink:#1c4168;--mute:#657d91;--line:#b9c7cf;background:#f2f3f1;color:#1c4168}
+.sanctuary-single .sanctuary-header{background:#f5f6f4;border-bottom-color:#b8c6cf}
+.sanctuary-single .sanctuary-logo,.sanctuary-single .sanctuary-logo strong{color:#173d64}
+.sanctuary-single .single-left{background:linear-gradient(145deg,#112a46,#24517b 74%,#32618a)}
+.sanctuary-single .single-right{background:linear-gradient(115deg,#f5f6f3,#e7edf0);color:#173b5c}
+.sanctuary-single .single-search input,.sanctuary-single .single-tracklist button{color:#173b5c}
+.sanctuary-single .single-tracklist button.selected{background:#d7e6ee}
+.sanctuary-single .single-concept{background:#dfe9ef;color:#173b5c}
+.sanctuary-single .sanctuary-plinth{background:#c4d0d8;border-color:#e7edf1;box-shadow:0 12px 0 #72828b,0 18px 0 #263a4b,0 34px 45px #02091399,inset 0 2px 15px #fff8}
+.sanctuary-single .sanctuary-plinth-surface{background:linear-gradient(140deg,#e4ebec,#8b9da8 40%,#d4dbde 74%,#9baab3);border-color:#f6f8f7}
+.sanctuary-single .sanctuary-3d-label{background:#204a78;border-color:#b7cdda;box-shadow:inset 0 0 0 1px #173b60}
+.sanctuary-single .sanctuary-3d-record-stage{background:#455c6e;box-shadow:inset 0 0 0 8px #bac9d0,0 5px 0 #1d2939,0 10px 18px #060e1580}
+.sanctuary-single .sanctuary-plinth-front{background:linear-gradient(#8b9eaa,#405a6e)}
+.sanctuary-single .sanctuary-3d-switch{color:#173b5c}
+.sanctuary-single .sanctuary-3d-arm-cartridge{background:#1e3042;border-color:#839baa}
+.sanctuary-single .sanctuary-3d-knob{background:repeating-conic-gradient(#f6f7f5 0deg 7deg,#8197a5 8deg 15deg)}
+.sanctuary-single .single-intro{background:radial-gradient(circle at 63% 45%,#376c98,#112b48 67%)}
+.sanctuary-single .single-dock{background:#122c48;border-top-color:#91a8b9}
+.sanctuary-single .single-dock-play{background:#f3f3ef;color:#183d61}
