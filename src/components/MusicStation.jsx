@@ -1,14 +1,10 @@
 import React,{useCallback,useEffect,useRef,useState} from 'react';
 import originals from '../data/datamusic.json';
-import editorial from '../data/afterhours.json';
 import MusicVideoPlayer from './MusicVideoPlayer';
 import {LogButton} from './logbutton';
 import './MusicStation.css';
 
-const tracks=[
- ...originals.map((x,i)=>({...x,id:'local-'+x.id,artist:'DIMENSION SESSIONS',album:'The Original Sessions',cover:x.gif,source:'local',durationLabel:'AUDIO',moods:['before','family','after','walk'][i%4]})),
- ...editorial.map(x=>({...x,id:'video-'+x.id,album:'The Kitchen Selection',cover:'/brand/dimension-bear.svg',source:'youtube',moods:x.id==='chicago'?'walk':'after'}))
-];
+const tracks=originals.map(x=>({...x,id:'local-'+x.id,artist:x.artist,album:'Royalty-Free Kitchen Sessions',cover:x.gif,source:'local',durationLabel:'AUDIO',moods:x.mood}));
 const moods=[
  {id:'before',name:'BEFORE SERVICE',description:'The quiet hour before the doors open.',subtitle:'Warm-up · Soul · Slow mornings'},
  {id:'service',name:'YES, CHEF',description:'For every second that counts.',subtitle:'Energy · The rush · High pressure'},
@@ -16,7 +12,7 @@ const moods=[
  {id:'after',name:'AFTER HOURS',description:'The kitchen is finally yours.',subtitle:'Closing time · Alternative'},
  {id:'walk',name:'THE WALK HOME',description:'One more song before home.',subtitle:'Night streets · Introspection'}
 ];
-const moodsTracks={before:tracks.filter(x=>x.moods==='before'),service:tracks.filter(x=>x.id==='video-weird-fishes'),family:tracks.filter(x=>x.moods==='family'),after:tracks.filter(x=>x.moods==='after'),walk:tracks.filter(x=>x.moods==='walk')};
+const moodsTracks=Object.fromEntries(moods.map(item=>[item.id,tracks.filter(track=>track.moods===item.id)]));
 function clock(t){if(!Number.isFinite(t))return '--:--';return String(Math.floor(t/60)).padStart(2,'0')+':'+String(Math.floor(t%60)).padStart(2,'0');}
 function safeRead(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}}
 function SymbolButton({label,children,onClick,pressed,disabled,className=''}){return <button type="button" className={className} onClick={onClick} disabled={disabled} aria-label={label} aria-pressed={pressed===undefined?undefined:pressed}>{children}</button>}
@@ -67,7 +63,7 @@ export default function MusicStation(){
    <button type="button" className="ds-track-main" onClick={()=>choose(track,available.slice(index+1))}>
     <span className="ds-track-number">{now?.id===track.id&&active?'♫':String(index+1).padStart(2,'0')}</span>
     <img src={track.cover} alt="" loading="lazy"/><span className="ds-track-title"><strong>{track.title}</strong><small>{track.artist}</small></span>
-    <span className="ds-track-album">{track.album}</span><span className="ds-track-source">{track.source==='youtube'?'VIDEO':'LOCAL'}</span>
+    <span className="ds-track-album">{track.album}</span><span className="ds-track-source">{'ROYALTY-FREE'}</span>
    </button><SymbolButton label={favorites.includes(track.id)?'Retirer des favoris':'Ajouter aux favoris'} onClick={()=>toggleFavorite(track.id)} pressed={favorites.includes(track.id)}>{favorites.includes(track.id)?'♥':'♡'}</SymbolButton>
    <SymbolButton label={'Ajouter '+track.title+' à la file d’attente'} onClick={()=>addQueue(track)}>＋</SymbolButton>
  </div>;
@@ -100,8 +96,8 @@ export default function MusicStation(){
     </section>
     {(page==='home'||page==='playlists')&&<section className="ds-mood-strip" aria-label="Ambiances musicales">{moods.map(m=><button key={m.id} aria-pressed={mood===m.id&&page==='playlists'} onClick={()=>{setMood(m.id);setPage('playlists')}}><strong>{m.name}</strong><span>{m.subtitle}</span></button>)}</section>}
     {page==='search'&&<div className="ds-search-state"><h2>Search</h2><p>{query ? 'Results for “'+query+'”' : 'Start typing in the search field.'}</p></div>}
-    {page==='albums'&&<div className="ds-collections"><button onClick={()=>setPage('library')}>THE ORIGINAL SESSIONS <span>10 TRACKS ↗</span></button><button onClick={()=>{setQuery('Radiohead');setPage('search')}}>THE KITCHEN SELECTION <span>02 TRACKS ↗</span></button></div>}
-    {page==='artists'&&<div className="ds-collections">{['DIMENSION SESSIONS','Radiohead','Sufjan Stevens'].map(a=><button key={a} onClick={()=>{setQuery(a);setPage('search')}}>{a}<span>EXPLORE ↗</span></button>)}</div>}
+    {page==='albums'&&<div className="ds-collections"><button onClick={()=>setPage('library')}>ROYALTY-FREE KITCHEN SESSIONS <span>05 TRACKS ↗</span></button></div>}
+    {page==='artists'&&<div className="ds-collections">{['ItsWatR','FASSounds','Roman Belov','TVARI'].map(a=><button key={a} onClick={()=>{setQuery(a);setPage('search')}}>{a}<span>EXPLORE ↗</span></button>)}</div>}
     <section className="ds-list" aria-label="Liste de morceaux"><div className="ds-list-heading"><h2>{page==='playlists'?selected.name:page==='favorites'?'Liked Songs':page==='search'?'Search Results':'Popular Tracks'}</h2><button type="button" onClick={()=>setPage('library')}>See all</button></div>{available.map(renderTrack)}{available.length===0&&<p className="ds-empty">Nothing here yet.</p>}</section>
    </main>
    <aside className="ds-right" aria-label="Now Playing">

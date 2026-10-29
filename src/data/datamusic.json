@@ -1,71 +1,52 @@
-[{
-    "url":"/music/boy/embrace-12278.mp3",
+[
+  {
+    "url": "/music/boy/embrace-12278.mp3",
     "gif": "/gif/1.gif",
-    "categorie":"boy",
-    "title":"Embrace",
-    "id": 1
-},
-{
-    "url":"/music/boy/good-night-160166.mp3",
+    "title": "Embrace",
+    "artist": "ItsWatR",
+    "id": 1,
+    "mood": "service",
+    "license": "Pixabay Content License",
+    "sourceUrl": "https://pixabay.com/music/future-bass-embrace-12278/"
+  },
+  {
+    "url": "/music/boy/good-night-160166.mp3",
     "gif": "/gif/2.gif",
-    "categorie":"boy",
-    "title":"Good Night",
-    "id": 2
-},
-{
- 
-    "url":"/music/girl/lofi-study-112191.mp3",
+    "title": "Good Night",
+    "artist": "FASSounds",
+    "id": 2,
+    "mood": "after",
+    "license": "Pixabay Content License",
+    "sourceUrl": "https://pixabay.com/music/beats-good-night-lofi-cozy-chill-music-160166/"
+  },
+  {
+    "url": "/music/girl/lofi-study-112191.mp3",
     "gif": "/gif/3.gif",
-    "categorie":"girl",
-    "title":"Lofi Study",
-    "id": 3
-},
-{
-    "url":"/music/boy/lofi-chill-140858.mp3",
-    "gif": "/gif/4.gif",
-    "categorie":"boy",
-    "title":"Lofi Chill",
-    "id": 4
-},
-{
-    "url":"/music/boy/lofi-chill-medium-version-159456.mp3",
-    "gif": "/gif/5.gif",
-    "categorie":"boy",
-    "title":"Lofi Chill Medium",
-    "id": 5
-},
-{
-    "url":"/music/boy/let-it-go-12279.mp3",
-    "gif": "/gif/8.gif",
-    "categorie":"girl",
-    "title":"Let it Go",
-    "id": 6
-},
-{
-    "url":"/music/girl/once-in-paris-168895.mp3",
-    "gif": "/gif/7.gif",
-    "categorie":"girl",
-    "title":"Once in Paris",
-    "id": 7
-},
-{
-    "url":"/music/girl/spirit-blossom-15285.mp3",
+    "title": "Lofi Study",
+    "artist": "FASSounds",
+    "id": 3,
+    "mood": "before",
+    "license": "Pixabay Content License",
+    "sourceUrl": "https://pixabay.com/music/beats-lofi-study-calm-peaceful-chill-hop-112191/"
+  },
+  {
+    "url": "/music/girl/spirit-blossom-15285.mp3",
     "gif": "/gif/6.gif",
-    "categorie":"girl",
-    "title":"Spirit Blossom",
-    "id": 8
-},
-{
-    "url":"/music/girl/tvari-tokyo-cafe-159065.mp3",
+    "title": "Spirit Blossom",
+    "artist": "Roman Belov",
+    "id": 8,
+    "mood": "family",
+    "license": "Pixabay Content License",
+    "sourceUrl": "https://pixabay.com/music/beats-spirit-blossom-15285/"
+  },
+  {
+    "url": "/music/girl/tvari-tokyo-cafe-159065.mp3",
     "gif": "/gif/9.gif",
-    "categorie":"girl",
-    "title":"Tokyo Cafe",
-    "id": 9
-},
-{
-    "url":"/music/girl/watr-fluid-10149.mp3",
-    "gif": "/gif/10.gif",
-    "categorie":"girl",
-    "title":"Water Fluid",
-    "id": 10
-}]
+    "title": "Tokyo Cafe",
+    "artist": "TVARI",
+    "id": 9,
+    "mood": "walk",
+    "license": "Pixabay Content License",
+    "sourceUrl": "https://pixabay.com/music/beats-tvari-tokyo-cafe-159065/"
+  }
+]

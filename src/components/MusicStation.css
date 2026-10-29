@@ -155,3 +155,31 @@
 .ds-up-row{border-radius:5px;padding:7px 4px}.ds-up-row:hover{background:#ffffff0b}.ds-up-row img{box-shadow:0 3px 8px #0005}
 .ds-browser-actions button{box-shadow:inset 0 1px #ffffff1b,0 2px 6px #0004;transition:background .12s,transform .12s}.ds-browser-actions button:hover{background:#ffffff16}.ds-browser-actions button:active{transform:translateY(1px)}
 @media(max-width:720px){.ds-brand-bear{width:27px;height:27px}.ds-top{padding:0 10px}.ds-browser-actions{display:none}}
+
+/* Steel pass: less white, more graphite and brushed chrome */
+.ds-app{--chrome-0:#d4d6d7;--chrome-1:#b1b5b8;--chrome-2:#858b90;--chrome-3:#5d6368;--chrome-4:#373c41;color:#c9cdd0}
+.ds-top{background:linear-gradient(180deg,#50565b 0%,#2f353a 48%,#20262a 100%);box-shadow:inset 0 1px #9ca2a655,0 10px 28px #0005}
+.ds-wordmark{color:#cfd2d4}.ds-brand-bear{filter:grayscale(1) brightness(1.4);opacity:.9}
+.ds-browser-actions button{background:linear-gradient(#666c71,#3e4449);border-color:#777d82;color:#d1d4d6}
+.ds-sidebar{background:linear-gradient(180deg,#33393e,#252b2f 58%,#1b2024)}
+.ds-content{background:linear-gradient(180deg,#4c5358 0,#383f44 18%,#292f34 56%,#20262a 100%)}
+.ds-right{background:linear-gradient(180deg,#40474c,#2b3136 62%,#20262a)}
+.ds-sidebar-search{background:#23282c;border-color:#5e6469;color:#bfc3c6}.ds-sidebar-search input{color:#d2d5d7}.ds-sidebar-search:focus-within{border-color:#92989d;background:#2d3337}
+.ds-sidebar>button,.ds-side-section>button,.ds-side-playlists strong{color:#bfc3c6}.ds-sidebar>button[aria-current]{background:linear-gradient(90deg,#a9adb0,#767c81);color:#161a1d}
+.ds-mini-cover{background:linear-gradient(145deg,#8b9196,#4e555b);color:#e0e2e3}
+.ds-breadcrumb,.ds-hero p,.ds-mood-strip span,.ds-track-title small,.ds-track-album,.ds-track-number,.ds-track-source,.ds-now-meta small,.ds-search-state p{color:#aeb2b5}
+.ds-hero{border:0;background:linear-gradient(135deg,#202529,#121618);box-shadow:0 18px 40px #0006}
+.ds-hero:after{background:linear-gradient(115deg,#cfd2d40a 0%,transparent 24%,transparent 76%,#94999d08 100%)}
+.ds-hero h1,.ds-track-main,.ds-list-heading,.ds-now-meta strong,.ds-up-row{color:#d5d8da}
+.ds-hero-actions button{border-color:#6e7479;background:#3b4146;color:#c8ccce}.ds-hero-actions .ds-primary{background:linear-gradient(#aeb2b5,#7e8489);color:#171b1e;border-color:#8f959a;box-shadow:inset 0 1px #d7d9da,0 3px 10px #0005}
+.ds-mood-strip button{border-color:#52585d;background:linear-gradient(#353b40,#292f34);color:#c7cbcd}.ds-mood-strip button:hover,.ds-mood-strip button[aria-pressed=true]{background:linear-gradient(#4a5055,#343a3f);border-color:#7b8186}
+.ds-track{border-bottom-color:#4a505533}.ds-track:hover{background:#70767b12}.ds-track.is-current{background:linear-gradient(90deg,#9ca2a61a,#5c626712)}
+.ds-track>button:not(.ds-track-main){color:#bfc3c6}.ds-track>button:not(.ds-track-main):hover{background:#6c727716}
+.ds-now-cover{border-color:#686e73;box-shadow:0 16px 34px #0009}
+.ds-now-head button,.ds-up-title button{color:#aeb3b6}.ds-now-meta>button,.ds-now-controls button{color:#c4c8ca}
+.ds-up-next{border-top-color:#555b60}.ds-up-row{border-bottom-color:#4a50552b}
+.ds-dock{color:#d5d8da;background:linear-gradient(180deg,#aeb2b5 0%,#898f94 10%,#60666b 32%,#42484d 52%,#5a6065 72%,#777d82 92%,#555b60 100%);border-top-color:#8e9499;box-shadow:inset 0 1px #c7cacc,inset 0 -1px #353a3e,0 -8px 30px #0008}
+.ds-dock-info{background:#252a2e66}.ds-dock-info small{color:#b5b9bc}.ds-dock-info img{border-color:#858b9070}
+.ds-now-controls .ds-chrome-play,.ds-transport-buttons button:nth-child(3){background:radial-gradient(circle at 34% 28%,#d9dcde 0 7%,#c0c4c7 9% 20%,#979ca1 34%,#666c71 58%,#aeb3b7 78%,#5d6368 100%);border-color:#777d82;box-shadow:inset 0 1px 1px #e5e7e8,inset 0 -2px 4px #474d52,0 1px #b9bdc066,0 5px 12px #0009}
+.ds-now-controls .ds-chrome-play:before,.ds-transport-buttons button:nth-child(3):before{border-color:#c8ccce55}
+.ds-progress input,.ds-extras input,.ds-now-progress input{accent-color:#aeb3b7}
