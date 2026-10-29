@@ -76,6 +76,12 @@ export default function MusicSanctuary(){
     <span className="single-topline">86 THE NOISE / KEEP THE MUSIC</span>
     <div className="sanctuary-header-end"><a href="#dimension-concept" className="single-concept-link">LE CONCEPT</a><LogButton/></div>
   </header>
+  <section className="carmy-profile" aria-label="Profil musical de Carmy Berzatto">
+   <div className="carmy-profile-photo"><img src="https://i.guim.co.uk/img/media/e41446bd559eaae87b670f22209f62f2c3aa174f/0_0_3442_2066/master/3442.jpg?auto=format&amp;fit=crop&amp;height=1200&amp;quality=85&amp;s=29e5a0612cd1b55b3fe7b7d5def2c4e3&amp;width=1200" alt="Carmy Berzatto dans la cuisine, en tablier bleu" referrerPolicy="no-referrer" /></div>
+   <div className="carmy-profile-copy"><span className="carmy-profile-eyebrow">DIMENSION / PERSONAL MUSIC PROFILE / 001</span><h1>CARMY<br/>BERZATTO<span>.</span></h1><p>AFTER THE NOISE · CHICAGO, IL</p>
+    <div className="carmy-profile-meta"><span>03 MOODS</span><span>THE BEAR / INSPIRED SELECTION</span><button type="button" onClick={()=>{setSide('AFTER CLOSE');document.querySelector('.single-tracklist')?.scrollIntoView({behavior:'smooth',block:'center'});}}>ÉCOUTER ↗</button></div>
+   </div>
+  </section>
   <main id="dimension-player" className="single-main">
     <div className="single-left"><span className="single-eyebrow">DIMENSION / VOL. 001</span><h1>THE<br/><em>ROOM.</em></h1>
      <nav className="single-sides" aria-label="Ambiances">{sides.map((value,i)=><button key={value} aria-pressed={side===value} onClick={()=>{setSide(value);setSearch('');}}>
