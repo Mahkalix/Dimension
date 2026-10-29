@@ -59,6 +59,7 @@ export default function MusicSanctuary(){
     <div className="photo-entry-frame">
       <img className="photo-entry-image" src="/images/dimension-kitchen-intro.webp" onError={event => {
         event.currentTarget.onerror=null;
+        event.currentTarget.parentElement.dataset.fallback='true';
         event.currentTarget.src='/images/dimension-after-hours.webp';
       }} alt="Cuisine après le service, tablette musicale posée sur un plan de travail en inox." />
       <button type="button" className="photo-entry-screen" autoFocus onClick={()=>setIntro(false)}
