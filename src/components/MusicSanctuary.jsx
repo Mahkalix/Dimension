@@ -108,11 +108,11 @@ export default function MusicSanctuary() {
         {!available.length && <p>Aucun morceau trouvé.</p>}
       </section> : !room ? <section className="sanctuary-home vinyl-home">
         <div className="vinyl-dark-panel">
-          <div className="vinyl-panel-top"><span>DIMENSION / MUSIC SANCTUARY</span><span>VOL. 001 · AFTER THE NOISE</span></div>
-          <div className="vinyl-intro"><span>86 THE NOISE.</span><h1>THE<br/><em>QUIET</em><br/>SIDE.</h1><p>Un refuge musical pour les heures qui suivent le service.</p></div>
-          <div className="vinyl-playlists"><p className="vinyl-caption">CHOOSE YOUR STATE OF MIND <span>03 ROOMS</span></p>
+          <div className="vinyl-panel-top"><span>DIMENSION / HI-FI</span><span>VOL. 001</span></div>
+          <div className="vinyl-intro"><span>86 THE NOISE.</span><h1>AFTER<br/><em>CLOSE.</em></h1></div>
+          <div className="vinyl-playlists"><p className="vinyl-caption">SELECT A SIDE <span>03 SIDES</span></p>
             {rooms.map(item => <button key={item.id} className="vinyl-room-row" onClick={() => enterRoom(item.id)}>
-              <span className="vinyl-room-number">{item.number}</span><span className="vinyl-room-text"><strong>{item.name}</strong><small>{item.mood}</small></span><span className="vinyl-room-arrow" aria-hidden="true">↗</span>
+              <span className="vinyl-room-number">{item.number}</span><span className="vinyl-room-text"><strong>{item.name}</strong><small>{item.time}</small></span><span className="vinyl-room-arrow" aria-hidden="true">↗</span>
             </button>)}
           </div>
         </div>
@@ -121,13 +121,13 @@ export default function MusicSanctuary() {
           <div className={`vinyl-record ${now && playing ? 'spinning' : ''}`}><div className="vinyl-record-label"><img src="/brand/dimension-bear.svg" alt=""/></div></div>
         </div>
         <div className="vinyl-paper-panel">
-          <div className="vinyl-paper-top"><span>NO ALGORITHM. JUST MUSIC.</span><span>EST. 2026</span></div>
-          <div className="vinyl-editorial"><span>THE LISTENING ROOM / 001</span><h2>AFTER<br/><em>THE NOISE.</em></h2><p>La pression redescend. Les derniers bruits s'effacent. La musique reste.</p>
-            <button className="vinyl-feature-button" onClick={() => enterRoom('after')}>ENTER AFTER CLOSE <span aria-hidden="true">↗</span></button>
+          <div className="vinyl-paper-top"><span>STEREO / 33 RPM</span><span>EST. 2026</span></div>
+          <div className="vinyl-editorial"><span>SIDE A / NOW PLAYING</span><h2>NO<br/><em>NOISE.</em></h2><div className="vinyl-now"><span>{now ? now.title : "AFTER CLOSE"}</span><small>{now ? now.artist || "DIMENSION / LO-FI" : "DIMENSION / VOL. 001"}</small></div>
+            <button className="vinyl-feature-button" onClick={() => enterRoom('after')}>OPEN PLAYER <span aria-hidden="true">↗</span></button>
           </div>
-          <div className="vinyl-annotation"><img src="/brand/dimension-bear.svg" alt=""/><span>AN ESCAPE FROM THE EVERYDAY NOISE.<br/>MADE FOR THE QUIET HOURS.</span></div>
+          <div className="vinyl-annotation"><img src="/brand/dimension-bear.svg" alt=""/><span>DIMENSION RECORDS · 2026</span></div>
         </div>
-        <div className="vinyl-bottom-player"><span>01 / 03</span><button aria-label="Ouvrir la salle d'écoute" onClick={() => enterRoom('after')}>↗</button><span>BEFORE SERVICE&nbsp; / &nbsp;IN THE WEEDS&nbsp; / &nbsp;AFTER CLOSE</span><button onClick={() => {enterRoom('after'); if(!now)selectTrack(rooms[2].tracks[0]);}} aria-label="Lancer une écoute">▶</button></div>
+        <div className="vinyl-bottom-player"><span>01 / 03</span><button aria-label="Ouvrir la salle d'écoute" onClick={() => enterRoom('after')}>↗</button><span>33⅓ RPM · STEREO</span><button onClick={() => {enterRoom('after'); if(!now)selectTrack(rooms[2].tracks[0]);}} aria-label="Lancer une écoute">▶</button></div>
       </section> : <section className="sanctuary-listening">
         <div className="listening-header"><button onClick={() => setRoomId(null)}>← THE ROOM</button><span>{room.number} / {room.name}</span><span>DIMENSION, VOL. 001</span></div>
         <div className="listening-layout"><div className="listening-main">
