@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+<title id="title">DIMENSION, ours rugissant, négatif</title>
+<path d="M26 45C10 28 19 12 32 15q12 1 16 14 16-6 32 0 4-13 16-14c13-3 22 13 6 30q13 17 11 38c-2 21-20 35-49 39-29-4-47-18-49-39q-2-21 11-38Z" fill="none" stroke="#26372f" stroke-width="9" stroke-linejoin="round"/>
+<path d="M40 56q5-8 12-1M76 55q7-7 12 1" stroke="#26372f" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path fill="#26372f" d="M50 49q14-10 28 0l-4 12H54Z"/>
+<path d="M43 68q21-18 42 0v33q0 15-21 16-21-1-21-16z" fill="#26372f"/>
+<path fill="#f2f0e7" d="M47 71l7 2-3 15zM74 73l7-2-4 17zM51 105l6-12 4 16zM67 109l4-16 6 12z"/>
+</svg>
