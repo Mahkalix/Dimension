@@ -1,0 +1,16 @@
+.dimension-skip{position:fixed;top:-100px;left:1rem;z-index:500;background:#fff;color:#172f4b;padding:12px 18px}.dimension-skip:focus{top:1rem}
+.dimension-loading{min-height:100vh;display:grid;place-items:center;background:#101719;color:#e8e8df;font:700 16px system-ui;letter-spacing:.2em}
+.dimension-intro{position:fixed;inset:0;z-index:150;background:#101719;color:#f2f1ec;overflow:hidden}
+.dimension-intro canvas{position:absolute!important;inset:0;width:100%!important;height:100%!important}
+.dimension-intro-overlay{position:absolute;inset:0;display:flex;align-items:flex-start;flex-direction:column;justify-content:center;padding:clamp(22px,7vw,100px);pointer-events:none;background:linear-gradient(90deg,#091216ba,transparent 70%)}
+.dimension-intro-overlay>*{pointer-events:auto}
+.dimension-eyebrow{font:700 11px system-ui;letter-spacing:.25em;color:#acbbbf}
+.dimension-intro-overlay h1{font:900 clamp(50px,11vw,180px)/.92 Arial,sans-serif;letter-spacing:-.095em;margin:28px 0 14px}
+.dimension-intro-overlay h1 span{color:#d96832}.dimension-intro-overlay p{font:400 clamp(16px,2vw,22px) system-ui;color:#d6d7d0}
+.dimension-intro-overlay button{margin-top:40px;background:#e7e4da;color:#172f4b;border:1px solid #fff;padding:17px 25px;font:800 12px system-ui;letter-spacing:.1em;cursor:pointer}
+.dimension-intro-overlay button:hover{background:#c7d7e0}.dimension-intro-overlay button:focus-visible,.dimension-tablet-screen:focus-visible{outline:3px solid #d96832;outline-offset:4px}
+.dimension-intro-overlay small{margin-top:22px;letter-spacing:.15em;font:600 10px system-ui;color:#d4d7d5}
+.dimension-tablet-screen{display:flex;align-items:center;justify-content:center;flex-direction:column;width:310px;height:182px;background:#152d42;color:#eff1e8;border:0;cursor:pointer;gap:12px;font:700 18px Arial,sans-serif;letter-spacing:.12em}
+.dimension-tablet-screen small{font-size:7px}.dimension-tablet-screen b{font-size:10px;color:#e3a979}
+@media(max-width:700px){.dimension-intro-overlay{justify-content:flex-end;padding-bottom:11vh;background:linear-gradient(0deg,#091216ed,transparent 80%)}.dimension-intro-overlay h1{font-size:clamp(47px,12vw,85px)}}
+@media(prefers-reduced-motion:reduce){.dimension-intro *{animation:none!important;transition:none!important}}

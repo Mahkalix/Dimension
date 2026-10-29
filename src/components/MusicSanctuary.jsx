@@ -18,9 +18,9 @@ const external=[
 const library=[...external,...original.map(x=>({...x,side:'BEFORE SERVICE',artist:'DIMENSION / LO-FI',local:true}))];
 const sides=['BEFORE SERVICE','IN THE WEEDS','AFTER CLOSE'];
 const readableTime=value=>Number.isFinite(value)?`${String(Math.floor(value/60)).padStart(2,'0')}:${String(Math.floor(value%60)).padStart(2,'0')}`:'--:--';
-export default function MusicSanctuary(){
+export default function MusicSanctuary({ skipIntro = false }){
  const audio=useRef(null);
- const [intro,setIntro]=useState(true);
+ const [intro,setIntro]=useState(!skipIntro);
  const [side,setSide]=useState('AFTER CLOSE');
  const [now,setNow]=useState(null);
  const [playing,setPlaying]=useState(false);
