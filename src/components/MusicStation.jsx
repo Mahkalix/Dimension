@@ -75,24 +75,43 @@ export default function MusicStation(){
   <audio ref={audio} preload="metadata" onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}
    onTimeUpdate={()=>setElapsed(audio.current.currentTime)} onLoadedMetadata={()=>setDuration(Number.isFinite(audio.current.duration)?audio.current.duration:0)} onEnded={handleEnd}
    onError={()=>{if(now?.source==='local')setError('Piste indisponible.');}}/>
-  <header className="ds-top"><a href="#dimension-player" className="ds-wordmark" onClick={()=>setPage('home')}><img src="/brand/dimension-bear.svg" alt=""/><strong>DIMENSION<span>.</span></strong></a><span className="ds-top-note">EVERY KITCHEN HAS A SOUNDTRACK.</span><LogButton/></header>
+  <header className="ds-top"><a href="#dimension-player" className="ds-wordmark" onClick={()=>setPage('home')}><span className="ds-metal-dot" aria-hidden="true"/><strong>DIMENSION</strong></a><div className="ds-browser-actions"><button type="button" aria-label="Retour" onClick={()=>history.back()}>‹</button><button type="button" aria-label="Avancer" onClick={()=>history.forward()}>›</button></div><LogButton/></header>
   <div className="ds-layout" id="dimension-player">
    <nav className="ds-sidebar" aria-label="Navigation principale">
-    <span className="ds-overline">THE SYSTEM / 001</span>
-    {[['home','HOME'],['library','LIBRARY'],['playlists','PLAYLISTS'],['albums','ALBUMS'],['artists','ARTISTS'],['search','SEARCH'],['favorites','FAVORITES']].map(([id,title])=><button key={id} type="button" aria-current={page===id?'page':undefined} onClick={()=>setPage(id)}><span>{title}</span><span aria-hidden="true">↗</span></button>)}
-    <div className="ds-sidebar-bottom"><span>THE BEAR / INSPIRED</span><small>UNOFFICIAL MUSIC EXPERIENCE</small></div>
+    <label className="ds-sidebar-search"><span aria-hidden="true">⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} onFocus={()=>setPage('search')} placeholder="Search…"/></label>
+    <span className="ds-sidebar-label">MENU</span>
+    {[['home','⌂','Home'],['library','▣','Library'],['artists','♙','Artists'],['playlists','♫','Playlists'],['favorites','♡','Favorites']].map(([id,icon,title])=><button key={id} type="button" aria-current={page===id?'page':undefined} onClick={()=>setPage(id)}><span><i aria-hidden="true">{icon}</i>{title}</span></button>)}
+    <div className="ds-side-section">
+      <div className="ds-side-title"><span>YOUR LIBRARY</span><button type="button" aria-label="Ouvrir la bibliothèque" onClick={()=>setPage('library')}>＋</button></div>
+      <button type="button" onClick={()=>setPage('favorites')}>♡ Liked Songs</button>
+      <button type="button" onClick={()=>setPage('library')}>◷ Recently Played</button>
+    </div>
+    <div className="ds-side-section ds-side-playlists">
+      <span className="ds-sidebar-label">PLAYLISTS</span>
+      {moods.slice(0,4).map(m=><button key={m.id} type="button" onClick={()=>{setMood(m.id);setPage('playlists')}}><span className="ds-mini-cover">{m.name.slice(0,1)}</span><span><strong>{m.name}</strong><small>DIMENSION</small></span></button>)}
+    </div>
    </nav>
    <main className="ds-content">
-    <div className="ds-location"><span>DIMENSION / VOL. 001</span><span>CHICAGO · AFTER THE NOISE</span></div>
-    <div className="ds-heading"><span className="ds-overline">{page==='home'?'WELCOME TO THE SERVICE':'THE COLLECTION'}</span><h1>{label}<span>.</span></h1><p>{page==='home'?'Every shift has its own rhythm. Pick a moment, find its sound.':page==='playlists'?selected.description:page==='favorites'?'The tracks you keep close.':'A collection for all the hours around the service.'}</p></div>
-    {(page==='home'||page==='playlists')&&<section className="ds-mood-grid" aria-label="Ambiances musicales">{moods.map((m,i)=><button key={m.id} aria-pressed={mood===m.id&&page==='playlists'} onClick={()=>{setMood(m.id);setPage('playlists');}}><small>0{i+1} / DIMENSION</small><strong>{m.name}</strong><span>{m.subtitle}</span><b aria-hidden="true">↗</b></button>)}</section>}
-    {page==='search'&&<label className="ds-search"><span>FIND A TRACK</span><input type="search" autoFocus value={query} onChange={e=>setQuery(e.target.value)} placeholder="Song, artist, album…"/></label>}
-    {page==='albums'&&<div className="ds-collections"><button onClick={()=>setPage('library')}>THE ORIGINAL SESSIONS <span>10 TRACKS ↗</span></button><button onClick={()=>{setQuery('Radiohead');setPage('search');}}>THE KITCHEN SELECTION <span>02 TRACKS ↗</span></button></div>}
-    {page==='artists'&&<div className="ds-collections">{['DIMENSION SESSIONS','Radiohead','Sufjan Stevens'].map(a=><button key={a} onClick={()=>{setQuery(a);setPage('search');}}>{a}<span>EXPLORE ↗</span></button>)}</div>}
-    <section className="ds-list" aria-label="Liste de morceaux"><div className="ds-list-heading"><h2>{page==='playlists'?selected.name:page==='favorites'?'SAVED TRACKS':page==='search'?'SEARCH RESULTS':'SELECTED TRACKS'}</h2><span>{available.length} TRACKS</span></div>{available.map(renderTrack)}{available.length===0&&<p className="ds-empty">Nothing here yet. Try another selection.</p>}</section>
-    <footer className="ds-footer">DIMENSION IS AN INDEPENDENT EXPERIENCE INSPIRED BY THE ATMOSPHERE OF THE BEAR. NOT AFFILIATED WITH FX OR SPOTIFY.</footer>
+    <div className="ds-breadcrumb"><span>Home</span><b>›</b><span>{page==='home'?'Featured':label}</span></div>
+    <section className="ds-hero">
+      <div className="ds-hero-copy"><span>DIMENSION ORIGINAL</span><h1>After the Noise</h1><p>Late nights, early mornings and everything in between. A soundtrack for the hours around the service.</p>
+      <div className="ds-hero-actions"><button type="button" className="ds-primary" onClick={()=>choose(moodsTracks.after[0]||tracks[0],moodsTracks.after.slice(1))}>▶ Play</button><button type="button" onClick={()=>setPage('favorites')}>♡ Saved</button><button type="button" aria-label="Plus d’options">•••</button></div></div>
+      <img src="/images/dimension-after-hours.webp" alt="" />
+    </section>
+    {(page==='home'||page==='playlists')&&<section className="ds-mood-strip" aria-label="Ambiances musicales">{moods.map(m=><button key={m.id} aria-pressed={mood===m.id&&page==='playlists'} onClick={()=>{setMood(m.id);setPage('playlists')}}><strong>{m.name}</strong><span>{m.subtitle}</span></button>)}</section>}
+    {page==='search'&&<div className="ds-search-state"><h2>Search</h2><p>{query ? 'Results for “'+query+'”' : 'Start typing in the search field.'}</p></div>}
+    {page==='albums'&&<div className="ds-collections"><button onClick={()=>setPage('library')}>THE ORIGINAL SESSIONS <span>10 TRACKS ↗</span></button><button onClick={()=>{setQuery('Radiohead');setPage('search')}}>THE KITCHEN SELECTION <span>02 TRACKS ↗</span></button></div>}
+    {page==='artists'&&<div className="ds-collections">{['DIMENSION SESSIONS','Radiohead','Sufjan Stevens'].map(a=><button key={a} onClick={()=>{setQuery(a);setPage('search')}}>{a}<span>EXPLORE ↗</span></button>)}</div>}
+    <section className="ds-list" aria-label="Liste de morceaux"><div className="ds-list-heading"><h2>{page==='playlists'?selected.name:page==='favorites'?'Liked Songs':page==='search'?'Search Results':'Popular Tracks'}</h2><button type="button" onClick={()=>setPage('library')}>See all</button></div>{available.map(renderTrack)}{available.length===0&&<p className="ds-empty">Nothing here yet.</p>}</section>
    </main>
-   <aside className="ds-right" aria-label="Lecteur en cours"><div className="ds-device"><div className="ds-device-head"><span>DIMENSION / HI-FI 001</span><span>STEREO</span></div><div className="ds-lcd"><span>NOW PLAYING · {active?'● ON AIR':'STANDBY'}</span><img src={now?.cover||'/brand/dimension-bear.svg'} alt={now?'Pochette de '+now.title:''}/><strong>{now?.title||'NO SIGNAL'}</strong><small>{now?.artist||'SELECT A TRACK TO PLAY'}</small></div><div className="ds-wheel"><SymbolButton label="Morceau précédent" onClick={()=>step(-1)}>◀◀</SymbolButton><SymbolButton label={active?'Pause':'Lecture'} onClick={toggle}>{active?'Ⅱ':'▶'}</SymbolButton><SymbolButton label="Morceau suivant" onClick={()=>step(1)}>▶▶</SymbolButton></div><div className="ds-device-caption">THE MUSIC NEVER LEAVES THE ROOM.</div></div></aside>
+   <aside className="ds-right" aria-label="Now Playing">
+    <div className="ds-now-head"><h2>Now Playing</h2><button type="button" aria-label="Plus d’options">•••</button></div>
+    <img className="ds-now-cover" src={now?.cover||'/images/dimension-after-hours.webp'} alt={now?'Pochette de '+now.title:''}/>
+    <div className="ds-now-meta"><div><strong>{now?.title||'After the Noise'}</strong><small>{now?.artist||'DIMENSION'}</small></div><SymbolButton label={now&&favorites.includes(now.id)?'Retirer des favoris':'Ajouter aux favoris'} onClick={()=>now&&toggleFavorite(now.id)} pressed={now?favorites.includes(now.id):false}>{now&&favorites.includes(now.id)?'♥':'♡'}</SymbolButton></div>
+    <div className="ds-now-progress"><input aria-label="Position de lecture" type="range" min="0" max={duration||1} step=".1" value={Math.min(elapsed,duration||0)} onChange={seek} disabled={now?.source!=='local'||!duration}/><div><span>{clock(elapsed)}</span><span>{clock(duration)}</span></div></div>
+    <div className="ds-now-controls"><SymbolButton label="Aléatoire" onClick={()=>setShuffle(v=>!v)} pressed={shuffle}>⤨</SymbolButton><SymbolButton label="Précédent" onClick={()=>step(-1)}>◀</SymbolButton><SymbolButton className="ds-chrome-play" label={active?'Pause':'Lecture'} onClick={toggle}>{active?'Ⅱ':'▶'}</SymbolButton><SymbolButton label="Suivant" onClick={()=>step(1)}>▶</SymbolButton><SymbolButton label="Répéter" onClick={()=>setRepeat(v=>!v)} pressed={repeat}>↻</SymbolButton></div>
+    <div className="ds-up-next"><div className="ds-up-title"><h3>Up Next</h3><button type="button" onClick={()=>setQueue([])}>Clear Queue</button></div>{(queue.length?queue:tracks.filter(t=>t.id!==now?.id).slice(0,3)).slice(0,4).map((t,i)=><button className="ds-up-row" type="button" key={t.id+'-'+i} onClick={()=>choose(t)}><img src={t.cover} alt=""/><span><strong>{t.title}</strong><small>{t.artist}</small></span><b aria-hidden="true">☰</b></button>)}</div>
+   </aside>
   </div>
   {now?.source==='youtube'&&<div className="ds-video"><MusicVideoPlayer key={now.id} track={now} volume={muted?0:volume} onVolumeChange={changeVolume} onClose={stop} command={command} onPlayingChange={setYoutubePlaying}/></div>}
   {queueOpen&&<aside className="ds-queue" aria-label="File d'attente"><div className="ds-queue-head"><h2>UP NEXT</h2><button onClick={()=>setQueueOpen(false)} aria-label="Fermer la file d'attente">×</button></div>{queue.length===0?<p>No tracks queued.</p>:queue.map((t,i)=><div key={t.id+'-'+i} className="ds-queue-item"><span>{t.title}</span><button onClick={()=>setQueue(q=>q.filter((_,n)=>n!==i))} aria-label={'Retirer '+t.title}>×</button><button disabled={!i} onClick={()=>setQueue(q=>{const n=[...q];[n[i-1],n[i]]=[n[i],n[i-1]];return n;})} aria-label={'Monter '+t.title}>↑</button><button disabled={i===queue.length-1} onClick={()=>setQueue(q=>{const n=[...q];[n[i+1],n[i]]=[n[i],n[i+1]];return n;})} aria-label={'Descendre '+t.title}>↓</button></div>)}</aside>}
