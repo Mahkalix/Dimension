@@ -5,15 +5,19 @@ import "../src/style/index.css";
 import App from "./App";
 import { Auth0Provider } from "@auth0/auth0-react";
 
+const domain =
+  process.env.REACT_APP_AUTH0_DOMAIN || "dev-s4cqy56nmufsd1nf.us.auth0.com";
+const clientId =
+  process.env.REACT_APP_AUTH0_CLIENT_ID || "wu1hMC3jEzhtP8te5ChZ08FpuCfV8C17";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <Auth0Provider
-    domain="dev-lebgjej6s0dj2ob8.eu.auth0.com"
-    clientId="7wLRQRjPWURMPvrq3CLViNhPaIf1rRmM"
+    domain={domain}
+    clientId={clientId}
     authorizationParams={{
       redirect_uri: window.location.origin,
-      audience: "https://dev-lebgjej6s0dj2ob8.eu.auth0.com/api/v2/",
-      scope: "read:current_user update:current_user_metadata",
     }}
   >
     <BrowserRouter>
