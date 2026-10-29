@@ -16,6 +16,7 @@ export default function MusicVideoPlayer({ track, volume, onVolumeChange, onClos
   const host = useRef(null);
   const player = useRef(null);
   const latestVolume = useRef(volume);
+  const lastCommand = useRef(0);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [error, setError] = useState(false);
@@ -45,7 +46,12 @@ export default function MusicVideoPlayer({ track, volume, onVolumeChange, onClos
     return () => { cancelled = true; player.current?.destroy(); player.current = null; container.replaceChildren(); };
   }, [track.videoId, track.title, track.artist]);
   useEffect(() => { if (ready) { player.current?.unMute(); player.current?.setVolume(Math.round(volume * 100)); } }, [volume, ready]);
-  useEffect(() => { if (!command || !ready || error || !player.current) return; if (playing) player.current.pauseVideo(); else player.current.playVideo(); }, [command]);
+  useEffect(() => {
+    if (!command || command === lastCommand.current || !ready || error || !player.current) return;
+    lastCommand.current = command;
+    if (playing) player.current.pauseVideo();
+    else player.current.playVideo();
+  }, [command, ready, error, playing]);
   return <aside className="video-dock" aria-label="Lecteur musical">
     <div className="video-frame" ref={host} />
     <div className="video-controls"><button className="video-close" aria-label="Fermer le lecteur et revenir au silence" onClick={onClose}>×</button>
