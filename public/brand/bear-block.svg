@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+<title id="title">DIMENSION, ours rugissant, géométrique</title>
+<g fill="#26372f"><path d="M13 16h32l10 15h18l10-15h32l-5 30 10 20-11 38-45 18-45-18L8 66l10-20z"/></g>
+<path fill="#f2f0e7" d="M43 47l21-9 21 9 12 21-9 39-24 11-24-11-9-39z"/>
+<path fill="#26372f" d="M52 53h24l-5 11H57zM48 71q16-12 32 0v25q0 16-16 16T48 96z"/>
+<path fill="#f2f0e7" d="M51 73l7 3-4 15zM70 76l7-3-3 18zM54 103l5-11 4 13zM66 105l4-13 4 11z"/>
+<path d="M30 54l13 5M85 59l13-5" stroke="#f2f0e7" stroke-width="5" stroke-linecap="round"/>
+</svg>
