@@ -116,9 +116,31 @@ export default function MusicSanctuary() {
             </button>)}
           </div>
         </div>
-        <div className="vinyl-record-stage" aria-hidden="true">
-          <div className="vinyl-tonearm"><span className="tonearm-pivot"/><span className="tonearm-bar"/><span className="tonearm-head"/></div>
-          <div className={`vinyl-record ${now && playing ? 'spinning' : ''}`}><div className="vinyl-record-label"><img src="/brand/dimension-bear.svg" alt=""/></div></div>
+        <div className="sanctuary-3d-scene">
+          <div className="sanctuary-plinth">
+            <div className="sanctuary-plinth-surface">
+              <div className="sanctuary-3d-record-stage" aria-hidden="true">
+                <div className={`sanctuary-3d-record ${now && playing ? 'is-spinning' : ''}`}>
+                  <div className="sanctuary-3d-label"><img src="/brand/dimension-bear.svg" alt="" /></div>
+                  <i className="sanctuary-3d-spindle"/>
+                </div>
+              </div>
+              <div className={`sanctuary-3d-arm ${now ? 'on-record' : ''}`} aria-hidden="true">
+                <span className="sanctuary-3d-arm-base"/><span className="sanctuary-3d-arm-shaft"/><span className="sanctuary-3d-arm-cartridge"/>
+              </div>
+              <div className="sanctuary-3d-switch" aria-hidden="true"><span>33</span><i/></div>
+              <div className="sanctuary-3d-knob" aria-hidden="true"/>
+            </div>
+            <div className="sanctuary-plinth-front"><span>DIMENSION</span><span>STEREO · 33⅓ RPM</span><i/></div>
+          </div>
+          <div className="sanctuary-3d-controls">
+            <button type="button" onClick={() => skip(-1)} aria-label="Piste précédente" disabled={!now}>↤</button>
+            <button type="button" className="sanctuary-3d-play" onClick={() => {
+              if (!now) {enterRoom('after'); selectTrack(rooms[2].tracks[2]);}
+              else toggle();
+            }} aria-label={now && playing ? 'Mettre en pause' : 'Lire la musique'}>{now && playing ? 'Ⅱ' : '▶'}</button>
+            <button type="button" onClick={() => skip(1)} aria-label="Piste suivante" disabled={!now}>↦</button>
+          </div>
         </div>
         <div className="vinyl-paper-panel">
           <div className="vinyl-paper-top"><span>STEREO / 33 RPM</span><span>EST. 2026</span></div>
