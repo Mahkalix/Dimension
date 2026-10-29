@@ -1,0 +1,80 @@
+:root {
+  --chrome: 1;
+  --engraved: #0d0f12;
+  --steel-light: #d2d5d9;
+  --steel-mid: #c7cbd0;
+  --steel-dark: #8e959d;
+  --chrome-dark-safe: #b0b5bc;
+  --well: #05070d;
+  --night-a: #0a1f5c;
+  --night-b: #02060f;
+  --alert: #b3202a;
+  --signal: #f2b705;
+  --paper: #f4efe3;
+  --specular-duration: 300ms;
+  --brushed-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.002 0.9' numOctaves='2' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='96' height='96' fill='%23aeb4bb'/%3E%3Crect width='96' height='96' filter='url(%23b)' opacity='.28'/%3E%3C/svg%3E");
+  --brushed-png: url("/textures/brushed-fallback.png");
+}
+* { box-sizing: border-box; }
+html,body,#root { width:100%; height:100%; margin:0; }
+body { overflow:hidden; background:#000; font-family:"Archivo Variable",Arial,sans-serif; }
+
+.material-polished,.material-steel,.material-circular,.material-well,.material-engraved { position:relative; isolation:isolate; }
+
+.material-steel {
+  background-color: var(--steel-mid);
+  background-image: var(--brushed-svg),var(--brushed-png),repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,rgba(0,0,0,.025) 1px 2px);
+  background-blend-mode: soft-light,multiply,normal;
+  color:var(--engraved);
+  text-shadow:0 1px 0 rgba(255,255,255,.7);
+}
+.material-polished {
+  overflow:hidden;
+  background-color:var(--steel-mid);
+  background-image:var(--brushed-svg),var(--brushed-png),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,rgba(0,0,0,.02) 1px 2px);
+  color:var(--engraved);
+  text-shadow:0 1px 0 rgba(255,255,255,.7);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(0,0,0,.35),0 2px 4px rgba(0,0,0,.32);
+}
+.material-polished::before {
+  content:""; position:absolute; inset:0; z-index:-1; opacity:var(--chrome);
+  background:linear-gradient(180deg,#ffffff 0%,#e6e9ee 42%,#b8bdc4 49%,#b0b5bc 50%,#c4c8ce 58%,#f2f4f7 100%);
+}
+.material-polished::after {
+  content:""; position:absolute; z-index:0; inset:0 0 50% 0; opacity:calc(var(--chrome) * .55); pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,255,255,0));
+}
+.material-polished>* { position:relative; z-index:2; }
+.chrome-text-safe {
+  padding:5px 10px; margin-left:-10px; border-radius:5px;
+  background:linear-gradient(180deg,rgba(226,230,234,.8),rgba(176,181,188,.9));
+}
+.material-circular {
+  border-radius:999px; color:var(--engraved);
+  background:conic-gradient(from 18deg,#f4f6f8 0deg 32deg,#7e858d 32deg 70deg,#d9dde1 70deg 118deg,#686f78 118deg 160deg,#eef1f3 160deg 208deg,#7d848c 208deg 254deg,#d8dce0 254deg 306deg,#6e757d 306deg 360deg);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(0,0,0,.38),0 2px 4px rgba(0,0,0,.35);
+}
+.material-well {
+  background:radial-gradient(circle at 50% 22%,rgba(34,84,183,.22),transparent 45%),var(--well);
+  border:2px solid #7d858e; color:#f7f9ff;
+  box-shadow:inset 0 0 0 2px #1a202a,inset 0 8px 20px rgba(0,0,0,.72),0 1px 0 rgba(255,255,255,.18);
+}
+.material-engraved { color:var(--engraved); text-shadow:0 1px 0 rgba(255,255,255,.7); }
+.focus-specular { overflow:hidden; }
+.focus-specular .focus-sweep {
+  position:absolute; z-index:3; top:-35%; bottom:-35%; width:22%; left:-30%; pointer-events:none; opacity:var(--chrome);
+  transform:skewX(-18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent);
+  animation:focus-sweep var(--specular-duration) ease-out both;
+}
+@keyframes focus-sweep { from{transform:translateX(0) skewX(-18deg)} to{transform:translateX(620%) skewX(-18deg)} }
+.chrome-wordmark {
+  color:transparent;
+  background:linear-gradient(180deg,#ffffff 0%,#e6e9ee 42%,#b9bec5 49%,#aeb4bb 50%,#c8ccd2 58%,#f5f7f9 100%);
+  -webkit-background-clip:text; background-clip:text;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.55));
+}
+.ticket-paper { color:#141414; background:var(--paper); font-family:"IBM Plex Mono",ui-monospace,monospace; }
+.texture-svg-only { background-color:#b9bec4; background-image:var(--brushed-svg); background-blend-mode:soft-light; }
+.texture-png-only { background-color:#b9bec4; background-image:var(--brushed-png); background-blend-mode:multiply; }
+@media(prefers-reduced-motion:reduce){ .focus-specular .focus-sweep{display:none} }

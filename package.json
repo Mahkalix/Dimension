@@ -1,55 +1,26 @@
 {
   "name": "dimension",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@prelude.so/js-sdk": "^0.14.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.4.0",
-    "domm": "^0.0.3",
-    "html-webpack-plugin": "^5.5.3",
-    "react": "^18.2.0",
-    "react-audio-player": "^0.17.0",
-    "react-dom": "^18.2.0",
-    "react-router": "^6.11.1",
-    "react-router-dom": "^6.14.1",
-    "react-scripts": "^5.0.1",
-    "sass": "^1.62.1",
-    "web-vitals": "^2.1.4",
-    "three": "^0.170.0",
-    "@react-three/fiber": "^8.17.10",
-    "@react-three/drei": "^9.117.3",
-    "gsap": "^3.12.5"
-  },
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.2.6",
+    "@fontsource-variable/montserrat": "^5.2.6",
+    "@fontsource-variable/unbounded": "^5.2.6",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "gh-pages": "^3.0.0"
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
   }
 }
