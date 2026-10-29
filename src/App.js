@@ -1,6 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import './components/KitchenIntro.css';
-import MusicSanctuary from './components/MusicSanctuary';
+import MusicStation from './components/MusicStation';
 const KitchenIntro = React.lazy(() => import('./components/KitchenIntro'));
 export default function App() {
   const [entered,setEntered] = useState(false);
@@ -10,7 +10,7 @@ export default function App() {
       <KitchenIntro onComplete={()=>setEntered(true)} />
     </Suspense>}
     <div style={!entered?{display:'none'}:undefined} aria-hidden={!entered}>
-      <MusicSanctuary skipIntro />
+      <MusicStation />
     </div>
   </>;
 }
