@@ -58,3 +58,49 @@
 @media(max-width:900px){.sanctuary-hero{grid-template-columns:1fr 1fr}.sanctuary-hero h1{font-size:clamp(48px,8vw,90px)}.listening-layout{grid-template-columns:1fr;gap:55px}.sanctuary-rooms{gap:9px}.sanctuary-room-card{min-height:205px;padding:18px}}
 @media(max-width:650px){.sanctuary-header{height:74px;gap:8px;padding:10px 15px;flex-wrap:wrap}.sanctuary-logo img{width:32px;height:32px}.sanctuary-logo strong{font-size:14px}.sanctuary-header nav{gap:10px}.sanctuary-header nav button{font-size:9px}.sanctuary-header-end{gap:7px}.sanctuary-header .btn-in,.sanctuary-header .btn-out{min-width:65px;font-size:10px;padding:4px 7px}.low-light-toggle{font-size:0}.low-light-toggle span{font-size:18px}.sanctuary-home{padding:30px 20px}.sanctuary-hero{grid-template-columns:1fr}.sanctuary-hero h1{font-size:clamp(49px,11vw,80px);margin:20px 0}.sanctuary-hero-art{aspect-ratio:16/10}.sanctuary-rooms-head span:last-child{display:none}.sanctuary-rooms{grid-template-columns:1fr}.sanctuary-room-card{min-height:160px}.room-card-center{font-size:34px}.listening-header span:last-child{display:none}.sanctuary-listening{padding:20px 20px 60px}.listening-layout{padding-top:35px}.listening-main h1{font-size:clamp(42px,11vw,72px)}.listening-artwork{padding:16px;gap:15px;min-height:140px}.listening-artwork img{width:90px;height:90px}.listening-actions{gap:7px}.listening-actions button:last-child{margin-left:auto}.sanctuary-footer span:last-child{display:none}.archive-tracks button{grid-template-columns:25px 1fr 20px}.archive-tracks button span:nth-child(3){display:none}.sanctuary-archive{padding:40px 20px}.sanctuary-dock span{display:none}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Split vinyl editorial direction. Retains the three Sanctuary rooms and playback engine. */
+.sanctuary-home.vinyl-home{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:min(800px,calc(100svh - 145px));padding:0!important;overflow:hidden;isolation:isolate;max-width:none}
+.vinyl-dark-panel{background:#171b1b;color:#f4f0e6;padding:45px clamp(30px,5vw,95px) 112px;min-height:700px}
+.vinyl-panel-top,.vinyl-paper-top{display:flex;justify-content:space-between;gap:10px;color:#9aaba0;font-size:9px;letter-spacing:.13em;font-weight:800}
+.vinyl-intro{margin-top:clamp(45px,8vh,105px);max-width:390px}
+.vinyl-intro>span{font-size:11px;letter-spacing:.18em;color:#b7c5b9}
+.vinyl-intro h1{font-size:clamp(58px,6vw,115px);line-height:.88;letter-spacing:-.085em;margin:18px 0 25px;color:#f4f0e6}
+.vinyl-intro h1 em,.vinyl-editorial h2 em{font-family:Georgia,serif;font-weight:400;letter-spacing:-.09em}
+.vinyl-intro>p{font-size:13px;color:#aeb8ae;line-height:1.8;max-width:260px}
+.vinyl-playlists{margin-top:clamp(35px,7vh,100px);max-width:365px}
+.vinyl-caption{display:flex;justify-content:space-between;color:#a0aca2;font-size:10px;letter-spacing:.13em;padding-bottom:16px;border-bottom:1px solid #465048;font-weight:700}
+.vinyl-room-row{width:100%;display:flex;align-items:center;gap:17px;background:none;border:0;border-bottom:1px solid #39443b;padding:19px 2px;color:#f1f2ec;text-align:left;transition:background .2s}
+.vinyl-room-row:hover,.vinyl-room-row:focus-visible{background:#29352f}
+.vinyl-room-number{font-size:11px;color:#91a397}.vinyl-room-text{flex:1;display:flex;flex-direction:column;gap:5px}.vinyl-room-text strong{font-size:15px;letter-spacing:.015em}.vinyl-room-text small{font-size:11px;color:#9caea1}.vinyl-room-arrow{font-size:22px;color:#cad7ca}
+.vinyl-paper-panel{background:#e5dac7;padding:45px clamp(30px,5vw,95px) 115px 23%;min-height:700px;color:#30392e}
+.vinyl-paper-top{color:#787b70}
+.vinyl-editorial{max-width:410px;margin-top:clamp(120px,20vh,225px)}
+.vinyl-editorial>span{font-size:10px;letter-spacing:.18em;color:#6d776b;font-weight:800}
+.vinyl-editorial h2{font-size:clamp(42px,4.1vw,78px);letter-spacing:-.08em;line-height:1.01;margin:20px 0 25px}
+.vinyl-editorial p{font-size:13px;line-height:1.9;color:#677064;max-width:290px;margin-bottom:34px}
+.vinyl-feature-button{display:flex;align-items:center;justify-content:space-between;gap:30px;width:min(290px,100%);border:1px solid #596a59;border-radius:0;padding:14px 16px;color:#303d31;background:transparent;font-size:10px;letter-spacing:.1em;font-weight:800}
+.vinyl-feature-button:hover{background:#303d31;color:#f2f0e6}
+.vinyl-feature-button span{font-size:20px}
+.vinyl-annotation{display:flex;align-items:center;gap:14px;margin-top:70px;font-size:9px;font-weight:800;letter-spacing:.13em;line-height:1.7;color:#667366}
+.vinyl-annotation img{height:45px;width:45px;object-fit:contain}
+.vinyl-record-stage{position:absolute;top:11%;left:50%;transform:translateX(-50%);width:clamp(330px,38vw,650px);aspect-ratio:1;pointer-events:none;z-index:2}
+.vinyl-record{position:absolute;inset:0;border-radius:50%;background:repeating-radial-gradient(circle at center,#0b0c0d 0px,#171819 2px,#242628 3px,#090b0c 4px,#151718 6px);box-shadow:inset 0 0 20px #000d,0 22px 45px #0007,10px 5px 16px #0009}
+.vinyl-record:before{content:'';position:absolute;inset:3%;border-radius:50%;background:conic-gradient(from 10deg,transparent 0deg,#fff2 32deg,transparent 59deg,transparent 154deg,#fff2 179deg,transparent 210deg,transparent 360deg);mix-blend-mode:screen}
+.vinyl-record:after{content:'';position:absolute;inset:45%;border-radius:50%;background:#101412;border:7px solid #29352d;box-shadow:0 0 0 1px #6d736a,0 0 0 12px #2a342b}
+.vinyl-record-label{position:absolute;inset:39%;z-index:3;border-radius:50%;background:#718576;display:grid;place-items:center;box-shadow:inset 0 0 0 1px #b6c4b7}
+.vinyl-record-label img{width:67%;height:67%;object-fit:contain}
+.vinyl-record.spinning{animation:dimension-vinyl-spin 7s linear infinite}
+@keyframes dimension-vinyl-spin{to{transform:rotate(360deg)}}
+.vinyl-tonearm{position:absolute;z-index:5;right:6%;top:-20%;height:54%;width:29%;transform:rotate(12deg);transform-origin:85% 0}
+.tonearm-pivot{position:absolute;right:0;top:0;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle,#535b57,#111415 58%,#a9b0ac 64%,#202325 80%);box-shadow:0 5px 9px #0007}
+.tonearm-bar{position:absolute;right:14px;top:32px;height:90%;width:12px;border-radius:7px;background:linear-gradient(90deg,#606a67,#dee0da 36%,#58615c 70%,#252a28);transform:rotate(26deg);transform-origin:top}
+.tonearm-head{position:absolute;left:17%;bottom:-13%;width:30px;height:46px;background:#1c2020;transform:rotate(26deg);box-shadow:0 6px 10px #0008}
+.vinyl-bottom-player{position:absolute;bottom:0;left:0;right:0;z-index:4;display:flex;align-items:center;gap:25px;padding:20px clamp(30px,5vw,95px);background:linear-gradient(110deg,#202525 0%,#202525 51%,#e5dac7 51%,#e5dac7 100%);border-top:1px solid #667064;font-size:10px;letter-spacing:.12em;color:#dee8dc;font-weight:800}
+.vinyl-bottom-player button{border:0;background:none;color:#b7c7b5;font-size:21px}
+.vinyl-bottom-player span:nth-of-type(2){margin-left:auto;color:#465446}
+.vinyl-bottom-player button:last-child{background:#344938;border-radius:50%;width:40px;height:40px;color:white}
+.sanctuary.low-light .vinyl-paper-panel{background:#2e352e;color:#e4e6dc}.sanctuary.low-light .vinyl-paper-top,.sanctuary.low-light .vinyl-editorial p,.sanctuary.low-light .vinyl-editorial>span,.sanctuary.low-light .vinyl-annotation{color:#b5c1b1}.sanctuary.low-light .vinyl-feature-button{color:#e4e6dc;border-color:#a3b5a4}
+@media(max-width:1100px){.vinyl-record-stage{width:42vw;top:17%}.vinyl-paper-panel{padding-left:23%}.vinyl-intro h1{font-size:clamp(52px,6vw,80px)}.vinyl-editorial{margin-top:210px}}
+@media(max-width:760px){.sanctuary-home.vinyl-home{grid-template-columns:1fr;overflow:hidden}.vinyl-dark-panel{min-height:640px;padding:35px 22px 70px}.vinyl-paper-panel{min-height:380px;padding:55px 22px 85px}.vinyl-intro{margin-top:55px}.vinyl-intro h1{font-size:clamp(65px,13vw,95px)}.vinyl-playlists{margin-top:220px;max-width:100%}.vinyl-record-stage{top:230px;left:70%;width:min(71vw,335px)}.vinyl-tonearm{top:-15%}.vinyl-editorial{margin-top:35px;max-width:350px}.vinyl-editorial h2{font-size:49px}.vinyl-annotation{margin-top:35px}.vinyl-bottom-player{gap:10px;padding:10px 22px;background:#202525}.vinyl-bottom-player span:nth-of-type(2){font-size:8px;color:#e4e5df}.vinyl-bottom-player button:last-child{flex-shrink:0}.vinyl-record.spinning{animation-duration:10s}}
+@media(prefers-reduced-motion:reduce){.vinyl-record.spinning{animation:none}}
