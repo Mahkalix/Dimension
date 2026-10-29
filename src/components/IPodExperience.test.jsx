@@ -14,8 +14,8 @@ beforeEach(() => {
 });
 
 test('starts silent with the approved bear logo and a usable iPod menu', () => {
-  render(<IPodExperience />);
-  expect(screen.getByRole('img', { hidden: true }).getAttribute('src')).toBe('/brand/dimension-bear.svg');
+  const { container } = render(<IPodExperience />);
+  expect(container.querySelector('.classic-identity img')).toHaveAttribute('src', '/brand/dimension-bear.svg');
   expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
   expect(screen.getByTestId('dimension-ipod')).toBeInTheDocument();
   const lcd = within(screen.getByTestId('dimension-ipod'));
