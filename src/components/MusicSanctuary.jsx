@@ -55,11 +55,30 @@ export default function MusicSanctuary(){
   <audio ref={audio} preload="metadata" onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}
    onTimeUpdate={()=>setElapsed(audio.current.currentTime)} onLoadedMetadata={()=>setDuration(Number.isFinite(audio.current.duration)?audio.current.duration:0)}
    onEnded={()=>adjacent(1)}/>
-  {intro&&<div className="single-intro" role="dialog" aria-modal="true" aria-labelledby="dimension-intro">
-    <div className="single-intro-inner"><img src="/brand/dimension-bear.svg" alt=""/><span>DIMENSION / VOL. 001</span>
-     <h1 id="dimension-intro">DIMENSION</h1><p className="intro-subtitle">AFTER THE NOISE.</p><p>Le service se termine.<br/>La musique reste.</p>
-     <button autoFocus onClick={()=>setIntro(false)}>ENTRER <span aria-hidden="true">↗</span></button><small>UN REFUGE MUSICAL, INSPIRÉ PAR THE BEAR</small>
-    </div></div>}
+  {intro&&<div className="kitchen-entry" role="dialog" aria-modal="true" aria-labelledby="dimension-intro">
+    <div className="kitchen-entry-world" aria-hidden="true">
+      <div className="kitchen-entry-light light-one"/><div className="kitchen-entry-light light-two"/>
+      <div className="kitchen-entry-pans"><i/><i/><i/><i/><i/></div>
+      <div className="kitchen-entry-counter"/><div className="kitchen-entry-towel"/>
+    </div>
+    <div className="kitchen-device-scene">
+      <div className="kitchen-tablet">
+        <div className="kitchen-tablet-frame">
+          <div className="kitchen-tablet-screen">
+            <span className="tablet-screen-top">DIMENSION / 001 <span>● READY</span></span>
+            <img src="/brand/dimension-bear.svg" alt="" className="tablet-bear"/>
+            <h1 id="dimension-intro">DIMENSION</h1>
+            <p>AFTER THE NOISE</p>
+            <button autoFocus type="button" onClick={()=>setIntro(false)}>ENTER <span aria-hidden="true">↗</span></button>
+          </div>
+          <div className="kitchen-tablet-speaker" aria-hidden="true"/>
+          <div className="kitchen-tablet-dial" aria-hidden="true"><span/></div>
+        </div>
+        <div className="kitchen-tablet-stand" aria-hidden="true"/>
+      </div>
+    </div>
+    <span className="kitchen-entry-caption">THE KITCHEN IS CLOSED. THE MUSIC IS STILL ON.</span>
+  </div>}
   <header className="sanctuary-header">
     <a className="sanctuary-logo" href="#dimension-player"><img src="/brand/dimension-bear.svg" alt=""/><strong>DIMENSION<span>.</span></strong></a>
     <span className="single-topline">86 THE NOISE / KEEP THE MUSIC</span>
