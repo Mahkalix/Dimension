@@ -28,9 +28,10 @@ export default function MusicSanctuary() {
   const room = rooms.find(item => item.id === roomId);
   const selection = room ? room.tracks : [];
   useEffect(() => {
+    const player = audio.current;
     const stored = window.localStorage.getItem('dimension-low-light');
     if (stored === 'true') setLowLight(true);
-    return () => { audio.current?.pause(); };
+    return () => { player?.pause(); };
   }, []);
   const toggleLight = () => setLowLight(current => {
     window.localStorage.setItem('dimension-low-light', String(!current));
