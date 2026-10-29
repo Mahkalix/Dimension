@@ -75,7 +75,7 @@ export default function MusicStation(){
   <audio ref={audio} preload="metadata" onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}
    onTimeUpdate={()=>setElapsed(audio.current.currentTime)} onLoadedMetadata={()=>setDuration(Number.isFinite(audio.current.duration)?audio.current.duration:0)} onEnded={handleEnd}
    onError={()=>{if(now?.source==='local')setError('Piste indisponible.');}}/>
-  <header className="ds-top"><a href="#dimension-player" className="ds-wordmark" onClick={()=>setPage('home')}><span className="ds-metal-dot" aria-hidden="true"/><strong>DIMENSION</strong></a><div className="ds-browser-actions"><button type="button" aria-label="Retour" onClick={()=>window.history.back()}>‹</button><button type="button" aria-label="Avancer" onClick={()=>window.history.forward()}>›</button></div><LogButton/></header>
+  <header className="ds-top"><a href="#dimension-player" className="ds-wordmark" onClick={()=>setPage('home')}><img className="ds-brand-bear" src="/brand/dimension-bear.svg" alt=""/><strong>DIMENSION</strong></a><div className="ds-browser-actions"><button type="button" aria-label="Retour" onClick={()=>window.history.back()}>‹</button><button type="button" aria-label="Avancer" onClick={()=>window.history.forward()}>›</button></div><LogButton/></header>
   <div className="ds-layout" id="dimension-player">
    <nav className="ds-sidebar" aria-label="Navigation principale">
     <label className="ds-sidebar-search"><span aria-hidden="true">⌕</span><input value={query} onChange={e=>setQuery(e.target.value)} onFocus={()=>setPage('search')} placeholder="Search…"/></label>

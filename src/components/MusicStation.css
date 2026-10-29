@@ -107,3 +107,51 @@
 .ds-search-state{padding:10px 0 22px}.ds-search-state h2{margin:0 0 5px}.ds-search-state p{color:#a9b9af;font-size:11px}
 @media(max-width:1100px){.ds-layout{grid-template-columns:190px minmax(0,1fr)}.ds-right{display:none}.ds-hero{grid-template-columns:1fr .8fr}}
 @media(max-width:720px){.ds-layout{display:flex;flex-direction:column}.ds-sidebar{flex-direction:row;overflow:auto;padding:6px}.ds-sidebar-search,.ds-sidebar-label,.ds-side-section{display:none}.ds-content{padding:14px 12px 60px}.ds-hero{grid-template-columns:1fr;min-height:0}.ds-hero-copy{padding:24px 20px}.ds-hero>img{height:180px;min-height:180px}.ds-track-main{grid-template-columns:20px 34px minmax(0,1fr)}.ds-track-main img{width:34px;height:34px}.ds-track-album,.ds-track-source{display:none}}
+
+
+/* 2026-10-29 refinement: premium component system + iPod-era chrome */
+.ds-wordmark{gap:11px}.ds-brand-bear{width:31px;height:31px;object-fit:contain;filter:brightness(0) invert(1);opacity:.94}
+.ds-top{backdrop-filter:blur(18px) saturate(1.08);-webkit-backdrop-filter:blur(18px) saturate(1.08);box-shadow:inset 0 1px #ffffff26,0 10px 28px #0004}
+.ds-sidebar,.ds-content,.ds-right{position:relative}
+.ds-sidebar:before,.ds-content:before,.ds-right:before{content:"";pointer-events:none;position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 1px #ffffff12}
+.ds-sidebar-search{box-shadow:inset 0 1px 3px #0007,0 1px #ffffff0b;transition:border-color .15s,background .15s}
+.ds-sidebar-search:focus-within{border-color:#b7c9c0;background:#ffffff20}
+.ds-sidebar>button,.ds-side-section>button,.ds-side-playlists button{transition:background .14s,color .14s,transform .14s}
+.ds-sidebar>button:hover,.ds-side-section>button:hover,.ds-side-playlists button:hover{background:#ffffff0d}
+.ds-sidebar>button:active,.ds-side-section>button:active,.ds-side-playlists button:active{transform:translateY(1px)}
+.ds-hero{border:1px solid #ffffff1b;box-shadow:inset 0 1px #ffffff12,0 18px 40px #0005}
+.ds-hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,#ffffff10 0%,transparent 22%,transparent 75%,#ffffff08 100%)}
+.ds-hero{position:relative}.ds-hero-copy,.ds-hero>img{position:relative;z-index:1}
+.ds-hero-actions button{transition:transform .14s,background .14s,border-color .14s}.ds-hero-actions button:hover{transform:translateY(-1px);border-color:#cddbd4}.ds-hero-actions button:active{transform:translateY(1px)}
+.ds-primary{box-shadow:inset 0 1px #fff,0 3px 10px #0005}
+.ds-mood-strip button{box-shadow:inset 0 1px #ffffff0d,0 5px 14px #0002;transition:transform .15s,background .15s,border-color .15s}.ds-mood-strip button:hover{transform:translateY(-2px);border-color:#ffffff38}
+.ds-track{transition:background .12s}.ds-track-main{border-radius:4px}.ds-track.is-current{background:linear-gradient(90deg,#9dc3b51b,#ffffff0d)}
+.ds-track>button:not(.ds-track-main){border-radius:50%;width:34px;height:34px;display:grid;place-items:center}.ds-track>button:not(.ds-track-main):hover{background:#ffffff10}
+.ds-right{box-shadow:inset 1px 0 #ffffff0c}
+.ds-now-cover{border:1px solid #ffffff23;box-shadow:0 16px 34px #0008,inset 0 1px #fff2}
+.ds-now-progress input,.ds-progress input,.ds-extras input{height:4px}
+.ds-now-controls button,.ds-transport-buttons button,.ds-extras button{transition:transform .12s,filter .12s,background .12s}.ds-now-controls button:hover,.ds-transport-buttons button:hover,.ds-extras button:hover{filter:brightness(1.12)}.ds-now-controls button:active,.ds-transport-buttons button:active,.ds-extras button:active{transform:translateY(1px)}
+.ds-now-controls .ds-chrome-play,.ds-transport-buttons button:nth-child(3){
+ position:relative;
+ border:1px solid #8d9297;
+ background:
+ radial-gradient(circle at 34% 28%,#ffffff 0 7%,#edf0f2 8% 18%,#b8bec3 34%,#7b8288 58%,#cbd0d4 78%,#747a80 100%);
+ color:#14211b;
+ box-shadow:inset 0 1px 1px #fff,inset 0 -2px 4px #5a6168,0 1px 0 #ffffff55,0 5px 12px #0009;
+ text-shadow:0 1px #fff8
+}
+.ds-now-controls .ds-chrome-play:before,.ds-transport-buttons button:nth-child(3):before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid #ffffff66;pointer-events:none}
+.ds-dock{
+ border:1px solid #9fa5aa;
+ border-left:0;border-right:0;
+ background:
+ linear-gradient(180deg,#edf0f2 0%,#c7ccd0 8%,#8f959b 29%,#555b61 50%,#777d83 70%,#b8bdc1 92%,#858b90 100%);
+ box-shadow:inset 0 1px #fff,inset 0 -1px #4a4f54,0 -8px 30px #0008
+}
+.ds-dock:before{content:"";position:absolute;inset:1px 0 auto;height:1px;background:#ffffff80;pointer-events:none}
+.ds-dock-info{padding:2px 7px;border-radius:7px;background:#171a1d3d;box-shadow:inset 0 1px #ffffff20}
+.ds-dock-info img{border:1px solid #d9dde066;box-shadow:0 2px 7px #0007}
+.ds-extras{justify-content:flex-end}.ds-extras input{max-width:110px}
+.ds-up-row{border-radius:5px;padding:7px 4px}.ds-up-row:hover{background:#ffffff0b}.ds-up-row img{box-shadow:0 3px 8px #0005}
+.ds-browser-actions button{box-shadow:inset 0 1px #ffffff1b,0 2px 6px #0004;transition:background .12s,transform .12s}.ds-browser-actions button:hover{background:#ffffff16}.ds-browser-actions button:active{transform:translateY(1px)}
+@media(max-width:720px){.ds-brand-bear{width:27px;height:27px}.ds-top{padding:0 10px}.ds-browser-actions{display:none}}
