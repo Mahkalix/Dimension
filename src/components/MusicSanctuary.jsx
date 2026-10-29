@@ -57,7 +57,7 @@ export default function MusicSanctuary(){
    onEnded={()=>adjacent(1)}/>
   {intro&&<div className="single-intro" role="dialog" aria-modal="true" aria-labelledby="dimension-intro">
     <div className="single-intro-inner"><img src="/brand/dimension-bear.svg" alt=""/><span>DIMENSION / VOL. 001</span>
-     <h1 id="dimension-intro">AFTER<br/><em>THE NOISE.</em></h1><p>Le service se termine.<br/>La musique reste.</p>
+     <h1 id="dimension-intro">DIMENSION</h1><p className="intro-subtitle">AFTER THE NOISE.</p><p>Le service se termine.<br/>La musique reste.</p>
      <button autoFocus onClick={()=>setIntro(false)}>ENTRER <span aria-hidden="true">↗</span></button><small>UN REFUGE MUSICAL, INSPIRÉ PAR THE BEAR</small>
     </div></div>}
   <header className="sanctuary-header">
@@ -66,17 +66,9 @@ export default function MusicSanctuary(){
     <div className="sanctuary-header-end"><a href="#dimension-concept" className="single-concept-link">LE CONCEPT</a><LogButton/></div>
   </header>
   <main id="dimension-player" className="single-main">
-    <div className="single-left"><span className="single-eyebrow">DIMENSION RECORDS / VOL. 001</span><h1>AFTER<br/><em>CLOSE.</em></h1>
+    <div className="single-left"><span className="single-eyebrow">DIMENSION / VOL. 001</span><h1>THE<br/><em>ROOM.</em></h1>
      <nav className="single-sides" aria-label="Ambiances">{sides.map((value,i)=><button key={value} aria-pressed={side===value} onClick={()=>{setSide(value);setSearch('');}}>
       <span>0{i+1}</span><strong>{value}</strong><span aria-hidden="true">↗</span></button>)}</nav>
-    </div>
-    <div className="sanctuary-3d-scene single-stage" aria-label="Platine vinyle">
-     <div className="sanctuary-plinth"><div className="sanctuary-plinth-surface">
-       <div className="sanctuary-3d-record-stage"><div className={`sanctuary-3d-record ${active?'is-spinning':''}`}>
-        <div className="sanctuary-3d-label"><img src="/brand/dimension-bear.svg" alt=""/></div><i className="sanctuary-3d-spindle"/></div></div>
-       <div className={`sanctuary-3d-arm ${active?'on-record':''}`}><span className="sanctuary-3d-arm-base"/><span className="sanctuary-3d-arm-shaft"/><span className="sanctuary-3d-arm-cartridge"/></div>
-       <div className="sanctuary-3d-switch"><span>33</span><i/></div><div className="sanctuary-3d-knob"/>
-     </div><div className="sanctuary-plinth-front"><span>DIMENSION</span><span>STEREO · 33⅓</span><i/></div></div>
     </div>
     <div className="single-right"><span className="single-eyebrow">SIDE {sides.indexOf(side)+1} / THE TRACKS</span><h2>{side.split(' ').map((word,i)=><React.Fragment key={i}>{word}{i===0?<br/>:' '}</React.Fragment>)}</h2>
      <label className="single-search">RECHERCHER<input type="search" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Titre ou artiste…"/></label>
@@ -85,6 +77,17 @@ export default function MusicSanctuary(){
      {tracks.length===0&&<p>Aucun titre trouvé.</p>}
      <span className="single-right-note">INSPIRED BY THE SOUND OF THE BEAR · NOT AN OFFICIAL SOUNDTRACK</span>
     </div>
+    <aside className="single-device-panel"><div className="single-device-head"><span>DIMENSION / HI-FI</span><span>33⅓ RPM</span></div>    <div className="sanctuary-3d-scene single-stage compact-stage" aria-label="Platine vinyle">
+     <div className="sanctuary-plinth"><div className="sanctuary-plinth-surface">
+       <div className="sanctuary-3d-record-stage"><div className={`sanctuary-3d-record ${active?'is-spinning':''}`}>
+        <div className="sanctuary-3d-label"><img src="/brand/dimension-bear.svg" alt=""/></div><i className="sanctuary-3d-spindle"/></div></div>
+       <div className={`sanctuary-3d-arm ${active?'on-record':''}`}><span className="sanctuary-3d-arm-base"/><span className="sanctuary-3d-arm-shaft"/><span className="sanctuary-3d-arm-cartridge"/></div>
+       <div className="sanctuary-3d-switch"><span>33</span><i/></div><div className="sanctuary-3d-knob"/>
+     </div><div className="sanctuary-plinth-front"><span>DIMENSION</span><span>STEREO · 33⅓</span><i/></div></div>
+    </div>
+
+      <div className="single-device-status"><span>NOW PLAYING</span><strong>{now?now.title:'EN SILENCE'}</strong><small>{now?now.artist:'DIMENSION RECORDS'}</small></div>
+    </aside>
   </main>
   <section className="single-concept" id="dimension-concept"><span>01 / THE CONCEPT</span><h2>AFTER<br/><em>THE NOISE.</em></h2><p>La cuisine ferme. Le bruit s'arrête.<br/>Un disque continue de tourner.</p><a href="#dimension-player">RETOUR AU LECTEUR ↑</a></section>
   {now?.videoId&&<div className="single-video"><MusicVideoPlayer key={now.id} track={now} volume={muted?0:volume} onVolumeChange={changeVolume} onClose={silence} command={videoCommand} onPlayingChange={setVideoPlaying}/></div>}
