@@ -1,41 +1,39 @@
 import React from 'react';
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import {fireEvent,render,screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MusicSanctuary from './MusicSanctuary';
-jest.mock('./logbutton', () => ({ LogButton: () => <button>Connexion</button> }));
-jest.mock('./MusicVideoPlayer', () => ({ track, onClose }) => <aside aria-label="Lecteur musical officiel"><span>{track.title}</span><button onClick={onClose}>Fermer</button></aside>);
-beforeEach(() => {
-  window.localStorage.clear();
-  HTMLMediaElement.prototype.play = jest.fn(function () { fireEvent.play(this); return Promise.resolve(); });
-  HTMLMediaElement.prototype.pause = jest.fn(function () { fireEvent.pause(this); });
+jest.mock('./logbutton',()=>({LogButton:()=> <button>Connexion</button>}));
+jest.mock('./MusicVideoPlayer',()=>({track,onClose})=><aside aria-label="Vidéo officielle"><span>{track.title}</span><button onClick={onClose}>Fermer</button></aside>);
+beforeEach(()=>{
+ HTMLMediaElement.prototype.play=jest.fn(function(){fireEvent.play(this);return Promise.resolve();});
+ HTMLMediaElement.prototype.pause=jest.fn(function(){fireEvent.pause(this);});
 });
-test('home offers three states and starts silent', () => {
-  render(<MusicSanctuary />);
-  expect(screen.getByRole('button',{name:/BEFORE SERVICE/})).toBeInTheDocument();
-  expect(screen.getByRole('button',{name:/IN THE WEEDS/})).toBeInTheDocument();
-  expect(screen.getByRole('button',{name:/AFTER CLOSE/})).toBeInTheDocument();
-  expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
+test('introduces the sanctuary without autoplay',()=>{
+ render(<MusicSanctuary/>);
+ expect(screen.getByRole('dialog')).toBeInTheDocument();
+ expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
+ fireEvent.click(screen.getByRole('button',{name:/ENTRER/}));
+ expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+ expect(screen.getByRole('navigation',{name:'Ambiances'})).toBeInTheDocument();
+ expect(screen.getByLabelText('Lecteur musical')).toBeInTheDocument();
 });
-test('entering the sanctuary and selecting a local recording plays it; silence stops playback', () => {
-  const {container}=render(<MusicSanctuary />);
-  fireEvent.click(screen.getByRole('button',{name:/BEFORE SERVICE/}));
-  fireEvent.click(screen.getByRole('button',{name:/Lofi Study/}));
-  expect(container.querySelector('audio')).toHaveAttribute('src','/music/girl/lofi-study-112191.mp3');
-  expect(HTMLMediaElement.prototype.play).toHaveBeenCalled();
-  fireEvent.click(screen.getByRole('button',{name:/SILENCE/}));
-  expect(HTMLMediaElement.prototype.pause).toHaveBeenCalled();
+test('stays on the same page and plays an original track in the bottom bar',()=>{
+ const {container}=render(<MusicSanctuary/>);
+ fireEvent.click(screen.getByRole('button',{name:/ENTRER/}));
+ fireEvent.click(screen.getByRole('button',{name:/BEFORE SERVICE/}));
+ fireEvent.click(screen.getByRole('button',{name:/Lofi Study/}));
+ expect(container.querySelector('audio')).toHaveAttribute('src','/music/girl/lofi-study-112191.mp3');
+ expect(HTMLMediaElement.prototype.play).toHaveBeenCalled();
+ expect(screen.getByLabelText('Lecteur musical')).toHaveTextContent('Lofi Study');
+ expect(container.querySelector('.sanctuary-3d-record')).toHaveClass('is-spinning');
+ fireEvent.click(screen.getByRole('button',{name:'Pause'}));
+ expect(container.querySelector('.sanctuary-3d-record')).not.toHaveClass('is-spinning');
 });
-test('Low Light is user controlled and persisted', () => {
-  render(<MusicSanctuary />);
-  fireEvent.click(screen.getByRole('button',{name:/LOW LIGHT/}));
-  expect(window.localStorage.getItem('dimension-low-light')).toBe('true');
-  expect(screen.getByRole('button',{name:/LIGHT ON/})).toHaveAttribute('aria-pressed','true');
-});
-test('archive keeps original catalogue and supports search', () => {
-  render(<MusicSanctuary />);
-  fireEvent.click(screen.getByRole('button',{name:'THE ARCHIVE'}));
-  fireEvent.change(screen.getByRole('searchbox'),{target:{value:'Embrace'}});
-  const archive = document.querySelector('.archive-tracks');
-  expect(within(archive).getByRole('button',{name:/Embrace/})).toBeInTheDocument();
-  expect(within(archive).queryByRole('button',{name:/Chicago/})).not.toBeInTheDocument();
+test('keeps a single page for all three moods',()=>{
+ render(<MusicSanctuary/>);
+ fireEvent.click(screen.getByRole('button',{name:/ENTRER/}));
+ for(const label of ['BEFORE SERVICE','IN THE WEEDS','AFTER CLOSE']){
+  fireEvent.click(screen.getByRole('button',{name:new RegExp(label)}));
+  expect(screen.getByRole('button',{name:new RegExp(label)})).toHaveAttribute('aria-pressed','true');
+ }
 });
