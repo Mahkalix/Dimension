@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+<title id="title">DIMENSION, ours rugissant, gravure</title>
+<defs><filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency=".035" numOctaves="2" seed="8" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="1.2"/></filter></defs>
+<g fill="#26372f" filter="url(#ink)">
+<circle cx="29" cy="31" r="18"/><circle cx="99" cy="31" r="18"/>
+<path d="M64 16C33 16 14 37 13 66c-1 29 19 48 51 53 32-5 52-24 51-53C114 37 95 16 64 16Z"/>
+</g>
+<path fill="#f2f0e7" d="M41 54C47 48 55 46 64 46s17 2 23 8c7 10 8 24 7 37-1 15-12 23-30 24-18-1-29-9-30-24-1-13 0-27 7-37Z"/>
+<path fill="#26372f" d="M50 70C50 64 56 60 64 60s14 4 14 10v28c0 7-6 12-14 12s-14-5-14-12Z"/>
+<path fill="#f2f0e7" d="M52 70l5 1-2 13zM71 71l5-1-3 14zM54 101l3-10 4 12zM67 103l4-12 3 10z"/>
+<path fill="#26372f" d="M53 47q11-10 22 0l-3 11H56Z"/>
+<path d="M35 55q6-9 12 0M81 55q6-9 12 0" fill="none" stroke="#f2f0e7" stroke-width="5" stroke-linecap="round"/>
+</svg>
