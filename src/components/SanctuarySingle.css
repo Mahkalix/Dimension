@@ -113,7 +113,7 @@
 .sanctuary-single .single-device-status>span{font-size:10px;letter-spacing:.1em}
 .sanctuary-single .single-device-status strong{font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sanctuary-single .single-device-status small{font-size:11px}
-.sanctuary-single .single-intro{background:linear-gradient(100deg,#0f263ecc,#1b3c60bb),url('/images/dimension-after-hours.webp') center / cover no-repeat}
+.sanctuary-single .single-intro{background:linear-gradient(100deg,#0f263ecc,#1b3c60bb),url('../../public/images/dimension-after-hours.webp') center / cover no-repeat}
 .sanctuary-single .single-intro-inner{width:min(1150px,100%)}
 .sanctuary-single .single-intro-inner h1{font-family:'DM Sans',sans-serif;font-size:clamp(62px,13vw,180px);font-weight:800;letter-spacing:-.09em;line-height:.9;white-space:nowrap}
 .sanctuary-single .single-intro-inner .intro-subtitle{font:700 clamp(20px,3vw,43px)/1.1 Georgia,serif;letter-spacing:.04em;margin:0 0 10px}
