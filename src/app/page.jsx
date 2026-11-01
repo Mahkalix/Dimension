@@ -13,7 +13,11 @@ export default async function Opening({ searchParams }) {
   const error = errors[(await searchParams).error];
   return (
     <main className={styles.entry}>
-      <img className={styles.signature} src="/brand/the-den-house.png" alt="" />
+      <div className={styles.signature} aria-hidden="true">
+  <img className={styles.houseBody} src="/brand/the-den-house.png" alt="" />
+  <img className={styles.houseFlames} src="/brand/the-den-house.png" alt="" />
+  <span className={styles.inkSweep} />
+</div>
       <h1 className={styles.wordmark}><img src="/den-2.svg" alt="The Den" width="300" height="75"/></h1>
       <a className={styles.entryButton} href="/player">
         Entrer
@@ -26,4 +30,5 @@ export default async function Opening({ searchParams }) {
     </main>
   );
 }
+
 

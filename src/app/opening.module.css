@@ -161,3 +161,69 @@
     animation: none;
   }
 }
+
+/* One-shot ink impression: house settles, flames rise, lettering follows. */
+.entry .signature {
+  animation: none;
+  isolation: isolate;
+}
+.signature img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.houseBody {
+  clip-path: polygon(0 48%, 100% 48%, 100% 100%, 0 100%);
+  transform-origin: 50% 90%;
+  animation: printHouse 1150ms cubic-bezier(.16, 1, .3, 1) both;
+}
+.houseFlames {
+  clip-path: polygon(0 0, 100% 0, 100% 48%, 0 48%);
+  transform-origin: 50% 48%;
+  animation: lightFlames 1450ms 240ms cubic-bezier(.16, 1, .3, 1) both;
+}
+.inkSweep {
+  position: absolute;
+  inset: -4% -8%;
+  background: var(--paper);
+  transform-origin: bottom;
+  animation: revealInk 1200ms 100ms cubic-bezier(.65, 0, .2, 1) both;
+  pointer-events: none;
+}
+.entry .wordmark {
+  animation: revealName 850ms 900ms cubic-bezier(.16, 1, .3, 1) both;
+}
+.entry .entryButton {
+  animation: revealName 700ms 1250ms cubic-bezier(.16, 1, .3, 1) both;
+}
+.entry:focus-within .entryButton {
+  animation: none;
+}
+@keyframes printHouse {
+  0% { opacity: 0; transform: translateY(18px) scaleY(.94); }
+  45% { opacity: 1; }
+  75% { transform: translateY(-2px) scaleY(1.01); }
+  100% { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+@keyframes lightFlames {
+  0% { opacity: 0; transform: translateY(12px) scaleY(.65) rotate(-3deg); }
+  48% { opacity: 1; transform: translateY(-3px) scaleY(1.04) rotate(1deg); }
+  72% { transform: translateY(1px) scaleY(.98) rotate(-.5deg); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes revealInk {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(0); }
+}
+@keyframes revealName {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .houseBody, .houseFlames, .inkSweep,
+  .entry .wordmark, .entry .entryButton { animation: none; }
+  .inkSweep { display: none; }
+}
+:global([data-still="1"]) .inkSweep { display: none; }
