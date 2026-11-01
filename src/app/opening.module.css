@@ -71,3 +71,4 @@
 .entryButton{position:absolute;top:75%;display:grid;place-items:center;width:clamp(164px,20vw,252px);min-height:72px;border-radius:16px;background:#d3d3ca;color:#242624;text-decoration:none;font-size:24px;font-weight:700}
 .entry p{position:absolute;bottom:0}.entryButton:hover{background:#c6c6be}
 @media(max-width:700px){.signature{width:68vw;top:9%}}
+.charge{position:absolute;top:74%;width:min(260px,60vw);height:8px;accent-color:var(--ink)}

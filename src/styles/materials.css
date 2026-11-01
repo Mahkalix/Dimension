@@ -75,6 +75,161 @@ a {
 .record img {
   filter: grayscale(1);
 }
-.den .logo{width:124px;height:auto}.den .collections button{background:transparent;border:0;padding:0;text-align:left}.collections img{border-radius:12px}.den .track{background:var(--wash);border:0;border-radius:12px;padding:12px 16px;margin:12px 0}.den .track img{border-radius:8px}.den[data-section="Écouter"] header input{display:none}.den .rest{box-shadow:0 -4px 18px #0002}.den footer{margin-top:48px}
-@media(min-width:701px) and (max-width:1359px){.den[data-section="Écouter"] section[aria-label="Liste des morceaux"] h2{display:none}.den h1{font-size:32px}.collections{margin-top:16px}.rail nav{margin-top:16px}}
-@media(min-width:1360px){.den[data-section="Écouter"] header input{display:block}}
+.den .logo {
+  width: 124px;
+  height: auto;
+}
+.den .collections button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+}
+.collections img {
+  border-radius: 12px;
+}
+.den .track {
+  background: var(--wash);
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 12px 0;
+}
+.den .track img {
+  border-radius: 8px;
+}
+.den[data-section="Écouter"] header input {
+  display: none;
+}
+.den .rest {
+  box-shadow: 0 -4px 18px #0002;
+}
+.den footer {
+  margin-top: 48px;
+}
+@media (min-width: 701px) and (max-width: 1359px) {
+  .den[data-section="Écouter"] section[aria-label="Liste des morceaux"] h2 {
+    display: none;
+  }
+  .den h1 {
+    font-size: 32px;
+  }
+  .collections {
+    margin-top: 16px;
+  }
+  .rail nav {
+    margin-top: 16px;
+  }
+}
+@media (min-width: 1360px) {
+  .den[data-section="Écouter"] header input {
+    display: block;
+  }
+}
+.den .menu-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 48px;
+}
+.menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82px;
+  padding: 16px 24px;
+  background: var(--wash);
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 12px;
+}
+.menu-row[aria-pressed="true"] {
+  outline: 1px solid var(--quiet);
+}
+.back-link {
+  justify-self: start;
+}
+.den[data-chrome="Poli"] .rest {
+  box-shadow:
+    0 2px 16px #0004,
+    inset 0 1px white;
+}
+.den[data-chrome="Mat"] .rest {
+  box-shadow: none;
+}
+.den[data-light="Bas"] {
+  --paper: #dbdbd8;
+}
+.den[data-light="Haut"] {
+  --paper: #fafaf8;
+}
+.den {
+  background: var(--paper);
+}
+.den:not([data-section="Recherche"]):not([data-section="Bibliothèque"])
+  header
+  input {
+  display: none;
+}
+.now-playing {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 4vw, 64px);
+  padding-block: 32px;
+}
+.now-playing img {
+  width: 46%;
+  border-radius: 12px;
+}
+.now-playing h2 {
+  font-size: clamp(26px, 4vw, 60px);
+}
+.now-playing button {
+  background: var(--wash);
+  margin: 4px;
+}
+.record .transport {
+  flex-wrap: wrap;
+}
+@media (max-width: 700px) {
+  .now-playing {
+    flex-direction: column;
+  }
+  .now-playing img {
+    width: min(72%, 300px);
+  }
+  .menu-row {
+    min-height: 64px;
+  }
+}
+@media (min-width: 701px) {
+  .record {
+    width: min(840px, 90vw);
+    padding: 32px;
+  }
+  .record .stage {
+    display: block;
+    margin: 24px 0;
+  }
+  .record figure {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    width: auto;
+  }
+  .record picture {
+    width: 48%;
+  }
+  .record figcaption {
+    background: none;
+    font-size: 24px;
+  }
+  .record .transport {
+    justify-content: flex-end;
+  }
+}
+.video-controls .play-position {
+  display: block;
+}
+.video-controls input {
+  vertical-align: middle;
+}
