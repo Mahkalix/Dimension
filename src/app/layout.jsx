@@ -6,9 +6,10 @@ export const metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: "/favicon.ico?v=house" },
-      { url: "/brand/house-32.png", sizes: "32x32" },
+      { url: "/brand/the-den-favicon.ico", type: "image/x-icon" },
+      { url: "/brand/the-den-favicon.png", type: "image/png", sizes: "32x32" },
     ],
+    shortcut: "/brand/the-den-favicon.ico",
     apple: "/brand/house-180.png",
   },
   openGraph: {
