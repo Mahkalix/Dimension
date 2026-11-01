@@ -184,3 +184,21 @@
   display: grid;
   place-items: center;
 }
+.credit {
+  position: absolute;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 8px 16px;
+  color: var(--quiet);
+  font-size: 14px;
+  text-decoration: none;
+}
+.credit:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+.entry:has([role="alert"]) .credit {
+  bottom: 72px;
+}

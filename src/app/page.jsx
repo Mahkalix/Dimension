@@ -39,7 +39,16 @@ export default async function Opening({ searchParams }) {
             />
           </h1>
         </div>
-      </IntroEntry>{" "}
+      </IntroEntry>
+      <a
+        className={styles.credit}
+        href="https://github.com/mahkalix"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="@mahkalix sur GitHub (nouvel onglet)"
+      >
+        @mahkalix
+      </a>
       {error && (
         <p role="alert">
           {error} <a href="/profil">Profil</a>
