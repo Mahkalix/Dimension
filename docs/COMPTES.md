@@ -23,3 +23,8 @@ Le SDK Auth0 gère le login, le callback et le logout. Connecter Spotify exige u
 
 ## Vérification
 Construire avec npm run build. Après npm run start, exécuter scripts/check-interface.mjs avec Node, Chrome installé et TEST_URL réglé sur l’origine locale. Ce test en contexte vierge produit les captures accueil, bibliothèque et lecteur dans docs/screens. La capture lecteur vérifie le panneau ouvert. Elle ne prouve pas une diffusion audio effective. Les deux captures authentifiées doivent être prises après une vraie connexion aux fournisseurs.
+
+## Connexion personnelle dans The Den
+Chaque visiteur utilise son propre compte Auth0 puis son propre compte Spotify. Le menu Compte sous le logo propose login, logout et association Spotify. Le Client ID et le Client Secret sont ceux de l’application Developer ; aucun utilisateur ne renseigne ces valeurs. Les jetons Spotify restent côté serveur et le profil est conservé dans la session chiffrée. L’autorisation ne donne ici accès qu’au profil, pas au streaming ou aux playlists personnelles.
+
+En Preview Vercel, l’origine est déduite de VERCEL_BRANCH_URL si APP_BASE_URL est absent. En production, elle vient de VERCEL_PROJECT_PRODUCTION_URL. Enregistrer les callbacks correspondant à ce domaine exact dans les deux consoles et définir APP_BASE_URL si un domaine différent est utilisé. Un projet Spotify en mode Development peut restreindre les utilisateurs autorisés selon les règles du fournisseur. L’ouverture à tous nécessite un mode d’accès adapté côté Spotify.

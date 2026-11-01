@@ -1,4 +1,4 @@
-import tracks from "./data/afterhours.json";
+import tracks from "./data/selection.json";
 
 export const options = {
   Volume: ["Silence", "35 %", "65 %", "100 %"],
@@ -34,7 +34,7 @@ export function MenuPage({ page, go, prefs, volume, select }) {
   let rows;
   if (page === "Extras")
     rows = ["Crédits", "Source"].map((n) =>
-      row(n, n === "Source" ? "Démo ›" : "›", () => go(n)),
+      row(n, n === "Source" ? "Audio ›" : "›", () => go(n)),
     );
   else if (page === "Réglages")
     rows = Object.keys(options).map((n) => row(n, "›", () => go(n)));
@@ -42,13 +42,22 @@ export function MenuPage({ page, go, prefs, volume, select }) {
     rows = tracks.map((t) => (
       <div className="menu-row" key={t.id}>
         <b>{t.title}</b>
-        <span>{t.artist}</span>
+        <span>
+          {t.artist} ·{" "}
+          <a href={t.sourceUrl} target="_blank" rel="noreferrer">
+            Incompetech
+          </a>{" "}
+          ·{" "}
+          <a href={t.licenseUrl} target="_blank" rel="noreferrer">
+            {t.license}
+          </a>
+        </span>
       </div>
     ));
   else if (page === "Source")
     rows = (
       <>
-        {row("Démo", "", () => go("Écouter"), true)}
+        {row("Audio libre", "", () => go("Écouter"), true)}
         <a className="menu-row" href="/profil">
           Spotify <span>Compte ›</span>
         </a>

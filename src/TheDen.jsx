@@ -1,22 +1,34 @@
+"use client";
 import PlayerBar from "./components/PlayerBar";
 import { useEffect, useRef, useState } from "react";
-import tracks from "./data/afterhours.json";
-import MusicVideoPlayer from "./components/MusicVideoPlayer";
+import tracks from "./data/selection.json";
 
 import { MenuPage, menuPages, defaults } from "./MenuPage";
-const art = ["/radiohead.jpg", "/chicago.jpg"];
+const art = tracks.map((t) => t.art);
 const sections = ["Écouter", "Bibliothèque", "À suivre", "Recherche"];
 
-export default function TheDen() {
+export default function TheDen({ account }) {
   const [section, setSection] = useState("Écouter");
   const [libraryTab, setLibraryTab] = useState("Playlists");
   const [query, setQuery] = useState("");
   const [preview, setPreview] = useState(0);
   const [playing, setPlaying] = useState(null);
   const [volume, setVolume] = useState(0.65);
-  const [queue, setQueue] = useState([0]);
+  const [queue, setQueue] = useState([1]);
   const [notice, setNotice] = useState("");
-  const [command, setCommand] = useState(0);
+  const audio = useRef(null),
+    request = useRef(0);
+  const [time, setTime] = useState({ position: 0, duration: 0 });
+  const [audioError, setAudioError] = useState("");
+  const toggle = () => {
+    if (audible) {
+      request.current++;
+      audio.current.pause();
+    } else start(playing ?? preview, false);
+  };
+  useEffect(() => {
+    audio.current.volume = volume;
+  }, [volume]);
   const [audible, setAudible] = useState(false);
   const [prefs, setPrefs] = useState(defaults);
   const tone = useRef(null);
@@ -25,7 +37,12 @@ export default function TheDen() {
       const saved = JSON.parse(localStorage.getItem("den-preferences"));
       if (saved) {
         setPrefs({ ...defaults, ...saved.prefs });
-        if (typeof saved.volume === "number") setVolume(saved.volume);
+        if (
+          Number.isFinite(saved.volume) &&
+          saved.volume >= 0 &&
+          saved.volume <= 1
+        )
+          setVolume(saved.volume);
       }
     } catch {}
   }, []);
@@ -54,11 +71,26 @@ export default function TheDen() {
       JSON.stringify({ prefs: updated, volume: level }),
     );
   };
-  const start = (i) => {
+  const start = async (i, open = true) => {
+    const id = ++request.current;
+    setAudioError("");
     setPlaying(i);
     setPreview(i);
-    setCommand((c) => c + 1);
-    go("Lecture");
+    if (audio.current.getAttribute("src") !== tracks[i].url) {
+      audio.current.src = tracks[i].url;
+      setTime({ position: 0, duration: 0 });
+    }
+    if (open) go("Lecture");
+    try {
+      await audio.current.play();
+    } catch (error) {
+      if (id === request.current && error.name !== "AbortError") {
+        setAudible(false);
+        setAudioError(
+          "Lecture impossible. Réessayer ou choisir un autre morceau.",
+        );
+      }
+    }
   };
   const advance = () => {
     const i = queue.length ? queue[0] : 1 - (playing ?? preview);
@@ -101,10 +133,64 @@ export default function TheDen() {
       data-chrome={prefs["Intensité du chrome"]}
       data-light={prefs.Rétroéclairage}
     >
+      <audio
+        ref={audio}
+        preload="metadata"
+        onPlay={() => setAudible(true)}
+        onPause={() => setAudible(false)}
+        onLoadedMetadata={() =>
+          setTime((t) => ({
+            ...t,
+            duration: Number.isFinite(audio.current.duration)
+              ? audio.current.duration
+              : 0,
+          }))
+        }
+        onTimeUpdate={() =>
+          setTime((t) => ({ ...t, position: audio.current.currentTime }))
+        }
+        onEnded={advance}
+        onError={() => {
+          setAudible(false);
+          setAudioError(
+            "Ce morceau est indisponible. Réessayer ou choisir un autre titre.",
+          );
+        }}
+      />
       <aside className="rail">
         <a href="/" aria-label="DIMENSION · Accueil">
-          <img className="logo" src="/brand/the-den-wordmark.png" alt="The Den" />
+          <img
+            className="logo"
+            src="/brand/the-den-wordmark.png"
+            alt="The Den"
+          />
         </a>
+        <details className="account-menu" onClick={e=>{if(e.target.closest("a,button"))e.currentTarget.open=false}}>
+          <summary>
+            Compte <span aria-hidden="true">⌄</span>
+          </summary>
+          <div>
+            <strong>{account?.name || "Bienvenue"}</strong>
+            {account?.connected ? (
+              <a href="/auth/logout">Se déconnecter</a>
+            ) : (
+              <a href="/auth/login?returnTo=/player">Se connecter</a>
+            )}
+            {account?.spotify ? (
+              <>
+                <span>Spotify · {account.spotify.name}</span>
+                <form method="post" action="/api/spotify/disconnect">
+                  <button>Dissocier Spotify</button>
+                </form>
+              </>
+            ) : (
+              <a href="/api/spotify/connect">Connecter mon Spotify</a>
+            )}
+            <a href="/profil">Mon profil</a>
+            <button onClick={() => go("Réglages")}>Réglages</button>
+            <button onClick={() => go("Extras")}>Extras</button>
+          </div>
+        </details>
         <nav aria-label="Navigation principale">
           {sections.map((name, i) => (
             <button
@@ -128,6 +214,11 @@ export default function TheDen() {
             </button>
           ))}
         </nav>
+        <footer>
+          <a href="/profil">Profil</a> ·{" "}
+          <button onClick={() => go("Réglages")}>Réglages</button>
+          <button onClick={() => go("Extras")}>Extras</button>
+        </footer>
       </aside>
       <main>
         <header>
@@ -180,7 +271,7 @@ export default function TheDen() {
             <section className="collections" aria-label="Collections">
               {(section === "Bibliothèque"
                 ? ["Après le service"]
-                : ["Après le service", "Chicago"]
+                : ["Après le service", "Carefree"]
               ).map((title, i) => (
                 <button
                   key={title}
@@ -188,7 +279,7 @@ export default function TheDen() {
                 >
                   <img src={"/den-" + i + ".svg"} alt="" />
                   <strong>{title}</strong>
-                  <small>{i ? "Sufjan Stevens" : "2 morceaux"}</small>
+                  <small>{i ? tracks[1].artist : "2 morceaux"}</small>
                 </button>
               ))}
             </section>
@@ -206,7 +297,7 @@ export default function TheDen() {
             <img src={"/den-track-" + (playing ?? preview) + ".png"} alt="" />
             <div>
               <h2>{tracks[playing ?? preview].title}</h2>
-              <button onClick={() => setCommand((c) => c + 1)}>
+              <button onClick={toggle}>
                 {audible ? "Pause" : "Reprendre"}
               </button>
               <button onClick={advance}>Suivant ›</button>
@@ -249,43 +340,35 @@ export default function TheDen() {
             {!results.length && <p role="status">Aucun morceau trouvé.</p>}
           </section>
         )}
-        <footer>
-          <a href="/profil">Profil</a> ·{" "}
-          <button onClick={() => go("Réglages")}>Réglages</button>
-          <button onClick={() => go("Extras")}>Extras</button>
-        </footer>
       </main>
-      {playing === null ? (
-        <PlayerBar
-          track={track}
-          index={preview}
-          onToggle={() => start(preview)}
-          onPrevious={next}
-          onNext={next}
-          onOpen={() => openTrack(preview)}
-          onQueue={() => go("À suivre")}
-          volume={volume}
-          onVolumeChange={(e) => setVolume(Number(e.target.value))}
-        />
-      ) : (
-        <MusicVideoPlayer
-          key={playing}
-          track={tracks[playing]}
-          index={playing}
-          onPrevious={() => start(1 - playing)}
-          onNext={advance}
-          onOpen={() => openTrack(playing)}
-          onQueue={() => go("À suivre")}
-          command={command}
-          onPlayingChange={setAudible}
-          volume={volume}
-          onVolumeChange={(e) => setVolume(Number(e.target.value))}
-          onClose={() => {
-            setPlaying(null);
-            go("Écouter");
-          }}
-        />
+      {audioError && (
+        <div className="audio-error" role="alert">
+          {audioError}
+          <button onClick={() => start(playing ?? preview, false)}>
+            Réessayer
+          </button>
+        </div>
       )}
+      <PlayerBar
+        track={tracks[playing ?? preview]}
+        index={playing ?? preview}
+        playing={audible}
+        onToggle={toggle}
+        onPrevious={() =>
+          playing === null ? next() : start(1 - playing, false)
+        }
+        onNext={() => (playing === null ? next() : advance())}
+        onOpen={() => openTrack(playing ?? preview)}
+        onQueue={() => go("À suivre")}
+        volume={volume}
+        onVolumeChange={(e) => setVolume(Number(e.target.value))}
+        position={time.position}
+        duration={time.duration}
+        onSeek={(e) => {
+          audio.current.currentTime = Number(e.target.value);
+          setTime((t) => ({ ...t, position: Number(e.target.value) }));
+        }}
+      />{" "}
       <dialog ref={dialog} aria-label="Fiche du morceau" className="record">
         <button className="return" onClick={() => dialog.current.close()}>
           ‹ Retour aux morceaux

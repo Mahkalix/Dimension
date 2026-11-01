@@ -1,3 +1,4 @@
+import IntroEntry from "./IntroEntry";
 import styles from "./opening.module.css";
 const errors = {
   config: "Authentification non configurée.",
@@ -13,15 +14,33 @@ export default async function Opening({ searchParams }) {
   const error = errors[(await searchParams).error];
   return (
     <main className={styles.entry}>
-      <div className={styles.identity}>
-        <a className={styles.signature} href="/player" aria-label="Entrer dans The Den">
-          <img className={styles.house} src="/brand/the-den-house.png" alt="" width="463" height="408" />
-          <span className={styles.steam} aria-hidden="true" />
-        </a>
-        <h1 className={styles.wordmark}>
-          <img src="/brand/the-den-wordmark.png" alt="The Den" width="452" height="76" />
-        </h1>
-      </div>      {error && (
+      <IntroEntry auto={!error}>
+        <div className={styles.identity}>
+          <a
+            className={styles.signature}
+            href="/player"
+            aria-label="Entrer dans The Den"
+          >
+            <img
+              className={styles.house}
+              src="/brand/the-den-house.png"
+              alt=""
+              width="463"
+              height="408"
+            />
+            <span className={styles.steam} aria-hidden="true" />
+          </a>
+          <h1 className={styles.wordmark}>
+            <img
+              src="/brand/the-den-wordmark.png"
+              alt="The Den"
+              width="452"
+              height="76"
+            />
+          </h1>
+        </div>
+      </IntroEntry>{" "}
+      {error && (
         <p role="alert">
           {error} <a href="/profil">Profil</a>
         </p>
@@ -29,9 +48,3 @@ export default async function Opening({ searchParams }) {
     </main>
   );
 }
-
-
-
-
-
-

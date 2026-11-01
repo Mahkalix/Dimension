@@ -1,9 +1,8 @@
 import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
-import { auth } from "../../../../lib/identity";
+import { auth, appOrigin } from "../../../../lib/identity";
 
-const redirect = (path) =>
-  NextResponse.redirect(new URL(path, process.env.APP_BASE_URL), 303);
+const redirect = (path) => NextResponse.redirect(new URL(path, appOrigin), 303);
 export async function GET(request, { params }) {
   const { action } = await params;
   if (!auth)
@@ -18,8 +17,7 @@ export async function GET(request, { params }) {
   const client = process.env.SPOTIFY_CLIENT_ID,
     secret = process.env.SPOTIFY_CLIENT_SECRET;
   if (!client || !secret) return redirect("/?error=spotify-config");
-  const callback = new URL("/api/spotify/callback", process.env.APP_BASE_URL)
-    .href;
+  const callback = new URL("/api/spotify/callback", appOrigin).href;
   if (action === "connect") {
     const state = randomBytes(32).toString("hex");
     await auth.updateSession({
@@ -80,7 +78,7 @@ export async function GET(request, { params }) {
         avatar: data.images?.[0]?.url || null,
       },
     });
-    return redirect("/");
+    return redirect("/player");
   } catch {
     return redirect("/?error=spotify");
   }
@@ -88,15 +86,12 @@ export async function GET(request, { params }) {
 export async function POST(request, { params }) {
   if ((await params).action !== "disconnect")
     return new Response(null, { status: 404 });
-  if (
-    !auth ||
-    request.headers.get("origin") !== new URL(process.env.APP_BASE_URL).origin
-  )
+  if (!auth || request.headers.get("origin") !== new URL(appOrigin).origin)
     return new Response(null, { status: 403 });
   const session = await auth.getSession();
   if (!session) return redirect("/?error=session");
   delete session.spotify;
   delete session.spotifyRequest;
   await auth.updateSession(session);
-  return redirect("/");
+  return redirect("/player");
 }

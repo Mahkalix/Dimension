@@ -26,7 +26,7 @@ export default function RemoteKeys() {
         return;
       const nodes = [
         ...(dialog || document).querySelectorAll(
-          "button:not(:disabled),a[href],input:not(:disabled)",
+          "button:not(:disabled),a[href],input:not(:disabled),summary",
         ),
       ].filter((n) => n.getClientRects().length);
       if (!nodes.length) return;
