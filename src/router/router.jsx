@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Accueil from "../pages/Accueil";
+import Home from "../legacy-pages/Home";
+import Accueil from "../legacy-pages/Accueil";
 
 const Router = () => {
   return (
@@ -13,3 +13,4 @@ const Router = () => {
 };
 
 export default Router;
+

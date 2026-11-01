@@ -1,0 +1,68 @@
+.frame {
+  min-height: 100dvh;
+  background: #101010;
+  display: grid;
+  place-items: center;
+}
+.sheet {
+  width: min(100%, 177.78dvh);
+  min-height: min(100dvh, 56.25vw);
+  padding: clamp(20px, 4vh, 48px);
+  background: var(--paper) var(--grain);
+  color: var(--ink);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  gap: 8px;
+}
+.mark {
+  width: min(12vh, 100px);
+}
+.sheet h1 {
+  font-size: clamp(40px, 6vw, 88px);
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+.sheet p {
+  margin: 0;
+  letter-spacing: 0.15em;
+}
+.sheet a,
+.sheet button {
+  display: inline-grid;
+  place-items: center;
+  min-height: 72px;
+  padding: 0 24px;
+}
+.enter {
+  margin: 16px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  font-size: 24px;
+  text-decoration: none;
+  min-width: 240px;
+}
+.accounts {
+  display: flex;
+  gap: var(--gap);
+}
+.accounts > div {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  padding: 12px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+@media (max-width: 650px) {
+  .sheet {
+    width: 100%;
+    min-height: 100dvh;
+  }
+  .accounts {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

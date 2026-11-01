@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import tracks from "./data/afterhours.json";
 import MusicVideoPlayer from "./components/MusicVideoPlayer";
-import "./styles/den.css";
 
 const art = ["/radiohead.jpg", "/chicago.jpg"];
 const sections = ["Écouter", "Bibliothèque", "À suivre", "Recherche"];
@@ -38,7 +37,10 @@ export default function TheDen() {
   return (
     <div className="den">
       <aside className="rail">
-        <img className="logo" src="/den-2.svg" alt="The Den" />
+        <a href="/" aria-label="DIMENSION · Accueil">
+          <img className="logo" src="/brand/dimension-mark.svg" alt="" />{" "}
+          DIMENSION
+        </a>
         <nav aria-label="Navigation principale">
           {sections.map((name, i) => (
             <button
@@ -99,6 +101,9 @@ export default function TheDen() {
           ))}
           {!results.length && <p role="status">Aucun morceau trouvé.</p>}
         </section>
+        <footer>
+          <a href="/profil">Profil</a> · <a href="/parametres">Paramètres</a>
+        </footer>
       </main>
       {playing === null ? (
         <aside className="rest">

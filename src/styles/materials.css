@@ -1,23 +1,77 @@
 :root {
-  --chrome:1;
-  --ink:#1a1d22;
-  --engraved-shadow:0 1px 0 rgb(255 255 255 / .7);
-  --horizon:linear-gradient(180deg,#fff 0%,#e6e9ee 42%,#e6e9ee 49.9%,#9aa0a8 50%,#c4c8ce 58%,#f2f4f7 100%);
-  --brush:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='96'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.002 0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.12' filter='url(%23b)'/%3E%3C/svg%3E");
-  --matte:var(--brush),repeating-linear-gradient(0deg,#d0d6da 0 1px,#cbd1d6 1px 3px);
-  --radial-metal:conic-gradient(from 35deg,#e9edf1,#8994a0,#edf1f5,#88929d,#f5f7f9,#86929e,#e9edf1);
-  --bevel:inset 0 1px 0 #fffe,inset 0 -1px 0 #0006,0 2px 2px #0004;
-  --recess:radial-gradient(ellipse at 45% 0%,#12213c,#05070d 75%);
+  color-scheme: light;
+  --paper: #efefed;
+  --ink: #242424;
+  --line: #aaa;
+  --wash: #dededc;
+  --quiet: #525252;
+  --dock: #f8f8f6;
+  --gap: 16px;
+  --radius: 12px;
+  --shadow: 0 1px 3px #0002;
+  --focus: 3px solid #272727;
+  --grain: repeating-linear-gradient(
+    0deg,
+    transparent 0 2px,
+    #00000003 2px 3px
+  );
+  --refresh: 160ms ease-out;
 }
-*{box-sizing:border-box}
-html,body,#root{height:100%;margin:0}
-body{font-family:"Archivo Variable",Arial,sans-serif;background:black;color:var(--ink)}
-h1,h2,p,ul{margin:0}
-ul{list-style:none;padding:0}
-.steel,.engraving{background:var(--matte);text-shadow:var(--engraved-shadow)}
-.polished{position:relative;isolation:isolate;overflow:hidden;background:#cbd1d6;box-shadow:var(--bevel);text-shadow:var(--engraved-shadow)}
-.polished::after,.polished::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;opacity:var(--chrome)}
-.polished::after{background:var(--horizon);z-index:-2}
-.polished::before{bottom:50%;background:linear-gradient(#ffffff8c,transparent)}
-.disc{border:1px solid #727d86;border-radius:50%;background:var(--radial-metal);box-shadow:var(--bevel);color:var(--ink)}
-.well{background:var(--recess);color:white;border:2px inset #9ea7b3;font-variant-numeric:tabular-nums}
+body {
+  background: var(--paper);
+  color: var(--ink);
+  background-image: var(--grain);
+}
+a {
+  color: inherit;
+}
+:focus-visible {
+  outline: var(--focus);
+  outline-offset: 3px;
+}
+.den .logo {
+  width: 44px;
+  height: 44px;
+  vertical-align: middle;
+}
+.rail > a {
+  text-decoration: none;
+  font-weight: 800;
+}
+.nav-icon {
+  filter: none;
+}
+.den main,
+.record[open] {
+  animation: refresh var(--refresh);
+}
+@keyframes refresh {
+  from {
+    opacity: 0.84;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}
+[data-still="1"] * {
+  animation: none !important;
+  transition: none !important;
+}
+.den footer {
+  margin-top: 32px;
+}
+.den footer a {
+  display: inline-grid;
+  align-items: center;
+  min-height: 44px;
+}
+.den .collections img,
+.track img,
+.record img {
+  filter: grayscale(1);
+}

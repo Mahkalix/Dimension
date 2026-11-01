@@ -24,3 +24,5 @@ yarn-error.log*
 
 dist/
 *.tsbuildinfo
+.next/
+.env*.local
