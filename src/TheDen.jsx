@@ -1,4 +1,6 @@
 "use client";
+import SolarIcon from "./components/SolarIcon";
+
 import PlayerBar from "./components/PlayerBar";
 import { useEffect, useRef, useState } from "react";
 import tracks from "./data/selection.json";
@@ -167,28 +169,28 @@ export default function TheDen({ account }) {
         </a>
         <details className="account-menu" onClick={e=>{if(e.target.closest("a,button"))e.currentTarget.open=false}}>
           <summary>
-            Compte <span aria-hidden="true">⌄</span>
+            <SolarIcon name="user-circle"/>Compte <SolarIcon name="alt-arrow-down"/>
           </summary>
           <div>
             <strong>{account?.name || "Bienvenue"}</strong>
             {account?.connected ? (
-              <a href="/auth/logout">Se déconnecter</a>
+              <a href="/auth/logout"><SolarIcon name="logout-2"/>Se déconnecter</a>
             ) : (
-              <a href="/auth/login?returnTo=/player">Se connecter</a>
+              <a href="/auth/login?returnTo=/player"><SolarIcon name="login-2"/>Se connecter</a>
             )}
             {account?.spotify ? (
               <>
                 <span>Spotify · {account.spotify.name}</span>
                 <form method="post" action="/api/spotify/disconnect">
-                  <button>Dissocier Spotify</button>
+                  <button><SolarIcon name="link-minimalistic-2"/>Dissocier Spotify</button>
                 </form>
               </>
             ) : (
-              <a href="/api/spotify/connect">Connecter mon Spotify</a>
+              <a href="/api/spotify/connect"><img className="solar-icon" src="/spotify.svg" alt=""/>Connecter mon Spotify</a>
             )}
-            <a href="/profil">Mon profil</a>
-            <button onClick={() => go("Réglages")}>Réglages</button>
-            <button onClick={() => go("Extras")}>Extras</button>
+            <a href="/profil"><SolarIcon name="user-circle"/>Mon profil</a>
+            <button onClick={() => go("Réglages")}><SolarIcon name="settings"/>Réglages</button>
+            <button onClick={() => go("Extras")}><SolarIcon name="widget"/>Extras</button>
           </div>
         </details>
         <nav aria-label="Navigation principale">
@@ -206,7 +208,7 @@ export default function TheDen({ account }) {
                 alt=""
                 src={
                   "/" +
-                  ["headphones-round", "library", "playlist", "library"][i] +
+                  ["headphones-round", "library", "playlist", "solar-magnifier"][i] +
                   ".svg"
                 }
               />
@@ -215,9 +217,9 @@ export default function TheDen({ account }) {
           ))}
         </nav>
         <footer>
-          <a href="/profil">Profil</a> ·{" "}
-          <button onClick={() => go("Réglages")}>Réglages</button>
-          <button onClick={() => go("Extras")}>Extras</button>
+          <a href="/profil"><SolarIcon name="user-circle"/>Profil</a> ·{" "}
+          <button onClick={() => go("Réglages")}><SolarIcon name="settings"/>Réglages</button>
+          <button onClick={() => go("Extras")}><SolarIcon name="widget"/>Extras</button>
         </footer>
       </aside>
       <main>
@@ -422,4 +424,6 @@ export default function TheDen({ account }) {
     </div>
   );
 }
+
+
 

@@ -629,3 +629,4 @@ a {
     overflow: auto;
   }
 }
+.account-menu summary{justify-content:flex-start;gap:8px}.account-menu summary>.solar-icon:last-child{margin-left:auto;width:16px;height:16px}.account-menu a,.account-menu button,.den .rail footer a,.den .rail footer button{display:flex;align-items:center;gap:10px}.solar-icon{flex-shrink:0}

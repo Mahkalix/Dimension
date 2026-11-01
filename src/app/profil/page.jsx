@@ -1,3 +1,4 @@
+import SolarIcon from "../../components/SolarIcon";
 import { auth } from "../../lib/identity";
 import styles from "../opening.module.css";
 export default async function Profile() {
@@ -17,17 +18,18 @@ export default async function Profile() {
             <b>{s.spotify.name}</b>
             <span>{s.spotify.id}</span>
             <form method="post" action="/api/spotify/disconnect">
-              <button>Dissocier Spotify</button>
+              <button><SolarIcon name="link-minimalistic-2"/>Dissocier Spotify</button>
             </form>
           </>
         ) : (
-          <a href="/api/spotify/connect">Connecter Spotify</a>
+          <a href="/api/spotify/connect"><img className="solar-icon" src="/spotify.svg" alt=""/>Connecter Spotify</a>
         )}
-        <a href={s ? "/auth/logout" : "/auth/login"}>{s ? "Se déconnecter" : "Se connecter"}</a>
-        <a href="/player">Retour au lecteur</a>
+        <a href={s ? "/auth/logout" : "/auth/login"}><SolarIcon name={s?"logout-2":"login-2"}/>{s ? "Se déconnecter" : "Se connecter"}</a>
+        <a href="/player"><SolarIcon name="arrow-left"/>Retour au lecteur</a>
       </section>
     </main>
   );
 }
 export const dynamic = "force-dynamic";
+
 

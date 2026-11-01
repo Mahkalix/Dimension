@@ -202,3 +202,4 @@
 .entry:has([role="alert"]) .credit {
   bottom: 72px;
 }
+.sheet a:has(>img),.sheet button:has(>img){display:flex;align-items:center;justify-content:center;gap:10px}
