@@ -1,4 +1,4 @@
-import styles from "./opening.module.css";
+import styles from "./opening.module.scss";
 export default function Loading() {
   return (
     <main className={styles.entry} role="status" aria-label="Allumage">

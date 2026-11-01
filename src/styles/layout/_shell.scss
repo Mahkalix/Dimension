@@ -1,0 +1,171 @@
+@use "../abstracts/breakpoints" as bp;
+
+.den {
+  display: grid;
+  grid-template-columns: clamp(180px, 20vw, 260px) minmax(0, 1fr);
+  min-height: 100dvh;
+}
+
+.den main {
+  width: 100%;
+  max-width: 1280px;
+  padding: 40px clamp(24px, 4vw, 64px) 320px;
+}
+
+.den header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.den header {
+  justify-content: space-between;
+}
+
+.den h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+
+.den h2 {
+  letter-spacing: -0.045em;
+}
+
+.den input[type="search"] {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--dock);
+  padding: 12px;
+  width: min(240px, 45%);
+}
+
+.den small {
+  display: block;
+  color: var(--quiet);
+}
+
+@media (max-width: #{bp.$mobile-max}) {
+  .den {
+    display: block;
+  }
+  .den main {
+    padding: 12px 16px 310px;
+  }
+  .return {
+    position: absolute;
+    top: max(16px, env(safe-area-inset-top));
+    left: 12px;
+  }
+}
+
+@media (min-width: #{bp.$wide-min}) {
+  .den {
+    display: block;
+    padding: 20px 5.55vw;
+  }
+  .den main {
+    max-width: none;
+    padding: 20px 0 160px;
+  }
+  .den header input {
+    width: 46%;
+    height: 64px;
+  }
+}
+
+@media (min-width: #{bp.$tablet-min}) and (max-width: #{bp.$desktop-max}) {
+  .den {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+  .den main {
+    padding: 32px 32px 160px;
+  }
+}
+
+@media (max-width: #{bp.$mobile-max}) {
+  .den main {
+    padding: 0 22px 245px;
+  }
+  .den header:not(:focus-within) input:placeholder-shown {
+    max-width: 40%;
+  }
+}
+
+.den main {
+  animation: refresh var(--refresh);
+}
+
+.den footer {
+  margin-top: 32px;
+}
+
+.den footer a {
+  display: inline-grid;
+  align-items: center;
+  min-height: 44px;
+}
+
+.den[data-section="Écouter"] header input {
+  display: none;
+}
+
+.den footer {
+  margin-top: 48px;
+}
+
+@media (min-width: #{bp.$tablet-min}) and (max-width: #{bp.$desktop-max}) {
+  .den[data-section="Écouter"] section[aria-label="Liste des morceaux"] h2 {
+    display: none;
+  }
+  .den h1 {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: #{bp.$wide-min}) {
+  .den[data-section="Écouter"] header input {
+    display: block;
+  }
+}
+
+.den[data-light="Bas"] {
+  --paper: #dbdbd8;
+}
+
+.den[data-light="Haut"] {
+  --paper: #fafaf8;
+}
+
+.den {
+  background: var(--paper);
+}
+
+.den:not([data-section="Recherche"]):not([data-section="Bibliothèque"])
+  header
+  input {
+  display: none;
+}
+
+@media (min-width: #{bp.$tablet-min}) {
+  .den {
+    display: grid;
+    grid-template-columns: clamp(200px, 19vw, 270px) minmax(0, 1fr);
+    padding: 0;
+    align-items: start;
+  }
+  .den main {
+    padding: 32px clamp(24px, 4vw, 72px) 260px;
+  }
+  .den[data-section="Écouter"] section[aria-label="Liste des morceaux"] h2 {
+    display: block;
+  }
+  .den {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+  .den main {
+    max-width: none;
+    width: 100%;
+    padding-inline: clamp(20px, 3vw, 48px);
+  }
+}

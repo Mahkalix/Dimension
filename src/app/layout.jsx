@@ -1,5 +1,4 @@
-import "../styles/den.css";
-import "../styles/materials.css";
+import "../styles/main.scss";
 import RemoteKeys from "./RemoteKeys";
 export const metadata = {
   title: "DIMENSION — AFTER THE NOISE",

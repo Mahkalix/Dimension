@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import styles from "../opening.module.css";
+import styles from "../opening.module.scss";
 export default function Settings() {
   const [motion, setMotion] = useState(false);
   useEffect(

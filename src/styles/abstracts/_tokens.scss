@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light;
+  --paper: #efefed;
+  --ink: #242424;
+  --line: #aaa;
+  --wash: #dededc;
+  --quiet: #525252;
+  --dock: #f8f8f6;
+  --gap: 16px;
+  --radius: 12px;
+  --shadow: 0 1px 3px #0002;
+  --focus: 3px solid #272727;
+  --grain: repeating-linear-gradient(
+    0deg,
+    transparent 0 2px,
+    #00000003 2px 3px
+  );
+  --refresh: 160ms ease-out;
+  font:
+    16px/1.45 Archivo,
+    system-ui,
+    sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}

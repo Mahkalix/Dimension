@@ -1,5 +1,5 @@
 import IntroEntry from "./IntroEntry";
-import styles from "./opening.module.css";
+import styles from "./opening.module.scss";
 const errors = {
   config: "Authentification non configurée.",
   auth: "Échec de la connexion Auth0.",

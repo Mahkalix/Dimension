@@ -1,6 +1,6 @@
 import SolarIcon from "../../components/SolarIcon";
 import { auth } from "../../lib/identity";
-import styles from "../opening.module.css";
+import styles from "../opening.module.scss";
 export default async function Profile() {
   const s = await auth?.getSession();
   return (

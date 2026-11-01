@@ -1,0 +1,316 @@
+@use "../abstracts/breakpoints" as bp;
+
+.rail {
+  padding: 40px 16px;
+  border-right: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 28px;
+  letter-spacing: -2px;
+}
+
+.rail nav {
+  margin-top: 40px;
+  display: grid;
+  gap: 8px;
+}
+
+.rail button {
+  text-align: left;
+}
+
+.rail button span {
+  display: inline-block;
+  width: 28px;
+}
+
+@media (max-width: #{bp.$mobile-max}) {
+  .rail {
+    padding: 16px;
+    border: 0;
+  }
+  .rail nav {
+    display: flex;
+    gap: 4px;
+    margin-top: 12px;
+  }
+  .rail button {
+    flex: 1;
+    padding: 4px;
+    font-size: 14px;
+  }
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-icon {
+    filter: invert(1);
+  }
+}
+
+.den .logo {
+  width: 140px;
+  height: 52px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (min-width: #{bp.$wide-min}) {
+  .rail {
+    padding: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .rail nav {
+    margin: 0;
+    width: 68%;
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--wash);
+    padding: 16px;
+  }
+}
+
+@media (min-width: #{bp.$tablet-min}) and (max-width: #{bp.$desktop-max}) {
+  .rail {
+    padding: 32px;
+    border: 0;
+  }
+  .rail nav button:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: #{bp.$mobile-max}) {
+  .rail {
+    padding: 16px 22px 0;
+  }
+  .den .logo {
+    height: 42px;
+    width: 110px;
+  }
+  .rail nav {
+    position: fixed;
+    z-index: 3;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: 5%;
+    width: 90%;
+    border: 1px solid var(--line);
+    background: var(--dock);
+    border-radius: 20px;
+    padding: 8px;
+    gap: 0;
+  }
+  .rail nav button {
+    font-size: 12px;
+    text-align: center;
+  }
+  .rail nav img {
+    display: block;
+    margin: 0 auto 4px;
+  }
+}
+
+.den .logo {
+  width: 44px;
+  height: 44px;
+  vertical-align: middle;
+}
+
+.rail > a {
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.nav-icon {
+  filter: none;
+}
+
+.den .logo {
+  width: 124px;
+  height: auto;
+}
+
+@media (min-width: #{bp.$tablet-min}) and (max-width: #{bp.$desktop-max}) {
+  .rail nav {
+    margin-top: 16px;
+  }
+}
+
+@media (min-width: #{bp.$tablet-min}) {
+  .den .rail {
+    position: sticky;
+    top: 0;
+    display: block;
+    padding: 32px 20px;
+    height: 100dvh;
+    border-right: 1px solid var(--line);
+    background: var(--wash);
+  }
+  .den .rail nav {
+    display: grid;
+    gap: 4px;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 32px 0;
+    width: auto;
+    background: transparent;
+  }
+  .den .rail nav button {
+    display: block;
+    text-align: left;
+  }
+  .den .rail nav button[aria-current="page"] {
+    background: var(--paper);
+    font-weight: 700;
+  }
+}
+
+@media (max-width: #{bp.$mobile-max}) {
+  .den .rail nav button[aria-current="page"] {
+    font-weight: 700;
+    background: var(--wash);
+  }
+}
+
+@media (min-width: #{bp.$tablet-min}) {
+  .den .rail {
+    padding: 24px 12px;
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    position: sticky;
+    top: 0;
+  }
+  .den .rail > a {
+    padding: 8px 12px;
+    display: block;
+  }
+  .den .rail nav {
+    margin: 24px 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    gap: 8px;
+  }
+  .den .rail nav button {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px;
+    text-align: left;
+  }
+}
+
+.account-menu {
+  position: relative;
+  font-size: 14px;
+  margin: 4px 12px;
+}
+
+.account-menu summary {
+  list-style: none;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.account-menu > div {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 220px;
+  z-index: 6;
+  background: var(--dock);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 12px;
+  display: grid;
+}
+
+.account-menu a,
+.account-menu button {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.account-menu a:hover {
+  background: var(--wash);
+}
+
+@media (max-width: #{bp.$mobile-max}) {
+  .account-menu {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    margin: 0;
+  }
+  .account-menu > div {
+    left: auto;
+    right: 0;
+  }
+}
+
+.den .rail footer {
+  margin: 16px 0 0;
+  display: grid;
+  gap: 4px;
+}
+
+.den .rail footer a,
+.den .rail footer button {
+  padding: 8px 12px;
+  text-align: left;
+}
+
+@media (max-width: #{bp.$mobile-max}) {
+  .den .rail footer {
+    display: none;
+  }
+  .account-menu > div {
+    max-height: 65svh;
+    overflow: auto;
+  }
+}
+
+.account-menu summary {
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.account-menu summary > .solar-icon:last-child {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+}
+
+.account-menu a,
+.account-menu button,
+.den .rail footer a,
+.den .rail footer button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
