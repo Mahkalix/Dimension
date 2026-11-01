@@ -6,9 +6,9 @@ try {
     viewport: { width: 1280, height: 720 },
   });
   await page.goto(process.env.TEST_URL || "http://127.0.0.1:3137");
-  await page.getByRole("link", { name: "Entrer" }).waitFor();
+  await page.getByRole("link", { name: "Entrer dans The Den" }).waitFor();
   await page.evaluate(() => Promise.all(document.getAnimations().map(a=>a.finished))); await page.screenshot({ path: "docs/screens/accueil.png" });
-  for (const [key, label] of [
+  for (const [key] of [
     ["ArrowDown", "Entrer"],
     ["ArrowRight", "Entrer"],
     ["ArrowDown", "Entrer"],
@@ -16,7 +16,7 @@ try {
     ["ArrowUp", "Entrer"],
   ]) {
     await page.keyboard.press(key);
-    assert.equal(await page.locator(":focus").innerText(), label);
+    assert.equal(await page.locator(":focus").getAttribute("aria-label"), "Entrer dans The Den");
   }
   await page.keyboard.press("Enter");
   await page.waitForURL("**/player");
@@ -53,5 +53,6 @@ try {
 } finally {
   await browser.close();
 }
+
 
 

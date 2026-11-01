@@ -227,3 +227,48 @@
   .inkSweep { display: none; }
 }
 :global([data-still="1"]) .inkSweep { display: none; }
+
+/* The house itself is the entrance. Short bursts evoke the kitchen rush. */
+.entry a.signature {
+  display: block;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 180ms cubic-bezier(.2, 0, 0, 1);
+  min-width: 72px;
+  min-height: 72px;
+  -webkit-tap-highlight-color: transparent;
+}
+.entry a.signature:hover { transform: translateY(-3px); }
+.entry a.signature:active { transform: translateY(1px) scale(.97); }
+.signature:focus-visible { outline: var(--focus); outline-offset: 16px; }
+.signature:focus-visible .inkSweep { display: none; }
+.signature .houseFlames {
+  animation: lightFlames 1000ms 180ms cubic-bezier(.16, 1, .3, 1) both,
+    kitchenRush 360ms 1180ms 4 alternate ease-in-out;
+}
+.steam {
+  position: absolute;
+  left: 42%;
+  top: 2%;
+  width: 16%;
+  height: 20%;
+  border-left: 2px solid var(--ink);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: risingSteam 1100ms 1000ms 2 ease-out;
+}
+@keyframes kitchenRush {
+  from { transform: rotate(-1.5deg) scaleY(.98); }
+  to { transform: rotate(1.5deg) scaleY(1.025); }
+}
+@keyframes risingSteam {
+  0% { opacity: 0; transform: translateY(0) scale(.7); }
+  25% { opacity: .18; }
+  100% { opacity: 0; transform: translateY(-32px) scale(1.3); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .signature .houseFlames, .steam { animation: none; }
+  .entry a.signature { transition: none; }
+  .entry a.signature:hover, .entry a.signature:active { transform: none; }
+}

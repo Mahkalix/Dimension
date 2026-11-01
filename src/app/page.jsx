@@ -13,15 +13,12 @@ export default async function Opening({ searchParams }) {
   const error = errors[(await searchParams).error];
   return (
     <main className={styles.entry}>
-      <div className={styles.signature} aria-hidden="true">
+      <a className={styles.signature} href="/player" aria-label="Entrer dans The Den">
   <img className={styles.houseBody} src="/brand/the-den-house.png" alt="" />
   <img className={styles.houseFlames} src="/brand/the-den-house.png" alt="" />
-  <span className={styles.inkSweep} />
-</div>
+  <span className={styles.inkSweep} aria-hidden="true" /><span className={styles.steam} aria-hidden="true" />
+</a>
       <h1 className={styles.wordmark}><img src="/den-2.svg" alt="The Den" width="300" height="75"/></h1>
-      <a className={styles.entryButton} href="/player">
-        Entrer
-      </a>
       {error && (
         <p role="alert">
           {error} <a href="/profil">Profil</a>
@@ -30,5 +27,7 @@ export default async function Opening({ searchParams }) {
     </main>
   );
 }
+
+
 
 
