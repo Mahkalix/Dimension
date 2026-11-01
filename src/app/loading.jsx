@@ -4,10 +4,11 @@ export default function Loading() {
     <main className={styles.entry} role="status" aria-label="Allumage">
       <img
         className={styles.signature}
-        src="/brand/the-den-opening.svg"
+        src="/brand/the-den-house.png"
         alt="The Den"
       />
       <progress className={styles.charge} aria-label="Chargement" />
     </main>
   );
 }
+

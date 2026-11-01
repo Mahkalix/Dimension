@@ -10,5 +10,7 @@ const header=Buffer.alloc(6+16*sizes.length);header.writeUInt16LE(1,2);header.wr
 let offset=header.length;
 sizes.forEach((size,i)=>{const p=6+i*16;header[p]=size;header[p+1]=size;header.writeUInt16LE(1,p+4);header.writeUInt16LE(32,p+6);header.writeUInt32LE(images[i].length,p+8);header.writeUInt32LE(offset,p+12);offset+=images[i].length});
 fs.writeFileSync('public/favicon.ico',Buffer.concat([header,...images]));
-const svg=fs.readFileSync('public/brand/the-den-opening.svg','utf8').replace('width="404" height="338" viewBox="0 0 404 338"','width="64" height="64" viewBox="48 -10 308 270"');
+const original=fs.readFileSync('public/brand/the-den-house.png').toString('base64');
+const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 463 408"><image width="463" height="408" href="data:image/png;base64,'+original+'"/></svg>';
 fs.writeFileSync('public/favicon.svg',svg);
+

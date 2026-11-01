@@ -103,7 +103,7 @@ export default function TheDen() {
     >
       <aside className="rail">
         <a href="/" aria-label="DIMENSION · Accueil">
-          <img className="logo" src="/den-2.svg" alt="The Den" />
+          <img className="logo" src="/brand/the-den-wordmark.png" alt="The Den" />
         </a>
         <nav aria-label="Navigation principale">
           {sections.map((name, i) => (
@@ -339,3 +339,4 @@ export default function TheDen() {
     </div>
   );
 }
+

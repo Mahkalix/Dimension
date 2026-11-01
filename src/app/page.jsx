@@ -18,7 +18,7 @@ export default async function Opening({ searchParams }) {
   <img className={styles.houseFlames} src="/brand/the-den-house.png" alt="" />
   <span className={styles.inkSweep} aria-hidden="true" /><span className={styles.steam} aria-hidden="true" />
 </a>
-      <h1 className={styles.wordmark}><img src="/den-2.svg" alt="The Den" width="300" height="75"/></h1>
+      <h1 className={styles.wordmark}><img src="/brand/the-den-wordmark.png" alt="The Den" width="300" height="52"/></h1>
       {error && (
         <p role="alert">
           {error} <a href="/profil">Profil</a>
@@ -27,6 +27,7 @@ export default async function Opening({ searchParams }) {
     </main>
   );
 }
+
 
 
 
