@@ -338,3 +338,172 @@ button[aria-current] {
     filter: invert(1);
   }
 }
+/* Composition des cadres Écouter dans Figma */
+.den .logo {
+  width: 140px;
+  height: 52px;
+  object-fit: contain;
+  object-position: left center;
+}
+.collections {
+  display: flex;
+  gap: clamp(16px, 3vw, 42px);
+  margin: 16px 0 24px;
+}
+.collections button {
+  width: 240px;
+  max-width: 46%;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--wash);
+}
+.collections img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+.collections strong,
+.collections small {
+  display: block;
+  padding-inline: 4px;
+}
+.rest {
+  width: min(607px, 94%);
+  min-height: 65px;
+  border-radius: 32px;
+  gap: 4px;
+}
+.dock-meta {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 8px;
+  min-width: 0;
+}
+.dock-meta img {
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+}
+.dock-meta b,
+.dock-meta small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dock-meta span {
+  min-width: 0;
+}
+@media (min-width: 1360px) {
+  .den {
+    display: block;
+    padding: 20px 5.55vw;
+  }
+  .rail {
+    padding: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .rail nav {
+    margin: 0;
+    width: 68%;
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--wash);
+    padding: 16px;
+  }
+  .den main {
+    max-width: none;
+    padding: 20px 0 160px;
+  }
+  .den header input {
+    width: 46%;
+    height: 64px;
+  }
+}
+@media (min-width: 701px) and (max-width: 1359px) {
+  .den {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+  .rail {
+    padding: 32px;
+    border: 0;
+  }
+  .rail nav button:last-child {
+    display: none;
+  }
+  .den main {
+    padding: 32px 32px 160px;
+  }
+  .collections button {
+    width: 218px;
+  }
+  .collections button + button {
+    display: none;
+  }
+  .rest {
+    left: 272px;
+    transform: none;
+    max-width: calc(100% - 304px);
+  }
+}
+@media (max-width: 700px) {
+  .rail {
+    padding: 16px 22px 0;
+  }
+  .den main {
+    padding: 0 22px 245px;
+  }
+  .den .logo {
+    height: 42px;
+    width: 110px;
+  }
+  .rail nav {
+    position: fixed;
+    z-index: 3;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: 5%;
+    width: 90%;
+    border: 1px solid var(--line);
+    background: var(--dock);
+    border-radius: 20px;
+    padding: 8px;
+    gap: 0;
+  }
+  .rail nav button {
+    font-size: 12px;
+    text-align: center;
+  }
+  .rail nav img {
+    display: block;
+    margin: 0 auto 4px;
+  }
+  .collections {
+    justify-content: space-between;
+  }
+  .collections button {
+    width: 156px;
+  }
+  .den header:not(:focus-within) input:placeholder-shown {
+    max-width: 40%;
+  }
+  .rest,
+  .video-dock {
+    bottom: 92px;
+  }
+  .rest {
+    padding: 4px 8px;
+  }
+  .rest button {
+    padding: 4px 8px;
+  }
+}

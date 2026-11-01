@@ -4,7 +4,7 @@ import MusicVideoPlayer from "./components/MusicVideoPlayer";
 import "./styles/den.css";
 
 const art = ["/radiohead.jpg", "/chicago.jpg"];
-const sections = ["Écouter", "Bibliothèque", "À suivre"];
+const sections = ["Écouter", "Bibliothèque", "À suivre", "Recherche"];
 
 export default function TheDen() {
   const [section, setSection] = useState("Écouter");
@@ -38,7 +38,7 @@ export default function TheDen() {
   return (
     <div className="den">
       <aside className="rail">
-        <strong className="logo">THE DEN</strong>
+        <img className="logo" src="/den-2.svg" alt="The Den" />
         <nav aria-label="Navigation principale">
           {sections.map((name, i) => (
             <button
@@ -53,7 +53,9 @@ export default function TheDen() {
                 className="nav-icon"
                 alt=""
                 src={
-                  "/" + ["headphones-round", "library", "playlist"][i] + ".svg"
+                  "/" +
+                  ["headphones-round", "library", "playlist", "library"][i] +
+                  ".svg"
                 }
               />
               {name}
@@ -73,19 +75,21 @@ export default function TheDen() {
           />
         </header>
         {section === "Écouter" && !query && (
-          <section className="feature">
-            <img src="/images/dimension-after-hours.webp" alt="" />
-            <div>
-              <h2>Après le service</h2>
-              <button onClick={() => setPlaying(0)}>▶ Écouter</button>
-            </div>
+          <section className="collections" aria-label="Collections">
+            {["Après le service", "Chicago"].map((title, i) => (
+              <button key={title} onClick={() => openTrack(i)}>
+                <img src={"/den-" + i + ".svg"} alt="" />
+                <strong>{title}</strong>
+                <small>{i ? "Sufjan Stevens" : "2 morceaux"}</small>
+              </button>
+            ))}
           </section>
         )}
         <section aria-label="Liste des morceaux">
           <h2>{section === "À suivre" ? "File de lecture" : "Morceaux"}</h2>
           {results.map((i) => (
             <button className="track" key={i} onClick={() => openTrack(i)}>
-              <img src={art[i]} alt="" />
+              <img src={"/den-" + i + ".svg"} alt="" />
               <span>
                 <b>{tracks[i].title}</b>
                 <small>{tracks[i].artist}</small>
@@ -98,7 +102,19 @@ export default function TheDen() {
       </main>
       {playing === null ? (
         <aside className="rest">
-          <span>En silence</span>
+          <button aria-label="Morceau précédent" onClick={next}>
+            ‹
+          </button>
+          <button className="dock-meta" onClick={() => openTrack(preview)}>
+            <img src={"/den-" + preview + ".svg"} alt="" />
+            <span>
+              <b>{track.title}</b>
+              <small>{track.artist}</small>
+            </span>
+          </button>
+          <button aria-label="Morceau suivant" onClick={next}>
+            ›
+          </button>
           <button onClick={() => setPlaying(preview)}>▶ Lecture</button>
         </aside>
       ) : (
