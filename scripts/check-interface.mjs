@@ -19,9 +19,14 @@ try {
     assert.equal(await page.locator(":focus").innerText(), label);
   }
   await page.keyboard.press("Enter");
-  await page.waitForURL("**/player"); await page.screenshot({path:"docs/screens/ecouter-tablette.png"});
+  await page.waitForURL("**/player");
+  await page.screenshot({ path: "docs/screens/ecouter-tablette.png" });
   await page.getByRole("button", { name: "Bibliothèque", exact: true }).focus();
   await page.keyboard.press("Enter");
+  await page.getByRole("button", { name: "Artistes", exact: true }).click();
+  await page.getByRole("button", { name: "Radiohead", exact: true }).click();
+  assert.equal(await page.locator(".track").count(), 1);
+  await page.getByRole("button", { name: "Morceaux", exact: true }).click();
   await page.screenshot({ path: "docs/screens/bibliotheque.png" });
   await page.locator(".track").first().focus();
   await page.keyboard.press("Enter");
@@ -48,4 +53,3 @@ try {
 } finally {
   await browser.close();
 }
-

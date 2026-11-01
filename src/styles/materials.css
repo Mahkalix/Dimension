@@ -233,3 +233,117 @@ a {
 .video-controls input {
   vertical-align: middle;
 }
+/* Library shell: paper surfaces, ink selected states and an independent transport. */
+.library-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-block: 20px;
+  background: var(--wash);
+  border-radius: 12px;
+}
+.library-switch button[aria-pressed="true"] {
+  background: var(--dock);
+  box-shadow: 0 1px 3px #0002;
+}
+.artist-list {
+  display: flex;
+  gap: 24px;
+  margin-block: 16px 32px;
+}
+.artist-list img {
+  display: block;
+  width: clamp(80px, 11vw, 144px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 8px;
+}
+.den .collections {
+  gap: 24px;
+}
+.den .collections button {
+  display: block;
+}
+.den .collections img {
+  border: 1px solid var(--line);
+}
+.den .track {
+  border-radius: 0;
+  background: transparent;
+  border-top: 1px solid var(--line);
+  margin: 0;
+  padding: 10px 4px;
+}
+.den .track:hover,
+.den .track:focus-visible {
+  background: var(--wash);
+}
+.track-end {
+  font-size: 0.9rem;
+  color: var(--quiet);
+}
+@media (min-width: 701px) {
+  .den {
+    display: grid;
+    grid-template-columns: clamp(200px, 19vw, 270px) minmax(0, 1fr);
+    padding: 0;
+    align-items: start;
+  }
+  .den .rail {
+    position: sticky;
+    top: 0;
+    display: block;
+    padding: 32px 20px;
+    height: 100dvh;
+    border-right: 1px solid var(--line);
+    background: var(--wash);
+  }
+  .den .rail nav {
+    display: grid;
+    gap: 4px;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 32px 0;
+    width: auto;
+    background: transparent;
+  }
+  .den .rail nav button {
+    display: block;
+    text-align: left;
+  }
+  .den .rail nav button[aria-current="page"] {
+    background: var(--paper);
+    font-weight: 700;
+  }
+  .den main {
+    padding: 32px clamp(24px, 4vw, 72px) 260px;
+  }
+  .den .collections button + button {
+    display: block;
+  }
+  .den .collections button {
+    width: clamp(160px, 17vw, 240px);
+  }
+  .den[data-section="Écouter"] section[aria-label="Liste des morceaux"] h2 {
+    display: block;
+  }
+  .den .rest {
+    left: calc(50% + clamp(100px, 9.5vw, 135px));
+    transform: translateX(-50%);
+    max-width: calc(100% - 300px);
+  }
+}
+@media (max-width: 700px) {
+  .den .collections {
+    gap: 16px;
+  }
+  .library-switch button {
+    padding-inline: 10px;
+  }
+  .den .rail nav button[aria-current="page"] {
+    font-weight: 700;
+    background: var(--wash);
+  }
+}

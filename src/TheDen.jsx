@@ -8,6 +8,7 @@ const sections = ["Écouter", "Bibliothèque", "À suivre", "Recherche"];
 
 export default function TheDen() {
   const [section, setSection] = useState("Écouter");
+  const [libraryTab, setLibraryTab] = useState("Playlists");
   const [query, setQuery] = useState("");
   const [preview, setPreview] = useState(0);
   const [playing, setPlaying] = useState(null);
@@ -142,20 +143,55 @@ export default function TheDen() {
             onChange={(e) => setQuery(e.target.value)}
           />
         </header>
-        {["Écouter", "Bibliothèque"].includes(section) && !query && (
-          <section className="collections" aria-label="Collections">
-            {["Après le service", "Chicago"].map((title, i) => (
+        {section === "Bibliothèque" && (
+          <div
+            className="library-switch"
+            role="group"
+            aria-label="Parcourir la bibliothèque"
+          >
+            {["Playlists", "Artistes", "Morceaux"].map((tab) => (
               <button
-                key={title}
-                onClick={() => (i ? openTrack(i) : go("Après le service"))}
+                key={tab}
+                aria-pressed={libraryTab === tab}
+                onClick={() => {
+                  setLibraryTab(tab);
+                  setQuery("");
+                }}
               >
-                <img src={"/den-" + i + ".svg"} alt="" />
-                <strong>{title}</strong>
-                <small>{i ? "Sufjan Stevens" : "2 morceaux"}</small>
+                {tab}
+              </button>
+            ))}
+          </div>
+        )}
+        {section === "Bibliothèque" && libraryTab === "Artistes" && !query && (
+          <section className="artist-list" aria-label="Artistes">
+            {tracks.map((item, i) => (
+              <button key={item.id} onClick={() => setQuery(item.artist)}>
+                <img src={"/den-track-" + i + ".png"} alt="" />
+                <strong>{item.artist}</strong>
               </button>
             ))}
           </section>
         )}
+        {(section === "Écouter" ||
+          (section === "Bibliothèque" && libraryTab === "Playlists")) &&
+          !query && (
+            <section className="collections" aria-label="Collections">
+              {(section === "Bibliothèque"
+                ? ["Après le service"]
+                : ["Après le service", "Chicago"]
+              ).map((title, i) => (
+                <button
+                  key={title}
+                  onClick={() => (i ? openTrack(i) : go("Après le service"))}
+                >
+                  <img src={"/den-" + i + ".svg"} alt="" />
+                  <strong>{title}</strong>
+                  <small>{i ? "Sufjan Stevens" : "2 morceaux"}</small>
+                </button>
+              ))}
+            </section>
+          )}
         {menu ? (
           <MenuPage
             page={section}
@@ -181,7 +217,12 @@ export default function TheDen() {
             </div>
           </section>
         ) : (
-          <section aria-label="Liste des morceaux">
+          <section
+            hidden={
+              section === "Bibliothèque" && libraryTab !== "Morceaux" && !query
+            }
+            aria-label="Liste des morceaux"
+          >
             {notice && <p role="status">{notice}</p>}
             <h2>{section === "À suivre" ? "File de lecture" : "Morceaux"}</h2>
             {results.map((i, position) => (
@@ -195,7 +236,13 @@ export default function TheDen() {
                   <b>{tracks[i].title}</b>
                   <small>{tracks[i].artist}</small>
                 </span>
-                <span aria-hidden="true">›</span>
+                <span className="track-end">
+                  {playing === i && audible ? (
+                    "En lecture"
+                  ) : (
+                    <span aria-hidden="true">···</span>
+                  )}
+                </span>
               </button>
             ))}
             {!results.length && <p role="status">Aucun morceau trouvé.</p>}
