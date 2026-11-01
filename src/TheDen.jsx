@@ -1,3 +1,4 @@
+import PlayerBar from "./components/PlayerBar";
 import { useEffect, useRef, useState } from "react";
 import tracks from "./data/afterhours.json";
 import MusicVideoPlayer from "./components/MusicVideoPlayer";
@@ -255,26 +256,26 @@ export default function TheDen() {
         </footer>
       </main>
       {playing === null ? (
-        <aside className="rest">
-          <button aria-label="Morceau précédent" onClick={next}>
-            ‹
-          </button>
-          <button className="dock-meta" onClick={() => openTrack(preview)}>
-            <img src={"/den-" + preview + ".svg"} alt="" />
-            <span>
-              <b>{track.title}</b>
-              <small>{track.artist}</small>
-            </span>
-          </button>
-          <button aria-label="Morceau suivant" onClick={next}>
-            ›
-          </button>
-          <button onClick={() => start(preview)}>▶ Lecture</button>
-        </aside>
+        <PlayerBar
+          track={track}
+          index={preview}
+          onToggle={() => start(preview)}
+          onPrevious={next}
+          onNext={next}
+          onOpen={() => openTrack(preview)}
+          onQueue={() => go("À suivre")}
+          volume={volume}
+          onVolumeChange={(e) => setVolume(Number(e.target.value))}
+        />
       ) : (
         <MusicVideoPlayer
           key={playing}
           track={tracks[playing]}
+          index={playing}
+          onPrevious={() => start(1 - playing)}
+          onNext={advance}
+          onOpen={() => openTrack(playing)}
+          onQueue={() => go("À suivre")}
           command={command}
           onPlayingChange={setAudible}
           volume={volume}

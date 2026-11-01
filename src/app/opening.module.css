@@ -66,9 +66,98 @@
     justify-content: center;
   }
 }
-.entry{position:relative;min-height:100svh;background:#ebebe9;display:grid;justify-items:center}
-.signature{position:absolute;top:4%;width:min(32vw,56vh);height:48vh;object-fit:contain}
-.entryButton{position:absolute;top:75%;display:grid;place-items:center;width:clamp(164px,20vw,252px);min-height:72px;border-radius:16px;background:#d3d3ca;color:#242624;text-decoration:none;font-size:24px;font-weight:700}
-.entry p{position:absolute;bottom:0}.entryButton:hover{background:#c6c6be}
-@media(max-width:700px){.signature{width:68vw;top:9%}}
-.charge{position:absolute;top:74%;width:min(260px,60vw);height:8px;accent-color:var(--ink)}
+.entry {
+  position: relative;
+  min-height: 100svh;
+  background: #ebebe9;
+  display: grid;
+  justify-items: center;
+}
+.signature {
+  position: absolute;
+  top: 4%;
+  width: min(32vw, 56vh);
+  height: 48vh;
+  object-fit: contain;
+}
+.entryButton {
+  position: absolute;
+  top: 75%;
+  display: grid;
+  place-items: center;
+  width: clamp(164px, 20vw, 252px);
+  min-height: 72px;
+  border-radius: 16px;
+  background: #d3d3ca;
+  color: #242624;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 700;
+}
+.entry p {
+  position: absolute;
+  bottom: 0;
+}
+.entryButton:hover {
+  background: #c6c6be;
+}
+@media (max-width: 700px) {
+  .signature {
+    width: 68vw;
+    top: 9%;
+  }
+}
+.charge {
+  position: absolute;
+  top: 74%;
+  width: min(260px, 60vw);
+  height: 8px;
+  accent-color: var(--ink);
+}
+.entry .signature {
+  top: 14%;
+  height: 28vh;
+  width: min(260px, 58vw);
+  animation: houseArrives 900ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+.wordmark {
+  position: absolute;
+  top: 45%;
+  font-size: clamp(38px, 6vw, 64px);
+  letter-spacing: -0.055em;
+  margin: 0;
+  font-weight: 900;
+  animation: houseArrives 900ms 120ms both;
+}
+.entryButton {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  animation: houseArrives 900ms 240ms both;
+  transition:
+    background 160ms,
+    transform 160ms;
+}
+.entryButton:active {
+  transform: scale(0.98);
+}
+@keyframes houseArrives {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry .signature,
+  .wordmark,
+  .entryButton {
+    animation: none;
+  }
+}

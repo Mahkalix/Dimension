@@ -1,4 +1,3 @@
-
 import styles from "./opening.module.css";
 const errors = {
   config: "Authentification non configurée.",
@@ -11,14 +10,20 @@ const errors = {
 };
 export const dynamic = "force-dynamic";
 export default async function Opening({ searchParams }) {
-  const
-    
-    error = errors[(await searchParams).error];
+  const error = errors[(await searchParams).error];
   return (
     <main className={styles.entry}>
-  <img className={styles.signature} src="/brand/the-den-opening.svg" alt="The Den"/>
-  <a className={styles.entryButton} href="/player">Entrer</a>
-  {error && <p role="alert">{error} <a href="/profil">Profil</a></p>}
-</main>
+      <img className={styles.signature} src="/brand/the-den-house.png" alt="" />
+      <h1 className={styles.wordmark}><img src="/den-2.svg" alt="The Den" width="300" height="75"/></h1>
+      <a className={styles.entryButton} href="/player">
+        Entrer
+      </a>
+      {error && (
+        <p role="alert">
+          {error} <a href="/profil">Profil</a>
+        </p>
+      )}
+    </main>
   );
 }
+

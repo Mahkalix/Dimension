@@ -7,7 +7,7 @@ try {
   });
   await page.goto(process.env.TEST_URL || "http://127.0.0.1:3137");
   await page.getByRole("link", { name: "Entrer" }).waitFor();
-  await page.screenshot({ path: "docs/screens/accueil.png" });
+  await page.evaluate(() => Promise.all(document.getAnimations().map(a=>a.finished))); await page.screenshot({ path: "docs/screens/accueil.png" });
   for (const [key, label] of [
     ["ArrowDown", "Entrer"],
     ["ArrowRight", "Entrer"],
@@ -37,7 +37,7 @@ try {
     .getByRole("dialog")
     .getByRole("button", { name: "Écouter" })
     .press("Enter");
-  await page.locator(".video-dock").waitFor();
+  await page.locator(".source-player").waitFor();
   await page.screenshot({ path: "docs/screens/lecteur.png" });
   await page.keyboard.press("Backspace");
   await page.waitForURL((url) => url.pathname === "/");
@@ -53,3 +53,5 @@ try {
 } finally {
   await browser.close();
 }
+
+

@@ -347,3 +347,160 @@ a {
     background: var(--wash);
   }
 }
+.paper-player {
+  position: fixed;
+  z-index: 4;
+  bottom: 24px;
+  left: calc(50% + clamp(100px, 9.5vw, 135px));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  width: min(700px, calc(100% - 310px));
+  gap: 4px;
+  padding: 8px 12px 14px;
+  background: var(--dock);
+  border: 1px solid var(--line);
+  border-radius: 36px;
+  box-shadow:
+    0 3px 18px #0002,
+    inset 0 1px #fff;
+  min-height: 76px;
+}
+.solar-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+.paper-player button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  padding: 8px;
+}
+.paper-transport {
+  display: flex;
+}
+.paper-track {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  gap: 10px;
+  justify-content: flex-start !important;
+}
+.paper-track > img {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 6px;
+}
+.paper-track span {
+  min-width: 0;
+}
+.paper-track b,
+.paper-track small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.paper-track b {
+  font-size: 14px;
+}
+.paper-track small {
+  font-size: 12px;
+}
+.paper-progress {
+  position: absolute;
+  bottom: 3px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 10px;
+}
+.paper-progress input {
+  height: 3px;
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--ink);
+}
+.paper-volume summary {
+  list-style: none;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.paper-volume summary::-webkit-details-marker {
+  display: none;
+}
+.paper-volume label {
+  position: absolute;
+  bottom: 92px;
+  right: 0;
+  padding: 20px;
+  background: var(--dock);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: grid;
+  gap: 8px;
+}
+.paper-volume input {
+  accent-color: var(--ink);
+}
+.source-player {
+  position: fixed;
+  bottom: 120px;
+  right: 16px;
+  z-index: 3;
+  background: var(--dock);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 8px;
+}
+.source-player .video-frame,
+.source-player iframe {
+  width: 200px;
+  height: 200px;
+}
+.source-player button {
+  display: block;
+}
+@media (max-width: 700px) {
+  .paper-player {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    bottom: 98px;
+    transform: none;
+    padding: 6px 8px 12px;
+    gap: 0;
+  }
+  .paper-transport button:first-child {
+    display: none;
+  }
+  .paper-track > img {
+    width: 32px;
+    height: 32px;
+  }
+  .paper-player button {
+    padding: 6px;
+  }
+  .source-player {
+    bottom: 182px;
+    right: 12px;
+  }
+  .source-player .video-frame,
+  .source-player iframe {
+    width: 200px;
+    height: 200px;
+  }
+  .source-player button {
+    font-size: 12px;
+    min-height: 36px;
+  }
+}

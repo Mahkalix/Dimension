@@ -1,3 +1,4 @@
+import PlayerBar from "./PlayerBar";
 import React, { useEffect, useRef, useState } from "react";
 let apiPromise;
 export function loadYouTubeAPI() {
@@ -33,6 +34,11 @@ export default function MusicVideoPlayer({
   onClose,
   command = 0,
   onPlayingChange,
+  index,
+  onPrevious,
+  onNext,
+  onOpen,
+  onQueue,
 }) {
   const host = useRef(null);
   const player = useRef(null);
@@ -127,63 +133,41 @@ export default function MusicVideoPlayer({
     else player.current.playVideo();
   }, [command, ready, error, playing]);
   return (
-    <aside className="video-dock" aria-label="Lecteur musical">
-      <div className="video-frame" ref={host} />
-      <div className="video-controls">
-        <button
-          className="video-close"
-          aria-label="Fermer le lecteur et revenir au silence"
-          onClick={onClose}
-        >
-          ×
-        </button>
-        <strong>{track.title}</strong>
-        <span className="video-artist">{track.artist}</span>
-        <button
-          className="video-toggle"
-          disabled={!ready || error}
-          onClick={() =>
-            playing ? player.current.pauseVideo() : player.current.playVideo()
-          }
-        >
-          {playing ? "Pause" : "Lecture"}
-        </button>
-        <label className="play-position">
-          Position{" "}
-          <input
-            type="range"
-            aria-label="Position de lecture"
-            min="0"
-            max={time.duration || 1}
-            value={Math.min(time.position, time.duration)}
-            disabled={!time.duration}
-            onChange={(e) =>
-              player.current?.seekTo(Number(e.target.value), true)
-            }
-          />
-        </label>
-        <label className="video-volume">
-          Volume
-          <input
-            aria-label="Volume"
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={onVolumeChange}
-          />
-          <output>{Math.round(volume * 100)} %</output>
-        </label>
-        {error && <p role="alert">Ce morceau ne peut pas être lu ici.</p>}
-        <a
-          href={`https://www.youtube.com/watch?v=${track.videoId}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          YouTube ↗
-        </a>
-      </div>
-    </aside>
+    <>
+      <PlayerBar
+        track={track}
+        index={index}
+        playing={playing}
+        ready={ready && !error}
+        onToggle={() =>
+          playing ? player.current.pauseVideo() : player.current.playVideo()
+        }
+        onPrevious={onPrevious}
+        onNext={onNext}
+        onOpen={onOpen}
+        onQueue={onQueue}
+        volume={volume}
+        onVolumeChange={onVolumeChange}
+        position={time.position}
+        duration={time.duration}
+        onSeek={(e) => player.current?.seekTo(Number(e.target.value), true)}
+      />
+      <aside className="source-player" aria-label="Lecteur musical">
+        <div className="video-frame" ref={host} />
+        <button onClick={onClose}>Arrêter la lecture</button>
+        {error && (
+          <p role="alert">
+            Lecture indisponible.{" "}
+            <a
+              href={"https://www.youtube.com/watch?v=" + track.videoId}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ouvrir sur YouTube
+            </a>
+          </p>
+        )}
+      </aside>
+    </>
   );
 }
