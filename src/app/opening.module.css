@@ -71,186 +71,44 @@
   min-height: 100svh;
   background: #ebebe9;
   display: grid;
+  place-items: center;
+  padding: 48px 24px;
+}
+.identity {
+  display: grid;
   justify-items: center;
+  gap: clamp(24px, 5vh, 40px);
+  width: min(300px, 72vw);
 }
 .signature {
-  position: absolute;
-  top: 4%;
-  width: min(32vw, 56vh);
-  height: 48vh;
-  object-fit: contain;
-}
-.entryButton {
-  position: absolute;
-  top: 75%;
-  display: grid;
-  place-items: center;
-  width: clamp(164px, 20vw, 252px);
-  min-height: 72px;
-  border-radius: 16px;
-  background: #d3d3ca;
-  color: #242624;
-  text-decoration: none;
-  font-size: 24px;
-  font-weight: 700;
-}
-.entry p {
-  position: absolute;
-  bottom: 0;
-}
-.entryButton:hover {
-  background: #c6c6be;
-}
-@media (max-width: 700px) {
-  .signature {
-    width: 68vw;
-    top: 9%;
-  }
-}
-.charge {
-  position: absolute;
-  top: 74%;
-  width: min(260px, 60vw);
-  height: 8px;
-  accent-color: var(--ink);
-}
-.entry .signature {
-  top: 14%;
-  height: 28vh;
-  width: min(260px, 58vw);
-  animation: houseArrives 900ms cubic-bezier(0.2, 0, 0, 1) both;
-}
-.wordmark {
-  position: absolute;
-  top: 45%;
-  font-size: clamp(38px, 6vw, 64px);
-  letter-spacing: -0.055em;
-  margin: 0;
-  font-weight: 900;
-  animation: houseArrives 900ms 120ms both;
-}
-.entryButton {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: center;
-  animation: houseArrives 900ms 240ms both;
-  transition:
-    background 160ms,
-    transform 160ms;
-}
-.entryButton:active {
-  transform: scale(0.98);
-}
-@keyframes houseArrives {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-    filter: blur(3px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .entry .signature,
-  .wordmark,
-  .entryButton {
-    animation: none;
-  }
-}
-
-/* One-shot ink impression: house settles, flames rise, lettering follows. */
-.entry .signature {
-  animation: none;
-  isolation: isolate;
-}
-.signature img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.houseBody {
-  clip-path: polygon(0 48%, 100% 48%, 100% 100%, 0 100%);
-  transform-origin: 50% 90%;
-  animation: printHouse 1150ms cubic-bezier(.16, 1, .3, 1) both;
-}
-.houseFlames {
-  clip-path: polygon(0 0, 100% 0, 100% 48%, 0 48%);
-  transform-origin: 50% 48%;
-  animation: lightFlames 1450ms 240ms cubic-bezier(.16, 1, .3, 1) both;
-}
-.inkSweep {
-  position: absolute;
-  inset: -4% -8%;
-  background: var(--paper);
-  transform-origin: bottom;
-  animation: revealInk 1200ms 100ms cubic-bezier(.65, 0, .2, 1) both;
-  pointer-events: none;
-}
-.entry .wordmark {
-  animation: revealName 850ms 900ms cubic-bezier(.16, 1, .3, 1) both;
-}
-.entry .entryButton {
-  animation: revealName 700ms 1250ms cubic-bezier(.16, 1, .3, 1) both;
-}
-.entry:focus-within .entryButton {
-  animation: none;
-}
-@keyframes printHouse {
-  0% { opacity: 0; transform: translateY(18px) scaleY(.94); }
-  45% { opacity: 1; }
-  75% { transform: translateY(-2px) scaleY(1.01); }
-  100% { opacity: 1; transform: translateY(0) scaleY(1); }
-}
-@keyframes lightFlames {
-  0% { opacity: 0; transform: translateY(12px) scaleY(.65) rotate(-3deg); }
-  48% { opacity: 1; transform: translateY(-3px) scaleY(1.04) rotate(1deg); }
-  72% { transform: translateY(1px) scaleY(.98) rotate(-.5deg); }
-  100% { opacity: 1; transform: none; }
-}
-@keyframes revealInk {
-  from { transform: scaleY(1); }
-  to { transform: scaleY(0); }
-}
-@keyframes revealName {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .houseBody, .houseFlames, .inkSweep,
-  .entry .wordmark, .entry .entryButton { animation: none; }
-  .inkSweep { display: none; }
-}
-:global([data-still="1"]) .inkSweep { display: none; }
-
-/* The house itself is the entrance. Short bursts evoke the kitchen rush. */
-.entry a.signature {
+  position: relative;
   display: block;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: transform 180ms cubic-bezier(.2, 0, 0, 1);
-  min-width: 72px;
-  min-height: 72px;
+  width: min(240px, 58vw, 40svh);
+  aspect-ratio: 463 / 408;
+  border-radius: 12px;
   -webkit-tap-highlight-color: transparent;
 }
-.entry a.signature:hover { transform: translateY(-3px); }
-.entry a.signature:active { transform: translateY(1px) scale(.97); }
-.signature:focus-visible { outline: var(--focus); outline-offset: 16px; }
-.signature:focus-visible .inkSweep { display: none; }
-.signature .houseFlames {
-  animation: lightFlames 1000ms 180ms cubic-bezier(.16, 1, .3, 1) both,
-    kitchenRush 360ms 1180ms 4 alternate ease-in-out;
+.house {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: inkAppears 1200ms cubic-bezier(.2, 0, .2, 1) both;
+}
+.signature:hover .house { filter: contrast(1.12); }
+.signature:focus-visible { outline: var(--focus); outline-offset: 12px; }
+.signature:focus-visible .house { animation: none; }
+.wordmark { width: 100%; margin: 0; line-height: 0; }
+.wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: nameAppears 800ms 650ms ease-out both;
 }
 .steam {
   position: absolute;
-  left: 42%;
-  top: 2%;
-  width: 16%;
+  left: 45%;
+  top: 0;
+  width: 12%;
   height: 20%;
   border-left: 2px solid var(--ink);
   border-radius: 50%;
@@ -258,18 +116,25 @@
   pointer-events: none;
   animation: risingSteam 1100ms 1000ms 2 ease-out;
 }
-@keyframes kitchenRush {
-  from { transform: rotate(-1.5deg) scaleY(.98); }
-  to { transform: rotate(1.5deg) scaleY(1.025); }
+.entry p { position: absolute; bottom: 16px; text-align: center; }
+.charge {
+  position: absolute;
+  bottom: 20%;
+  width: min(260px, 60vw);
+  height: 8px;
+  accent-color: var(--ink);
 }
+@keyframes inkAppears {
+  from { opacity: 0; clip-path: inset(100% 0 0); }
+  to { opacity: 1; clip-path: inset(0); }
+}
+@keyframes nameAppears { from { opacity: 0; } to { opacity: 1; } }
 @keyframes risingSteam {
   0% { opacity: 0; transform: translateY(0) scale(.7); }
   25% { opacity: .18; }
   100% { opacity: 0; transform: translateY(-32px) scale(1.3); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .signature .houseFlames, .steam { animation: none; }
-  .entry a.signature { transition: none; }
-  .entry a.signature:hover, .entry a.signature:active { transform: none; }
+  .house, .wordmark img, .steam { animation: none; }
 }
-.wordmark img{display:block;width:min(300px,72vw);height:auto}
+:global([data-still="1"]) .steam { display: none; }
