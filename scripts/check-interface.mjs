@@ -10,16 +10,16 @@ try {
   await page.screenshot({ path: "docs/screens/accueil.png" });
   for (const [key, label] of [
     ["ArrowDown", "Entrer"],
-    ["ArrowRight", "Se connecter"],
-    ["ArrowDown", "Connecter Spotify"],
-    ["ArrowLeft", "Se connecter"],
+    ["ArrowRight", "Entrer"],
+    ["ArrowDown", "Entrer"],
+    ["ArrowLeft", "Entrer"],
     ["ArrowUp", "Entrer"],
   ]) {
     await page.keyboard.press(key);
     assert.equal(await page.locator(":focus").innerText(), label);
   }
   await page.keyboard.press("Enter");
-  await page.waitForURL("**/player");
+  await page.waitForURL("**/player"); await page.screenshot({path:"docs/screens/ecouter-tablette.png"});
   await page.getByRole("button", { name: "Bibliothèque", exact: true }).focus();
   await page.keyboard.press("Enter");
   await page.screenshot({ path: "docs/screens/bibliotheque.png" });
@@ -48,3 +48,4 @@ try {
 } finally {
   await browser.close();
 }
+

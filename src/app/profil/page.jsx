@@ -23,10 +23,11 @@ export default async function Profile() {
         ) : (
           <a href="/api/spotify/connect">Connecter Spotify</a>
         )}
-        <a href="/">Accueil et connexion</a>
+        <a href={s ? "/auth/logout" : "/auth/login"}>{s ? "Se déconnecter" : "Se connecter"}</a>
         <a href="/player">Retour au lecteur</a>
       </section>
     </main>
   );
 }
 export const dynamic = "force-dynamic";
+

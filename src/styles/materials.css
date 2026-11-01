@@ -75,3 +75,6 @@ a {
 .record img {
   filter: grayscale(1);
 }
+.den .logo{width:124px;height:auto}.den .collections button{background:transparent;border:0;padding:0;text-align:left}.collections img{border-radius:12px}.den .track{background:var(--wash);border:0;border-radius:12px;padding:12px 16px;margin:12px 0}.den .track img{border-radius:8px}.den[data-section="Écouter"] header input{display:none}.den .rest{box-shadow:0 -4px 18px #0002}.den footer{margin-top:48px}
+@media(min-width:701px) and (max-width:1359px){.den[data-section="Écouter"] section[aria-label="Liste des morceaux"] h2{display:none}.den h1{font-size:32px}.collections{margin-top:16px}.rail nav{margin-top:16px}}
+@media(min-width:1360px){.den[data-section="Écouter"] header input{display:block}}

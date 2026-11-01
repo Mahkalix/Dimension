@@ -35,11 +35,10 @@ export default function TheDen() {
       .includes(query.trim().toLowerCase()),
   );
   return (
-    <div className="den">
+    <div className="den" data-section={section}>
       <aside className="rail">
         <a href="/" aria-label="DIMENSION · Accueil">
-          <img className="logo" src="/brand/dimension-mark.svg" alt="" />{" "}
-          DIMENSION
+          <img className="logo" src="/den-2.svg" alt="The Den" />
         </a>
         <nav aria-label="Navigation principale">
           {sections.map((name, i) => (
@@ -177,3 +176,4 @@ export default function TheDen() {
     </div>
   );
 }
+
