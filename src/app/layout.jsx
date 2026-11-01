@@ -7,14 +7,14 @@ export const metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: "/favicon.ico?v=dimension" },
-      { url: "/brand/dimension-32.png", sizes: "32x32" },
+      { url: "/favicon.ico?v=house" },
+      { url: "/brand/house-32.png", sizes: "32x32" },
     ],
-    apple: "/brand/dimension-180.png",
+    apple: "/brand/house-180.png",
   },
   openGraph: {
     title: "DIMENSION — AFTER THE NOISE",
-    images: ["/brand/dimension-512.png"],
+    images: ["/brand/house-512.png"],
   },
   metadataBase: new URL(process.env.APP_BASE_URL || "http://127.0.0.1:3000"),
 };
@@ -29,3 +29,4 @@ export default function Layout({ children }) {
     </html>
   );
 }
+
