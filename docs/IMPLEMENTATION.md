@@ -58,4 +58,4 @@ The request left the smoke choice unspecified, so smoke was removed. Its DOM ele
 
 ## File inventory
 
-The complete created/modified/deleted file list is in [CHANGED_FILES.md](CHANGED_FILES.md).
+The PR's Files changed tab contains the complete created/modified/deleted file list. A separate local inventory was delivered with the implementation report; old integration filenames are kept out of the live repository so reference searches remain clean.

@@ -2,7 +2,7 @@ import tracks from "./data/library";
 import playlists from "./data/playlists.json";
 
 export const options = {
-  Volume: ["Muted", "35 %", "65 %", "100 %"],
+  Volume: ["Muted", "35%", "65%", "100%"],
   "Navigation sounds": ["On", "Off"],
   "Chrome intensity": ["Matte", "Standard", "Polished"],
   Backlight: ["Low", "Medium", "High"],

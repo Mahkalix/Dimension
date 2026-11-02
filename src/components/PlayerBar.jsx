@@ -59,7 +59,7 @@ export default function PlayerBar({
             value={volume}
             onChange={onVolumeChange}
           />
-          <output>{Math.round(volume * 100)} %</output>
+          <output>{Math.round(volume * 100)}%</output>
         </label>
       </details>
       {duration > 0 && (
