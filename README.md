@@ -2,11 +2,17 @@
 
 *Le lecteur musical que Carmy aurait dans sa cuisine dans **The Bear**.*
 
+![Direction visuelle de The Den. La bibliothèque en niveaux de gris, la pochette du morceau et les commandes de lecture.](docs/visuels/the-den-player.png)
+
 La clé tourne dans la porte de service. Carmy pose son carnet près de la balance, met une casserole d’eau sur le feu et commence à éplucher un oignon. Au bout de deux coups de couteau, il s’arrête. Il manque quelque chose. Il s’essuie un doigt sur son tablier et lance *Embrace*. Cette fois, il peut commencer.
 
 J’ai imaginé The Den en partant de ce geste. Si Carmy gardait un lecteur à portée de main, à côté de ses recettes, à quoi ressemblerait-il ? J’aimais l’idée d’un objet assez personnel pour qu’on lui reconnaisse un propriétaire. Le grain du papier vient de son carnet. La petite maison qui signe le projet pourrait être un dessin oublié dans la marge.
 
 ### Sur la platine
+
+<img src="public/gif/1.gif" width="320" alt="Boucle animée qui accompagne Embrace dans le lecteur." />
+
+*Face A · Embrace*
 
 *Embrace*, *Good Night*, *Lofi Study*… Chaque piste a sa carte et sa boucle animée. Choisis un morceau, lance la lecture et règle le volume. Dans la cuisine que j’imagine, Carmy le baisse juste assez pour entendre l’eau frémir derrière lui.
 
