@@ -1,21 +1,41 @@
-# DIMENSION · Planche de matériaux
+# The Den
 
-Étape 1 pour le passe de cuisine. La composition 1280 × 720 se réduit proportionnellement avec des bandes noires. Les cinq échantillons, le bouton, le curseur, la barre de titre et les cinq lignes du menu sont des spécimens statiques. Playlists illustre la sélection.
+A paper-inspired music player for the kitchen, before and after service. Built with Next.js App Router, React and modular SCSS. The existing grayscale palette, typography, house emblem and Solar icons are preserved.
 
-## Lancer
+## Run
 
 ```sh
 npm ci
+cp .env.example .env.local
 npm run dev
-npm run build
 ```
 
-## Sources
+Music works without signing in. Email/password authentication needs an Auth0 Regular Web Application and a Database Connection. See [authentication setup](docs/AUTHENTICATION.md) for the exact dashboard values and server-only variables.
 
-- `src/screens/MaterialBoard/MaterialBoard.tsx` compose la planche.
-- `src/screens/MaterialBoard/MaterialBoard.module.css` règle les dimensions et la composition.
-- `src/styles/materials.css` définit les cinq finitions et la variable `--chrome`.
+## Routes
 
-Le texte de la sélection repose sur une zone mate pour garder le reflet hors des lettres. L’inox combine turbulence SVG et lignes CSS. Archivo est retenue pour sa chasse variable, qui permettra un mot-symbole large au splash.
+- `/`: animated house introduction; the house is clickable and the intro also enters the app automatically. Reduced motion is respected.
+- `/player`: public library, playlists, search, queue, settings, credits and native audio playback.
+- `/login`: sign-in / sign-up entry, configuration and readable authentication errors.
+- `/account`: protected account, displaying only identity claims from Auth0.
+- `/auth/login`, `/auth/callback`, `/auth/logout`: handled by the official Auth0 SDK.
 
-Restent pour les étapes suivantes le splash, la navigation, les deux fournisseurs musicaux, les tickets et les réglages. Le futur lecteur Spotify nécessitera Premium et, en mode développement, un utilisateur autorisé.
+## Music and rights
+
+The library contains 30 distinct recordings by Kevin MacLeod, Chris Zabriskie and Jason Shaw under CC BY 4.0. It includes ambient, acoustic, jazz, bossa nova, world, lounge, hip-hop, rock and house. Twenty-one MP3s are local; nine M4A recordings stream from the artist's own host. Every recording has a source, attribution, license and measured duration in `src/data/selection.json`. Full credits: [audio licenses](public/music/den/LICENSE.md), also available in the app under Extras → Credits.
+
+Playlist photographs from The Bear were supplied by the project owner or referenced from editorial publications. They are separate from the freely licensed audio: publication rights for these photos have not been verified.
+
+The data module validates IDs, normalized title/artist pairs, durations, rights metadata and playlist references whenever loaded. It fails clearly on invalid data. No generated audio URLs or fabricated recordings are used.
+
+## Verify
+
+```sh
+npm test
+npm run build
+npm start -- --port 3140
+```
+
+With the server running, set `TEST_URL=http://localhost:3140` and run `npm run test:ui`. The script uses installed Chrome and checks eight widths at 600 px height, real audio playback, keyboard activation, queue advancement, missing files, volume, search, account protection and error pages. `npm run test:media` independently loads all 30 audio files in Chrome and refreshes measured durations. It requires internet access for the artist-hosted tracks.
+
+See [implementation report](docs/IMPLEMENTATION.md) for scope, remaining setup and verification limits.

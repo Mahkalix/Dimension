@@ -18,19 +18,19 @@ export default function PlayerBar({
   const format = (s) =>
     Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
   return (
-    <aside className="paper-player" aria-label="Barre de lecture">
+    <aside className="paper-player" aria-label="Music player">
       <div className="paper-transport">
-        <button aria-label="Morceau précédent" onClick={onPrevious}>
+        <button aria-label="Previous track" onClick={onPrevious}>
           <SolarIcon name="skip-previous" />
         </button>
         <button
-          aria-label={playing ? "Pause" : "Lecture"}
+          aria-label={playing ? "Pause" : "Play"}
           disabled={!ready}
           onClick={onToggle}
         >
           <SolarIcon name={playing ? "pause" : "play"} />
         </button>
-        <button aria-label="Morceau suivant" onClick={onNext}>
+        <button aria-label="Next track" onClick={onNext}>
           <SolarIcon name="skip-next" />
         </button>
       </div>
@@ -41,11 +41,11 @@ export default function PlayerBar({
           <small>{track.artist}</small>
         </span>
       </button>
-      <button aria-label="À suivre" onClick={onQueue}>
+      <button aria-label="Up next" onClick={onQueue}>
         <SolarIcon name="playlist" />
       </button>
       <details className="paper-volume">
-        <summary aria-label="Régler le volume">
+        <summary aria-label="Adjust volume">
           <SolarIcon name="volume-loud" />
         </summary>
         <label>
@@ -59,14 +59,14 @@ export default function PlayerBar({
             value={volume}
             onChange={onVolumeChange}
           />
-          <output>{Math.round(volume * 100)} %</output>
+          <output>{Math.round(volume * 100)}%</output>
         </label>
       </details>
       {duration > 0 && (
         <div className="paper-progress">
           <time>{format(position)}</time>
           <input
-            aria-label="Position de lecture"
+            aria-label="Playback position"
             type="range"
             min="0"
             max={duration}

@@ -1,37 +1,50 @@
 [
   {
     "id": "apres-service",
-    "title": "Après le service",
+    "title": "After Service",
     "cover": "/images/playlists/apres-service.jpg",
     "imagePosition": "55% 50%",
-    "alt": "Carmy assis dans la cuisine après le service, dans The Bear.",
+    "alt": "Carmy sitting in the kitchen after service in The Bear.",
     "sourceUrl": "https://www.harpersbazaar.com/culture/film-tv/a44335574/the-bear-season-2-ending-explained-finale-recap/",
-    "credit": "The Bear · FX, photo publiée par Harper’s Bazaar",
-    "tracks": ["night-on-the-docks---sax", "airport-lounge", "bossa-antigua"]
+    "credit": "The Bear · FX, photo published by Harper’s Bazaar",
+    "tracks": [
+      "airport-lounge",
+      "cylinder-1",
+      "cylinder-2",
+      "cylinder-3",
+      "cylinder-4",
+      "cylinder-5",
+      "cylinder-6",
+      "cylinder-7",
+      "cylinder-8",
+      "cylinder-9"
+    ]
   },
   {
     "id": "service",
-    "title": "Pendant le service",
+    "title": "During Service",
     "cover": "/images/playlists/service.jpg",
     "imagePosition": "45% 50%",
-    "alt": "Carmy en plein coup de feu devant les fourneaux dans The Bear.",
+    "alt": "Carmy working at the stove during a busy service in The Bear.",
     "sourceUrl": null,
-    "credit": "The Bear · FX, visuel fourni pour The Den",
-    "tracks": ["george-street-shuffle", "local-forecast", "carefree"]
+    "credit": "The Bear · FX, image supplied for The Den",
+    "tracks": ["shaw-hip-hop-1", "shaw-acoustic-rock", "shaw-falling-sky"]
   },
   {
     "id": "plonge",
-    "title": "La plonge",
+    "title": "Washing Up",
     "cover": "/images/playlists/plonge.jpg",
     "imagePosition": "48% 45%",
-    "alt": "Richie et un collègue essuient la verrerie dans la cuisine de The Bear.",
+    "alt": "Richie and a colleague polishing glassware in The Bear.",
     "sourceUrl": "https://www.esquire.com/entertainment/tv/a44402420/the-bear-season-2-restaurant-references/",
-    "credit": "The Bear · FX, photo publiée par Esquire",
+    "credit": "The Bear · FX, photo published by Esquire",
     "tracks": [
-      "tea-roots",
+      "local-forecast",
       "bossa-antigua",
       "george-street-shuffle",
-      "local-forecast"
+      "night-on-the-docks---sax",
+      "shaw-plumber-s-rag",
+      "shaw-saloon-rag"
     ]
   },
   {
@@ -39,39 +52,81 @@
     "title": "Money Money",
     "cover": "/images/playlists/money-money.jpg",
     "imagePosition": "50% 50%",
-    "alt": "L’équipe de The Bear réunie avec des boîtes de tomates.",
-    "tracks": ["george-street-shuffle", "local-forecast", "tea-roots"],
+    "alt": "The Bear team together with cans of tomatoes.",
+    "tracks": [
+      "local-forecast",
+      "george-street-shuffle",
+      "night-on-the-docks---sax",
+      "shaw-plumber-s-rag",
+      "shaw-saloon-rag",
+      "shaw-hip-hop-1",
+      "shaw-falling-sky"
+    ],
     "sourceUrl": null,
-    "credit": "The Bear · FX, visuel fourni pour The Den"
+    "credit": "The Bear · FX, image supplied for The Den"
   },
   {
     "id": "happiness",
     "title": "Happiness",
     "cover": "/images/playlists/happiness.jpg",
     "imagePosition": "50% 50%",
-    "alt": "L’équipe de The Bear réunie dans la cuisine.",
-    "tracks": ["carefree", "bossa-antigua", "airport-lounge"],
+    "alt": "The Bear team gathered in the kitchen.",
+    "tracks": [
+      "carefree",
+      "bossa-antigua",
+      "tea-roots",
+      "shaw-acoustic-guitar-1",
+      "shaw-acoustic-shuffle",
+      "shaw-cool-steel-breeze",
+      "shaw-folk-bed",
+      "shaw-paper-wings",
+      "shaw-pennywhistle",
+      "shaw-solo-acoustic-3",
+      "shaw-solo-acoustic-5",
+      "shaw-words"
+    ],
     "sourceUrl": null,
-    "credit": "The Bear · FX, visuel fourni pour The Den"
+    "credit": "The Bear · FX, image supplied for The Den"
   },
   {
     "id": "friendship",
     "title": "Friendship",
     "cover": "/images/playlists/friendship.jpg",
     "imagePosition": "50% 50%",
-    "alt": "Sydney et Carmy échangent ensemble autour d’une table.",
-    "tracks": ["bossa-antigua", "airport-lounge", "night-on-the-docks---sax"],
+    "alt": "Sydney and Carmy planning together at a table.",
+    "tracks": [
+      "carefree",
+      "airport-lounge",
+      "cylinder-1",
+      "cylinder-2",
+      "cylinder-3",
+      "cylinder-4",
+      "cylinder-5",
+      "cylinder-6",
+      "cylinder-7",
+      "cylinder-8",
+      "cylinder-9",
+      "shaw-acoustic-guitar-1",
+      "shaw-acoustic-shuffle",
+      "shaw-cool-steel-breeze",
+      "shaw-folk-bed",
+      "shaw-paper-wings",
+      "shaw-pennywhistle",
+      "shaw-solo-acoustic-3",
+      "shaw-solo-acoustic-5",
+      "shaw-words"
+    ],
     "sourceUrl": null,
-    "credit": "The Bear · FX, visuel fourni pour The Den"
+    "credit": "The Bear · FX, image supplied for The Den"
   },
   {
     "id": "chaos",
     "title": "Chaos",
     "cover": "/images/playlists/chaos.jpg",
     "imagePosition": "50% 50%",
-    "alt": "Carmy face aux flammes des fourneaux dans The Bear.",
-    "tracks": ["george-street-shuffle", "tea-roots", "local-forecast"],
+    "alt": "Carmy facing flames at the stove in The Bear.",
+    "tracks": ["shaw-acoustic-rock", "shaw-falling-sky"],
     "sourceUrl": null,
-    "credit": "The Bear · FX, visuel fourni pour The Den"
+    "credit": "The Bear · FX, image supplied for The Den"
   }
 ]
