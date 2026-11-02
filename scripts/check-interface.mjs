@@ -21,7 +21,21 @@ try {
       const nav = await p.locator(".rail nav").boundingBox();
       assert.ok(nav.width >= 200);
     }
-    await p.locator(".account-menu summary").click();
+    if(viewport.width>700){
+      for(const width of [1280,1440]){
+        await p.setViewportSize({width,height:720});
+        const rows=await p.locator(".rail nav button").all();
+        assert.equal(rows.length,4);
+        for(let i=1;i<rows.length;i++){
+          const prev=await rows[i-1].boundingBox(),next=await rows[i].boundingBox();
+          assert.ok(next.y-prev.y-prev.height<=8,"Navigation rows must stay grouped");
+        }
+        assert.ok(!(await p.locator(".rail footer").innerText()).includes("·"));
+        const footer=await p.locator(".rail footer").boundingBox();
+        assert.ok(footer.y+footer.height<=720);
+      }
+      await p.setViewportSize(viewport);
+    }    await p.locator(".account-menu summary").click();
     assert.match(
       await p
         .getByRole("link", { name: "Se connecter", exact: true })
@@ -89,3 +103,4 @@ try {
 } finally {
   await browser.close();
 }
+

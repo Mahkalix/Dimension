@@ -217,7 +217,7 @@ export default function TheDen({ account }) {
           ))}
         </nav>
         <footer>
-          <a href="/profil"><SolarIcon name="user-circle"/>Profil</a> ·{" "}
+          <a href="/profil"><SolarIcon name="user-circle"/>Profil</a>
           <button onClick={() => go("Réglages")}><SolarIcon name="settings"/>Réglages</button>
           <button onClick={() => go("Extras")}><SolarIcon name="widget"/>Extras</button>
         </footer>
@@ -424,6 +424,7 @@ export default function TheDen({ account }) {
     </div>
   );
 }
+
 
 
 
