@@ -14,6 +14,9 @@ export default function TheDen({ account }) {
   const [libraryTab, setLibraryTab] = useState("Playlists");
   const [query, setQuery] = useState("");
   const [preview, setPreview] = useState(0);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const previewTrigger = useRef(null),
+    previewClose = useRef(null);
   const [playing, setPlaying] = useState(null);
   const [volume, setVolume] = useState(0.65);
   const [queue, setQueue] = useState([1]);
@@ -97,12 +100,12 @@ export default function TheDen({ account }) {
   const advance = () => {
     const i = queue.length ? queue[0] : 1 - (playing ?? preview);
     setQueue((q) => q.slice(1));
-    start(i);
+    start(i, !previewOpen);
   };
   const add = () => {
     setQueue((q) => [...q, preview]);
     dialog.current.close();
-    go("À suivre");
+    if (!previewOpen) go("À suivre");
     setNotice("Ajouté à la file");
   };
   const menu = menuPages.includes(section);
@@ -112,14 +115,17 @@ export default function TheDen({ account }) {
   const next = () => setPreview((i) => (i + 1) % tracks.length);
   const openTrack = (i) => {
     setPreview(i);
-    dialog.current.showModal();
+    previewTrigger.current = document.activeElement;
+    if (window.matchMedia("(max-width:700px)").matches)
+      dialog.current.showModal();
+    else setPreviewOpen(true);
   };
   useEffect(() => {
     const pane = dialog.current;
     return () => pane?.close();
   }, []);
   const play = () => {
-    start(preview);
+    start(preview, !previewOpen);
     dialog.current.close();
   };
   const order = section === "À suivre" ? queue : [0, 1];
@@ -128,10 +134,88 @@ export default function TheDen({ account }) {
       .toLowerCase()
       .includes(query.trim().toLowerCase()),
   );
+  const closePreview = () => {
+    dialog.current.close();
+    setPreviewOpen(false);
+    previewTrigger.current?.focus();
+  };
+  useEffect(() => {
+    if (previewOpen) previewClose.current?.focus();
+  }, [previewOpen]);
+  useEffect(() => {
+    const media = window.matchMedia("(max-width:700px)");
+    const adapt = () => {
+      if (media.matches && previewOpen) {
+        dialog.current.showModal();
+        setPreviewOpen(false);
+      } else if (!media.matches && dialog.current.open) {
+        dialog.current.close();
+        setPreviewOpen(true);
+      }
+    };
+    media.addEventListener("change", adapt);
+    return () => media.removeEventListener("change", adapt);
+  }, [previewOpen]);
+  const previewContent = (
+    <>
+      <button className="return" ref={previewClose} onClick={closePreview}>
+        <SolarIcon name="close-circle" />
+        <span>Retour aux morceaux</span>
+      </button>
+      <div
+        className="stage"
+        onTouchStart={(e) => {
+          touch.current = [e.touches[0].clientX, e.touches[0].clientY];
+        }}
+        onTouchCancel={() => {
+          touch.current = null;
+        }}
+        onTouchEnd={(e) => {
+          if (!touch.current) return;
+          const dx = e.changedTouches[0].clientX - touch.current[0],
+            dy = e.changedTouches[0].clientY - touch.current[1];
+          touch.current = null;
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) next();
+        }}
+      >
+        <img
+          className={"neighbor side" + preview}
+          src={art[1 - preview]}
+          alt=""
+        />
+        <figure>
+          <picture>
+            <source
+              media="(min-width:701px)"
+              srcSet={"/den-track-" + preview + ".png"}
+            />
+            <img src={art[preview]} alt="" />
+          </picture>
+          <figcaption aria-live="polite">
+            <b>{track.title}</b>
+            <small>{track.artist}</small>
+          </figcaption>
+        </figure>
+      </div>
+      <div className="transport">
+        <button aria-label="Morceau précédent" onClick={next}>
+          <SolarIcon name="skip-previous" />
+        </button>
+        <button onClick={play}>
+          <SolarIcon name="play" /> Écouter
+        </button>
+        <button onClick={add}>Ajouter à la file</button>
+        <button aria-label="Morceau suivant" onClick={next}>
+          <SolarIcon name="skip-next" />
+        </button>
+      </div>
+    </>
+  );
   return (
     <div
       className="den"
       data-section={section}
+      data-preview={previewOpen}
       data-chrome={prefs["Intensité du chrome"]}
       data-light={prefs.Rétroéclairage}
     >
@@ -167,30 +251,57 @@ export default function TheDen({ account }) {
             alt="The Den"
           />
         </a>
-        <details className="account-menu" onClick={e=>{if(e.target.closest("a,button"))e.currentTarget.open=false}}>
+        <details
+          className="account-menu"
+          onClick={(e) => {
+            if (e.target.closest("a,button")) e.currentTarget.open = false;
+          }}
+        >
           <summary>
-            <SolarIcon name="user-circle"/>Compte <SolarIcon name="alt-arrow-down"/>
+            <SolarIcon name="user-circle" />
+            Compte <SolarIcon name="alt-arrow-down" />
           </summary>
           <div>
             <strong>{account?.name || "Bienvenue"}</strong>
             {account?.connected ? (
-              <a href="/auth/logout"><SolarIcon name="logout-2"/>Se déconnecter</a>
+              <a href="/auth/logout">
+                <SolarIcon name="logout-2" />
+                Se déconnecter
+              </a>
             ) : (
-              <a href="/auth/login?returnTo=/player"><SolarIcon name="login-2"/>Se connecter</a>
+              <a href="/auth/login?returnTo=/player">
+                <SolarIcon name="login-2" />
+                Se connecter
+              </a>
             )}
             {account?.spotify ? (
               <>
                 <span>Spotify · {account.spotify.name}</span>
                 <form method="post" action="/api/spotify/disconnect">
-                  <button><SolarIcon name="link-minimalistic-2"/>Dissocier Spotify</button>
+                  <button>
+                    <SolarIcon name="link-minimalistic-2" />
+                    Dissocier Spotify
+                  </button>
                 </form>
               </>
             ) : (
-              <a href="/api/spotify/connect"><img className="solar-icon" src="/spotify.svg" alt=""/>Connecter mon Spotify</a>
+              <a href="/api/spotify/connect">
+                <img className="solar-icon" src="/spotify.svg" alt="" />
+                Connecter mon Spotify
+              </a>
             )}
-            <a href="/profil"><SolarIcon name="user-circle"/>Mon profil</a>
-            <button onClick={() => go("Réglages")}><SolarIcon name="settings"/>Réglages</button>
-            <button onClick={() => go("Extras")}><SolarIcon name="widget"/>Extras</button>
+            <a href="/profil">
+              <SolarIcon name="user-circle" />
+              Mon profil
+            </a>
+            <button onClick={() => go("Réglages")}>
+              <SolarIcon name="settings" />
+              Réglages
+            </button>
+            <button onClick={() => go("Extras")}>
+              <SolarIcon name="widget" />
+              Extras
+            </button>
           </div>
         </details>
         <nav aria-label="Navigation principale">
@@ -208,7 +319,12 @@ export default function TheDen({ account }) {
                 alt=""
                 src={
                   "/" +
-                  ["headphones-round", "library", "playlist", "solar-magnifier"][i] +
+                  [
+                    "headphones-round",
+                    "library",
+                    "playlist",
+                    "solar-magnifier",
+                  ][i] +
                   ".svg"
                 }
               />
@@ -217,9 +333,18 @@ export default function TheDen({ account }) {
           ))}
         </nav>
         <footer>
-          <a href="/profil"><SolarIcon name="user-circle"/>Profil</a>
-          <button onClick={() => go("Réglages")}><SolarIcon name="settings"/>Réglages</button>
-          <button onClick={() => go("Extras")}><SolarIcon name="widget"/>Extras</button>
+          <a href="/profil">
+            <SolarIcon name="user-circle" />
+            Profil
+          </a>
+          <button onClick={() => go("Réglages")}>
+            <SolarIcon name="settings" />
+            Réglages
+          </button>
+          <button onClick={() => go("Extras")}>
+            <SolarIcon name="widget" />
+            Extras
+          </button>
         </footer>
       </aside>
       <main>
@@ -372,59 +497,39 @@ export default function TheDen({ account }) {
         }}
       />{" "}
       <dialog ref={dialog} aria-label="Fiche du morceau" className="record">
-        <button className="return" onClick={() => dialog.current.close()}>
-          ‹ Retour aux morceaux
-        </button>
-        <div
-          className="stage"
-          onTouchStart={(e) => {
-            touch.current = [e.touches[0].clientX, e.touches[0].clientY];
-          }}
-          onTouchCancel={() => {
-            touch.current = null;
-          }}
-          onTouchEnd={(e) => {
-            if (!touch.current) return;
-            const dx = e.changedTouches[0].clientX - touch.current[0],
-              dy = e.changedTouches[0].clientY - touch.current[1];
-            touch.current = null;
-            if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) next();
+        {previewContent}
+      </dialog>
+      {previewOpen && (
+        <aside
+          className="track-preview"
+          aria-label="Fiche du morceau"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              e.preventDefault();
+              e.stopPropagation();
+              closePreview();
+            }
           }}
         >
-          <img
-            className={"neighbor side" + preview}
-            src={art[1 - preview]}
-            alt=""
-          />
-          <figure>
-            <picture>
-              <source
-                media="(min-width:701px)"
-                srcSet={"/den-track-" + preview + ".png"}
-              />
-              <img src={art[preview]} alt="" />
-            </picture>
-            <figcaption aria-live="polite">
-              <b>{track.title}</b>
-              <small>{track.artist}</small>
-            </figcaption>
-          </figure>
-        </div>
-        <div className="transport">
-          <button aria-label="Morceau précédent" onClick={next}>
-            ←
-          </button>
-          <button onClick={play}>▶ Écouter</button>
-          <button onClick={add}>Ajouter à la file</button>
-          <button aria-label="Morceau suivant" onClick={next}>
-            →
-          </button>
-        </div>
-      </dialog>
+          {previewContent}
+          {notice && <p role="status">{notice}</p>}
+          <section className="preview-note">
+            <h3>À propos du morceau</h3>
+            <p>{track.artist}</p>
+            <a href={track.sourceUrl} target="_blank" rel="noreferrer">
+              Source · Incompetech
+            </a>
+            <a href={track.licenseUrl} target="_blank" rel="noreferrer">
+              {track.license}
+            </a>
+          </section>
+          <section className="preview-note">
+            <h3>À suivre</h3>
+            <p>{tracks[queue[0] ?? 1 - preview].title}</p>
+            <button onClick={() => go("À suivre")}>Voir la file</button>
+          </section>
+        </aside>
+      )}
     </div>
   );
 }
-
-
-
-

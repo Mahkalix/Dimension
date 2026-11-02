@@ -1,0 +1,140 @@
+@use "../abstracts/breakpoints" as bp;
+
+.track-preview {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow-y: auto;
+  padding: 20px 20px 140px;
+  background: var(--dock);
+  border-left: 1px solid var(--line);
+  min-width: 0;
+
+  .return {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    margin-bottom: 16px;
+    color: var(--quiet);
+    font-size: 14px;
+  }
+  .stage {
+    display: block;
+    margin: 0;
+  }
+  .neighbor {
+    display: none;
+  }
+  .stage figure {
+    display: block;
+    width: 100%;
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stage picture {
+    display: block;
+    width: 100%;
+  }
+  .stage figure img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+  .stage figcaption {
+    padding: 20px 0 12px;
+    background: transparent;
+    font-size: 24px;
+    line-height: 1.15;
+  }
+  .stage figcaption small {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+  .transport {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: 8px;
+    margin-block: 16px;
+  }
+  .transport button:nth-child(3) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+.preview-note {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  padding: 16px;
+  margin-top: 16px;
+  font-size: 14px;
+  h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+  }
+  p {
+    margin: 8px 0;
+  }
+  a {
+    display: block;
+    padding-block: 8px;
+  }
+  button {
+    padding-inline: 0;
+    text-decoration: underline;
+  }
+}
+.record .return {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media (min-width: #{bp.$tablet-min}) {
+  .den[data-preview="true"] {
+    grid-template-columns: 240px minmax(0, 1fr) clamp(260px, 27vw, 360px);
+  }
+  .den[data-preview="true"] main {
+    padding-inline: 24px;
+  }
+}
+@media (min-width: #{bp.$tablet-min}) and (max-width: 1100px) {
+  .den[data-preview="true"] {
+    grid-template-columns: 200px minmax(0, 1fr) 260px;
+  }
+  .den[data-preview="true"] main {
+    padding-inline: 16px;
+  }
+  .den[data-preview="true"] .collections {
+    flex-wrap: wrap;
+  }
+  .den[data-preview="true"] .collections button {
+    max-width: 100%;
+  }
+}
+@media (max-width: #{bp.$mobile-max}) {
+  .track-preview {
+    display: none;
+  }
+}
+.track-preview .transport button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+@media (min-width: 1101px) {
+  .den[data-preview="true"] .paper-player {
+    left: calc(240px + (100vw - 240px - clamp(260px, 27vw, 360px)) / 2);
+    width: min(700px, calc(100vw - 240px - clamp(260px, 27vw, 360px) - 48px));
+  }
+}
+@media (min-width: #{bp.$tablet-min}) and (max-width: 1100px) {
+  .track-preview {
+    height: calc(100dvh - 116px);
+    padding-bottom: 24px;
+  }
+}
