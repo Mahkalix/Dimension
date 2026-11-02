@@ -1,126 +1,180 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { chromium } from "playwright-core";
+const origin = process.env.TEST_URL || "http://localhost:3140";
 const browser = await chromium.launch({ channel: "chrome", headless: true });
+const results = [];
 try {
-  for (const viewport of [
-    { width: 1280, height: 720 },
-    { width: 390, height: 844 },
-  ]) {
-    const p = await browser.newPage({ viewport });
-    p.setDefaultTimeout(15000);
-    const requests = [];
-    p.on("request", (r) => requests.push(r.url()));
-    await p.goto(process.env.TEST_URL);
-    await p.waitForURL("**/player");
-    assert.equal(await p.locator("iframe").count(), 0);
-    assert.equal(await p.locator("audio").evaluate((a) => a.paused), true);
-    if (viewport.width > 700) {
-      const rail = await p.locator(".rail").boundingBox();
-      assert.equal(rail.x, 0);
-      assert.equal(rail.height, viewport.height);
-      const nav = await p.locator(".rail nav").boundingBox();
-      assert.ok(nav.width >= 200);
-    }
-    if (viewport.width > 700) {
-      for (const width of [1280, 1440]) {
-        await p.setViewportSize({ width, height: 720 });
-        const rows = await p.locator(".rail nav button").all();
-        assert.equal(rows.length, 4);
-        for (let i = 1; i < rows.length; i++) {
-          const prev = await rows[i - 1].boundingBox(),
-            next = await rows[i].boundingBox();
-          assert.ok(
-            next.y - prev.y - prev.height <= 8,
-            "Navigation rows must stay grouped",
-          );
-        }
-        assert.ok(!(await p.locator(".rail footer").innerText()).includes("·"));
-        const footer = await p.locator(".rail footer").boundingBox();
-        assert.ok(footer.y + footer.height <= 720);
-      }
-      await p.setViewportSize(viewport);
-    }
-    await p.locator(".account-menu summary").click();
-    await p.getByRole("button", { name: "Continuer avec Spotify" }).waitFor();
-    await p.getByRole("link", { name: "Mon profil", exact: true }).click();
-    await p.getByRole("heading", { name: "Mon profil" }).waitFor();
-    await p.getByRole("button", { name: "Continuer avec Spotify" }).waitFor();
-    await p.getByRole("link", { name: "Retour à la musique" }).click();
-    assert.equal(await p.locator(".track").count(), 7);
-    await p
-      .locator(".paper-player")
-      .getByRole("button", { name: "Lecture", exact: true })
-      .click();
-    await p.waitForFunction(() => {
-      const a = document.querySelector("audio");
-      return !a.paused && a.currentTime > 0 && a.duration > 30;
+  for (const width of [360, 390, 700, 701, 820, 1024, 1280, 1440]) {
+    const context = await browser.newContext({
+      viewport: { width, height: 600 },
     });
-    if (viewport.width === 1280) {
-      const tracks = JSON.parse(
-        fs.readFileSync(new URL("../src/data/selection.json", import.meta.url)),
-      );
-      for (const track of tracks) {
-        const duration = await p.evaluate(
-          (url) =>
-            new Promise((resolve, reject) => {
-              const audio = new Audio();
-              audio.onloadedmetadata = () => {
-                const duration = audio.duration;
-                audio.removeAttribute("src");
-                audio.load();
-                resolve(duration);
-              };
-              audio.onerror = () => reject(new Error("Audio indisponible"));
-              audio.src = url;
-            }),
-          track.url,
-        );
-        assert.ok(duration > 30, track.title);
-      }
-    }
-    await p.locator(".paper-volume summary").click();
-    await p.getByRole("slider", { name: "Volume", exact: true }).fill("0.35");
-    assert.equal(await p.locator("audio").evaluate((a) => a.volume), 0.35);
-    await p.getByRole("slider", { name: "Position de lecture" }).fill("20");
-    await p.waitForFunction(
-      () => document.querySelector("audio").currentTime >= 19,
+    const page = await context.newPage();
+    page.setDefaultTimeout(12000);
+    const errors = [];
+    page.on("pageerror", (e) => errors.push(e.message));
+    await page.goto(origin + "/player");
+    assert.equal(await page.locator("html").getAttribute("lang"), "en");
+    assert.equal(await page.locator(".track").count(), 30);
+    assert.equal(await page.locator("iframe").count(), 0);
+    await page.locator(".track").first().click();
+    await page.waitForFunction(
+      () =>
+        !document.querySelector("audio").paused &&
+        document.querySelector("audio").currentTime > 0,
     );
-    await p.locator(".paper-volume summary").click();
-    await p
-      .locator(".paper-player")
-      .getByRole("button", { name: "Pause", exact: true })
+    const panel = page.locator(
+      width <= 700 ? "dialog[open]" : ".track-preview",
+    );
+    await panel.waitFor({ state: "visible" });
+    const geometry = await panel.evaluate((el) => ({
+      height: el.clientHeight,
+      scroll: el.scrollHeight,
+      box: el.getBoundingClientRect().toJSON(),
+      children: [...el.querySelectorAll("button,figcaption")].map((n) => ({
+        text: n.textContent,
+        box: n.getBoundingClientRect().toJSON(),
+      })),
+    }));
+    assert.ok(
+      geometry.scroll <= geometry.height + 1,
+      JSON.stringify({ width, geometry }),
+    );
+    assert.ok(geometry.box.bottom <= 601, JSON.stringify({ width, geometry }));
+    for (const child of geometry.children)
+      assert.ok(
+        child.box.top >= 0 &&
+          child.box.bottom <= 600 &&
+          child.box.right <= width + 1,
+        JSON.stringify({ width, child }),
+      );
+    assert.equal(await page.locator('.track[aria-current="true"]').count(), 1);
+    await panel
+      .getByRole("button", { name: "Add to queue", exact: true })
       .click();
-    assert.equal(await p.locator("audio").evaluate((a) => a.paused), true);
-    await p
-      .locator(".paper-player")
-      .getByRole("button", { name: "Morceau suivant" })
+    assert.ok(
+      await panel.evaluate((el) => el.scrollHeight <= el.clientHeight + 1),
+    );
+    await panel
+      .getByRole("button", { name: "Back to tracks", exact: true })
       .click();
-    await p.waitForFunction(() =>
+    await page.locator(".track").first().click();
+    await page.waitForFunction(() => document.querySelector("audio").paused);
+    await panel
+      .getByRole("button", { name: "Back to tracks", exact: true })
+      .click();
+    // Native button activation must handle both keyboard keys.
+    await page.locator(".track").first().focus();
+    await page.keyboard.press("Enter");
+    await page.waitForFunction(() => !document.querySelector("audio").paused);
+    await panel
+      .getByRole("button", { name: "Back to tracks", exact: true })
+      .click();
+    await page.locator(".track").first().focus();
+    await page.keyboard.press("Space");
+    await page.waitForFunction(() => document.querySelector("audio").paused);
+    await panel
+      .getByRole("button", { name: "Back to tracks", exact: true })
+      .click();
+    await page.locator('.paper-transport button[aria-label="Play"]').click();
+    await page.waitForFunction(() => !document.querySelector("audio").paused);
+    await page.locator("audio").evaluate((a) => {
+      a.currentTime = a.duration - 0.15;
+    });
+    await page.waitForFunction(() =>
       document.querySelector("audio").getAttribute("src").includes("carefree"),
     );
-    await p.waitForFunction(() => !document.querySelector("audio").paused);
-    assert.equal(await p.locator("iframe").count(), 0);
-    assert.equal(
-      requests.some((u) => /youtube|googlevideo/.test(u)),
-      false,
+    await page.waitForFunction(() => !document.querySelector("audio").paused);
+    await page.locator(".paper-volume summary").click();
+    await page
+      .getByRole("slider", { name: "Volume", exact: true })
+      .fill("0.25");
+    assert.equal(await page.locator("audio").evaluate((a) => a.volume), 0.25);
+    // Missing-file handling uses a real failed media request.
+    await page.route("**/music/den/bossa-antigua.mp3", (route) =>
+      route.fulfill({ status: 404, body: "Not found" }),
     );
-    await p.screenshot({
-      path: "docs/screens/audio-" + viewport.width + ".png",
+    await page.locator(".track").nth(2).click();
+    await page.locator(".audio-error").waitFor();
+    assert.match(
+      await page.locator(".audio-error").innerText(),
+      /unavailable|Playback failed/,
+    );
+    await panel
+      .getByRole("button", { name: "Back to tracks", exact: true })
+      .click();
+    await page.unroute("**/music/den/bossa-antigua.mp3");
+    await page
+      .locator(".audio-error")
+      .getByRole("button", { name: "Retry", exact: true })
+      .click();
+    await page.waitForFunction(() => !document.querySelector("audio").paused);
+    await page.waitForFunction(() =>
+      document
+        .querySelector("audio")
+        .getAttribute("src")
+        .includes("bossa-antigua"),
+    );
+    await page.locator(".track").nth(1).click();
+    await page.waitForFunction(() => !document.querySelector("audio").paused);
+    await panel
+      .getByRole("button", { name: "Back to tracks", exact: true })
+      .click();
+    await page.getByRole("button", { name: "Search", exact: true }).click();
+    await page.getByRole("searchbox").fill("Cylinder Nine");
+    assert.equal(await page.locator(".track").count(), 1);
+    await page.getByRole("searchbox").fill("no matching recording");
+    await page.getByText("No tracks found.").waitFor();
+    assert.equal(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth > innerWidth,
+      ),
+      false,
+      "Horizontal overflow at " + width,
+    );
+    assert.deepEqual(errors, []);
+    results.push({
+      width,
+      height: 600,
+      panelScroll: false,
+      audio: true,
+      keyboard: true,
+      errorsHandled: true,
     });
-    await p.getByRole("button", { name: "Écouter", exact: true }).click();
-    await p.screenshot({
-      path: "docs/screens/ecouter-" + viewport.width + ".png",
-    });
-    await p.close();
+    if ([390, 1280].includes(width)) {
+      await page.getByRole("button", { name: "Listen", exact: true }).click();
+      await page.locator(".track").first().click();
+      fs.mkdirSync("docs/screens", { recursive: true });
+      await page.screenshot({ path: "docs/screens/english-" + width + ".png" });
+    }
+    await context.close();
   }
-  const p = await browser.newPage({ reducedMotion: "reduce" });
-  p.setDefaultTimeout(15000);
-  await p.goto(process.env.TEST_URL);
-  await p.waitForURL("**/player");
-  assert.equal(await p.locator("audio").evaluate((a) => a.paused), true);
+  const page = await browser.newPage({ reducedMotion: "reduce" });
+  await page.goto(origin);
+  await page.waitForURL("**/player");
+  await page.goto(origin + "/account");
+  await page.waitForURL("**/login?**");
+  await page.getByRole("heading", { name: "Sign in", exact: true }).waitFor();
+  await page
+    .getByRole("link", { name: "Create an account", exact: true })
+    .click();
+  await page
+    .getByRole("heading", { name: "Create account", exact: true })
+    .waitFor();
+  await page.goto(origin + "/login?error=session");
+  await page
+    .getByRole("alert")
+    .filter({ hasText: "session has expired" })
+    .waitFor();
+  await page.goto(origin + "/login?error=network");
+  await page
+    .getByRole("alert")
+    .filter({ hasText: "Check your connection" })
+    .waitFor();
+  await page.screenshot({ path: "docs/screens/login.png" });
+  console.log(JSON.stringify(results, null, 2));
   console.log(
-    "Entrée automatique, navigation, compte, audio réel, pause, volume, seek et morceau suivant vérifiés sur mobile et tablette.",
+    "Guest access, protected account, signup page, session/network messages, reduced motion, 30 tracks and responsive playback passed.",
   );
 } finally {
   await browser.close();

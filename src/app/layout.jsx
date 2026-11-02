@@ -1,8 +1,8 @@
 import "../styles/main.scss";
 import RemoteKeys from "./RemoteKeys";
 export const metadata = {
-  title: "DIMENSION — AFTER THE NOISE",
-  description: "Lecteur musical DIMENSION",
+  title: "The Den",
+  description: "Music for the kitchen, before and after service.",
   manifest: "/manifest.json",
   icons: {
     icon: [
@@ -13,7 +13,7 @@ export const metadata = {
     apple: "/brand/house-180.png",
   },
   openGraph: {
-    title: "DIMENSION — AFTER THE NOISE",
+    title: "The Den",
     images: ["/brand/house-512.png"],
   },
   metadataBase: new URL(process.env.APP_BASE_URL || "http://127.0.0.1:3000"),
@@ -21,7 +21,7 @@ export const metadata = {
 export const viewport = { themeColor: "#efefed" };
 export default function Layout({ children }) {
   return (
-    <html lang="fr">
+    <html lang="en">
       <body>
         <RemoteKeys />
         {children}
@@ -29,4 +29,3 @@ export default function Layout({ children }) {
     </html>
   );
 }
-

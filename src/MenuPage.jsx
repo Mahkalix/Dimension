@@ -1,22 +1,22 @@
-import tracks from "./data/selection.json";
+import tracks from "./data/library";
 import playlists from "./data/playlists.json";
 
 export const options = {
-  Volume: ["Silence", "35 %", "65 %", "100 %"],
-  "Sons de navigation": ["Activés", "Désactivés"],
-  "Intensité du chrome": ["Mat", "Standard", "Poli"],
-  Rétroéclairage: ["Bas", "Moyen", "Haut"],
+  Volume: ["Muted", "35 %", "65 %", "100 %"],
+  "Navigation sounds": ["On", "Off"],
+  "Chrome intensity": ["Matte", "Standard", "Polished"],
+  Backlight: ["Low", "Medium", "High"],
 };
 export const defaults = {
-  "Sons de navigation": "Désactivés",
-  "Intensité du chrome": "Standard",
-  Rétroéclairage: "Moyen",
+  "Navigation sounds": "Off",
+  "Chrome intensity": "Standard",
+  Backlight: "Medium",
 };
 export const menuPages = [
   "Extras",
-  "Crédits",
+  "Credits",
   "Source",
-  "Réglages",
+  "Settings",
   ...Object.keys(options),
 ];
 
@@ -34,12 +34,12 @@ export function MenuPage({ page, go, prefs, volume, select }) {
   );
   let rows;
   if (page === "Extras")
-    rows = ["Crédits", "Source"].map((n) =>
+    rows = ["Credits", "Source"].map((n) =>
       row(n, n === "Source" ? "Audio ›" : "›", () => go(n)),
     );
-  else if (page === "Réglages")
+  else if (page === "Settings")
     rows = Object.keys(options).map((n) => row(n, "›", () => go(n)));
-  else if (page === "Crédits")
+  else if (page === "Credits")
     rows = (
       <>
         {tracks.map((t) => (
@@ -48,7 +48,7 @@ export function MenuPage({ page, go, prefs, volume, select }) {
             <span>
               {t.artist} ·{" "}
               <a href={t.sourceUrl} target="_blank" rel="noreferrer">
-                Incompetech
+                {t.sourceName}
               </a>{" "}
               ·{" "}
               <a href={t.licenseUrl} target="_blank" rel="noreferrer">
@@ -57,7 +57,7 @@ export function MenuPage({ page, go, prefs, volume, select }) {
             </span>
           </div>
         ))}
-        <h2>Photos des playlists</h2>
+        <h2>Playlist photos</h2>
         {playlists.map((p) => (
           <div className="menu-row" key={p.id}>
             <b>{p.title}</b>
@@ -77,14 +77,7 @@ export function MenuPage({ page, go, prefs, volume, select }) {
       </>
     );
   else if (page === "Source")
-    rows = (
-      <>
-        {row("Audio libre", "", () => go("Écouter"), true)}
-        <a className="menu-row" href="/profil">
-          Spotify <span>Compte ›</span>
-        </a>
-      </>
-    );
+    rows = <>{row("Creative Commons library", "", () => go("Listen"), true)}</>;
   else
     rows = options[page].map((n, i) =>
       row(
@@ -104,14 +97,14 @@ export function MenuPage({ page, go, prefs, volume, select }) {
         onClick={() =>
           go(
             options[page]
-              ? "Réglages"
-              : ["Crédits", "Source"].includes(page)
+              ? "Settings"
+              : ["Credits", "Source"].includes(page)
                 ? "Extras"
-                : "Écouter",
+                : "Listen",
           )
         }
       >
-        ‹ Retour
+        ‹ Back
       </button>
     </section>
   );

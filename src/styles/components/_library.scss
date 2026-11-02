@@ -265,3 +265,15 @@
     scroll-snap-align: start;
   }
 }
+
+.den .track[aria-current="true"] {
+  background: var(--wash);
+  box-shadow: inset 3px 0 var(--ink);
+}
+.track > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.artist-list {
+  flex-wrap: wrap;
+}

@@ -1,19 +1,18 @@
 "use client";
-import SpotifyAccountButton from "./components/SpotifyAccountButton";
 import SolarIcon from "./components/SolarIcon";
 
 import PlayerBar from "./components/PlayerBar";
 import { useEffect, useRef, useState } from "react";
-import tracks from "./data/selection.json";
+import tracks from "./data/library";
 import playlists from "./data/playlists.json";
 
 import { MenuPage, menuPages, defaults } from "./MenuPage";
 const art = tracks.map((t) => t.art);
-const sections = ["Écouter", "Bibliothèque", "À suivre", "Recherche"];
+const sections = ["Listen", "Library", "Up next", "Search"];
 
-export default function TheDen({ account }) {
+export default function TheDen() {
   const [playlist, setPlaylist] = useState(null);
-  const [section, setSection] = useState("Écouter");
+  const [section, setSection] = useState("Listen");
   const [libraryTab, setLibraryTab] = useState("Playlists");
   const [query, setQuery] = useState("");
   const [preview, setPreview] = useState(0);
@@ -22,7 +21,7 @@ export default function TheDen({ account }) {
     previewClose = useRef(null);
   const [playing, setPlaying] = useState(null);
   const [volume, setVolume] = useState(0.65);
-  const [queue, setQueue] = useState([1]);
+  const [queue, setQueue] = useState([]);
   const [notice, setNotice] = useState("");
   const audio = useRef(null),
     request = useRef(0);
@@ -59,7 +58,7 @@ export default function TheDen({ account }) {
     setPlaylist(null);
     setQuery("");
     setNotice("");
-    if (prefs["Sons de navigation"] === "Activés" && window.AudioContext) {
+    if (prefs["Navigation sounds"] === "On" && window.AudioContext) {
       const ctx = tone.current || (tone.current = new AudioContext());
       const osc = ctx.createOscillator(),
         gain = ctx.createGain();
@@ -85,18 +84,22 @@ export default function TheDen({ account }) {
     setAudioError("");
     setPlaying(i);
     setPreview(i);
-    if (audio.current.getAttribute("src") !== tracks[i].url) {
+    if (
+      audio.current.getAttribute("src") !== tracks[i].url ||
+      audio.current.error
+    ) {
       audio.current.src = tracks[i].url;
+      audio.current.load();
       setTime({ position: 0, duration: 0 });
     }
-    if (open) go("Lecture");
+    if (open) go("Now playing");
     try {
       await audio.current.play();
     } catch (error) {
       if (id === request.current && error.name !== "AbortError") {
         setAudible(false);
         setAudioError(
-          "Lecture impossible. Réessayer ou choisir un autre morceau.",
+          "Playback failed. Check your connection, then retry or choose another track.",
         );
       }
     }
@@ -106,13 +109,12 @@ export default function TheDen({ account }) {
       ? queue[0]
       : ((playing ?? preview) + 1) % tracks.length;
     setQueue((q) => q.slice(1));
-    start(i, !previewOpen);
+    start(i, false);
   };
   const add = () => {
-    setQueue((q) => [...q, preview]);
-    dialog.current.close();
-    if (!previewOpen) go("À suivre");
-    setNotice("Ajouté à la file");
+    setQueue((q) => (q.includes(preview) ? q : [...q, preview]));
+    if (!previewOpen && !dialog.current.open) go("Up next");
+    setNotice("Added to queue");
   };
   const menu = menuPages.includes(section);
   const dialog = useRef(null);
@@ -133,14 +135,14 @@ export default function TheDen({ account }) {
     return () => pane?.close();
   }, []);
   const play = () => {
-    start(preview, !previewOpen);
-    dialog.current.close();
+    if (playing === preview && audible) toggle();
+    else start(preview, false);
   };
   const playlistOrder = playlist?.tracks.map((id) =>
     tracks.findIndex((t) => t.id === id),
   );
   const order =
-    section === "À suivre" ? queue : playlistOrder || tracks.map((_, i) => i);
+    section === "Up next" ? queue : playlistOrder || tracks.map((_, i) => i);
   const results = order.filter((i) =>
     (tracks[i].title + " " + tracks[i].artist)
       .toLowerCase()
@@ -172,7 +174,7 @@ export default function TheDen({ account }) {
     <>
       <button className="return" ref={previewClose} onClick={closePreview}>
         <SolarIcon name="close-circle" />
-        <span>Retour aux morceaux</span>
+        <span>Back to tracks</span>
       </button>
       <div
         className="stage"
@@ -194,7 +196,7 @@ export default function TheDen({ account }) {
         }}
       >
         <img
-          className={"neighbor side" + preview}
+          className="neighbor side0"
           src={art[(preview + 1) % tracks.length]}
           alt=""
         />
@@ -210,16 +212,25 @@ export default function TheDen({ account }) {
         </figure>
       </div>
       <div className="transport">
-        <button aria-label="Morceau précédent" onClick={previous}>
+        <span className="sr-only" role="status">
+          {notice}
+        </span>
+        <button aria-label="Previous track" onClick={previous}>
           <SolarIcon name="skip-previous" />
         </button>
         <button onClick={play}>
-          <SolarIcon name="play" /> Écouter
+          <SolarIcon name={playing === preview && audible ? "pause" : "play"} />{" "}
+          {playing === preview && audible ? "Pause" : "Play"}
         </button>
-        <button onClick={add}>Ajouter à la file</button>
-        <button aria-label="Morceau suivant" onClick={next}>
+        <button onClick={add}>Add to queue</button>
+        <button aria-label="Next track" onClick={next}>
           <SolarIcon name="skip-next" />
         </button>
+        {audioError && (
+          <p className="preview-error" role="alert">
+            {audioError}
+          </p>
+        )}
       </div>
     </>
   );
@@ -228,8 +239,8 @@ export default function TheDen({ account }) {
       className="den"
       data-section={section}
       data-preview={previewOpen}
-      data-chrome={prefs["Intensité du chrome"]}
-      data-light={prefs.Rétroéclairage}
+      data-chrome={prefs["Chrome intensity"]}
+      data-light={prefs.Backlight}
     >
       <audio
         ref={audio}
@@ -251,12 +262,12 @@ export default function TheDen({ account }) {
         onError={() => {
           setAudible(false);
           setAudioError(
-            "Ce morceau est indisponible. Réessayer ou choisir un autre titre.",
+            "This audio file is unavailable. Retry or choose another track.",
           );
         }}
       />
       <aside className="rail">
-        <a href="/" aria-label="DIMENSION · Accueil">
+        <a href="/" aria-label="The Den · Home">
           <img
             className="logo"
             src="/brand/the-den-wordmark.png"
@@ -271,21 +282,17 @@ export default function TheDen({ account }) {
         >
           <summary>
             <SolarIcon name="user-circle" />
-            Compte <SolarIcon name="alt-arrow-down" />
+            Account
+            <SolarIcon name="alt-arrow-down" />
           </summary>
           <div>
-            <strong>{account?.name || "Bienvenue"}</strong>
-            <SpotifyAccountButton
-              connected={account?.connected}
-              enabled={account?.authConfigured}
-            />
-            <a href="/profil">
+            <a href="/account">
               <SolarIcon name="user-circle" />
-              Mon profil
+              Account
             </a>
-            <button onClick={() => go("Réglages")}>
+            <button onClick={() => go("Settings")}>
               <SolarIcon name="settings" />
-              Réglages
+              Settings
             </button>
             <button onClick={() => go("Extras")}>
               <SolarIcon name="widget" />
@@ -293,7 +300,7 @@ export default function TheDen({ account }) {
             </button>
           </div>
         </details>
-        <nav aria-label="Navigation principale">
+        <nav aria-label="Main navigation">
           {sections.map((name, i) => (
             <button
               key={name}
@@ -322,13 +329,9 @@ export default function TheDen({ account }) {
           ))}
         </nav>
         <footer>
-          <a href="/profil">
-            <SolarIcon name="user-circle" />
-            Profil
-          </a>
-          <button onClick={() => go("Réglages")}>
+          <button onClick={() => go("Settings")}>
             <SolarIcon name="settings" />
-            Réglages
+            Settings
           </button>
           <button onClick={() => go("Extras")}>
             <SolarIcon name="widget" />
@@ -339,25 +342,25 @@ export default function TheDen({ account }) {
       <main>
         <header>
           <h1>
-            {section === "Lecture"
+            {section === "Now playing"
               ? tracks[playing ?? preview].artist
               : section}
           </h1>
           <input
-            aria-label="Rechercher un morceau"
+            aria-label="Search tracks"
             type="search"
-            placeholder="Titre ou artiste"
+            placeholder="Title or artist"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
         </header>
-        {section === "Bibliothèque" && (
+        {section === "Library" && (
           <div
             className="library-switch"
             role="group"
-            aria-label="Parcourir la bibliothèque"
+            aria-label="Browse library"
           >
-            {["Playlists", "Artistes", "Morceaux"].map((tab) => (
+            {["Playlists", "Artists", "Tracks"].map((tab) => (
               <button
                 key={tab}
                 aria-pressed={libraryTab === tab}
@@ -371,8 +374,8 @@ export default function TheDen({ account }) {
             ))}
           </div>
         )}
-        {section === "Bibliothèque" && libraryTab === "Artistes" && !query && (
-          <section className="artist-list" aria-label="Artistes">
+        {section === "Library" && libraryTab === "Artists" && !query && (
+          <section className="artist-list" aria-label="Artists">
             {tracks
               .filter(
                 (item, i) =>
@@ -386,8 +389,8 @@ export default function TheDen({ account }) {
               ))}
           </section>
         )}
-        {(section === "Écouter" ||
-          (section === "Bibliothèque" && libraryTab === "Playlists")) &&
+        {(section === "Listen" ||
+          (section === "Library" && libraryTab === "Playlists")) &&
           !query && (
             <section className="collections" aria-label="Collections">
               {playlists.map((p) => (
@@ -404,7 +407,7 @@ export default function TheDen({ account }) {
                     style={{ objectPosition: p.imagePosition }}
                   />
                   <strong>{p.title}</strong>
-                  <small>{p.tracks.length} morceaux</small>
+                  <small>{p.tracks.length} tracks</small>
                 </button>
               ))}{" "}
             </section>
@@ -417,7 +420,7 @@ export default function TheDen({ account }) {
               style={{ objectPosition: playlist.imagePosition }}
             />
             <div>
-              <span>{playlist.tracks.length} morceaux</span>
+              <span>{playlist.tracks.length} tracks</span>
               <button
                 onClick={() => {
                   setQueue(playlistOrder.slice(1));
@@ -425,7 +428,7 @@ export default function TheDen({ account }) {
                 }}
               >
                 <SolarIcon name="play" />
-                Écouter la playlist
+                Play playlist
               </button>
             </div>
           </section>
@@ -438,36 +441,42 @@ export default function TheDen({ account }) {
             volume={volume}
             select={select}
           />
-        ) : section === "Lecture" ? (
+        ) : section === "Now playing" ? (
           <section className="now-playing">
             <img src={tracks[playing ?? preview].visual} alt="" />
             <div>
               <h2>{tracks[playing ?? preview].title}</h2>
-              <button onClick={toggle}>
-                {audible ? "Pause" : "Reprendre"}
-              </button>
-              <button onClick={advance}>Suivant ›</button>
+              <button onClick={toggle}>{audible ? "Pause" : "Resume"}</button>
+              <button onClick={advance}>Next ›</button>
               <button onClick={() => go("Volume")}>Volume</button>
               <p>
-                <button onClick={() => go("Écouter")}>‹ Écouter</button>
-                <button onClick={() => go("À suivre")}>À suivre ›</button>
+                <button onClick={() => go("Listen")}>‹ Listen</button>
+                <button onClick={() => go("Up next")}>Up next ›</button>
               </p>
             </div>
           </section>
         ) : (
           <section
-            hidden={
-              section === "Bibliothèque" && libraryTab !== "Morceaux" && !query
-            }
-            aria-label="Liste des morceaux"
+            hidden={section === "Library" && libraryTab !== "Tracks" && !query}
+            aria-label="Track list"
           >
             {notice && <p role="status">{notice}</p>}
-            <h2>{section === "À suivre" ? "File de lecture" : "Morceaux"}</h2>
+            <h2>{section === "Up next" ? "Playback queue" : "Tracks"}</h2>
             {results.map((i, position) => (
               <button
                 className="track"
                 key={position}
-                onClick={() => openTrack(i)}
+                onClick={() => {
+                  openTrack(i);
+                  setQueue((q) =>
+                    section === "Up next"
+                      ? q.slice(position + 1)
+                      : q.filter((n) => n !== i),
+                  );
+                  if (playing === i && audible) toggle();
+                  else start(i, false);
+                }}
+                aria-current={playing === i ? "true" : undefined}
               >
                 <img src={tracks[i].art} alt="" />
                 <span>
@@ -476,14 +485,14 @@ export default function TheDen({ account }) {
                 </span>
                 <span className="track-end">
                   {playing === i && audible ? (
-                    "En lecture"
+                    "Playing"
                   ) : (
                     <span aria-hidden="true">···</span>
                   )}
                 </span>
               </button>
             ))}
-            {!results.length && <p role="status">Aucun morceau trouvé.</p>}
+            {!results.length && <p role="status">No tracks found.</p>}
           </section>
         )}
       </main>
@@ -491,7 +500,7 @@ export default function TheDen({ account }) {
         <div className="audio-error" role="alert">
           {audioError}
           <button onClick={() => start(playing ?? preview, false)}>
-            Réessayer
+            Retry
           </button>
         </div>
       )}
@@ -506,7 +515,7 @@ export default function TheDen({ account }) {
         }
         onNext={() => (playing === null ? next() : advance())}
         onOpen={() => openTrack(playing ?? preview)}
-        onQueue={() => go("À suivre")}
+        onQueue={() => go("Up next")}
         volume={volume}
         onVolumeChange={(e) => setVolume(Number(e.target.value))}
         position={time.position}
@@ -516,13 +525,13 @@ export default function TheDen({ account }) {
           setTime((t) => ({ ...t, position: Number(e.target.value) }));
         }}
       />{" "}
-      <dialog ref={dialog} aria-label="Fiche du morceau" className="record">
+      <dialog ref={dialog} aria-label="Track preview" className="record">
         {previewContent}
       </dialog>
       {previewOpen && (
         <aside
           className="track-preview"
-          aria-label="Fiche du morceau"
+          aria-label="Track preview"
           onKeyDown={(e) => {
             if (e.key === "Escape") {
               e.preventDefault();
@@ -532,22 +541,6 @@ export default function TheDen({ account }) {
           }}
         >
           {previewContent}
-          {notice && <p role="status">{notice}</p>}
-          <section className="preview-note">
-            <h3>À propos du morceau</h3>
-            <p>{track.artist}</p>
-            <a href={track.sourceUrl} target="_blank" rel="noreferrer">
-              Source · Incompetech
-            </a>
-            <a href={track.licenseUrl} target="_blank" rel="noreferrer">
-              {track.license}
-            </a>
-          </section>
-          <section className="preview-note">
-            <h3>À suivre</h3>
-            <p>{tracks[queue[0] ?? (preview + 1) % tracks.length].title}</p>
-            <button onClick={() => go("À suivre")}>Voir la file</button>
-          </section>
         </aside>
       )}
     </div>

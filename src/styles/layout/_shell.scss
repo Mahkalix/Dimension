@@ -106,7 +106,7 @@
   min-height: 44px;
 }
 
-.den[data-section="Écouter"] header input {
+.den[data-section="Listen"] header input {
   display: none;
 }
 
@@ -115,7 +115,7 @@
 }
 
 @media (min-width: #{bp.$tablet-min}) and (max-width: #{bp.$desktop-max}) {
-  .den[data-section="Écouter"] section[aria-label="Liste des morceaux"] h2 {
+  .den[data-section="Listen"] section[aria-label="Track list"] h2 {
     display: none;
   }
   .den h1 {
@@ -124,16 +124,16 @@
 }
 
 @media (min-width: #{bp.$wide-min}) {
-  .den[data-section="Écouter"] header input {
+  .den[data-section="Listen"] header input {
     display: block;
   }
 }
 
-.den[data-light="Bas"] {
+.den[data-light="Low"] {
   --paper: #dbdbd8;
 }
 
-.den[data-light="Haut"] {
+.den[data-light="High"] {
   --paper: #fafaf8;
 }
 
@@ -141,7 +141,7 @@
   background: var(--paper);
 }
 
-.den:not([data-section="Recherche"]):not([data-section="Bibliothèque"])
+.den:not([data-section="Search"]):not([data-section="Library"])
   header
   input {
   display: none;
@@ -157,7 +157,7 @@
   .den main {
     padding: 32px clamp(24px, 4vw, 72px) 260px;
   }
-  .den[data-section="Écouter"] section[aria-label="Liste des morceaux"] h2 {
+  .den[data-section="Listen"] section[aria-label="Track list"] h2 {
     display: block;
   }
   .den {

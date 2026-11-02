@@ -1,13 +1,8 @@
 import IntroEntry from "./IntroEntry";
 import styles from "./opening.module.scss";
 const errors = {
-  config: "Authentification non configurée.",
-  auth: "Échec de la connexion.",
-  session: "Session expirée. Reconnectez-vous avec Spotify.",
-  state: "Demande Spotify expirée ou invalide.",
-  consent: "Autorisation Spotify annulée.",
-  spotify: "Impossible de récupérer votre profil Spotify.",
-  "spotify-config": "Connexion Spotify non configurée.",
+  auth: "Sign-in failed. Please try again.",
+  session: "Your session expired. Please sign in again.",
 };
 export const dynamic = "force-dynamic";
 export default async function Opening({ searchParams }) {
@@ -19,7 +14,7 @@ export default async function Opening({ searchParams }) {
           <a
             className={styles.signature}
             href="/player"
-            aria-label="Entrer dans The Den"
+            aria-label="Open The Den"
           >
             <img
               className={styles.house}
@@ -28,7 +23,6 @@ export default async function Opening({ searchParams }) {
               width="463"
               height="408"
             />
-            <span className={styles.steam} aria-hidden="true" />
           </a>
           <h1 className={styles.wordmark}>
             <img
@@ -45,13 +39,13 @@ export default async function Opening({ searchParams }) {
         href="https://github.com/mahkalix"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="@mahkalix sur GitHub (nouvel onglet)"
+        aria-label="@mahkalix on GitHub (opens a new tab)"
       >
         @mahkalix
       </a>
       {error && (
         <p role="alert">
-          {error} <a href="/profil">Profil</a>
+          {error} <a href="/login">Sign in</a>
         </p>
       )}
     </main>
