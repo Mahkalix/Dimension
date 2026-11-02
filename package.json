@@ -10,12 +10,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "@auth0/nextjs-auth0": "^4.33.0",
     "@fontsource-variable/archivo": "^5.2.6",
     "@fontsource-variable/montserrat": "^5.2.6",
     "@fontsource-variable/unbounded": "^5.2.6",
     "@vitejs/plugin-react": "^4.3.4",
     "next": "^15.5.28",
+    "next-auth": "^4.24.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zustand": "^5.0.2"

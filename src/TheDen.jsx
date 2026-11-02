@@ -1,4 +1,5 @@
 "use client";
+import SpotifyAccountButton from "./components/SpotifyAccountButton";
 import SolarIcon from "./components/SolarIcon";
 
 import PlayerBar from "./components/PlayerBar";
@@ -98,7 +99,9 @@ export default function TheDen({ account }) {
     }
   };
   const advance = () => {
-    const i = queue.length ? queue[0] : 1 - (playing ?? preview);
+    const i = queue.length
+      ? queue[0]
+      : ((playing ?? preview) + 1) % tracks.length;
     setQueue((q) => q.slice(1));
     start(i, !previewOpen);
   };
@@ -112,6 +115,8 @@ export default function TheDen({ account }) {
   const dialog = useRef(null);
   const touch = useRef(null);
   const track = tracks[preview];
+  const previous = () =>
+    setPreview((i) => (i - 1 + tracks.length) % tracks.length);
   const next = () => setPreview((i) => (i + 1) % tracks.length);
   const openTrack = (i) => {
     setPreview(i);
@@ -128,7 +133,7 @@ export default function TheDen({ account }) {
     start(preview, !previewOpen);
     dialog.current.close();
   };
-  const order = section === "À suivre" ? queue : [0, 1];
+  const order = section === "À suivre" ? queue : tracks.map((_, i) => i);
   const results = order.filter((i) =>
     (tracks[i].title + " " + tracks[i].artist)
       .toLowerCase()
@@ -175,20 +180,20 @@ export default function TheDen({ account }) {
           const dx = e.changedTouches[0].clientX - touch.current[0],
             dy = e.changedTouches[0].clientY - touch.current[1];
           touch.current = null;
-          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) next();
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+            if (dx > 0) previous();
+            else next();
+          }
         }}
       >
         <img
           className={"neighbor side" + preview}
-          src={art[1 - preview]}
+          src={art[(preview + 1) % tracks.length]}
           alt=""
         />
         <figure>
           <picture>
-            <source
-              media="(min-width:701px)"
-              srcSet={"/den-track-" + preview + ".png"}
-            />
+            <source media="(min-width:701px)" srcSet={track.visual} />
             <img src={art[preview]} alt="" />
           </picture>
           <figcaption aria-live="polite">
@@ -198,7 +203,7 @@ export default function TheDen({ account }) {
         </figure>
       </div>
       <div className="transport">
-        <button aria-label="Morceau précédent" onClick={next}>
+        <button aria-label="Morceau précédent" onClick={previous}>
           <SolarIcon name="skip-previous" />
         </button>
         <button onClick={play}>
@@ -263,33 +268,10 @@ export default function TheDen({ account }) {
           </summary>
           <div>
             <strong>{account?.name || "Bienvenue"}</strong>
-            {account?.connected ? (
-              <a href="/auth/logout">
-                <SolarIcon name="logout-2" />
-                Se déconnecter
-              </a>
-            ) : (
-              <a href="/auth/login?returnTo=/player">
-                <SolarIcon name="login-2" />
-                Se connecter
-              </a>
-            )}
-            {account?.spotify ? (
-              <>
-                <span>Spotify · {account.spotify.name}</span>
-                <form method="post" action="/api/spotify/disconnect">
-                  <button>
-                    <SolarIcon name="link-minimalistic-2" />
-                    Dissocier Spotify
-                  </button>
-                </form>
-              </>
-            ) : (
-              <a href="/api/spotify/connect">
-                <img className="solar-icon" src="/spotify.svg" alt="" />
-                Connecter mon Spotify
-              </a>
-            )}
+            <SpotifyAccountButton
+              connected={account?.connected}
+              enabled={account?.authConfigured}
+            />
             <a href="/profil">
               <SolarIcon name="user-circle" />
               Mon profil
@@ -384,12 +366,17 @@ export default function TheDen({ account }) {
         )}
         {section === "Bibliothèque" && libraryTab === "Artistes" && !query && (
           <section className="artist-list" aria-label="Artistes">
-            {tracks.map((item, i) => (
-              <button key={item.id} onClick={() => setQuery(item.artist)}>
-                <img src={"/den-track-" + i + ".png"} alt="" />
-                <strong>{item.artist}</strong>
-              </button>
-            ))}
+            {tracks
+              .filter(
+                (item, i) =>
+                  tracks.findIndex((t) => t.artist === item.artist) === i,
+              )
+              .map((item) => (
+                <button key={item.id} onClick={() => setQuery(item.artist)}>
+                  <img src={item.visual} alt="" />
+                  <strong>{item.artist}</strong>
+                </button>
+              ))}
           </section>
         )}
         {(section === "Écouter" ||
@@ -404,9 +391,11 @@ export default function TheDen({ account }) {
                   key={title}
                   onClick={() => (i ? openTrack(i) : go("Après le service"))}
                 >
-                  <img src={"/den-" + i + ".svg"} alt="" />
+                  <img src={tracks[i].art} alt="" />
                   <strong>{title}</strong>
-                  <small>{i ? tracks[1].artist : "2 morceaux"}</small>
+                  <small>
+                    {i ? tracks[1].artist : tracks.length + " morceaux"}
+                  </small>
                 </button>
               ))}
             </section>
@@ -421,7 +410,7 @@ export default function TheDen({ account }) {
           />
         ) : section === "Lecture" ? (
           <section className="now-playing">
-            <img src={"/den-track-" + (playing ?? preview) + ".png"} alt="" />
+            <img src={tracks[playing ?? preview].visual} alt="" />
             <div>
               <h2>{tracks[playing ?? preview].title}</h2>
               <button onClick={toggle}>
@@ -450,7 +439,7 @@ export default function TheDen({ account }) {
                 key={position}
                 onClick={() => openTrack(i)}
               >
-                <img src={"/den-" + i + ".svg"} alt="" />
+                <img src={tracks[i].art} alt="" />
                 <span>
                   <b>{tracks[i].title}</b>
                   <small>{tracks[i].artist}</small>
@@ -478,11 +467,12 @@ export default function TheDen({ account }) {
       )}
       <PlayerBar
         track={tracks[playing ?? preview]}
-        index={playing ?? preview}
         playing={audible}
         onToggle={toggle}
         onPrevious={() =>
-          playing === null ? next() : start(1 - playing, false)
+          playing === null
+            ? previous()
+            : start((playing - 1 + tracks.length) % tracks.length, false)
         }
         onNext={() => (playing === null ? next() : advance())}
         onOpen={() => openTrack(playing ?? preview)}
@@ -525,7 +515,7 @@ export default function TheDen({ account }) {
           </section>
           <section className="preview-note">
             <h3>À suivre</h3>
-            <p>{tracks[queue[0] ?? 1 - preview].title}</p>
+            <p>{tracks[queue[0] ?? (preview + 1) % tracks.length].title}</p>
             <button onClick={() => go("À suivre")}>Voir la file</button>
           </section>
         </aside>

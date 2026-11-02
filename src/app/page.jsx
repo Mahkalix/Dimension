@@ -2,8 +2,8 @@ import IntroEntry from "./IntroEntry";
 import styles from "./opening.module.scss";
 const errors = {
   config: "Authentification non configurée.",
-  auth: "Échec de la connexion Auth0.",
-  session: "Session expirée. Reconnectez-vous.",
+  auth: "Échec de la connexion.",
+  session: "Session expirée. Reconnectez-vous avec Spotify.",
   state: "Demande Spotify expirée ou invalide.",
   consent: "Autorisation Spotify annulée.",
   spotify: "Impossible de récupérer votre profil Spotify.",

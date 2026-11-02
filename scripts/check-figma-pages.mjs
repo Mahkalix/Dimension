@@ -17,25 +17,30 @@ try {
         .waitFor();
       assert.equal(await p.locator("dialog").evaluate((n) => n.open), false);
       await p.getByRole("heading", { name: "Après le service" }).waitFor();
-      const panel=await p.locator(".track-preview").boundingBox();
-      const dock=await p.locator(".paper-player").boundingBox();
-      assert.ok(dock.x+dock.width<=panel.x,"Player must not cover the side panel");
-      await p.setViewportSize({width:390,height:844});
-      await p.waitForFunction(()=>document.querySelector("dialog").open);
-      await p.setViewportSize({width:1280,height:720});
-      await p.getByRole("complementary",{name:"Fiche du morceau"}).waitFor();
-      await p.screenshot({path:"docs/screens/fiche-laterale.png"});
+      const panel = await p.locator(".track-preview").boundingBox();
+      const dock = await p.locator(".paper-player").boundingBox();
+      assert.ok(
+        dock.x + dock.width <= panel.x,
+        "Player must not cover the side panel",
+      );
+      await p.setViewportSize({ width: 390, height: 844 });
+      await p.waitForFunction(() => document.querySelector("dialog").open);
+      await p.setViewportSize({ width: 1280, height: 720 });
+      await p
+        .getByRole("complementary", { name: "Fiche du morceau" })
+        .waitFor();
+      await p.screenshot({ path: "docs/screens/fiche-laterale.png" });
       await p.keyboard.press("Escape");
       assert.equal(await p.locator(".track-preview").count(), 0);
       await p.locator(".track").last().press("Enter");
     }
     await button("Ajouter à la file").click();
-    assert.equal(await p.locator(".track").count(), 2);
+    assert.equal(await p.locator(".track").count(), width === 390 ? 2 : 7);
     if (width > 700) await p.keyboard.press("Escape");
     if (width === 390) await p.locator(".account-menu summary").click();
     await button("Extras").click();
     await p.locator(".menu-row").first().click();
-    assert.equal(await p.locator(".menu-row").count(), 2);
+    assert.equal(await p.locator(".menu-row").count(), 7);
     if (width === 390) await p.locator(".account-menu summary").click();
     await button("Réglages").click();
     await p.locator(".menu-row").first().click();
@@ -71,4 +76,3 @@ try {
 } finally {
   await browser.close();
 }
-

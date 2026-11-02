@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import { chromium } from "playwright-core";
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 try {
@@ -21,34 +22,33 @@ try {
       const nav = await p.locator(".rail nav").boundingBox();
       assert.ok(nav.width >= 200);
     }
-    if(viewport.width>700){
-      for(const width of [1280,1440]){
-        await p.setViewportSize({width,height:720});
-        const rows=await p.locator(".rail nav button").all();
-        assert.equal(rows.length,4);
-        for(let i=1;i<rows.length;i++){
-          const prev=await rows[i-1].boundingBox(),next=await rows[i].boundingBox();
-          assert.ok(next.y-prev.y-prev.height<=8,"Navigation rows must stay grouped");
+    if (viewport.width > 700) {
+      for (const width of [1280, 1440]) {
+        await p.setViewportSize({ width, height: 720 });
+        const rows = await p.locator(".rail nav button").all();
+        assert.equal(rows.length, 4);
+        for (let i = 1; i < rows.length; i++) {
+          const prev = await rows[i - 1].boundingBox(),
+            next = await rows[i].boundingBox();
+          assert.ok(
+            next.y - prev.y - prev.height <= 8,
+            "Navigation rows must stay grouped",
+          );
         }
         assert.ok(!(await p.locator(".rail footer").innerText()).includes("·"));
-        const footer=await p.locator(".rail footer").boundingBox();
-        assert.ok(footer.y+footer.height<=720);
+        const footer = await p.locator(".rail footer").boundingBox();
+        assert.ok(footer.y + footer.height <= 720);
       }
       await p.setViewportSize(viewport);
-    }    await p.locator(".account-menu summary").click();
-    assert.match(
-      await p
-        .getByRole("link", { name: "Se connecter", exact: true })
-        .getAttribute("href"),
-      /^\/auth\/login/,
-    );
-    assert.equal(
-      await p
-        .getByRole("link", { name: "Connecter mon Spotify" })
-        .getAttribute("href"),
-      "/api/spotify/connect",
-    );
+    }
     await p.locator(".account-menu summary").click();
+    await p.getByRole("button", { name: "Continuer avec Spotify" }).waitFor();
+    await p.getByRole("link", { name: "Mon profil", exact: true }).click();
+    await p.getByRole("heading", { name: "Mon profil" }).waitFor();
+    await p.getByRole("button", { name: "Continuer avec Spotify" }).click();
+    await p.getByRole("alert").filter({hasText:"configuration"}).waitFor();
+    await p.getByRole("link", { name: "Retour à la musique" }).click();
+    assert.equal(await p.locator(".track").count(), 7);
     await p
       .locator(".paper-player")
       .getByRole("button", { name: "Lecture", exact: true })
@@ -57,6 +57,18 @@ try {
       const a = document.querySelector("audio");
       return !a.paused && a.currentTime > 0 && a.duration > 30;
     });
+    if (viewport.width === 1280) {
+      const tracks = JSON.parse(fs.readFileSync(new URL("../src/data/selection.json", import.meta.url)));
+      for (const track of tracks) {
+        const duration = await p.evaluate(url => new Promise((resolve, reject) => {
+          const audio = new Audio();
+          audio.onloadedmetadata = () => { const duration = audio.duration; audio.removeAttribute("src"); audio.load(); resolve(duration); };
+          audio.onerror = () => reject(new Error("Audio indisponible"));
+          audio.src = url;
+        }), track.url);
+        assert.ok(duration > 30, track.title);
+      }
+    }
     await p.locator(".paper-volume summary").click();
     await p.getByRole("slider", { name: "Volume", exact: true }).fill("0.35");
     assert.equal(await p.locator("audio").evaluate((a) => a.volume), 0.35);

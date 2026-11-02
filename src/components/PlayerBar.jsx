@@ -35,7 +35,7 @@ export default function PlayerBar({
         </button>
       </div>
       <button className="paper-track" onClick={onOpen}>
-        <img src={"/den-" + index + ".svg"} alt="" />
+        <img src={track.art} alt="" />
         <span>
           <b>{track.title}</b>
           <small>{track.artist}</small>

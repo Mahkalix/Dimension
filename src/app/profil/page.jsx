@@ -1,35 +1,46 @@
 import SolarIcon from "../../components/SolarIcon";
-import { auth } from "../../lib/identity";
+import SpotifyAccountButton from "../../components/SpotifyAccountButton";
+import { getSession, configured } from "../../lib/identity";
 import styles from "../opening.module.scss";
-export default async function Profile() {
-  const s = await auth?.getSession();
+export const dynamic = "force-dynamic";
+export default async function Profile({ searchParams }) {
+  const session = await getSession(),
+    u = session?.user,
+    { error } = await searchParams;
   return (
     <main className={styles.frame}>
       <section className={styles.sheet}>
-        <h1>Profil</h1>
-        <strong>{s?.user.name || s?.user.email || "Déconnecté"}</strong>
-        {s?.spotify ? (
+        <h1>Mon profil</h1>
+        {u ? (
           <>
             <img
-              width="72"
-              src={s.spotify.avatar || "/brand/dimension-180.png"}
+              src={u.image || "/brand/house-180.png"}
+              width="80"
+              height="80"
               alt=""
             />
-            <b>{s.spotify.name}</b>
-            <span>{s.spotify.id}</span>
-            <form method="post" action="/api/spotify/disconnect">
-              <button><SolarIcon name="link-minimalistic-2"/>Dissocier Spotify</button>
-            </form>
+            <strong>{u.name || u.id}</strong>
+            <span>Spotify · {u.id}</span>
           </>
         ) : (
-          <a href="/api/spotify/connect"><img className="solar-icon" src="/spotify.svg" alt=""/>Connecter Spotify</a>
+          <>
+            <p>Votre compte Spotify suffit pour rejoindre The Den.</p>
+            <p>La sélection musicale est accessible sans compte.</p>
+          </>
         )}
-        <a href={s ? "/auth/logout" : "/auth/login"}><SolarIcon name={s?"logout-2":"login-2"}/>{s ? "Se déconnecter" : "Se connecter"}</a>
-        <a href="/player"><SolarIcon name="arrow-left"/>Retour au lecteur</a>
+        <SpotifyAccountButton connected={Boolean(u)} enabled={configured} />
+        {error && (
+          <p role="alert">
+            {error === "Configuration"
+              ? "La connexion Spotify est en cours de configuration. Vous pouvez écouter sans compte."
+              : "La connexion Spotify a échoué ou a été annulée. Réessayez."}
+          </p>
+        )}
+        <a href="/player">
+          <SolarIcon name="arrow-left" />
+          Retour à la musique
+        </a>
       </section>
     </main>
   );
 }
-export const dynamic = "force-dynamic";
-
-

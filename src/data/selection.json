@@ -1,4 +1,79 @@
 [
- {"id":"local-forecast","title":"Local Forecast - Elevator","artist":"Kevin MacLeod","url":"/music/den/local-forecast.mp3","art":"/den-0.svg","visual":"/den-track-0.png","sourceUrl":"https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300012","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/"},
- {"id":"carefree","title":"Carefree","artist":"Kevin MacLeod","url":"/music/den/carefree.mp3","art":"/den-1.svg","visual":"/den-track-1.png","sourceUrl":"https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400037","license":"CC BY 4.0","licenseUrl":"https://creativecommons.org/licenses/by/4.0/"}
+  {
+    "id": "local-forecast",
+    "title": "Local Forecast - Elevator",
+    "artist": "Kevin MacLeod",
+    "url": "/music/den/local-forecast.mp3",
+    "art": "/den-0.svg",
+    "visual": "/den-track-0.png",
+    "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300012",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "id": "carefree",
+    "title": "Carefree",
+    "artist": "Kevin MacLeod",
+    "url": "/music/den/carefree.mp3",
+    "art": "/den-1.svg",
+    "visual": "/den-track-1.png",
+    "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400037",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "id": "bossa-antigua",
+    "title": "Bossa Antigua",
+    "artist": "Kevin MacLeod",
+    "url": "/music/den/bossa-antigua.mp3",
+    "art": "/den-0.svg",
+    "visual": "/den-track-0.png",
+    "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700069",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "id": "george-street-shuffle",
+    "title": "George Street Shuffle",
+    "artist": "Kevin MacLeod",
+    "url": "/music/den/george-street-shuffle.mp3",
+    "art": "/den-1.svg",
+    "visual": "/den-track-1.png",
+    "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300035",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "id": "night-on-the-docks---sax",
+    "title": "Night on the Docks - Sax",
+    "artist": "Kevin MacLeod",
+    "url": "/music/den/night-on-the-docks---sax.mp3",
+    "art": "/den-0.svg",
+    "visual": "/den-track-0.png",
+    "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100137",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "id": "airport-lounge",
+    "title": "Airport Lounge",
+    "artist": "Kevin MacLeod",
+    "url": "/music/den/airport-lounge.mp3",
+    "art": "/den-1.svg",
+    "visual": "/den-track-1.png",
+    "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100806",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "id": "tea-roots",
+    "title": "Tea Roots",
+    "artist": "Kevin MacLeod",
+    "url": "/music/den/tea-roots.mp3",
+    "art": "/den-0.svg",
+    "visual": "/den-track-0.png",
+    "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100472",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+  }
 ]
