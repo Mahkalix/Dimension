@@ -8,13 +8,24 @@ try {
     });
     await p.goto(process.env.TEST_URL + "/player");
     const button = (name) => p.getByRole("button", { name, exact: true });
-    assert.equal(await p.locator(".collections button").count(),3);
-    for(const [title,count] of [["Pendant le service",3],["La plonge",4],["Après le service",3]]){
-      await p.getByRole("button",{name:new RegExp(title)}).click();
-      await p.getByRole("heading",{name:title,exact:true}).waitFor();
-      assert.equal(await p.locator(".track").count(),count);
-      await p.waitForFunction(()=>{const i=document.querySelector(".playlist-hero img");return i.complete&&i.naturalWidth>0});
-      await p.screenshot({path:"docs/screens/playlists-"+width+".png"});
+    assert.equal(await p.locator(".collections button").count(), 7);
+    for (const [title, count] of [
+      ["Pendant le service", 3],
+      ["La plonge", 4],
+      ["Après le service", 3],
+      ["Money Money", 3],
+      ["Happiness", 3],
+      ["Friendship", 3],
+      ["Chaos", 3],
+    ]) {
+      await p.getByRole("button", { name: new RegExp(title) }).click();
+      await p.getByRole("heading", { name: title, exact: true }).waitFor();
+      assert.equal(await p.locator(".track").count(), count);
+      await p.waitForFunction(() => {
+        const i = document.querySelector(".playlist-hero img");
+        return i.complete && i.naturalWidth > 0;
+      });
+      await p.screenshot({ path: "docs/screens/playlists-" + width + ".png" });
       await button("Écouter").click();
     }
     await p.locator(".collections button").first().click();
@@ -49,7 +60,7 @@ try {
     if (width === 390) await p.locator(".account-menu summary").click();
     await button("Extras").click();
     await p.locator(".menu-row").first().click();
-    assert.equal(await p.locator(".menu-row").count(), 10);
+    assert.equal(await p.locator(".menu-row").count(), 14);
     if (width === 390) await p.locator(".account-menu summary").click();
     await button("Réglages").click();
     await p.locator(".menu-row").first().click();
@@ -85,8 +96,3 @@ try {
 } finally {
   await browser.close();
 }
-
-
-
-
-

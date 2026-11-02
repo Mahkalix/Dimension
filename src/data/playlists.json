@@ -13,10 +13,10 @@
     "id": "service",
     "title": "Pendant le service",
     "cover": "/images/playlists/service.jpg",
-    "imagePosition": "40% 50%",
-    "alt": "Carmy et Richie au passe pendant la préparation du service, dans The Bear.",
-    "sourceUrl": "https://thewaltdisneycompany.com/news/disney-2025-golden-globe-awards/",
-    "credit": "The Bear · FX, photo publiée par The Walt Disney Company",
+    "imagePosition": "45% 50%",
+    "alt": "Carmy en plein coup de feu devant les fourneaux dans The Bear.",
+    "sourceUrl": null,
+    "credit": "The Bear · FX, visuel fourni pour The Den",
     "tracks": ["george-street-shuffle", "local-forecast", "carefree"]
   },
   {
@@ -33,5 +33,45 @@
       "george-street-shuffle",
       "local-forecast"
     ]
+  },
+  {
+    "id": "money-money",
+    "title": "Money Money",
+    "cover": "/images/playlists/money-money.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "L’équipe de The Bear réunie avec des boîtes de tomates.",
+    "tracks": ["george-street-shuffle", "local-forecast", "tea-roots"],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, visuel fourni pour The Den"
+  },
+  {
+    "id": "happiness",
+    "title": "Happiness",
+    "cover": "/images/playlists/happiness.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "L’équipe de The Bear réunie dans la cuisine.",
+    "tracks": ["carefree", "bossa-antigua", "airport-lounge"],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, visuel fourni pour The Den"
+  },
+  {
+    "id": "friendship",
+    "title": "Friendship",
+    "cover": "/images/playlists/friendship.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "Sydney et Carmy échangent ensemble autour d’une table.",
+    "tracks": ["bossa-antigua", "airport-lounge", "night-on-the-docks---sax"],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, visuel fourni pour The Den"
+  },
+  {
+    "id": "chaos",
+    "title": "Chaos",
+    "cover": "/images/playlists/chaos.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "Carmy face aux flammes des fourneaux dans The Bear.",
+    "tracks": ["george-street-shuffle", "tea-roots", "local-forecast"],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, visuel fourni pour The Den"
   }
 ]

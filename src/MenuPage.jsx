@@ -59,17 +59,21 @@ export function MenuPage({ page, go, prefs, volume, select }) {
         ))}
         <h2>Photos des playlists</h2>
         {playlists.map((p) => (
-          <a
-            className="menu-row"
-            href={p.sourceUrl}
-            target="_blank"
-            rel="noreferrer"
-            key={p.id}
-          >
+          <div className="menu-row" key={p.id}>
             <b>{p.title}</b>
-            <span>{p.credit}</span>
-          </a>
-        ))}
+            <span>
+              {p.credit}
+              {p.sourceUrl && (
+                <>
+                  <br />
+                  <a href={p.sourceUrl} target="_blank" rel="noreferrer">
+                    Source
+                  </a>
+                </>
+              )}
+            </span>
+          </div>
+        ))}{" "}
       </>
     );
   else if (page === "Source")
