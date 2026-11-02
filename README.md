@@ -1,25 +1,20 @@
 # The Den
 
-Imaginons Carmy, seul dans la cuisine de *The Bear*. Une marmite chauffe déjà. Sur le plan de travail, son carnet est ouvert à la page de la veille. Dans la marge, entre deux quantités, il a griffonné le nom d’un disque. Il lui reste quelques minutes avant que les autres arrivent. Il s’essuie les mains sur son tablier, retrouve le morceau et appuie sur lecture. À quoi ressemble le lecteur qu’il vient de toucher ?
+*Le lecteur musical que Carmy aurait dans sa cuisine dans **The Bear**.*
 
-The Den est né de cette question. J’ai imaginé un objet qui aurait sa place à côté de son carnet. L’interface reprend le grain du papier et des nuances de gris. La petite maison qui sert d’emblème, on pourrait la retrouver dessinée au crayon dans un coin de page. En ouvrant la bibliothèque, tu prends la place de Carmy pour un geste très simple : à toi de choisir le morceau qu’entendra la première personne à pousser la porte.
+La clé tourne dans la porte de service. Carmy pose son carnet près de la balance, met une casserole d’eau sur le feu et commence à éplucher un oignon. Au bout de deux coups de couteau, il s’arrête. Il manque quelque chose. Il s’essuie un doigt sur son tablier et lance *Embrace*. Cette fois, il peut commencer.
 
-## Liens du projet
+J’ai imaginé The Den en partant de ce geste. Si Carmy gardait un lecteur à portée de main, à côté de ses recettes, à quoi ressemblerait-il ? J’aimais l’idée d’un objet assez personnel pour qu’on lui reconnaisse un propriétaire. Le grain du papier vient de son carnet. La petite maison qui signe le projet pourrait être un dessin oublié dans la marge.
 
-- [Dépôt GitHub](https://github.com/Mahkalix/THEDEN)
-- [Projet Vercel](https://vercel.com/mahkalixs-projects/theden) — tableau de bord des déploiements, accessible aux membres du projet.
+### Sur la platine
 
-## Technologies
+*Embrace*, *Good Night*, *Lofi Study*… Chaque piste a sa carte et sa boucle animée. Choisis un morceau, lance la lecture et règle le volume. Dans la cuisine que j’imagine, Carmy le baisse juste assez pour entendre l’eau frémir derrière lui.
 
-- React 18 et Create React App (`react-scripts` 5)
-- React Router 6
-- Auth0 pour l’authentification
-- Sass pour les styles
-- Axios et React Audio Player
+---
 
-## Démarrage local
+## Lancer le lecteur chez soi
 
-Installer Node.js et npm, puis exécuter :
+Avec Node.js et npm installés, ouvre un terminal et lance ces commandes.
 
 ```bash
 git clone https://github.com/Mahkalix/THEDEN.git
@@ -28,28 +23,18 @@ npm install
 npm start
 ```
 
-L’application est disponible sur [localhost:3000](http://localhost:3000).
+Ouvre le lecteur sur [localhost au port 3000](http://localhost:3000).
 
-L’intégration Auth0 est configurée dans `src/index.js`. Pour utiliser votre propre tenant, adapter son domaine et son identifiant client, ainsi que les URL autorisées dans Auth0. L’URL de retour utilisée par l’application correspond à son origine (`window.location.origin`).
+## Côté code
 
-## Commandes
+Le lecteur utilise React 18 et l’audio natif du navigateur. Pour suivre le trajet d’un morceau, pars de [son entrée dans le catalogue](src/data/datamusic.json), puis ouvre [le composant qui pilote la lecture](src/components/musicplayer.jsx).
 
-| Commande | Description |
+| Pour… | Où regarder |
 | --- | --- |
-| `npm start` | Démarrer le serveur de développement. |
-| `npm test` | Lancer les tests en mode interactif. |
-| `npm run build` | Générer la version de production dans `build/`. |
+| Retrouver les fichiers audio et les animations | [Morceaux](public/music) · [GIF](public/gif) |
+| Parcourir les deux écrans | [Routes React Router](src/router/router.jsx) |
+| Adapter la connexion Auth0 | [Configuration](src/index.js) |
 
-## Organisation
+Pour utiliser ton propre tenant Auth0, configure son domaine et son identifiant client. Autorise aussi l’origine de l’application dans Auth0. En local, le retour de connexion utilise `http://localhost:3000`.
 
-- `src/App.js` : structure générale de l’application.
-- `src/router/router.jsx` : routes `/` et `/Accueil`.
-- `src/pages/` : pages de l’application.
-- `src/components/` : composants, dont l’en-tête et le pied de page.
-- `src/style/` : styles.
-
-## Vercel
-
-Le projet Vercel se nomme `theden`. Pour produire les fichiers statiques de cette application Create React App, utiliser `npm run build` ; le dossier généré est `build/`.
-
-Le script historique `npm run deploy` utilise GitHub Pages ; il ne déploie pas sur Vercel.
+Lance les tests avec `npm test`. Pour préparer le déploiement, `npm run build` génère les fichiers statiques dans `build/`. Le projet Vercel s’appelle `theden`. La commande historique `npm run deploy` cible GitHub Pages. [Tableau de bord Vercel](https://vercel.com/mahkalixs-projects/theden)
