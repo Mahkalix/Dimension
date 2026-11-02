@@ -6,6 +6,7 @@ export default function RemoteKeys() {
       localStorage.getItem("dimension-still") || "0";
     function move(e) {
       if (
+        e.defaultPrevented ||
         e.altKey ||
         e.ctrlKey ||
         e.metaKey ||
@@ -13,6 +14,12 @@ export default function RemoteKeys() {
       )
         return;
       const dialog = document.querySelector("dialog[open]");
+      const preview=document.querySelector(".track-preview");
+      if((e.key==="Escape"||e.key==="Backspace")&&preview){
+        e.preventDefault();
+        preview.querySelector(".return")?.click();
+        return;
+      }
       if (
         (e.key === "Escape" || e.key === "Backspace") &&
         !dialog &&
@@ -46,3 +53,5 @@ export default function RemoteKeys() {
   }, []);
   return null;
 }
+
+

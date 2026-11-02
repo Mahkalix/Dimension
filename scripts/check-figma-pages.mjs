@@ -8,6 +8,15 @@ try {
     });
     await p.goto(process.env.TEST_URL + "/player");
     const button = (name) => p.getByRole("button", { name, exact: true });
+    assert.equal(await p.locator(".collections button").count(),3);
+    for(const [title,count] of [["Pendant le service",3],["La plonge",4],["Après le service",3]]){
+      await p.getByRole("button",{name:new RegExp(title)}).click();
+      await p.getByRole("heading",{name:title,exact:true}).waitFor();
+      assert.equal(await p.locator(".track").count(),count);
+      await p.waitForFunction(()=>{const i=document.querySelector(".playlist-hero img");return i.complete&&i.naturalWidth>0});
+      await p.screenshot({path:"docs/screens/playlists-"+width+".png"});
+      await button("Écouter").click();
+    }
     await p.locator(".collections button").first().click();
     await p.getByRole("heading", { name: "Après le service" }).waitFor();
     await p.locator(".track").last().click();
@@ -35,12 +44,12 @@ try {
       await p.locator(".track").last().press("Enter");
     }
     await button("Ajouter à la file").click();
-    assert.equal(await p.locator(".track").count(), width === 390 ? 2 : 7);
+    assert.equal(await p.locator(".track").count(), width === 390 ? 2 : 3);
     if (width > 700) await p.keyboard.press("Escape");
     if (width === 390) await p.locator(".account-menu summary").click();
     await button("Extras").click();
     await p.locator(".menu-row").first().click();
-    assert.equal(await p.locator(".menu-row").count(), 7);
+    assert.equal(await p.locator(".menu-row").count(), 10);
     if (width === 390) await p.locator(".account-menu summary").click();
     await button("Réglages").click();
     await p.locator(".menu-row").first().click();
@@ -76,3 +85,8 @@ try {
 } finally {
   await browser.close();
 }
+
+
+
+
+

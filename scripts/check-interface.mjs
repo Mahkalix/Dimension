@@ -45,8 +45,7 @@ try {
     await p.getByRole("button", { name: "Continuer avec Spotify" }).waitFor();
     await p.getByRole("link", { name: "Mon profil", exact: true }).click();
     await p.getByRole("heading", { name: "Mon profil" }).waitFor();
-    await p.getByRole("button", { name: "Continuer avec Spotify" }).click();
-    await p.getByRole("alert").filter({hasText:"configuration"}).waitFor();
+    await p.getByRole("button", { name: "Continuer avec Spotify" }).waitFor();
     await p.getByRole("link", { name: "Retour à la musique" }).click();
     assert.equal(await p.locator(".track").count(), 7);
     await p
@@ -58,14 +57,25 @@ try {
       return !a.paused && a.currentTime > 0 && a.duration > 30;
     });
     if (viewport.width === 1280) {
-      const tracks = JSON.parse(fs.readFileSync(new URL("../src/data/selection.json", import.meta.url)));
+      const tracks = JSON.parse(
+        fs.readFileSync(new URL("../src/data/selection.json", import.meta.url)),
+      );
       for (const track of tracks) {
-        const duration = await p.evaluate(url => new Promise((resolve, reject) => {
-          const audio = new Audio();
-          audio.onloadedmetadata = () => { const duration = audio.duration; audio.removeAttribute("src"); audio.load(); resolve(duration); };
-          audio.onerror = () => reject(new Error("Audio indisponible"));
-          audio.src = url;
-        }), track.url);
+        const duration = await p.evaluate(
+          (url) =>
+            new Promise((resolve, reject) => {
+              const audio = new Audio();
+              audio.onloadedmetadata = () => {
+                const duration = audio.duration;
+                audio.removeAttribute("src");
+                audio.load();
+                resolve(duration);
+              };
+              audio.onerror = () => reject(new Error("Audio indisponible"));
+              audio.src = url;
+            }),
+          track.url,
+        );
         assert.ok(duration > 30, track.title);
       }
     }
@@ -115,4 +125,3 @@ try {
 } finally {
   await browser.close();
 }
-

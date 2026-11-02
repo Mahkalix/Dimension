@@ -213,3 +213,55 @@
     padding-inline: 10px;
   }
 }
+/* Three moments of the kitchen, on the same paper surface. */
+.den .collections {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+}
+.den .collections button {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+.den .collections strong {
+  margin-top: 10px;
+}
+.playlist-hero {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  margin-block: 24px;
+  img {
+    width: min(44%, 240px);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: grayscale(1);
+  }
+  div {
+    display: grid;
+    gap: 16px;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--wash);
+  }
+}
+@media (max-width: #{bp.$mobile-max}) {
+  .den .collections {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start;
+  }
+  .den .collections button {
+    flex: 0 0 min(68vw, 240px);
+    scroll-snap-align: start;
+  }
+}

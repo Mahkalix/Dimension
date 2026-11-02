@@ -1,4 +1,5 @@
 import tracks from "./data/selection.json";
+import playlists from "./data/playlists.json";
 
 export const options = {
   Volume: ["Silence", "35 %", "65 %", "100 %"],
@@ -39,21 +40,38 @@ export function MenuPage({ page, go, prefs, volume, select }) {
   else if (page === "Réglages")
     rows = Object.keys(options).map((n) => row(n, "›", () => go(n)));
   else if (page === "Crédits")
-    rows = tracks.map((t) => (
-      <div className="menu-row" key={t.id}>
-        <b>{t.title}</b>
-        <span>
-          {t.artist} ·{" "}
-          <a href={t.sourceUrl} target="_blank" rel="noreferrer">
-            Incompetech
-          </a>{" "}
-          ·{" "}
-          <a href={t.licenseUrl} target="_blank" rel="noreferrer">
-            {t.license}
+    rows = (
+      <>
+        {tracks.map((t) => (
+          <div className="menu-row" key={t.id}>
+            <b>{t.title}</b>
+            <span>
+              {t.artist} ·{" "}
+              <a href={t.sourceUrl} target="_blank" rel="noreferrer">
+                Incompetech
+              </a>{" "}
+              ·{" "}
+              <a href={t.licenseUrl} target="_blank" rel="noreferrer">
+                {t.license}
+              </a>
+            </span>
+          </div>
+        ))}
+        <h2>Photos des playlists</h2>
+        {playlists.map((p) => (
+          <a
+            className="menu-row"
+            href={p.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            key={p.id}
+          >
+            <b>{p.title}</b>
+            <span>{p.credit}</span>
           </a>
-        </span>
-      </div>
-    ));
+        ))}
+      </>
+    );
   else if (page === "Source")
     rows = (
       <>

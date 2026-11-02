@@ -5,12 +5,14 @@ import SolarIcon from "./components/SolarIcon";
 import PlayerBar from "./components/PlayerBar";
 import { useEffect, useRef, useState } from "react";
 import tracks from "./data/selection.json";
+import playlists from "./data/playlists.json";
 
 import { MenuPage, menuPages, defaults } from "./MenuPage";
 const art = tracks.map((t) => t.art);
 const sections = ["Écouter", "Bibliothèque", "À suivre", "Recherche"];
 
 export default function TheDen({ account }) {
+  const [playlist, setPlaylist] = useState(null);
   const [section, setSection] = useState("Écouter");
   const [libraryTab, setLibraryTab] = useState("Playlists");
   const [query, setQuery] = useState("");
@@ -54,6 +56,7 @@ export default function TheDen({ account }) {
   }, []);
   const go = (page) => {
     setSection(page);
+    setPlaylist(null);
     setQuery("");
     setNotice("");
     if (prefs["Sons de navigation"] === "Activés" && window.AudioContext) {
@@ -133,7 +136,11 @@ export default function TheDen({ account }) {
     start(preview, !previewOpen);
     dialog.current.close();
   };
-  const order = section === "À suivre" ? queue : tracks.map((_, i) => i);
+  const playlistOrder = playlist?.tracks.map((id) =>
+    tracks.findIndex((t) => t.id === id),
+  );
+  const order =
+    section === "À suivre" ? queue : playlistOrder || tracks.map((_, i) => i);
   const results = order.filter((i) =>
     (tracks[i].title + " " + tracks[i].artist)
       .toLowerCase()
@@ -383,23 +390,46 @@ export default function TheDen({ account }) {
           (section === "Bibliothèque" && libraryTab === "Playlists")) &&
           !query && (
             <section className="collections" aria-label="Collections">
-              {(section === "Bibliothèque"
-                ? ["Après le service"]
-                : ["Après le service", "Carefree"]
-              ).map((title, i) => (
+              {playlists.map((p) => (
                 <button
-                  key={title}
-                  onClick={() => (i ? openTrack(i) : go("Après le service"))}
+                  key={p.id}
+                  onClick={() => {
+                    go(p.title);
+                    setPlaylist(p);
+                  }}
                 >
-                  <img src={tracks[i].art} alt="" />
-                  <strong>{title}</strong>
-                  <small>
-                    {i ? tracks[1].artist : tracks.length + " morceaux"}
-                  </small>
+                  <img
+                    src={p.cover}
+                    alt={p.alt}
+                    style={{ objectPosition: p.imagePosition }}
+                  />
+                  <strong>{p.title}</strong>
+                  <small>{p.tracks.length} morceaux</small>
                 </button>
-              ))}
+              ))}{" "}
             </section>
           )}
+        {playlist && (
+          <section className="playlist-hero" aria-label={playlist.title}>
+            <img
+              src={playlist.cover}
+              alt={playlist.alt}
+              style={{ objectPosition: playlist.imagePosition }}
+            />
+            <div>
+              <span>{playlist.tracks.length} morceaux</span>
+              <button
+                onClick={() => {
+                  setQueue(playlistOrder.slice(1));
+                  start(playlistOrder[0], false);
+                }}
+              >
+                <SolarIcon name="play" />
+                Écouter la playlist
+              </button>
+            </div>
+          </section>
+        )}
         {menu ? (
           <MenuPage
             page={section}

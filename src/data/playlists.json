@@ -1,0 +1,37 @@
+[
+  {
+    "id": "apres-service",
+    "title": "Après le service",
+    "cover": "/images/playlists/apres-service.jpg",
+    "imagePosition": "55% 50%",
+    "alt": "Carmy assis dans la cuisine après le service, dans The Bear.",
+    "sourceUrl": "https://www.harpersbazaar.com/culture/film-tv/a44335574/the-bear-season-2-ending-explained-finale-recap/",
+    "credit": "The Bear · FX, photo publiée par Harper’s Bazaar",
+    "tracks": ["night-on-the-docks---sax", "airport-lounge", "bossa-antigua"]
+  },
+  {
+    "id": "service",
+    "title": "Pendant le service",
+    "cover": "/images/playlists/service.jpg",
+    "imagePosition": "40% 50%",
+    "alt": "Carmy et Richie au passe pendant la préparation du service, dans The Bear.",
+    "sourceUrl": "https://thewaltdisneycompany.com/news/disney-2025-golden-globe-awards/",
+    "credit": "The Bear · FX, photo publiée par The Walt Disney Company",
+    "tracks": ["george-street-shuffle", "local-forecast", "carefree"]
+  },
+  {
+    "id": "plonge",
+    "title": "La plonge",
+    "cover": "/images/playlists/plonge.jpg",
+    "imagePosition": "48% 45%",
+    "alt": "Richie et un collègue essuient la verrerie dans la cuisine de The Bear.",
+    "sourceUrl": "https://www.esquire.com/entertainment/tv/a44402420/the-bear-season-2-restaurant-references/",
+    "credit": "The Bear · FX, photo publiée par Esquire",
+    "tracks": [
+      "tea-roots",
+      "bossa-antigua",
+      "george-street-shuffle",
+      "local-forecast"
+    ]
+  }
+]
