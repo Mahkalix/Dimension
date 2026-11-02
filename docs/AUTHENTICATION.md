@@ -36,6 +36,14 @@ For each stable Vercel preview URL you actually use, add its exact origin to Log
 https://dimension-git-codex-the-den-player-mahkalixs-projects.vercel.app
 ```
 
+This PR's verified stable preview alias requires these additional entries:
+
+| Dashboard field | Exact entry |
+| --- | --- |
+| Allowed Callback URLs | `https://dimension-git-codex-auth0-english-library-mahkalixs-projects.vercel.app/auth/callback` |
+| Allowed Logout URLs | `https://dimension-git-codex-auth0-english-library-mahkalixs-projects.vercel.app` |
+| Allowed Web Origins | `https://dimension-git-codex-auth0-english-library-mahkalixs-projects.vercel.app` |
+
 When using port 3140 or 3141 for a real authentication test, add the corresponding exact localhost origin and callback as well. Protected Vercel previews must allow the browser to return through deployment protection.
 
 ## Server environment
