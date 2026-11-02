@@ -6,8 +6,8 @@ The Den est né de cette question. J’ai imaginé un objet qui aurait sa place 
 
 ## Liens du projet
 
-- [Dépôt GitHub](https://github.com/Mahkalix/Dimension)
-- [Projet Vercel](https://vercel.com/mahkalixs-projects/dimension) — tableau de bord des déploiements, accessible aux membres du projet.
+- [Dépôt GitHub](https://github.com/Mahkalix/THEDEN)
+- [Projet Vercel](https://vercel.com/mahkalixs-projects/theden) — tableau de bord des déploiements, accessible aux membres du projet.
 
 ## Technologies
 
@@ -22,8 +22,8 @@ The Den est né de cette question. J’ai imaginé un objet qui aurait sa place 
 Installer Node.js et npm, puis exécuter :
 
 ```bash
-git clone https://github.com/Mahkalix/Dimension.git
-cd Dimension
+git clone https://github.com/Mahkalix/THEDEN.git
+cd THEDEN
 npm install
 npm start
 ```
@@ -50,6 +50,6 @@ L’intégration Auth0 est configurée dans `src/index.js`. Pour utiliser votre 
 
 ## Vercel
 
-Le projet Vercel se nomme `dimension`. Pour produire les fichiers statiques de cette application Create React App, utiliser `npm run build` ; le dossier généré est `build/`.
+Le projet Vercel se nomme `theden`. Pour produire les fichiers statiques de cette application Create React App, utiliser `npm run build` ; le dossier généré est `build/`.
 
 Le script historique `npm run deploy` utilise GitHub Pages ; il ne déploie pas sur Vercel.
