@@ -35,7 +35,14 @@ export const auth0 = configured
         const destination = ["/account", "/player"].includes(context.returnTo)
           ? context.returnTo
           : "/account";
-        return NextResponse.redirect(new URL(destination, appOrigin));
+        return NextResponse.redirect(
+          new URL(
+            destination === "/player"
+              ? "/login?returnTo=%2Fplayer"
+              : destination,
+            appOrigin,
+          ),
+        );
       },
     })
   : null;

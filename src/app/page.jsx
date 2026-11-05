@@ -13,7 +13,7 @@ export default async function Opening({ searchParams }) {
         <div className={styles.identity}>
           <a
             className={styles.signature}
-            href="/player"
+            href="/login?returnTo=%2Fplayer"
             aria-label="Open The Den"
           >
             <img

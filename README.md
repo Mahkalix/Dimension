@@ -16,9 +16,9 @@ Music works without signing in. Email/password authentication needs an Auth0 Reg
 
 ## Routes
 
-- `/`: animated house introduction; the house is clickable and the intro also enters the app automatically. Reduced motion is respected.
+- `/`: animated house introduction; the house is clickable and the intro automatically opens the sign-in screen, with guest access to the player. Reduced motion is respected.
 - `/player`: listening dashboard with a featured playlist, house picks, genre shortcuts and a horizontal playlist shelf. The sidebar opens the library; the header provides search and the player provides the queue; the bottom player keeps audio controls available throughout. Settings and credits remain in the Account menu.
-- `/login`: sign-in / sign-up entry, configuration and readable authentication errors.
+- `/login`: kitchen-backed sign-in / sign-up entry after the introduction, with guest access, readable errors and a continue screen for signed-in listeners.
 - `/account`: protected account, displaying only identity claims from Auth0.
 - `/auth/login`, `/auth/callback`, `/auth/logout`: handled by the official Auth0 SDK.
 

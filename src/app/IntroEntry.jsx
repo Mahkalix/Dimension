@@ -11,7 +11,7 @@ export default function IntroEntry({ children, auto = true }) {
       const animations = root.current?.getAnimations({ subtree: true }) || [];
       Promise.all(animations.map((a) => a.finished.catch(() => {}))).then(
         () => {
-          if (!cancelled) router.replace("/player");
+          if (!cancelled) router.replace("/login?returnTo=%2Fplayer");
         },
       );
     }, 50);

@@ -331,6 +331,8 @@ try {
   }
   const page = await browser.newPage({ reducedMotion: "reduce" });
   await page.goto(origin);
+  await page.waitForURL("**/login?**");
+  await page.getByRole("link", { name: "Back to music", exact: true }).click();
   await page.waitForURL("**/player");
   await page.goto(origin + "/account");
   await page.waitForURL("**/login?**");
