@@ -12,6 +12,7 @@
   > img {
     width: 38px;
     height: 38px;
+    object-fit: cover;
     border-radius: 5px;
     flex: none;
   }
@@ -192,35 +193,95 @@
   font-size: 12px;
 }
 .artist-profile {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  align-items: center;
   margin-bottom: 28px;
 }
-.artist-profile > img {
-  width: clamp(120px, 20vw, 220px);
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.artist-profile > div {
-  display: grid;
-  gap: 12px;
-  flex: 1;
-  min-width: min(240px, 100%);
-}
-.artist-profile h2,
-.artist-profile p {
-  margin: 0;
-}
-.artist-profile button {
+.artist-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 360px;
+  border-radius: 14px;
+  background: #172435;
+  color: white;
   display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-self: start;
+  align-items: flex-end;
 }
-.artist-profile a {
+.artist-banner > img {
+  position: absolute;
+  z-index: -2;
+  inset: 0 0 0 auto;
+  width: 72%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+.artist-banner::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #142134 0%, #142134b3 40%, #14213400 80%),
+    linear-gradient(0deg, #0009, transparent 75%);
+}
+.artist-banner-copy {
+  padding: clamp(24px, 4vw, 48px);
+  width: 100%;
+}
+.artist-banner-copy > button {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  background: #0006;
+  color: white;
+  border-radius: 24px;
+}
+.artist-banner-copy h2 {
+  font-size: clamp(36px, 6vw, 86px);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  margin: 12px 0 20px;
+  overflow-wrap: anywhere;
+}
+.artist-banner-copy p {
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+.artist-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0 0;
+}
+.artist-actions button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 28px;
+  padding: 12px 20px;
+  background: var(--wash);
+}
+.artist-actions .artist-play {
+  background: #3974bd;
+  color: white;
+  min-height: 54px;
+}
+.den .artist-play .solar-icon {
+  filter: brightness(0) invert(1);
+}
+.artist-actions a {
   font-size: 11px;
   color: var(--quiet);
+}
+@media (max-width: 700px) {
+  .artist-banner {
+    min-height: 320px;
+  }
+  .artist-banner > img {
+    width: 100%;
+  }
+  .artist-banner-copy {
+    padding: 24px;
+  }
 }

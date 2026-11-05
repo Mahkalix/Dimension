@@ -520,17 +520,25 @@ export default function TheDen() {
         )}
         {selectedArtist && (
           <section className="artist-profile" aria-label={selectedArtist.name}>
-            <img src={selectedArtist.image} alt={selectedArtist.name} />
-            <div>
-              <button onClick={() => setQuery("")}>‹ All artists</button>
-              <h2>{selectedArtist.name}</h2>
-              <p>{selectedArtist.tracks.length} tracks in your library</p>
-              <p>
-                {[
-                  ...new Set(selectedArtist.tracks.map((track) => track.genre)),
-                ].join(" · ")}
-              </p>
+            <div className="artist-banner">
+              <img src={selectedArtist.image} alt={selectedArtist.name} />
+              <div className="artist-banner-copy">
+                <button onClick={() => setQuery("")}>‹ All artists</button>
+                <span className="eyebrow">Artist</span>
+                <h2>{selectedArtist.name}</h2>
+                <p>{selectedArtist.tracks.length} tracks in your library</p>
+                <p>
+                  {[
+                    ...new Set(
+                      selectedArtist.tracks.map((track) => track.genre),
+                    ),
+                  ].join(" · ")}
+                </p>
+              </div>
+            </div>
+            <div className="artist-actions">
               <button
+                className="artist-play"
                 onClick={() =>
                   playPlaylist({
                     tracks: selectedArtist.tracks.map((track) => track.id),
@@ -538,6 +546,18 @@ export default function TheDen() {
                 }
               >
                 <SolarIcon name="play" /> Play all
+              </button>
+              <button
+                onClick={() => {
+                  const ids = selectedArtist.tracks.map((track) => track.id);
+                  for (let i = ids.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [ids[i], ids[j]] = [ids[j], ids[i]];
+                  }
+                  playPlaylist({ tracks: ids });
+                }}
+              >
+                Shuffle
               </button>
               <a href={selectedArtist.source} target="_blank" rel="noreferrer">
                 {selectedArtist.credit}

@@ -4,8 +4,8 @@
     "title": "Local Forecast - Elevator",
     "artist": "Kevin MacLeod",
     "url": "/music/den/local-forecast.mp3",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/kevin-macleod.jpg",
+    "visual": "/images/artists/kevin-macleod.jpg",
     "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300012",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -18,8 +18,8 @@
     "title": "Carefree",
     "artist": "Kevin MacLeod",
     "url": "/music/den/carefree.mp3",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/kevin-macleod.jpg",
+    "visual": "/images/artists/kevin-macleod.jpg",
     "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400037",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -32,8 +32,8 @@
     "title": "Bossa Antigua",
     "artist": "Kevin MacLeod",
     "url": "/music/den/bossa-antigua.mp3",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/kevin-macleod.jpg",
+    "visual": "/images/artists/kevin-macleod.jpg",
     "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700069",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -46,8 +46,8 @@
     "title": "George Street Shuffle",
     "artist": "Kevin MacLeod",
     "url": "/music/den/george-street-shuffle.mp3",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/kevin-macleod.jpg",
+    "visual": "/images/artists/kevin-macleod.jpg",
     "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300035",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -60,8 +60,8 @@
     "title": "Night on the Docks - Sax",
     "artist": "Kevin MacLeod",
     "url": "/music/den/night-on-the-docks---sax.mp3",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/kevin-macleod.jpg",
+    "visual": "/images/artists/kevin-macleod.jpg",
     "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100137",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -74,8 +74,8 @@
     "title": "Airport Lounge",
     "artist": "Kevin MacLeod",
     "url": "/music/den/airport-lounge.mp3",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/kevin-macleod.jpg",
+    "visual": "/images/artists/kevin-macleod.jpg",
     "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100806",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -88,8 +88,8 @@
     "title": "Tea Roots",
     "artist": "Kevin MacLeod",
     "url": "/music/den/tea-roots.mp3",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/kevin-macleod.jpg",
+    "visual": "/images/artists/kevin-macleod.jpg",
     "sourceUrl": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100472",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
@@ -108,8 +108,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-01.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -122,8 +122,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-02.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -136,8 +136,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-03.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -150,8 +150,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-04.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -164,8 +164,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-05.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -178,8 +178,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-06.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -192,8 +192,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-07.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -206,8 +206,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-08.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -220,8 +220,8 @@
     "url": "https://audio.chriszabriskie.com/cylinders/cylinders-09.m4a",
     "sourceUrl": "https://chriszabriskie.com/cylinders/",
     "sourceName": "Chris Zabriskie · Cylinders",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png"
+    "art": "/images/artists/chris-zabriskie.jpg",
+    "visual": "/images/artists/chris-zabriskie.jpg"
   },
   {
     "license": "CC BY 4.0",
@@ -234,8 +234,8 @@
     "url": "/music/den/shaw-acoustic-guitar-1.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/AcousticGuitar1.mp3"
   },
   {
@@ -249,8 +249,8 @@
     "url": "/music/den/shaw-acoustic-shuffle.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/AcousticShuffle.mp3"
   },
   {
@@ -264,8 +264,8 @@
     "url": "/music/den/shaw-cool-steel-breeze.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/CoolSteelBreeze.mp3"
   },
   {
@@ -279,8 +279,8 @@
     "url": "/music/den/shaw-folk-bed.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/Folk Bed.mp3"
   },
   {
@@ -294,8 +294,8 @@
     "url": "/music/den/shaw-paper-wings.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/PaperWings.mp3"
   },
   {
@@ -309,8 +309,8 @@
     "url": "/music/den/shaw-pennywhistle.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/PennyWhistle.mp3"
   },
   {
@@ -324,8 +324,8 @@
     "url": "/music/den/shaw-solo-acoustic-3.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/SoloAcoustic3.mp3"
   },
   {
@@ -339,8 +339,8 @@
     "url": "/music/den/shaw-solo-acoustic-5.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/SoloAcoustic5.mp3"
   },
   {
@@ -354,8 +354,8 @@
     "url": "/music/den/shaw-words.mp3",
     "sourceUrl": "https://audionautix.com/free-music/acoustic",
     "sourceName": "Audionautix",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/Words.mp3"
   },
   {
@@ -369,8 +369,8 @@
     "url": "/music/den/shaw-plumber-s-rag.mp3",
     "sourceUrl": "https://audionautix.com/free-music/jazz",
     "sourceName": "Audionautix",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/PlumbersRag.mp3"
   },
   {
@@ -384,8 +384,8 @@
     "url": "/music/den/shaw-saloon-rag.mp3",
     "sourceUrl": "https://audionautix.com/free-music/jazz",
     "sourceName": "Audionautix",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/SaloonRag.mp3"
   },
   {
@@ -399,8 +399,8 @@
     "url": "/music/den/shaw-hip-hop-1.mp3",
     "sourceUrl": "https://audionautix.com/free-music/hip-hop",
     "sourceName": "Audionautix",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/HipHop1.mp3"
   },
   {
@@ -414,8 +414,8 @@
     "url": "/music/den/shaw-acoustic-rock.mp3",
     "sourceUrl": "https://audionautix.com/free-music/rock",
     "sourceName": "Audionautix",
-    "art": "/den-0.svg",
-    "visual": "/den-track-0.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/AcousticRock.mp3"
   },
   {
@@ -429,8 +429,8 @@
     "url": "/music/den/shaw-falling-sky.mp3",
     "sourceUrl": "https://audionautix.com/free-music/house",
     "sourceName": "Audionautix",
-    "art": "/den-1.svg",
-    "visual": "/den-track-1.png",
+    "art": "/images/artists/jason-shaw.jpg",
+    "visual": "/images/artists/jason-shaw.jpg",
     "originalAudioUrl": "https://audionautix.com/Music/FallingSky.mp3"
   }
 ]
