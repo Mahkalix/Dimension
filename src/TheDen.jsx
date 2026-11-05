@@ -229,6 +229,7 @@ export default function TheDen() {
       data-preview={previewOpen}
       data-chrome={prefs["Chrome intensity"]}
       data-light={prefs.Backlight}
+      data-appearance={prefs.Appearance || "Paper"}
     >
       <audio
         ref={audio}

@@ -2,12 +2,14 @@ import tracks from "./data/library";
 import playlists from "./data/playlists.json";
 
 export const options = {
+  Appearance: ["Paper", "Frosted", "Clear", "Blur"],
   Volume: ["Muted", "35%", "65%", "100%"],
   "Navigation sounds": ["On", "Off"],
   "Chrome intensity": ["Matte", "Standard", "Polished"],
   Backlight: ["Low", "Medium", "High"],
 };
 export const defaults = {
+  Appearance: "Paper",
   "Navigation sounds": "Off",
   "Chrome intensity": "Standard",
   Backlight: "Medium",
@@ -39,6 +41,47 @@ export function MenuPage({ page, go, prefs, volume, select }) {
     );
   else if (page === "Settings")
     rows = Object.keys(options).map((n) => row(n, "›", () => go(n)));
+  else if (page === "Appearance")
+    rows = (
+      <>
+        <p className="appearance-intro">
+          Choose your surface. Changes apply immediately and stay saved on this
+          device.
+        </p>
+        <div
+          className="appearance-options"
+          role="group"
+          aria-label="Appearance"
+        >
+          {options.Appearance.map((style) => (
+            <button
+              key={style}
+              className="appearance-option"
+              aria-label={style}
+              aria-pressed={prefs.Appearance === style}
+              onClick={() => select("Appearance", style)}
+            >
+              <span className="appearance-sample" data-material={style}>
+                <span>{style}</span>
+              </span>
+              <span className="appearance-caption">
+                <b>{style}</b>
+                <span>
+                  {prefs.Appearance === style
+                    ? "Selected"
+                    : {
+                        Paper: "Our original paper",
+                        Frosted: "Soft, textured glass",
+                        Clear: "Transparent, crisp glass",
+                        Blur: "Deep, diffused glass",
+                      }[style]}
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </>
+    );
   else if (page === "Credits")
     rows = (
       <>
