@@ -17,17 +17,14 @@ export default async function Login({ searchParams }) {
   return (
     <main className={styles.entry}>
       <section className={styles.sheet} aria-label="Welcome to The Den">
+        <img
+          className={styles.mark}
+          src="/brand/the-den-house.png"
+          alt="The Den"
+          width="48"
+          height="44"
+        />
         <div className={styles.content}>
-          <img
-            className={styles.mark}
-            src="/brand/the-den-house.png"
-            alt="The Den"
-          />
-          <img
-            className={styles.wordmark}
-            src="/brand/the-den-wordmark.png"
-            alt="The Den"
-          />
           <h1>
             {user ? "Welcome back" : signup ? "Create account" : "Sign in"}
           </h1>
