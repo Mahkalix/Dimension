@@ -3,7 +3,7 @@ export default function Loading() {
   return (
     <main className={styles.entry} role="status" aria-label="Starting up">
       <img
-        className={styles.signature}
+        className={`${styles.signature} ${styles.house}`}
         src="/brand/the-den-house.png"
         alt="The Den"
       />

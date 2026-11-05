@@ -1,6 +1,6 @@
 # Auth0 email/password setup
 
-The app uses `@auth0/nextjs-auth0` v4 with Authorization Code + PKCE (S256), state and nonce verification. Email/password entry, invalid-credential errors, password recovery and account creation are handled by Auth0 Universal Login. The Den does not receive or store passwords. The SDK uses encrypted, HttpOnly cookies; production cookies are Secure. Sessions roll on activity, expire after one day of inactivity and have an absolute lifetime of seven days.
+The app uses `@auth0/nextjs-auth0` v4 with Authorization Code + PKCE (S256), state and nonce verification. Email/password entry, invalid-credential errors, password recovery and account creation are handled by Auth0 Universal Login. The Den does not receive or store passwords. The SDK uses encrypted, HttpOnly cookies; production cookies are Secure. Persistent sessions survive browser restarts and last up to 30 days. Signing out or clearing cookies ends the remembered session. The welcome screen reads the authenticated session, never a locally stored identity.
 
 ## Application and Database Connection
 

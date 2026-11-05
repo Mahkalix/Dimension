@@ -26,8 +26,9 @@ export const auth0 = configured
       enableAccessTokenEndpoint: false,
       session: {
         rolling: true,
-        inactivityDuration: 86400,
-        absoluteDuration: 604800,
+        inactivityDuration: 30 * 24 * 60 * 60,
+        absoluteDuration: 30 * 24 * 60 * 60,
+        cookie: { transient: false },
       },
       onCallback: async (error, context) => {
         if (error)

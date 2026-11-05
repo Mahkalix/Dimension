@@ -70,7 +70,10 @@
 .entry {
   position: relative;
   min-height: 100svh;
-  background: #ebebe9;
+  color: #f5f5f3;
+  background:
+    linear-gradient(#0008, #000b),
+    url("/images/kitchen-background.jpg?v=3") center / cover fixed;
   display: grid;
   place-items: center;
   padding: 48px 24px;
@@ -93,10 +96,11 @@
   display: block;
   width: 100%;
   height: auto;
+  filter: brightness(0) invert(1);
   animation: inkAppears 1800ms cubic-bezier(0.2, 0, 0.2, 1) both;
 }
 .signature:hover .house {
-  filter: contrast(1.12);
+  opacity: 0.85;
 }
 .signature:focus-visible {
   outline: var(--focus);
@@ -114,6 +118,7 @@
   display: block;
   width: 100%;
   height: auto;
+  filter: brightness(0) invert(1);
   animation: nameAppears 1200ms 900ms ease-out both;
 }
 
@@ -127,7 +132,7 @@
   bottom: 20%;
   width: min(260px, 60vw);
   height: 8px;
-  accent-color: var(--ink);
+  accent-color: #3974bd;
 }
 @keyframes inkAppears {
   from {
@@ -166,12 +171,12 @@
   display: grid;
   place-items: center;
   padding: 8px 16px;
-  color: var(--quiet);
+  color: #d6d6d6;
   font-size: 14px;
   text-decoration: none;
 }
 .credit:hover {
-  color: var(--ink);
+  color: #fff;
   text-decoration: underline;
 }
 .entry:has([role="alert"]) .credit {

@@ -101,6 +101,10 @@
     font-size: 12px;
   }
 }
+.avatar {
+  flex: none;
+  filter: brightness(0) invert(1);
+}
 .story {
   display: flex;
   flex-direction: column;

@@ -36,7 +36,8 @@ export default async function Login({ searchParams }) {
               <p>Your music. Your own pace.</p>
               <div className={styles.account}>
                 <img
-                  src="/brand/account-avatar.svg"
+                  className={styles.avatar}
+                  src="/solar-user-circle.svg"
                   alt=""
                   width="44"
                   height="44"
@@ -80,7 +81,7 @@ export default async function Login({ searchParams }) {
                   ? "Already have an account? Sign in"
                   : "Create an account"}
               </a>
-              <a href="/player">Back to music</a>
+              <a href="/player">Continue without an account</a>
             </>
           )}
         </div>
