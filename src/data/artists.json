@@ -19,10 +19,9 @@
   {
     "name": "Jason Shaw",
     "id": "jason-shaw",
-    "imageUrl": "https://freemusicarchive.org/image/?file=images%2Fartists%2FJason_Shaw_-_20131120155444083.jpg&width=290&height=290&type=artist",
-    "source": "https://freemusicarchive.org/music/Jason_Shaw/bio",
-    "credit": "Jason Shaw · Portrait via Free Music Archive",
-    "image": "/images/artists/jason-shaw.jpg?v=3"
+    "source": "https://audionautix.com/about-jason.php",
+    "credit": "The Den · Generic artist illustration",
+    "image": "/images/artists/generic-artist.svg"
   },
   {
     "id": "scott-buckley",

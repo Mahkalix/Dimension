@@ -363,5 +363,3 @@
 
 .playlist-share-link { display: grid; gap: 8px; margin: 16px 0; font-size: 13px; }
 .playlist-share-link input { width: 100%; min-width: 0; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: #242424; color: #fff; }
-
-.artist-banner[data-artist="jason-shaw"] > img { width: min(44%, 290px); height: auto; aspect-ratio: 1; inset: 24px 24px auto auto; border-radius: 12px; }
