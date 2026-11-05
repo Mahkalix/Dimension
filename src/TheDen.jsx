@@ -415,7 +415,6 @@ export default function TheDen({ signedIn = false, accountId }) {
               className="library-heading"
               onClick={() => browse("Playlists")}
             >
-              <SolarIcon name="playlist" />
               Library
             </button>
           </h2>
