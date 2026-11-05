@@ -6,15 +6,14 @@ import tracks from "../data/library";
 import playlists from "../data/playlists.json";
 
 const featured = playlists.find((playlist) => playlist.id === "apres-service");
-const picks = ["tea-roots", "cylinder-5", "shaw-solo-acoustic-3"].map((id) =>
-  tracks.findIndex((track) => track.id === id),
-);
 
 export default function ListenDashboard({
   playing,
   audible,
   onTrack,
-  onPlay,
+  upcoming,
+  onPlayUpcoming,
+  onQueue,
   onPlaylist,
   onPlayPlaylist,
   onBrowse,
@@ -103,20 +102,18 @@ export default function ListenDashboard({
       <aside className="dashboard-side" aria-label="Discover music">
         <section className="house-picks" aria-labelledby="picks-title">
           <div className="section-heading">
-            <h2 id="picks-title">House picks</h2>
-            <span className="eyebrow">01 / 03</span>
+            <h2 id="picks-title">Up next</h2>
+            <button onClick={onQueue}>View queue <SolarIcon name="arrow-right" /></button>
           </div>
           <div className="picks-list">
-            {picks.map((index, position) => {
+            {upcoming.map((index, position) => {
               const track = tracks[index];
-              const active = playing === index && audible;
               return (
                 <button
                   className="spotlight-track"
-                  key={track.id}
-                  onClick={() => onPlay(index)}
-                  aria-label={`${active ? "Pause" : "Play"} ${track.title}`}
-                  aria-pressed={active}
+                  key={`${track.id}-${position}`}
+                  onClick={() => onPlayUpcoming(index, position)}
+                  aria-label={`Play next: ${track.title}`}
                 >
                   <span className="pick-number">0{position + 1}</span>
                   <img src={track.art} alt="" />
@@ -125,7 +122,7 @@ export default function ListenDashboard({
                     <small>{track.artist}</small>
                     <time>{formatDuration(track.duration)}</time>
                   </span>
-                  <SolarIcon name={active ? "pause" : "play"} />
+                  <SolarIcon name="play" />
                 </button>
               );
             })}

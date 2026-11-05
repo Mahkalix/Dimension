@@ -255,9 +255,13 @@
     color: #eee;
   }
   .menu-row,
-  .picks-list,
   .listening-note {
     background: #292929eb;
+  }
+  .picks-list {
+    background: #181818;
+    backdrop-filter: none;
+    border-color: #ffffff1a;
   }
 }
 .track b {

@@ -177,6 +177,10 @@ export default function TheDen() {
   );
   const order =
     section === "Up next" ? queue : playlistOrder || tracks.map((_, i) => i);
+  const upcoming = queue.slice(0, 3);
+  while (upcoming.length < 3) {
+    upcoming.push(((upcoming.at(-1) ?? playing ?? preview) + 1) % tracks.length);
+  }
   const selectedArtist =
     section === "Library" && libraryTab === "Artists"
       ? artists.find((artist) => artist.name === query)
@@ -463,9 +467,12 @@ export default function TheDen() {
             playing={playing}
             audible={audible}
             onTrack={activateTrack}
-            onPlay={(i) =>
-              playing === i && audible ? toggle() : start(i, false)
-            }
+            upcoming={upcoming}
+            onQueue={() => go("Up next")}
+            onPlayUpcoming={(i, position) => {
+              setQueue((q) => q.slice(position + 1));
+              start(i, false);
+            }}
             onPlaylist={choosePlaylist}
             onPlayPlaylist={playPlaylist}
             onBrowse={browse}
