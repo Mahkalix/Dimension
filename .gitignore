@@ -26,3 +26,6 @@ dist/
 *.tsbuildinfo
 .next/
 .env*.local
+
+# Local UI verification captures
+/docs/screens/

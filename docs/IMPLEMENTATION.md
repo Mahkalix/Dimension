@@ -38,7 +38,7 @@ Translated active UI, page metadata, playlist copy, alternatives, accessible lab
 
 The preview is a right-hand panel with a fixed header and transport controls around an independently scrolling body. A tall artwork in its original colors fades into the paper surface, followed by the title, artist, queue action, recording credits and two related tracks selected by genre and artist. Source and license links use the library's existing attribution data. No video or lyrics are shown because the library does not provide them.
 
-Mobile uses the same content in a full-screen native dialog. Closing restores the track's keyboard focus; changing tracks resets the panel scroll; the panel adapts when crossing the mobile breakpoint. Checked Chrome at widths 360, 390, 700, 701, 820, 1024, 1280 and 1440, all with height 600: the body scrolls without moving the page, controls remain visible, related tracks are reachable and there is no horizontal page overflow. Screenshots: `docs/screens/preview-sidebar-desktop.png` and `docs/screens/preview-sidebar-mobile.png`.
+Mobile uses the same content in a full-screen native dialog. Closing restores the track's keyboard focus; changing tracks resets the panel scroll; the panel adapts when crossing the mobile breakpoint. Checked Chrome at widths 360, 390, 700, 701, 820, 1024, 1280 and 1440, all with height 600: the body scrolls without moving the page, controls remain visible, related tracks are reachable and there is no horizontal page overflow.
 
 ## 8. House
 

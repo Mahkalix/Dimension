@@ -71,7 +71,7 @@ npm start -- --port 3140
 
 With a configured server running, set `TEST_URL` to its origin and run `node scripts/check-auth.mjs` to check Auth0 redirects, PKCE, cookies, invalid callbacks and account protection. This does not replace a real login/signup round trip. Set `APP_BASE_URL` and Auth0 callback/logout allowlists to match the port you use.
 
-`npm run test:ui` uses installed Chrome against `TEST_URL` (default port 3140) for responsive interface and playback checks. Some login-copy assertions still reflect the earlier interface and need updating before treating the full suite as a release gate. Set `SCREENSHOT_DIR` to save captures outside `docs/screens`.
+`npm run test:ui` uses installed Chrome against `TEST_URL` (default port 3140) for responsive interface and playback checks. Some login-copy assertions still reflect the earlier interface and need updating before treating the full suite as a release gate. Captures are generated locally in the ignored `docs/screens` directory; set `SCREENSHOT_DIR` to choose another location.
 
 `npm run test:media` loads all 63 recordings in Chrome and **updates measured durations in `selection.json`**. It uses port 3142 and requires internet access for the artist-hosted tracks.
 
