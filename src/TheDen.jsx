@@ -1,4 +1,6 @@
 "use client";
+import PlaylistEditor from "./components/PlaylistEditor";
+import { normalizePlaylist, playlistShareHash, readSharedPlaylist } from "./lib/playlists";
 import AccountAvatar from "./components/AccountAvatar";
 import SolarIcon from "./components/SolarIcon";
 
@@ -9,9 +11,10 @@ import TrackPreview from "./components/TrackPreview";
 import { useEffect, useRef, useState } from "react";
 import tracks from "./data/library";
 import artistProfiles from "./data/artists.json";
-import playlists from "./data/playlists.json";
+import curatedPlaylists from "./data/playlists.json";
 
 import { MenuPage, menuPages, defaults } from "./MenuPage";
+const coverChoices = curatedPlaylists.map(p => p.cover);
 const sections = ["Listen", "Library", "Up next", "Search"];
 const artists = artistProfiles.map((artist) => ({
   ...artist,
@@ -19,13 +22,67 @@ const artists = artistProfiles.map((artist) => ({
 }));
 
 export default function TheDen({ signedIn = false, accountId }) {
+  const storageKey = 'den-playlists:v1:' + (accountId || 'guest');
+  const [personal, setPersonal] = useState([]);
+  const [hidden, setHidden] = useState([]);
+  const [editor, setEditor] = useState(null);
+  const [shareLink, setShareLink] = useState('');
+  const [libraryReady, setLibraryReady] = useState(false);
+  const playlists = [...curatedPlaylists.filter(p => !hidden.includes(p.id)), ...personal];
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      setPersonal((Array.isArray(saved.personal) ? saved.personal : []).flatMap(p => {
+        const valid = normalizePlaylist(p, tracks, coverChoices);
+        return valid && typeof p.id === 'string' && p.id.startsWith('custom-') ? [{ ...valid, id: p.id, custom: true }] : [];
+      }));
+      setHidden(Array.isArray(saved.hidden) ? saved.hidden.filter(id => curatedPlaylists.some(p => p.id === id)) : []);
+    } catch { setPersonal([]); setHidden([]); }
+    setLibraryReady(true);
+  }, [storageKey]);
+  useEffect(() => {
+    const openShared = () => {
+      if (!window.location.hash.startsWith('#playlist=')) return;
+      const shared = readSharedPlaylist(window.location.hash, tracks, coverChoices);
+      if (shared) { setPlaylist({ ...shared, id: 'shared', shared: true }); setSection(shared.title); setQuery(''); setGenre(null); setNotice(''); setShareLink(''); }
+      else setNotice('This playlist link is invalid or has no available tracks.');
+    };
+    openShared(); window.addEventListener('hashchange', openShared);
+    return () => window.removeEventListener('hashchange', openShared);
+  }, []);
+  function persistPlaylists(nextPersonal, nextHidden) {
+    localStorage.setItem(storageKey, JSON.stringify({ personal: nextPersonal, hidden: nextHidden }));
+    setPersonal(nextPersonal); setHidden(nextHidden);
+  }
+  function savePlaylist(value) {
+    const valid = normalizePlaylist(value, tracks, coverChoices);
+    if (!valid) throw new Error('Invalid playlist');
+    const item = { ...valid, id: value.custom ? value.id : 'custom-' + crypto.randomUUID(), custom: true };
+    persistPlaylists([...personal.filter(p => p.id !== item.id), item], hidden);
+    setEditor(null); choosePlaylist(item);
+  }
+  function removePlaylist(item) {
+    const action = item.custom ? 'Delete' : 'Hide';
+    if (!window.confirm(action + ' “' + item.title + '” from your library?')) return;
+    try {
+      persistPlaylists(personal.filter(p => p.id !== item.id), item.custom ? hidden : [...new Set([...hidden, item.id])]);
+      if (pins.includes(item.id)) togglePin(item.id);
+      browse('Playlists');
+    } catch { setNotice('Could not update your library. Check browser storage.'); }
+  }
+  async function sharePlaylist(item) {
+    const link = window.location.origin + '/player' + playlistShareHash(item);
+    setShareLink(link);
+    try { await navigator.clipboard.writeText(link); setNotice('Playlist link copied. Anyone with this link can open a copy.'); }
+    catch { setNotice('Copy the playlist link below to share it.'); }
+  }
   const [pins, setPins] = useState([]);
   const searchInput = useRef(null);
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem("den-pinned-playlists"));
       if (Array.isArray(saved))
-        setPins(saved.filter((id) => playlists.some((p) => p.id === id)));
+        setPins(saved.filter((id) => typeof id === "string"));
     } catch {}
     const shortcut = (event) => {
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
@@ -93,6 +150,8 @@ export default function TheDen({ signedIn = false, accountId }) {
   }, []);
   const go = (page) => {
     window.scrollTo(0, 0);
+    setShareLink("");
+    if (window.location.hash.startsWith("#playlist=")) window.history.replaceState(null, "", window.location.pathname + window.location.search);
     setSection(page);
     setPlaylist(null);
     setQuery("");
@@ -203,6 +262,7 @@ export default function TheDen({ signedIn = false, accountId }) {
     const indices = item.tracks.map((id) =>
       tracks.findIndex((t) => t.id === id),
     );
+    if (!indices.length) return;
     setQueue(indices.slice(1));
     start(indices[0], false);
   };
@@ -478,6 +538,7 @@ export default function TheDen({ signedIn = false, accountId }) {
         </header>
         {section === "Listen" && !query && (
           <ListenDashboard
+            playlists={playlists}
             playing={playing}
             audible={audible}
             onTrack={activateTrack}
@@ -513,6 +574,13 @@ export default function TheDen({ signedIn = false, accountId }) {
             ))}
           </div>
         )}
+        {section === "Library" && libraryTab === "Playlists" && (
+          <div className="playlist-actions">
+            <button disabled={!libraryReady} onClick={() => setEditor({})}>Create playlist</button>
+            {hidden.length > 0 && <button onClick={() => { try { persistPlaylists(personal, []); } catch { setNotice('Could not restore playlists.'); } }}>Restore The Den playlists</button>}
+          </div>
+        )}
+        {editor && <PlaylistEditor playlist={editor.id ? editor : null} tracks={tracks} covers={coverChoices} onSave={savePlaylist} onClose={() => setEditor(null)} />}
         {section === "Library" && libraryTab === "Artists" && !query && (
           <section className="artist-list" aria-label="Artists">
             {artists.map((item) => (
@@ -620,6 +688,7 @@ export default function TheDen({ signedIn = false, accountId }) {
               </p>
               <div className="playlist-actions">
                 <button
+                  disabled={playlist.shared}
                   aria-pressed={pins.includes(playlist.id)}
                   onClick={() => togglePin(playlist.id)}
                 >
@@ -637,10 +706,16 @@ export default function TheDen({ signedIn = false, accountId }) {
                 <button onClick={() => queuePlaylist(playlist)}>
                   Add playlist to Up next
                 </button>
+                <button onClick={() => sharePlaylist(playlist)}>Share playlist</button>
+                {playlist.custom && <button onClick={() => setEditor(playlist)}>Edit playlist</button>}
+                {playlist.shared ? <button disabled={!libraryReady} onClick={() => { try { savePlaylist(playlist); } catch { setNotice('Could not save this playlist.'); } }}>Save to library</button> :
+                  <button disabled={!libraryReady} onClick={() => removePlaylist(playlist)}>{playlist.custom ? 'Delete playlist' : 'Hide from library'}</button>}
               </div>
             </div>
           </section>
         )}
+        {notice && <p role="status">{notice}</p>}
+        {shareLink && <label className="playlist-share-link">Share link<input readOnly value={shareLink} onFocus={event => event.target.select()} /></label>}
         {menu ? (
           <MenuPage
             page={section}
@@ -670,7 +745,6 @@ export default function TheDen({ signedIn = false, accountId }) {
               }
               aria-label="Track list"
             >
-              {notice && <p role="status">{notice}</p>}
               <div className="section-heading">
                 <h2>
                   {section === "Up next"

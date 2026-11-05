@@ -1,0 +1,24 @@
+.dialog { width: min(620px, calc(100vw - 24px)); max-height: 90dvh; padding: 24px; border: 1px solid #555; border-radius: 16px; color: #fff; background: #191919;
+  &::backdrop { background: #000a; }
+  form { display: grid; gap: 16px; }
+  header, footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  h2, p { margin: 0; }
+  label { display: grid; gap: 8px; }
+  input:not([type="checkbox"]) { width: 100%; min-height: 40px; background: #292929; border: 1px solid #777; border-radius: 8px; padding: 8px; }
+  input { accent-color: #3974bd; }
+  fieldset { border: 0; padding: 0; min-width: 0; }
+  legend { margin-bottom: 8px; }
+  small { color: #ccc; }
+  [role="alert"] { color: #ffb8b8; }
+}
+.covers { display: flex; gap: 8px; flex-wrap: wrap;
+  button { padding: 3px; border: 2px solid transparent; }
+  button[aria-pressed="true"] { border-color: #91bfff; }
+  img { display: block; width: 48px; height: 48px; object-fit: cover; border-radius: 5px; }
+}
+.tracks { max-height: 280px; overflow: auto;
+  label { display: flex; align-items: center; gap: 12px; padding: 8px; min-height: 56px; cursor: pointer; }
+  label:hover { background: #292929; }
+  img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
+  small { display: block; margin-top: 3px; }
+}

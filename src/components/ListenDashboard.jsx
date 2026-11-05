@@ -3,11 +3,12 @@ import SolarIcon from "./SolarIcon";
 import Dedication from "./Dedication";
 import TrackRow from "./TrackRow";
 import tracks from "../data/library";
-import playlists from "../data/playlists.json";
+import curatedPlaylists from "../data/playlists.json";
 
-const featured = playlists.find((playlist) => playlist.id === "apres-service");
+const featured = curatedPlaylists.find((playlist) => playlist.id === "apres-service");
 
 export default function ListenDashboard({
+  playlists = curatedPlaylists,
   playing,
   audible,
   onTrack,
@@ -36,7 +37,7 @@ export default function ListenDashboard({
       observer.disconnect();
       element.removeEventListener("scroll", update);
     };
-  }, []);
+  }, [playlists]);
   const scrollShelf = (direction) => {
     const element = shelf.current;
     element.scrollBy({

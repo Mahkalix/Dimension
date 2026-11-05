@@ -8,7 +8,7 @@
     "build": "next build",
     "preview": "next start",
     "start": "next start",
-    "test": "node --test scripts/library.test.mjs scripts/avatar.test.mjs",
+    "test": "node --test scripts/library.test.mjs scripts/avatar.test.mjs scripts/playlists.test.mjs",
     "test:ui": "node scripts/check-interface.mjs",
     "test:media": "node scripts/check-media.mjs"
   },

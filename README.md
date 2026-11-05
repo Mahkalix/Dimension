@@ -88,3 +88,9 @@ The [implementation report](docs/IMPLEMENTATION.md) records earlier work and may
 Signed-in listeners can select from 11 portraits from The Bear, featuring the main restaurant crew and Claire or upload a JPG, PNG or WebP (8 MB maximum) in Account. Uploads are center-cropped and re-encoded to a 320 px JPEG locally. Save applies the photo to Account, the player header and Welcome back. The default icon can be restored.
 
 Photos are stored in localStorage under the Auth0 user ID, survive browser restarts and are isolated between accounts. They are not uploaded to Auth0 or synchronized across devices; clearing site data removes them. Portrait provenance is recorded in `src/data/avatars.json` (TVmaze character pages; Carmy, Sydney, Richie, Natalie, Tina, Marcus, Neil and Claire supplied by the project owner). These images are separate from the audio licenses.
+
+## Personal playlists
+
+Library → Playlists → Create playlist opens a name, cover and track selector. Personal playlists support editing, sharing and deletion with confirmation. They are stored locally per account (or guest browser), without cloud sync. The Den playlists can be hidden locally and restored from the library.
+
+Share playlist copies a `/player#playlist=…` link containing a snapshot of its title, cover and track IDs. Anyone with the link can listen without signing in and save their own copy. Links are not private or revocable; later edits do not alter previously shared copies. Only known catalogue tracks and local covers are accepted when opening a link.
