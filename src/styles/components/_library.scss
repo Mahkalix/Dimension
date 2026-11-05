@@ -377,21 +377,22 @@
 @media (pointer: coarse) { .playlist-actions .playlist-create { min-height: 44px; } }
 
 .playlist-back {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 7px 12px;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
   margin-bottom: 12px;
-  border: 0;
-  border-radius: 20px;
-  background: var(--accent-navy);
-  color: #fff;
-  font-size: 13px;
-  &:hover { background: var(--accent-navy-hover); }
+  border: 1px solid var(--quiet);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  svg { width: 20px; height: 20px; }
+  &:hover { background: var(--wash); }
 }
-@media (pointer: coarse) { .playlist-back { min-height: 44px; } }
 
-.artist-actions button, .artist-actions .artist-play, .playlist-actions .playlist-create, .playlist-back {
+.artist-actions button, .artist-actions .artist-play, .playlist-actions .playlist-create {
   background: var(--button-primary);
   color: var(--button-primary-text);
   border: 0;

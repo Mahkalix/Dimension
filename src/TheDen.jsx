@@ -547,7 +547,7 @@ export default function TheDen({ signedIn = false, accountId }) {
         </div>
       </aside>
       <main>
-        {playlist && <button className="playlist-back" onClick={backFromPlaylist} aria-label="Back to previous page">‹ Back</button>}
+        {playlist && <button className="playlist-back" onClick={backFromPlaylist} aria-label="Back to previous page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></button>}
         <header className="main-header">
           <div>
             <h1>
