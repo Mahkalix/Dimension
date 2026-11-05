@@ -110,9 +110,13 @@
   padding: 6px;
   justify-content: center;
 }
-.pin-playlist[aria-pressed="true"] {
-  color: var(--ink);
-  background: var(--wash);
+.rail-playlist-row button,
+.rail-playlist-row button:hover {
+  background: transparent;
+}
+.den .rail-playlists .pin-playlist[aria-pressed="true"] .solar-icon {
+  filter: brightness(0) invert(1);
+  opacity: 1;
 }
 .den:is(
     [data-appearance="Frosted"],
