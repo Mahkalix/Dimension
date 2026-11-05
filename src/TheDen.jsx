@@ -1,4 +1,5 @@
 "use client";
+import PlaylistShare from "./components/PlaylistShare";
 import PlaylistActions from "./components/PlaylistActions";
 import PlaylistCard from "./components/PlaylistCard";
 import PersonalPlaylist from "./components/PersonalPlaylist";
@@ -30,6 +31,12 @@ export default function TheDen({ signedIn = false, accountId }) {
   const [hidden, setHidden] = useState([]);
   const [editor, setEditor] = useState(null);
   const [shareLink, setShareLink] = useState('');
+  const [copyToast, setCopyToast] = useState(0);
+  useEffect(() => {
+    if (!copyToast) return;
+    const timeout = setTimeout(() => setCopyToast(0), 3000);
+    return () => clearTimeout(timeout);
+  }, [copyToast]);
   const [libraryReady, setLibraryReady] = useState(false);
   const playlists = [...curatedPlaylists.filter(p => !hidden.includes(p.id)), ...personal];
   useEffect(() => {
@@ -82,9 +89,9 @@ export default function TheDen({ signedIn = false, accountId }) {
   }
   async function sharePlaylist(item) {
     const link = window.location.origin + '/player' + playlistShareHash(item);
-    setShareLink(link);
-    try { await navigator.clipboard.writeText(link); setNotice('Playlist link copied. Anyone with this link can open a copy.'); }
-    catch { setNotice('Copy the playlist link below to share it.'); }
+    setShareLink("");
+    try { await navigator.clipboard.writeText(link); setNotice(''); setCopyToast(Date.now()); }
+    catch { setShareLink(link); setNotice('Copy the playlist link below to share it.'); }
   }
   const [pins, setPins] = useState([]);
   const searchInput = useRef(null);
@@ -705,7 +712,7 @@ export default function TheDen({ signedIn = false, accountId }) {
 <button onClick={() => queuePlaylist(playlist)}>
                   Add playlist to Up next
                 </button>
-                <button onClick={() => sharePlaylist(playlist)}>Share playlist</button>
+                <PlaylistShare onCopy={() => sharePlaylist(playlist)} />
                 {playlist.custom && <button onClick={() => setEditor(playlist)}>Edit playlist</button>}
                 {playlist.shared ? <button disabled={!libraryReady} onClick={() => { try { savePlaylist(playlist); } catch { setNotice('Could not save this playlist.'); } }}>Save to library</button> :
                   <button disabled={!libraryReady} onClick={() => removePlaylist(playlist)}>{playlist.custom ? 'Delete playlist' : 'Hide from library'}</button>}
@@ -714,6 +721,7 @@ export default function TheDen({ signedIn = false, accountId }) {
           </section>
         )}
         {notice && <p role="status">{notice}</p>}
+        {copyToast > 0 && <div className="copy-toast" role="status">Link copied to clipboard</div>}
         {shareLink && <label className="playlist-share-link">Share link<input readOnly value={shareLink} onFocus={event => event.target.select()} /></label>}
         {menu ? (
           <MenuPage

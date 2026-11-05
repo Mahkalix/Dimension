@@ -15,19 +15,19 @@ For local development and production, use these comma-separated values:
 **Allowed Callback URLs**
 
 ```text
-http://localhost:3000/auth/callback,http://127.0.0.1:3000/auth/callback,https://dimension-gamma.vercel.app/auth/callback
+http://localhost:3000/auth/callback,http://127.0.0.1:3000/auth/callback,https://theden-thebear.vercel.app/auth/callback
 ```
 
 **Allowed Logout URLs**
 
 ```text
-http://localhost:3000,http://127.0.0.1:3000,https://dimension-gamma.vercel.app
+http://localhost:3000,http://127.0.0.1:3000,https://theden-thebear.vercel.app
 ```
 
 **Allowed Web Origins**
 
 ```text
-http://localhost:3000,http://127.0.0.1:3000,https://dimension-gamma.vercel.app
+http://localhost:3000,http://127.0.0.1:3000,https://theden-thebear.vercel.app
 ```
 
 For each stable Vercel preview URL you actually use, add its exact origin to Logout URLs and Web Origins, and that origin followed by `/auth/callback` to Callback URLs. Do not add path segments to Web Origins. Avoid broad wildcard domains. The existing player branch preview is:
@@ -57,7 +57,7 @@ Copy `.env.example` into `.env.local`. In Vercel, set values in the required Pre
 | `AUTH0_CLIENT_SECRET` | Client Secret from the Auth0 application; server only |
 | `AUTH0_SECRET` | A stable, random 32-byte hex string used to encrypt session cookies |
 | `AUTH0_CONNECTION` | `Username-Password-Authentication`, or your actual Database Connection name |
-| `APP_BASE_URL` | `http://localhost:3000` locally, `https://dimension-gamma.vercel.app` in Production |
+| `APP_BASE_URL` | `http://localhost:3000` locally, `https://theden-thebear.vercel.app` in Production |
 
 Generate `AUTH0_SECRET` with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`. Do not prefix any of these values with `NEXT_PUBLIC_`. Do not commit `.env.local`. Keep the session secret stable between deployments; changing it signs out existing users.
 
@@ -77,3 +77,5 @@ The Auth0 application is configured as a Regular Web Application with Client Sec
 - Test a new signup, wrong password, password reset, login, reload, browser restart, expired session and logout with a real test user after configuring the tenant. No real password was supplied or handled during this implementation.
 
 SDK reference: https://github.com/auth0/nextjs-auth0
+
+Production origin verified on 2026-11-05: `https://theden-thebear.vercel.app`. `APP_BASE_URL`, the exact `/auth/callback` allowlist entry and the logout origin must match this domain. Redeploy after changing the Vercel environment value.

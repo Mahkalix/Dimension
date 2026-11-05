@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import PlaylistShare from "./PlaylistShare";
 import PlaylistActions from "./PlaylistActions";
 import styles from "./PersonalPlaylist.module.scss";
 
@@ -27,7 +28,7 @@ export default function PersonalPlaylist({ playlist, tracks, onEdit, onUpdate, o
       <PlaylistActions onPlay={onPlay} disabled={!selected.length}>
         <button onClick={onEdit}>Name and details</button>
         <button disabled={!selected.length} onClick={onQueue}>Add to Up next</button>
-        <button onClick={onShare}>Share playlist</button>
+        <PlaylistShare onCopy={onShare} />
         <button onClick={onDelete}>Delete playlist</button>
       </PlaylistActions>
       {selected.map((track, index) => <div className={styles.row} key={track.id}><img src={track.art} alt="" /><span><b>{track.title}</b><small>{track.artist}</small></span><button disabled={index === 0} onClick={() => move(index, -1)} aria-label={`Move ${track.title} up`}>↑</button><button disabled={index === selected.length - 1} onClick={() => move(index, 1)} aria-label={`Move ${track.title} down`}>↓</button><button onClick={() => update(playlist.tracks.filter(id => id !== track.id))} aria-label={`Remove ${track.title}`}>Remove</button></div>)}

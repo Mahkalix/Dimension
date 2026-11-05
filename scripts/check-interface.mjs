@@ -7,7 +7,7 @@ const playlists = JSON.parse(fs.readFileSync('src/data/playlists.json', 'utf8'))
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 try {
   for (const width of [390, 820, 1440]) {
-    const context = await browser.newContext({ viewport: { width, height: 900 } });
+    const context = await browser.newContext({ permissions: ["clipboard-read", "clipboard-write"], viewport: { width, height: 900 } });
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -33,8 +33,10 @@ try {
     await page.getByRole('button', {name:'Open Regression playlist',exact:true}).click();
     await page.getByText('Saved from the interface check', {exact:true}).waitFor();
     await page.getByLabel('Playlist options', {exact:true}).click();
-    await page.getByRole('button', {name:'Share playlist',exact:true}).click();
-    const link = await page.getByRole('textbox', {name:'Share link',exact:true}).inputValue();
+    await page.locator('summary').filter({hasText:'Share'}).click();
+    await page.getByRole('button', {name:'Copy playlist link',exact:true}).click();
+    await page.getByRole('status').filter({hasText:'Link copied to clipboard'}).waitFor();
+    const link = await page.evaluate(() => navigator.clipboard.readText());
     await page.goto(link);
     await page.getByLabel('Playlist options', {exact:true}).click();
     await page.getByRole('button', {name:'Save to library',exact:true}).waitFor();

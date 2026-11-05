@@ -1,0 +1,10 @@
+.share.share { position: relative;
+  > summary { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 44px; padding: 10px 12px; border-radius: 4px; font-size: 13px; letter-spacing: normal; list-style: none; }
+  > summary::-webkit-details-marker { display: none; }
+  > summary:hover, &[open] > summary { background: #ffffff14; }
+}
+.arrow { margin-left: auto; }
+.submenu { position: absolute; left: 100%; bottom: 0; min-width: 220px; background: #292929; padding: 5px; border-radius: 5px; box-shadow: 0 8px 24px #0006;
+  button { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+}
+@media (max-width: 700px) { .submenu { position: static; min-width: 0; box-shadow: none; } }
