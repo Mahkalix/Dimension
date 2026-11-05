@@ -28,7 +28,15 @@
     "alt": "Carmy working at the stove during a busy service in The Bear.",
     "sourceUrl": null,
     "credit": "The Bear · FX, image supplied for The Den",
-    "tracks": ["shaw-hip-hop-1", "shaw-acoustic-rock", "shaw-falling-sky"]
+    "tracks": [
+      "shaw-hip-hop-1",
+      "shaw-acoustic-shuffle",
+      "shaw-cool-steel-breeze",
+      "style-funk",
+      "enter-the-party",
+      "fork-and-spoon",
+      "c-funk"
+    ]
   },
   {
     "id": "plonge",
@@ -43,8 +51,8 @@
       "bossa-antigua",
       "george-street-shuffle",
       "night-on-the-docks---sax",
-      "shaw-plumber-s-rag",
-      "shaw-saloon-rag"
+      "sunday-dub",
+      "dub-feral"
     ]
   },
   {
@@ -54,13 +62,13 @@
     "imagePosition": "50% 50%",
     "alt": "The Bear team together with cans of tomatoes.",
     "tracks": [
-      "local-forecast",
-      "george-street-shuffle",
-      "night-on-the-docks---sax",
       "shaw-plumber-s-rag",
       "shaw-saloon-rag",
-      "shaw-hip-hop-1",
-      "shaw-falling-sky"
+      "got-funk",
+      "protofunk",
+      "funky-chunk",
+      "funky-one",
+      "mining-by-moonlight"
     ],
     "sourceUrl": null,
     "credit": "The Bear · FX, image supplied for The Den"
@@ -73,17 +81,12 @@
     "alt": "The Bear team gathered in the kitchen.",
     "tracks": [
       "carefree",
-      "bossa-antigua",
       "tea-roots",
-      "shaw-acoustic-guitar-1",
-      "shaw-acoustic-shuffle",
-      "shaw-cool-steel-breeze",
-      "shaw-folk-bed",
-      "shaw-paper-wings",
       "shaw-pennywhistle",
-      "shaw-solo-acoustic-3",
-      "shaw-solo-acoustic-5",
-      "shaw-words"
+      "sneaky-snitch",
+      "monkeys-spinning-monkeys",
+      "fluffing-a-duck",
+      "life-of-riley"
     ],
     "sourceUrl": null,
     "credit": "The Bear · FX, image supplied for The Den"
@@ -95,26 +98,14 @@
     "imagePosition": "50% 50%",
     "alt": "Sydney and Carmy planning together at a table.",
     "tracks": [
-      "carefree",
-      "airport-lounge",
-      "cylinder-1",
-      "cylinder-2",
-      "cylinder-3",
-      "cylinder-4",
-      "cylinder-5",
-      "cylinder-6",
-      "cylinder-7",
-      "cylinder-8",
-      "cylinder-9",
       "shaw-acoustic-guitar-1",
-      "shaw-acoustic-shuffle",
-      "shaw-cool-steel-breeze",
       "shaw-folk-bed",
       "shaw-paper-wings",
-      "shaw-pennywhistle",
       "shaw-solo-acoustic-3",
       "shaw-solo-acoustic-5",
-      "shaw-words"
+      "shaw-words",
+      "wallpaper",
+      "sunshine"
     ],
     "sourceUrl": null,
     "credit": "The Bear · FX, image supplied for The Den"
@@ -125,7 +116,14 @@
     "cover": "/images/playlists/chaos.jpg",
     "imagePosition": "50% 50%",
     "alt": "Carmy facing flames at the stove in The Bear.",
-    "tracks": ["shaw-acoustic-rock", "shaw-falling-sky"],
+    "tracks": [
+      "shaw-acoustic-rock",
+      "shaw-falling-sky",
+      "cut-and-run",
+      "cipher",
+      "decisions",
+      "edm-detection-mode"
+    ],
     "sourceUrl": null,
     "credit": "The Bear · FX, image supplied for The Den"
   }

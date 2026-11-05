@@ -6,6 +6,7 @@ const origin = process.env.TEST_URL || "http://localhost:3140";
 const screenshotDir = process.env.SCREENSHOT_DIR || "docs/screens";
 fs.mkdirSync(screenshotDir, { recursive: true });
 const browser = await chromium.launch({ channel: "chrome", headless: true });
+const library = JSON.parse(fs.readFileSync("src/data/selection.json", "utf8"));
 const results = [];
 try {
   for (const width of [360, 390, 700, 701, 820, 1024, 1280, 1440]) {
@@ -31,7 +32,7 @@ try {
       "Dashboard overflow at " + width,
     );
     await page.getByRole("button", { name: "All tracks", exact: true }).click();
-    assert.equal(await page.locator(".track").count(), 30);
+    assert.equal(await page.locator(".track").count(), library.length);
     assert.equal(await page.locator("iframe").count(), 0);
     await page.locator(".track").first().click();
     await page.waitForFunction(
@@ -246,7 +247,7 @@ try {
       "Jazz",
     ]);
     await page.getByRole("button", { name: "All genres", exact: true }).click();
-    assert.equal(await page.locator(".track").count(), 30);
+    assert.equal(await page.locator(".track").count(), library.length);
     await page.getByRole("button", { name: "Home", exact: true }).click();
     await page.locator(".shelf-record").last().click();
     assert.equal(await page.locator("h1").innerText(), "Chaos");
@@ -356,7 +357,7 @@ try {
   await page.screenshot({ path: path.join(screenshotDir, "login.png") });
   console.log(JSON.stringify(results, null, 2));
   console.log(
-    "Guest access, protected account, signup page, session/network messages, reduced motion, 30 tracks and responsive playback passed.",
+    "Guest access, protected account, signup page, session/network messages, reduced motion, the complete library and responsive playback passed.",
   );
 } finally {
   await browser.close();

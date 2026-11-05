@@ -8,12 +8,19 @@ const tracks = JSON.parse(
 const playlists = JSON.parse(
   fs.readFileSync(new URL("../src/data/playlists.json", import.meta.url)),
 );
-test("library contains at least 30 distinct licensed playable recordings", () => {
-  assert.ok(tracks.length >= 30);
+test("library contains at least 51 distinct licensed playable recordings", () => {
+  assert.ok(tracks.length >= 51);
   validateLibrary(tracks, playlists);
   for (const t of tracks)
     if (t.url.startsWith("/"))
       assert.ok(fs.existsSync(new URL("../public" + t.url, import.meta.url)));
+});
+
+test("curated playlists do not repeat recordings and cover the library", () => {
+  const assigned = playlists.flatMap((playlist) => playlist.tracks);
+  assert.equal(new Set(assigned).size, assigned.length);
+  assert.deepEqual(new Set(assigned), new Set(tracks.map((track) => track.id)));
+  for (const playlist of playlists) assert.ok(playlist.tracks.length >= 6);
 });
 test("reject duplicate IDs and normalized title/artist pairs", () => {
   assert.throws(
