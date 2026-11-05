@@ -1,4 +1,5 @@
 "use client";
+import PlaylistCard from "./components/PlaylistCard";
 import PersonalPlaylist from "./components/PersonalPlaylist";
 import PlaylistEditor from "./components/PlaylistEditor";
 import { genericCover, normalizePlaylist, playlistShareHash, readSharedPlaylist } from "./lib/playlists";
@@ -661,15 +662,7 @@ export default function TheDen({ signedIn = false, accountId }) {
         {section === "Library" && libraryTab === "Playlists" && !query && (
           <section className="collections" aria-label="Collections">
             {sortedPlaylists.map((p) => (
-              <button key={p.id} onClick={() => choosePlaylist(p)}>
-                <img
-                  src={p.cover}
-                  alt={p.alt}
-                  style={{ objectPosition: p.imagePosition }}
-                />
-                <strong>{p.title}</strong>
-                <small>{p.tracks.length} tracks</small>
-              </button>
+              <PlaylistCard key={p.id} playlist={p} onOpen={choosePlaylist} onPlay={playPlaylist} />
             ))}{" "}
           </section>
         )}

@@ -1,3 +1,4 @@
+import PlaylistCard from "./PlaylistCard";
 import { useEffect, useRef, useState } from "react";
 import SolarIcon from "./SolarIcon";
 import Dedication from "./Dedication";
@@ -116,23 +117,7 @@ export default function ListenDashboard({
         <div className="shelf-carousel">
           <div className="shelf-records" id="playlist-carousel" ref={shelf}>
             {playlists.map((playlist) => (
-              <button
-                key={playlist.id}
-                className="shelf-record"
-                onClick={() => onPlaylist(playlist)}
-              >
-                <div className="shelf-cover">
-                  <img
-                    src={playlist.cover}
-                    alt={playlist.alt}
-                    style={{ objectPosition: playlist.imagePosition }}
-                  />
-                  <span className="playlist-brand" data-style={playlist.logoStyle || "badge"} aria-hidden="true" />
-                  <SolarIcon name="arrow-right" />
-                </div>
-                <strong>{playlist.title}</strong>
-                <small>{playlist.tracks.length} tracks</small>
-              </button>
+              <PlaylistCard key={playlist.id} className="shelf-record" playlist={playlist} onOpen={onPlaylist} onPlay={onPlayPlaylist} />
             ))}
           </div>
           <button
