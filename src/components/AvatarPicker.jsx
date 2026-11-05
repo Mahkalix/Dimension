@@ -1,11 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Action from "./Action";
 import avatars from "../data/avatars.json";
 import { defaultAvatar, readAvatar, saveAvatar, prepareAvatar } from "../lib/avatar";
 import styles from "./AvatarPicker.module.scss";
 
 export default function AvatarPicker({ accountId }) {
+  const router = useRouter();
+  const [saved, setSaved] = useState(false);
+  useEffect(() => {
+    if (!saved) return;
+    const timer = window.setTimeout(() => router.replace("/player"), 1200);
+    return () => window.clearTimeout(timer);
+  }, [saved, router]);
   const [selected, setSelected] = useState(defaultAvatar);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +30,8 @@ export default function AvatarPicker({ accountId }) {
     finally { setBusy(false); }
   }
   function save() {
-    try { saveAvatar(accountId, selected); setError(""); setMessage("Profile photo saved."); }
+    if (busy || saved) return;
+    try { saveAvatar(accountId, selected); setError(""); setMessage("✓ Profile photo saved. Returning to your music…"); setSaved(true); }
     catch { setError("Your photo could not be saved. Check that browser storage is available."); }
   }
   return <section className={styles.picker} aria-labelledby="photo-title">
@@ -32,21 +41,21 @@ export default function AvatarPicker({ accountId }) {
       <div><h2 id="photo-title">Your profile photo</h2><p>Pick a character from The Bear, or bring your own photo.</p></div>
     </div>
     <div className={styles.actions}>
-      <Action as="label" className={styles.upload}>Upload a photo<input type="file" accept="image/jpeg,image/png,image/webp" onChange={upload} disabled={busy} /></Action>
-      <Action onClick={() => choose(defaultAvatar)} disabled={busy}>Use default icon</Action>
+      <Action as="label" className={styles.upload}>Upload a photo<input type="file" accept="image/jpeg,image/png,image/webp" onChange={upload} disabled={busy || saved} /></Action>
+      <Action onClick={() => choose(defaultAvatar)} disabled={busy || saved}>Use default icon</Action>
     </div>
     <p className={styles.note}>JPG, PNG or WebP, up to 8 MB. Your photo is cropped to a square.</p>
     <div className={styles.gallery} aria-label="The Bear profile photos">
-      {avatars.map(a => <button type="button" key={a.id} aria-pressed={selected === a.image} onClick={() => choose(a.image)} disabled={busy}>
+      {avatars.map(a => <button type="button" key={a.id} aria-pressed={selected === a.image} onClick={() => choose(a.image)} disabled={busy || saved}>
         <img src={a.image} alt="" width="72" height="72" loading="lazy" />
         <span>{a.name}</span>
       </button>)}
     </div>
     <div className={styles.footer}>
-      <Action variant="primary" disabled={busy} onClick={save}>{busy ? "Preparing photo…" : "Save photo"}</Action>
+      <Action variant="primary" disabled={busy || saved} onClick={save}>{saved ? "✓ Saved" : busy ? "Preparing photo…" : "Save photo"}</Action>
       <p className={styles.note}>Saved for your account on this browser. Not synced across devices.</p>
     </div>
-    <p role="status">{message}</p>
+    <p className={saved ? styles.success : undefined} role="status">{message}</p>
     {error && <p role="alert">{error}</p>}
   </section>;
 }
