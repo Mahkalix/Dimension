@@ -13,7 +13,6 @@
     width: 38px;
     height: 38px;
     border-radius: 5px;
-    filter: grayscale(1);
     flex: none;
   }
   .track-copy {
@@ -83,7 +82,6 @@
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 10px;
-    filter: grayscale(1);
     margin-bottom: 10px;
   }
   strong,
@@ -126,7 +124,6 @@
   object-fit: cover;
   border-radius: 50%;
   margin: 0 auto 8px;
-  filter: grayscale(1);
 }
 .playlist-hero {
   display: flex;
@@ -138,7 +135,6 @@
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 12px;
-    filter: grayscale(1);
   }
   div {
     display: grid;
