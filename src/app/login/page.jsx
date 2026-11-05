@@ -1,5 +1,6 @@
 import { getSession, configured } from "../../lib/identity";
 import styles from "./login.module.scss";
+import Dedication from "./Dedication";
 export const dynamic = "force-dynamic";
 const messages = {
   config:
@@ -79,17 +80,7 @@ export default async function Login({ searchParams }) {
             </>
           )}
         </div>
-        <aside className={styles.story}>
-          <span>Before service. After hours.</span>
-          <h2>
-            A little room
-            <br />
-            for your soundtrack.
-          </h2>
-          <p>
-            Pull up a chair and press play.
-          </p>
-        </aside>
+        <Dedication />
       </section>
     </main>
   );
