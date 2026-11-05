@@ -263,9 +263,19 @@ export default function TheDen({ signedIn = false, accountId }) {
         .toLowerCase()
         .includes(query.trim().toLowerCase()),
   );
+  const playlistOrigin = useRef(null);
   const choosePlaylist = (item) => {
+    if (!playlist) playlistOrigin.current = { section, libraryTab, query, genre };
     go(item.title);
     setPlaylist(item);
+  };
+  const backFromPlaylist = () => {
+    const origin = playlistOrigin.current;
+    go(origin?.section || "Library");
+    setLibraryTab(origin?.libraryTab || "Playlists");
+    setQuery(origin?.query || "");
+    setGenre(origin?.genre || null);
+    playlistOrigin.current = null;
   };
   const playPlaylist = (item) => {
     const indices = item.tracks.map((id) =>
@@ -536,6 +546,7 @@ export default function TheDen({ signedIn = false, accountId }) {
         </div>
       </aside>
       <main>
+        {playlist && <button className="playlist-back" onClick={backFromPlaylist} aria-label="Back to previous page">‹ Back</button>}
         <header className="main-header">
           <div>
             <h1>
