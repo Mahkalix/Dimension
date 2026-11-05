@@ -1,0 +1,16 @@
+.actions { display: flex; align-items: center; gap: 18px; margin: 24px 0; position: relative; z-index: 2;
+  .play { display: grid; place-items: center; width: 60px; height: 60px; padding: 0; border: 0; border-radius: 50%; background: var(--accent-navy); color: #fff; }
+  .play:hover { background: var(--accent-navy-hover); }
+  .play:disabled { opacity: .4; cursor: default; }
+  svg { width: 30px; height: 30px; }
+  details { position: relative; }
+  summary { list-style: none; display: grid; place-items: center; min-width: 44px; min-height: 44px; font-size: 22px; letter-spacing: 3px; cursor: pointer; border-radius: 50%; }
+  summary::marker { content: ""; }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: var(--accent-navy); color: #fff; }
+}
+.menu { position: absolute; top: calc(100% + 8px); left: 0; width: min(230px, 65vw); padding: 6px; border-radius: 8px; background: #242424; box-shadow: 0 8px 24px #0006; display: grid; gap: 2px;
+  button { width: 100%; text-align: left; padding: 10px 12px; border: 0; border-radius: 4px; color: #fff; background: transparent; font-size: 13px; }
+  button:hover { background: var(--accent-navy); }
+  button:disabled { opacity: .4; cursor: default; }
+}

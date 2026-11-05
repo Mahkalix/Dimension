@@ -11,14 +11,6 @@
   h2 { font-size: clamp(32px, 5vw, 76px); line-height: 1.05; margin: 12px 0 20px; overflow-wrap: anywhere; }
 }
 .content { padding: clamp(16px, 3vw, 32px); }
-.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 24px;
-  button, summary { background: var(--accent-navy); border-radius: 24px; padding: 8px 16px; min-height: 40px; cursor: pointer; font-size: 13px; }
-  summary { list-style: none; display: grid; place-items: center; }
-  summary::marker { content: ""; }
-  summary::-webkit-details-marker { display: none; }
-  details { position: relative; }
-  details > div { position: absolute; z-index: 2; top: 44px; left: 0; background: #242424; padding: 8px; border-radius: 8px; width: 180px; display: grid; gap: 4px; }
-}
 .page button:disabled { opacity: .4; cursor: default; }
 .row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #ffffff1a;
   img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }

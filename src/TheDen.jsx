@@ -1,4 +1,5 @@
 "use client";
+import PlaylistActions from "./components/PlaylistActions";
 import PlaylistCard from "./components/PlaylistCard";
 import PersonalPlaylist from "./components/PersonalPlaylist";
 import PlaylistEditor from "./components/PlaylistEditor";
@@ -699,7 +700,7 @@ export default function TheDen({ signedIn = false, accountId }) {
                 )}{" "}
                 min
               </p>
-              <div className="playlist-actions">
+              <PlaylistActions onPlay={() => playPlaylist(playlist)} disabled={!playlist.tracks.length}>
                 <button
                   disabled={playlist.shared}
                   aria-pressed={pins.includes(playlist.id)}
@@ -709,21 +710,14 @@ export default function TheDen({ signedIn = false, accountId }) {
                     ? "Unpin playlist"
                     : "Pin playlist"}
                 </button>
-                <button
-                  className="playlist-play"
-                  onClick={() => playPlaylist(playlist)}
-                >
-                  <SolarIcon name="play" />
-                  Play playlist
-                </button>
-                <button onClick={() => queuePlaylist(playlist)}>
+<button onClick={() => queuePlaylist(playlist)}>
                   Add playlist to Up next
                 </button>
                 <button onClick={() => sharePlaylist(playlist)}>Share playlist</button>
                 {playlist.custom && <button onClick={() => setEditor(playlist)}>Edit playlist</button>}
                 {playlist.shared ? <button disabled={!libraryReady} onClick={() => { try { savePlaylist(playlist); } catch { setNotice('Could not save this playlist.'); } }}>Save to library</button> :
                   <button disabled={!libraryReady} onClick={() => removePlaylist(playlist)}>{playlist.custom ? 'Delete playlist' : 'Hide from library'}</button>}
-              </div>
+              </PlaylistActions>
             </div>
           </section>
         )}

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import PlaylistActions from "./PlaylistActions";
 import styles from "./PersonalPlaylist.module.scss";
 
 export default function PersonalPlaylist({ playlist, tracks, onEdit, onUpdate, onDelete, onShare, onPlay, onQueue }) {
@@ -23,9 +24,12 @@ export default function PersonalPlaylist({ playlist, tracks, onEdit, onUpdate, o
         {playlist.description && <p>{playlist.description}</p>}<small>{selected.length} tracks · Saved on this browser</small></div>
     </header>
     <div className={styles.content}>
-      <div className={styles.actions}><button disabled={!selected.length} onClick={onPlay}>Play playlist</button><button onClick={onEdit}>Name and details</button><button disabled={!selected.length} onClick={onQueue}>Add to Up next</button>
-        <details><summary aria-label="Playlist options">•••</summary><div><button onClick={onShare}>Share playlist</button><button onClick={onDelete}>Delete playlist</button></div></details>
-      </div>
+      <PlaylistActions onPlay={onPlay} disabled={!selected.length}>
+        <button onClick={onEdit}>Name and details</button>
+        <button disabled={!selected.length} onClick={onQueue}>Add to Up next</button>
+        <button onClick={onShare}>Share playlist</button>
+        <button onClick={onDelete}>Delete playlist</button>
+      </PlaylistActions>
       {selected.map((track, index) => <div className={styles.row} key={track.id}><img src={track.art} alt="" /><span><b>{track.title}</b><small>{track.artist}</small></span><button disabled={index === 0} onClick={() => move(index, -1)} aria-label={`Move ${track.title} up`}>↑</button><button disabled={index === selected.length - 1} onClick={() => move(index, 1)} aria-label={`Move ${track.title} down`}>↓</button><button onClick={() => update(playlist.tracks.filter(id => id !== track.id))} aria-label={`Remove ${track.title}`}>Remove</button></div>)}
       <div className={styles.find}><h3>Let’s find something for your playlist</h3><label>Find tracks<input type="search" placeholder="Search songs or artists" value={search} onChange={event => setSearch(event.target.value)} /></label>
         {matches.map(track => <div className={styles.row} key={track.id}><img src={track.art} alt="" /><span><b>{track.title}</b><small>{track.artist}</small></span><button onClick={() => update([...playlist.tracks, track.id])} aria-label={`Add ${track.title}`}>Add</button></div>)}
