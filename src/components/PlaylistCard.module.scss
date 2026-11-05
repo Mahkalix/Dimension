@@ -7,10 +7,10 @@
 .brand::after { content: ""; position: absolute; inset: 4px; background: #fff; mask: url('/brand/the-den-house.svg') center / contain no-repeat; }
 .card strong { display: block; padding: 0; margin: 12px 0 4px; font-size: 14px; }
 .card small { display: block; padding: 0; margin: 0; color: #bbb; font-size: 12px; }
-.card .play { position: absolute; right: 18px; top: calc(100cqw - 46px); display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; background: var(--button-primary); color: var(--button-primary-text); box-shadow: 0 6px 14px #0006; opacity: 0; transform: translateY(8px); transition: opacity 160ms ease, transform 160ms ease; }
+.card .play { position: absolute; right: 18px; top: calc(100cqw - 46px); display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 1px solid #ffffffa6; border-radius: 50%; background: #0003; color: #fff; box-shadow: none; opacity: 0; transform: translateY(8px); transition: opacity 160ms ease, transform 160ms ease; }
 .card .play svg { width: 26px; height: 26px; }
 .card:hover .play, .card:focus-within .play { opacity: 1; transform: translateY(0); }
-.card .play:hover { background: var(--button-primary-hover); }
+.card .play:hover { background: #0006; }
 @media (hover: none) { .card .play { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .card, .card .play { transition: none; } }
 
