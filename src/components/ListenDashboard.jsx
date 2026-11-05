@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import SolarIcon from "./SolarIcon";
 import Dedication from "./Dedication";
-import TrackRow, { formatDuration } from "./TrackRow";
+import TrackRow from "./TrackRow";
 import tracks from "../data/library";
 import playlists from "../data/playlists.json";
 
@@ -11,8 +11,8 @@ export default function ListenDashboard({
   playing,
   audible,
   onTrack,
-  upcoming,
-  onPlayUpcoming,
+  queue,
+  onToggleQueue,
   onQueue,
   onPlaylist,
   onPlayPlaylist,
@@ -95,39 +95,13 @@ export default function ListenDashboard({
             current={playing === i}
             playing={audible}
             onClick={() => onTrack(i)}
+            queued={queue.includes(i)}
+            onQueue={() => onToggleQueue(i)}
           />
         ))}
       </section>
 
       <aside className="dashboard-side" aria-label="Discover music">
-        <section className="house-picks" aria-labelledby="picks-title">
-          <div className="section-heading">
-            <h2 id="picks-title">Up next</h2>
-            <button onClick={onQueue}>View queue <SolarIcon name="arrow-right" /></button>
-          </div>
-          <div className="picks-list">
-            {upcoming.map((index, position) => {
-              const track = tracks[index];
-              return (
-                <button
-                  className="spotlight-track"
-                  key={`${track.id}-${position}`}
-                  onClick={() => onPlayUpcoming(index, position)}
-                  aria-label={`Play next: ${track.title}`}
-                >
-                  <span className="pick-number">0{position + 1}</span>
-                  <img src={track.art} alt="" />
-                  <span className="pick-copy">
-                    <b>{track.title}</b>
-                    <small>{track.artist}</small>
-                    <time>{formatDuration(track.duration)}</time>
-                  </span>
-                  <SolarIcon name="play" />
-                </button>
-              );
-            })}
-          </div>
-        </section>
         <Dedication />
       </aside>
 

@@ -155,6 +155,11 @@ export default function TheDen({ signedIn = false }) {
     if (!previewOpen && !dialog.current.open) go("Up next");
     setNotice("Added to queue");
   };
+  const toggleQueue = (i) => {
+    const queued = queue.includes(i);
+    setQueue((q) => queued ? q.filter((index) => index !== i) : [...q, i]);
+    setNotice(queued ? "Removed from queue" : "Added to queue");
+  };
   const menu = menuPages.includes(section);
   const dialog = useRef(null);
   const track = tracks[preview];
@@ -177,10 +182,6 @@ export default function TheDen({ signedIn = false }) {
   );
   const order =
     section === "Up next" ? queue : playlistOrder || tracks.map((_, i) => i);
-  const upcoming = queue.slice(0, 3);
-  while (upcoming.length < 3) {
-    upcoming.push(((upcoming.at(-1) ?? playing ?? preview) + 1) % tracks.length);
-  }
   const selectedArtist =
     section === "Library" && libraryTab === "Artists"
       ? artists.find((artist) => artist.name === query)
@@ -473,12 +474,8 @@ export default function TheDen({ signedIn = false }) {
             playing={playing}
             audible={audible}
             onTrack={activateTrack}
-            upcoming={upcoming}
-            onQueue={() => go("Up next")}
-            onPlayUpcoming={(i, position) => {
-              setQueue((q) => q.slice(position + 1));
-              start(i, false);
-            }}
+            queue={queue}
+            onToggleQueue={toggleQueue}
             onPlaylist={choosePlaylist}
             onPlayPlaylist={playPlaylist}
             onBrowse={browse}
@@ -684,6 +681,8 @@ export default function TheDen({ signedIn = false }) {
                   current={playing === i}
                   playing={audible}
                   onClick={() => activateTrack(i, position)}
+                  queued={queue.includes(i)}
+                  onQueue={() => toggleQueue(i)}
                 />
               ))}
               {!results.length && <p role="status">No tracks found.</p>}

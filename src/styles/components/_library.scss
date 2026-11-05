@@ -1,4 +1,19 @@
 @use "../abstracts/breakpoints" as bp;
+.track-row {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  .track { flex: 1; min-width: 0; }
+}
+.track-queue {
+  flex: 0 0 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  &[aria-pressed="true"] { color: #79a9ed; }
+}
 .track {
   display: flex;
   align-items: center;
