@@ -222,14 +222,14 @@
   mix-blend-mode: normal;
 }
 
-// Stable reading surfaces keep contrast independent of the background photograph.
+// Keep the kitchen visible while protecting text with local reading surfaces.
 .den:is(
   [data-appearance="Frosted"],
   [data-appearance="Clear"],
   [data-appearance="Blur"]
 ) {
   main {
-    background: #181818;
+    background: linear-gradient(#202020b8, #202020a6);
   }
   .rotation,
   section[aria-label="Track list"] {
@@ -261,7 +261,7 @@
   .menu-row,
   .picks-list,
   .listening-note {
-    background: #242424;
+    background: #292929eb;
   }
 }
 .track b {
