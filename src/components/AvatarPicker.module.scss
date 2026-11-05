@@ -25,5 +25,3 @@
 }
 .footer { display: flex; align-items: center; gap: 16px; }
 @media (max-width: 480px) { .preview { align-items: start; gap: 12px; } .preview img { width: 72px; height: 72px; } .footer { align-items: start; flex-direction: column; } }
-
-.success { padding: 12px 16px; border: 1px solid #719bd2; border-radius: 10px; background: #142134; color: #fff; font-weight: 600; }

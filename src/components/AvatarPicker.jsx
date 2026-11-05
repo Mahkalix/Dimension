@@ -15,23 +15,22 @@ export default function AvatarPicker({ accountId }) {
     return () => window.clearTimeout(timer);
   }, [saved, router]);
   const [selected, setSelected] = useState(defaultAvatar);
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   useEffect(() => { setSelected(readAvatar(accountId)); }, [accountId]);
-  const choose = (photo) => { setSelected(photo); setMessage(""); setError(""); };
+  const choose = (photo) => { setSelected(photo); setError(""); };
   async function upload(event) {
     const file = event.target.files?.[0];
     event.target.value = "";
     if (!file) return;
-    setBusy(true); setError(""); setMessage("");
+    setBusy(true); setError("");
     try { choose(await prepareAvatar(file)); }
     catch (err) { setError(err.message || "This image could not be opened."); }
     finally { setBusy(false); }
   }
   function save() {
     if (busy || saved) return;
-    try { saveAvatar(accountId, selected); setError(""); setMessage("✓ Profile photo saved. Returning to your music…"); setSaved(true); }
+    try { saveAvatar(accountId, selected); setError(""); setSaved(true); }
     catch { setError("Your photo could not be saved. Check that browser storage is available."); }
   }
   return <section className={styles.picker} aria-labelledby="photo-title">
@@ -55,7 +54,6 @@ export default function AvatarPicker({ accountId }) {
       <Action variant="primary" disabled={busy || saved} onClick={save}>{saved ? "✓ Saved" : busy ? "Preparing photo…" : "Save photo"}</Action>
       <p className={styles.note}>Saved for your account on this browser. Not synced across devices.</p>
     </div>
-    <p className={saved ? styles.success : undefined} role="status">{message}</p>
     {error && <p role="alert">{error}</p>}
   </section>;
 }
