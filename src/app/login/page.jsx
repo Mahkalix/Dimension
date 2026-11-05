@@ -74,8 +74,8 @@ export default async function Login({ searchParams }) {
                   ? "Sign in"
                   : "Create an account"}
               </a>
-              </div>
               <a className={styles.guest} href="/player">Continue without an account</a>
+              </div>
             </>
           )}
         </div>

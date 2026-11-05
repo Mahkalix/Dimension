@@ -60,8 +60,9 @@
   }
 }
 .brand {
-  display: grid;
-  justify-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 12px;
 }
 .mark {
@@ -115,7 +116,8 @@
   filter: brightness(0) invert(1);
 }
 .invitation {
-  margin-top: 8px;
+  display: grid;
+  justify-items: center;
   a {
     font-weight: 650;
   }
