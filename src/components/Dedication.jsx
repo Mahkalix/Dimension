@@ -15,7 +15,7 @@ export default function Dedication() {
       <div className={styles.dedication}>
         <span>Un peu de musique, beaucoup d’affection.</span>
         <h2>Pour un ami<br />que j’aime fort.</h2>
-        <p>Un petit coin pour les morceaux qu’on partage, les longues journées et les moments qui restent. Ce lieu, c’est pour toi.</p>
+        <p>Un petit coin pour les jours où tu te prends pour Carmy. Pose le tablier, lance un morceau et souffle un peu. Ici, t’as rien à prouver.</p>
         <a href="https://github.com/Mahkalix" target="_blank" rel="noopener noreferrer" aria-label="Fait par @Mahkalix (GitHub, nouvel onglet)">Fait par @Mahkalix ↗</a>
         <a className={styles.artCredit} href="https://www.instagram.com/sunnnliwx/?hl=fr" target="_blank" rel="noopener noreferrer" aria-label="Fan art par @sunnnliwx (Instagram, nouvel onglet)">Fan art : @sunnnliwx ↗</a>
         <button className={styles.motionToggle} onClick={() => setPaused(!paused)} aria-pressed={paused} aria-label={paused ? "Animer l’image" : "Mettre l’image en pause"}>
