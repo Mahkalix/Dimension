@@ -328,16 +328,6 @@ export default function TheDen() {
             </button>
           ))}
         </nav>
-        <footer>
-          <button onClick={() => go("Settings")}>
-            <SolarIcon name="settings" />
-            Settings
-          </button>
-          <button onClick={() => go("Extras")}>
-            <SolarIcon name="widget" />
-            Extras
-          </button>
-        </footer>
       </aside>
       <main>
         <header>
