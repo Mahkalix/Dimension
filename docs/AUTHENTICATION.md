@@ -40,9 +40,9 @@ This PR's verified stable preview alias requires these additional entries:
 
 | Dashboard field | Exact entry |
 | --- | --- |
-| Allowed Callback URLs | `https://dimension-git-codex-auth0-english-library-mahkalixs-projects.vercel.app/auth/callback` |
-| Allowed Logout URLs | `https://dimension-git-codex-auth0-english-library-mahkalixs-projects.vercel.app` |
-| Allowed Web Origins | `https://dimension-git-codex-auth0-english-library-mahkalixs-projects.vercel.app` |
+| Allowed Callback URLs | `https://theden-git-codex-publish-the-den-nextjs-mahkalixs-projects.vercel.app/auth/callback` |
+| Allowed Logout URLs | `https://theden-git-codex-publish-the-den-nextjs-mahkalixs-projects.vercel.app` |
+| Allowed Web Origins | `https://theden-git-codex-publish-the-den-nextjs-mahkalixs-projects.vercel.app` |
 
 When using port 3140 or 3141 for a real authentication test, add the corresponding exact localhost origin and callback as well. Protected Vercel previews must allow the browser to return through deployment protection.
 
@@ -63,7 +63,7 @@ Generate `AUTH0_SECRET` with `node -e "console.log(require('crypto').randomBytes
 
 On Vercel Preview, omit `APP_BASE_URL` unless setting it for one specific branch. The app derives the stable origin from `VERCEL_BRANCH_URL`. A globally applied production URL in Preview would send callbacks to the wrong deployment. Redeploy after changing environment variables.
 
-The inspected Vercel project already has Domain, Client ID and a session encryption secret, but lacks the application Client Secret. This task added `AUTH0_CONNECTION` for Preview/Production and `APP_BASE_URL` for Production as new variables, without overwriting credentials. Sign-in therefore stays disabled with a readable message while public playback works. Obsolete provider environment keys must be removed during the deployment cutover; they were not changed by this task because automated approval rejected repurposing existing credential records. Create new keys rather than renaming old credential records.
+The Auth0 application is configured as a Regular Web Application with Client Secret (Post). AUTH0_CLIENT_SECRET is stored as a sensitive Vercel variable for Preview/Production and in the ignored local environment file. The current The Den preview callback and logout URLs, plus localhost ports 3000 and 3140, are configured in Auth0. Legacy production URLs must be checked before a production cutover. Local SDK checks pass; the preview login form and an authenticated callback were verified in Chrome. Deployment protection blocks unauthenticated command-line checks of the preview.
 
 ## Expected behavior and manual verification
 
