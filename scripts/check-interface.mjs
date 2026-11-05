@@ -129,7 +129,6 @@ try {
       document.querySelector("audio").getAttribute("src").includes("carefree"),
     );
     await page.waitForFunction(() => !document.querySelector("audio").paused);
-    await page.locator(".paper-volume summary").click();
     await page
       .getByRole("slider", { name: "Volume", exact: true })
       .fill("0.25");

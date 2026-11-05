@@ -110,7 +110,7 @@ export default function TheDen() {
   };
   const select = (key, value, i) => {
     const updated = { ...prefs, [key]: value };
-    const level = key === "Volume" ? [0, 0.35, 0.65, 1][i] : volume;
+    const level = volume;
     setPrefs(updated);
     setVolume(level);
     localStorage.setItem(
@@ -606,7 +606,6 @@ export default function TheDen() {
               <h2>{tracks[playing ?? preview].title}</h2>
               <button onClick={toggle}>{audible ? "Pause" : "Resume"}</button>
               <button onClick={advance}>Next ›</button>
-              <button onClick={() => go("Volume")}>Volume</button>
               <p>
                 <button onClick={() => go("Listen")}>‹ Listen</button>
                 <button onClick={() => go("Up next")}>Up next ›</button>
@@ -672,7 +671,16 @@ export default function TheDen() {
         onOpen={() => openTrack(playing ?? preview)}
         onQueue={() => go("Up next")}
         volume={volume}
-        onVolumeChange={(e) => setVolume(Number(e.target.value))}
+        onVolumeChange={(e) => {
+          const level = Number(e.target.value);
+          setVolume(level);
+          try {
+            localStorage.setItem(
+              "den-preferences",
+              JSON.stringify({ prefs, volume: level }),
+            );
+          } catch {}
+        }}
         position={time.position}
         duration={time.duration}
         onSeek={(e) => {

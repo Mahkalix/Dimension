@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import SolarIcon from "./SolarIcon";
 import { formatDuration } from "./TrackRow";
 export default function PlayerBar({
@@ -15,6 +16,7 @@ export default function PlayerBar({
   duration = 0,
   onSeek,
 }) {
+  const previousVolume = useRef(0.35);
   const total = duration || track.duration;
   return (
     <aside className="paper-player" aria-label="Music player">
@@ -59,24 +61,32 @@ export default function PlayerBar({
         <button aria-label="Up next" onClick={onQueue}>
           <SolarIcon name="playlist" />
         </button>
-        <details className="paper-volume">
-          <summary aria-label="Adjust volume">
+        <div className="paper-volume">
+          <button
+            aria-label={volume === 0 ? "Unmute" : "Mute"}
+            aria-pressed={volume === 0}
+            onClick={() => {
+              if (volume > 0) previousVolume.current = volume;
+              onVolumeChange({
+                target: { value: volume === 0 ? previousVolume.current : 0 },
+              });
+            }}
+          >
             <SolarIcon name="volume-loud" />
-          </summary>
-          <label>
-            Volume
-            <input
-              type="range"
-              aria-label="Volume"
-              min="0"
-              max="1"
-              step=".01"
-              value={volume}
-              onChange={onVolumeChange}
-            />
-            <output>{Math.round(volume * 100)}%</output>
-          </label>
-        </details>
+            {volume === 0 && <span className="mute-slash" aria-hidden="true" />}
+          </button>
+          <input
+            type="range"
+            aria-label="Volume"
+            aria-valuetext={Math.round(volume * 100) + "%"}
+            min="0"
+            max="1"
+            step=".01"
+            value={volume}
+            style={{ "--volume-fill": volume * 100 + "%" }}
+            onChange={onVolumeChange}
+          />
+        </div>
       </div>
     </aside>
   );

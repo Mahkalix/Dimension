@@ -3,7 +3,6 @@ import playlists from "./data/playlists.json";
 
 export const options = {
   Appearance: ["Paper", "Frosted", "Clear", "Blur"],
-  Volume: ["Muted", "35%", "65%", "100%"],
   "Navigation sounds": ["On", "Off"],
   Backlight: ["Low", "Medium", "High"],
 };
@@ -20,7 +19,7 @@ export const menuPages = [
   ...Object.keys(options),
 ];
 
-export function MenuPage({ page, go, prefs, volume, select }) {
+export function MenuPage({ page, go, prefs, select }) {
   const row = (label, detail, action, selected) => (
     <button
       className="menu-row"
@@ -121,14 +120,7 @@ export function MenuPage({ page, go, prefs, volume, select }) {
     rows = <>{row("Creative Commons library", "", () => go("Listen"), true)}</>;
   else
     rows = options[page].map((n, i) =>
-      row(
-        n,
-        "",
-        () => select(page, n, i),
-        page === "Volume"
-          ? volume === [0, 0.35, 0.65, 1][i]
-          : prefs[page] === n,
-      ),
+      row(n, "", () => select(page, n, i), prefs[page] === n),
     );
   return (
     <section className="menu-list">
