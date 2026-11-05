@@ -325,26 +325,6 @@
   gap: 12px;
   padding: 24px 0 0;
 }
-.artist-actions button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 28px;
-  padding: 12px 20px;
-  background: var(--accent-navy);
-  color: #fff;
-}
-.artist-actions .artist-play {
-  background: var(--accent-navy);
-  color: white;
-  min-height: 54px;
-}
-.artist-actions button:hover {
-  background: var(--accent-navy-hover);
-}
-.den .artist-play .solar-icon {
-  filter: brightness(0) invert(1);
-}
 .artist-actions a {
   font-size: 11px;
   color: var(--quiet);
@@ -371,8 +351,9 @@
   border-radius: 18px;
   font-size: 13px;
   line-height: 20px;
-  background: var(--accent-navy);
-  &:hover { background: var(--accent-navy-hover); }
+  background: var(--button-primary);
+  color: var(--button-primary-text);
+  &:hover { background: var(--button-primary-hover); }
 }
 @media (pointer: coarse) { .playlist-actions .playlist-create { min-height: 44px; } }
 
@@ -392,10 +373,3 @@
   &:hover { background: var(--wash); }
 }
 
-.artist-actions button, .artist-actions .artist-play, .playlist-actions .playlist-create {
-  background: var(--button-primary);
-  color: var(--button-primary-text);
-  border: 0;
-  &:hover { background: var(--button-primary-hover); }
-}
-.den .artist-play .solar-icon { filter: brightness(0); }

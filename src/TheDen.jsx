@@ -634,16 +634,7 @@ export default function TheDen({ signedIn = false, accountId }) {
               </div>
             </div>
             <div className="artist-actions">
-              <button
-                className="artist-play"
-                onClick={() =>
-                  playPlaylist({
-                    tracks: selectedArtist.tracks.map((track) => track.id),
-                  })
-                }
-              >
-                <SolarIcon name="play" /> Play all
-              </button>
+              <PlaylistActions playLabel="Play all" optionsLabel="Artist options" onPlay={() => playPlaylist({ tracks: selectedArtist.tracks.map(track => track.id) })}>
               <button
                 onClick={() => {
                   const ids = selectedArtist.tracks.map((track) => track.id);
@@ -656,6 +647,7 @@ export default function TheDen({ signedIn = false, accountId }) {
               >
                 Shuffle
               </button>
+              </PlaylistActions>
               <a href={selectedArtist.source} target="_blank" rel="noreferrer">
                 {selectedArtist.credit}
               </a>
