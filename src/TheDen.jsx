@@ -12,7 +12,36 @@ import playlists from "./data/playlists.json";
 import { MenuPage, menuPages, defaults } from "./MenuPage";
 const sections = ["Listen", "Library", "Up next", "Search"];
 
-export default function TheDen() {
+export default function TheDen({ profile = null }) {
+  const [pins, setPins] = useState([]);
+  const searchInput = useRef(null);
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("den-pinned-playlists"));
+      if (Array.isArray(saved))
+        setPins(saved.filter((id) => playlists.some((p) => p.id === id)));
+    } catch {}
+    const shortcut = (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        searchInput.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", shortcut);
+    return () => window.removeEventListener("keydown", shortcut);
+  }, []);
+  const togglePin = (id) => {
+    const updated = pins.includes(id)
+      ? pins.filter((pin) => pin !== id)
+      : [...pins, id];
+    setPins(updated);
+    try {
+      localStorage.setItem("den-pinned-playlists", JSON.stringify(updated));
+    } catch {}
+  };
+  const sortedPlaylists = [...playlists].sort(
+    (a, b) => Number(pins.includes(b.id)) - Number(pins.includes(a.id)),
+  );
   const [playlist, setPlaylist] = useState(null);
   const [section, setSection] = useState("Listen");
   const [libraryTab, setLibraryTab] = useState("Playlists");
@@ -255,6 +284,73 @@ export default function TheDen() {
           );
         }}
       />
+      <div className="app-topbar">
+        <div className="topbar-search">
+          <button
+            className="home-button"
+            aria-label="Home"
+            onClick={() => go("Listen")}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="m3 10 9-7 9 7v11h-6v-7H9v7H3z" />
+            </svg>
+          </button>{" "}
+          <label className="search-field">
+            <SolarIcon name="magnifier" />
+            <input
+              ref={searchInput}
+              aria-label="Search tracks"
+              type="search"
+              placeholder="What do you want to listen to?"
+              value={query}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (section !== "Search") go("Search");
+                setQuery(value);
+              }}
+            />
+            <kbd aria-hidden="true">Ctrl K</kbd>{" "}
+          </label>
+        </div>{" "}
+        <details
+          className="account-menu"
+          onClick={(e) => {
+            if (e.target.closest("a,button")) e.currentTarget.open = false;
+          }}
+        >
+          <summary aria-label="Account menu" title={profile?.name || "Account"}>
+            <img
+              className="profile-avatar"
+              src={profile?.picture || "/brand/the-den-house.png"}
+              alt=""
+              onError={(event) => {
+                event.currentTarget.onerror = null;
+                event.currentTarget.src = "/brand/the-den-house.png";
+              }}
+            />
+          </summary>
+          <div>
+            <a href="/account">
+              <SolarIcon name="user-circle" />
+              Account
+            </a>
+            <button onClick={() => go("Settings")}>
+              <SolarIcon name="settings" />
+              Settings
+            </button>
+            <button onClick={() => go("Extras")}>
+              <SolarIcon name="widget" />
+              Extras
+            </button>
+          </div>
+        </details>
+      </div>
       <aside className="rail">
         <a href="/" aria-label="The Den · Home">
           <img
@@ -299,15 +395,45 @@ export default function TheDen() {
           <h2 className="eyebrow" id="rail-playlists-title">
             Your soundtrack
           </h2>
-          {playlists.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => choosePlaylist(item)}
-              aria-current={playlist?.id === item.id ? "page" : undefined}
-            >
-              <SolarIcon name="playlist" />
-              {item.title}
-            </button>
+          {sortedPlaylists.map((item) => (
+            <div className="rail-playlist-row" key={item.id}>
+              <button
+                className="rail-playlist-open"
+                onClick={() => choosePlaylist(item)}
+                aria-current={playlist?.id === item.id ? "page" : undefined}
+              >
+                <img
+                  src={item.cover}
+                  alt=""
+                  style={{ objectPosition: item.imagePosition }}
+                />
+                <span>
+                  <b>{item.title}</b>
+                  <small>
+                    {pins.includes(item.id) ? "Pinned · " : ""}Playlist ·{" "}
+                    {item.tracks.length} tracks
+                  </small>
+                </span>
+              </button>
+              <button
+                className="pin-playlist"
+                aria-label={`${pins.includes(item.id) ? "Unpin" : "Pin"} ${item.title}`}
+                aria-pressed={pins.includes(item.id)}
+                onClick={() => togglePin(item.id)}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  aria-hidden="true"
+                >
+                  <path d="m15 3 6 6-3 1-3 5v3l-4-4-6 7 5-8-4-4h3l5-3z" />
+                </svg>
+              </button>
+            </div>
           ))}
         </section>
         <div className="rail-signoff">
@@ -316,32 +442,6 @@ export default function TheDen() {
             A place to tune in.<small>Est. in the kitchen.</small>
           </span>
         </div>
-        <details
-          className="account-menu"
-          onClick={(e) => {
-            if (e.target.closest("a,button")) e.currentTarget.open = false;
-          }}
-        >
-          <summary>
-            <SolarIcon name="user-circle" />
-            Account
-            <SolarIcon name="alt-arrow-down" />
-          </summary>
-          <div>
-            <a href="/account">
-              <SolarIcon name="user-circle" />
-              Account
-            </a>
-            <button onClick={() => go("Settings")}>
-              <SolarIcon name="settings" />
-              Settings
-            </button>
-            <button onClick={() => go("Extras")}>
-              <SolarIcon name="widget" />
-              Extras
-            </button>
-          </div>
-        </details>
       </aside>
       <main>
         <header className="main-header">
@@ -353,20 +453,6 @@ export default function TheDen() {
                 : section}
             </h1>
           </div>
-          <label className="search-field">
-            <SolarIcon name="magnifier" />
-            <input
-              aria-label="Search tracks"
-              type="search"
-              placeholder="Find a track or an artist"
-              value={query}
-              onChange={(e) => {
-                const value = e.target.value;
-                if (section !== "Search") go("Search");
-                setQuery(value);
-              }}
-            />
-          </label>
         </header>
         {section === "Listen" && !query && (
           <ListenDashboard
@@ -423,7 +509,7 @@ export default function TheDen() {
         )}
         {section === "Library" && libraryTab === "Playlists" && !query && (
           <section className="collections" aria-label="Collections">
-            {playlists.map((p) => (
+            {sortedPlaylists.map((p) => (
               <button key={p.id} onClick={() => choosePlaylist(p)}>
                 <img
                   src={p.cover}
@@ -445,6 +531,12 @@ export default function TheDen() {
             />
             <div>
               <span>{playlist.tracks.length} tracks</span>
+              <button
+                aria-pressed={pins.includes(playlist.id)}
+                onClick={() => togglePin(playlist.id)}
+              >
+                {pins.includes(playlist.id) ? "Unpin playlist" : "Pin playlist"}
+              </button>
               <button onClick={() => playPlaylist(playlist)}>
                 <SolarIcon name="play" />
                 Play playlist
