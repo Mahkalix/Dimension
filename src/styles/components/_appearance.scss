@@ -28,7 +28,7 @@
   height: 160px;
   overflow: hidden;
   border-radius: 10px;
-  background: url("/images/playlists/service.jpg") center / cover;
+  background: url("/images/kitchen-background.jpg") center / cover;
 }
 .appearance-sample > span {
   display: grid;
@@ -87,7 +87,7 @@
   --glass-filter: blur(18px) saturate(0.9);
   background:
     linear-gradient(#14231b99, #111c18bb),
-    url("/images/playlists/service.jpg") center / cover fixed;
+    url("/images/kitchen-background.jpg") center / cover fixed;
   color: var(--ink);
   .rail,
   .paper-player,
