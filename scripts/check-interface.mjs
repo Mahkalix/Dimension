@@ -164,7 +164,7 @@ try {
     await panel
       .getByRole("button", { name: "Back to tracks", exact: true })
       .click();
-    await page.getByRole("button", { name: "Search", exact: true }).click();
+    await page.getByRole("searchbox").focus();
     await page.getByRole("searchbox").fill("Cylinder Nine");
     assert.equal(await page.locator(".track").count(), 1);
     await page.getByRole("searchbox").fill("no matching recording");
@@ -186,7 +186,7 @@ try {
       errorsHandled: true,
     });
     if ([390, 1280].includes(width)) {
-      await page.getByRole("button", { name: "Listen", exact: true }).click();
+      await page.getByRole("button", { name: "Home", exact: true }).click();
       await page.locator(".track").first().click();
       await page.screenshot({
         path: path.join(screenshotDir, "english-" + width + ".png"),
@@ -230,14 +230,14 @@ try {
     assert.ok(
       await audio.evaluate((el) => el.currentTime >= 30 && el.currentTime < 35),
     );
-    await nav.getByRole("button", { name: "Up next", exact: true }).click();
+    await (width > 700 ? page.locator(".paper-tools") : nav).getByRole("button", { name: "Up next", exact: true }).click();
     assert.equal(await page.locator(".track").count(), 9);
     assert.match(
       await page.locator(".track").first().innerText(),
       /Cylinder One/,
     );
 
-    await nav.getByRole("button", { name: "Listen", exact: true }).click();
+    await page.getByRole("button", { name: "Home", exact: true }).click();
     await page.getByRole("button", { name: "Jazz", exact: true }).click();
     assert.deepEqual(await page.locator(".track-genre").allTextContents(), [
       "Jazz",
@@ -248,7 +248,7 @@ try {
     ]);
     await page.getByRole("button", { name: "All genres", exact: true }).click();
     assert.equal(await page.locator(".track").count(), 30);
-    await nav.getByRole("button", { name: "Listen", exact: true }).click();
+    await page.getByRole("button", { name: "Home", exact: true }).click();
     await page.locator(".shelf-record").last().click();
     assert.equal(await page.locator("h1").innerText(), "Chaos");
     assert.equal(await page.locator(".track").count(), 2);
@@ -257,7 +257,7 @@ try {
       0,
       "Playlist navigation returns to the heading",
     );
-    await nav.getByRole("button", { name: "Listen", exact: true }).click();
+    await page.getByRole("button", { name: "Home", exact: true }).click();
     await page
       .getByRole("button", { name: "All playlists", exact: true })
       .click();
@@ -278,7 +278,7 @@ try {
       await page.locator(".den").getAttribute("data-chrome"),
       "Polished",
     );
-    await nav.getByRole("button", { name: "Listen", exact: true }).click();
+    await page.getByRole("button", { name: "Home", exact: true }).click();
     await page.evaluate(() => document.fonts.ready);
     await page.screenshot({
       path: path.join(screenshotDir, "listen-" + width + ".png"),

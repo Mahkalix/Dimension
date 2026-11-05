@@ -285,6 +285,18 @@ export default function TheDen({ profile = null }) {
         }}
       />
       <div className="app-topbar">
+        <button
+          className="header-brand"
+          aria-label="The Den · Home"
+          onClick={() => go("Listen")}
+        >
+          <img
+            className="logo"
+            src="/brand/the-den-wordmark.png"
+            alt="The Den"
+          />
+          <span className="eyebrow">Music, at home.</span>
+        </button>
         <div className="topbar-search">
           <button
             className="home-button"
@@ -352,14 +364,6 @@ export default function TheDen({ profile = null }) {
         </details>
       </div>
       <aside className="rail">
-        <a href="/" aria-label="The Den · Home">
-          <img
-            className="logo"
-            src="/brand/the-den-wordmark.png"
-            alt="The Den"
-          />
-        </a>
-        <span className="rail-caption eyebrow">Music, at home.</span>
         <nav aria-label="Main navigation">
           {sections.map((name, i) => (
             <button
@@ -393,7 +397,13 @@ export default function TheDen({ profile = null }) {
           aria-labelledby="rail-playlists-title"
         >
           <h2 className="eyebrow" id="rail-playlists-title">
-            Your soundtrack
+            <button
+              className="library-heading"
+              onClick={() => browse("Playlists")}
+            >
+              <SolarIcon name="playlist" />
+              Library
+            </button>
           </h2>
           {sortedPlaylists.map((item) => (
             <div className="rail-playlist-row" key={item.id}>
