@@ -7,6 +7,7 @@ export default function IntroEntry({ children, auto = true }) {
   useEffect(() => {
     if (!auto) return;
     let cancelled = false;
+    const holdDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1200 : 3200;
     const timer = setTimeout(() => {
       const animations = root.current?.getAnimations({ subtree: true }) || [];
       Promise.all(animations.map((a) => a.finished.catch(() => {}))).then(
@@ -14,7 +15,7 @@ export default function IntroEntry({ children, auto = true }) {
           if (!cancelled) router.replace("/login?returnTo=%2Fplayer");
         },
       );
-    }, 50);
+    }, holdDuration);
     return () => {
       cancelled = true;
       clearTimeout(timer);
