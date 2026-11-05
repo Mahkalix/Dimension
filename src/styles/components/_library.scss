@@ -1,162 +1,124 @@
 @use "../abstracts/breakpoints" as bp;
-
 .track {
   display: flex;
   align-items: center;
-  gap: 16px;
-}
-
-.feature {
-  position: relative;
-  margin: 24px 0 32px;
-  background: #20231f;
-  color: white;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.feature img {
-  width: 100%;
-  height: clamp(200px, 29vw, 360px);
-  display: block;
-  object-fit: cover;
-}
-
-.feature div {
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.feature h2 {
-  margin: 0;
-}
-
-.feature button {
-  background: #eee;
-  color: #242624;
-}
-
-.track {
+  gap: 12px;
   width: 100%;
   text-align: left;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #24242426;
   border-radius: 0;
-  padding: 12px 4px;
+  padding: 9px 8px;
+  min-height: 60px;
+  > img {
+    width: 38px;
+    height: 38px;
+    border-radius: 5px;
+    filter: grayscale(1);
+    flex: none;
+  }
+  .track-copy {
+    min-width: 0;
+    flex: 1;
+  }
+  b {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  small {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  &:hover,
+  &:focus-visible {
+    background: var(--wash);
+  }
+  &[aria-current="true"] {
+    background: var(--wash);
+    box-shadow: inset 2px 0 var(--ink);
+  }
 }
-
-.track img {
-  width: 52px;
-  border-radius: 5px;
+.track-number {
+  width: 20px;
+  flex: none;
+  font-size: 10px;
+  color: var(--quiet);
+  font-variant-numeric: tabular-nums;
+  .solar-icon {
+    width: 16px;
+    height: 16px;
+  }
 }
-
-.track span:last-child {
-  margin-left: auto;
+.track-genre {
+  width: 78px;
+  font-size: 10px;
+  color: var(--quiet);
 }
-
-.collections {
+.track-end {
   display: flex;
-  gap: clamp(16px, 3vw, 42px);
-  margin: 16px 0 24px;
-}
-
-.collections button {
-  width: 240px;
-  max-width: 46%;
-  padding: 8px;
-  text-align: left;
-  border: 1px solid var(--line);
-  background: var(--wash);
-}
-
-.collections img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  margin-bottom: 8px;
-  border-radius: 5px;
-}
-
-.collections strong,
-.collections small {
-  display: block;
-  padding-inline: 4px;
-}
-
-@media (min-width: #{bp.$tablet-min}) and (max-width: #{bp.$desktop-max}) {
-  .collections button {
-    width: 218px;
-  }
-  .collections button + button {
-    display: none;
+  align-items: center;
+  gap: 20px;
+  font-size: 10px;
+  color: var(--quiet);
+  font-variant-numeric: tabular-nums;
+  .solar-icon {
+    width: 14px;
+    height: 14px;
   }
 }
-
-@media (max-width: #{bp.$mobile-max}) {
-  .collections {
-    justify-content: space-between;
+.collections {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 28px 20px;
+  margin-block: 20px 32px;
+  button {
+    min-width: 0;
+    padding: 0;
+    text-align: left;
   }
-  .collections button {
-    width: 156px;
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: grayscale(1);
+    margin-bottom: 10px;
   }
-}
-
-.den .collections img,
-.track img {
-  filter: grayscale(1);
-}
-
-.den .collections button {
-  background: transparent;
-  border: 0;
-  padding: 0;
-  text-align: left;
-}
-
-.collections img {
-  border-radius: 12px;
-}
-
-.den .track {
-  background: var(--wash);
-  border: 0;
-  border-radius: 12px;
-  padding: 12px 16px;
-  margin: 12px 0;
-}
-
-.den .track img {
-  border-radius: 8px;
-}
-
-@media (min-width: #{bp.$tablet-min}) and (max-width: #{bp.$desktop-max}) {
-  .collections {
-    margin-top: 16px;
+  strong,
+  small {
+    display: block;
+    padding-inline: 4px;
+  }
+  strong {
+    font-size: 14px;
+  }
+  small {
+    font-size: 12px;
   }
 }
-
 .library-switch {
   display: inline-flex;
   gap: 4px;
   padding: 4px;
-  margin-block: 20px;
+  margin-block: 8px 20px;
   background: var(--wash);
   border-radius: 12px;
 }
-
+.library-switch button {
+  font-size: 13px;
+}
 .library-switch button[aria-pressed="true"] {
   background: var(--dock);
-  box-shadow: 0 1px 3px #0002;
+  box-shadow: var(--shadow);
 }
-
 .artist-list {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   margin-block: 16px 32px;
 }
-
 .artist-list img {
   display: block;
   width: clamp(80px, 11vw, 144px);
@@ -164,69 +126,7 @@
   object-fit: cover;
   border-radius: 50%;
   margin: 0 auto 8px;
-}
-
-.den .collections {
-  gap: 24px;
-}
-
-.den .collections button {
-  display: block;
-}
-
-.den .collections img {
-  border: 1px solid var(--line);
-}
-
-.den .track {
-  border-radius: 0;
-  background: transparent;
-  border-top: 1px solid var(--line);
-  margin: 0;
-  padding: 10px 4px;
-}
-
-.den .track:hover,
-.den .track:focus-visible {
-  background: var(--wash);
-}
-
-.track-end {
-  font-size: 0.9rem;
-  color: var(--quiet);
-}
-
-@media (min-width: #{bp.$tablet-min}) {
-  .den .collections button + button {
-    display: block;
-  }
-  .den .collections button {
-    width: clamp(160px, 17vw, 240px);
-  }
-}
-
-@media (max-width: #{bp.$mobile-max}) {
-  .den .collections {
-    gap: 16px;
-  }
-  .library-switch button {
-    padding-inline: 10px;
-  }
-}
-/* Three moments of the kitchen, on the same paper surface. */
-.den .collections {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  max-width: 1000px;
-}
-.den .collections button {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-}
-.den .collections strong {
-  margin-top: 10px;
+  filter: grayscale(1);
 }
 .playlist-hero {
   display: flex;
@@ -251,29 +151,36 @@
     background: var(--wash);
   }
 }
+@container (max-width: 560px) {
+  .track-genre {
+    display: none;
+  }
+  .track {
+    gap: 10px;
+    padding-inline: 4px;
+  }
+  .track-end {
+    gap: 10px;
+  }
+}
+@container (max-width: 300px) {
+  .track-number,
+  .track-end > .solar-icon {
+    display: none;
+  }
+  .search-field {
+    width: 100%;
+  }
+  .main-header {
+    flex-wrap: wrap;
+  }
+}
 @media (max-width: #{bp.$mobile-max}) {
-  .den .collections {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    padding-bottom: 12px;
-    scroll-snap-type: x mandatory;
-    justify-content: flex-start;
+  .collections {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 14px;
   }
-  .den .collections button {
-    flex: 0 0 min(68vw, 240px);
-    scroll-snap-align: start;
+  .library-switch button {
+    padding-inline: 10px;
   }
-}
-
-.den .track[aria-current="true"] {
-  background: var(--wash);
-  box-shadow: inset 3px 0 var(--ink);
-}
-.track > span {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-.artist-list {
-  flex-wrap: wrap;
 }

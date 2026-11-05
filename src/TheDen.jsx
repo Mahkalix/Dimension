@@ -2,6 +2,8 @@
 import SolarIcon from "./components/SolarIcon";
 
 import PlayerBar from "./components/PlayerBar";
+import ListenDashboard from "./components/ListenDashboard";
+import TrackRow from "./components/TrackRow";
 import { useEffect, useRef, useState } from "react";
 import tracks from "./data/library";
 import playlists from "./data/playlists.json";
@@ -15,6 +17,7 @@ export default function TheDen() {
   const [section, setSection] = useState("Listen");
   const [libraryTab, setLibraryTab] = useState("Playlists");
   const [query, setQuery] = useState("");
+  const [genre, setGenre] = useState(null);
   const [preview, setPreview] = useState(0);
   const [previewOpen, setPreviewOpen] = useState(false);
   const previewTrigger = useRef(null),
@@ -54,9 +57,11 @@ export default function TheDen() {
     } catch {}
   }, []);
   const go = (page) => {
+    window.scrollTo(0, 0);
     setSection(page);
     setPlaylist(null);
     setQuery("");
+    setGenre(null);
     setNotice("");
     if (prefs["Navigation sounds"] === "On" && window.AudioContext) {
       const ctx = tone.current || (tone.current = new AudioContext());
@@ -143,11 +148,36 @@ export default function TheDen() {
   );
   const order =
     section === "Up next" ? queue : playlistOrder || tracks.map((_, i) => i);
-  const results = order.filter((i) =>
-    (tracks[i].title + " " + tracks[i].artist)
-      .toLowerCase()
-      .includes(query.trim().toLowerCase()),
+  const results = order.filter(
+    (i) =>
+      (!genre || tracks[i].genre === genre) &&
+      (tracks[i].title + " " + tracks[i].artist)
+        .toLowerCase()
+        .includes(query.trim().toLowerCase()),
   );
+  const choosePlaylist = (item) => {
+    go(item.title);
+    setPlaylist(item);
+  };
+  const playPlaylist = (item) => {
+    const indices = item.tracks.map((id) =>
+      tracks.findIndex((t) => t.id === id),
+    );
+    setQueue(indices.slice(1));
+    start(indices[0], false);
+  };
+  const browse = (tab = "Tracks") => {
+    go("Library");
+    setLibraryTab(tab);
+  };
+  const activateTrack = (i, position) => {
+    openTrack(i);
+    setQueue((q) =>
+      section === "Up next" ? q.slice(position + 1) : q.filter((n) => n !== i),
+    );
+    if (playing === i && audible) toggle();
+    else start(i, false);
+  };
   const closePreview = () => {
     dialog.current.close();
     setPreviewOpen(false);
@@ -274,32 +304,7 @@ export default function TheDen() {
             alt="The Den"
           />
         </a>
-        <details
-          className="account-menu"
-          onClick={(e) => {
-            if (e.target.closest("a,button")) e.currentTarget.open = false;
-          }}
-        >
-          <summary>
-            <SolarIcon name="user-circle" />
-            Account
-            <SolarIcon name="alt-arrow-down" />
-          </summary>
-          <div>
-            <a href="/account">
-              <SolarIcon name="user-circle" />
-              Account
-            </a>
-            <button onClick={() => go("Settings")}>
-              <SolarIcon name="settings" />
-              Settings
-            </button>
-            <button onClick={() => go("Extras")}>
-              <SolarIcon name="widget" />
-              Extras
-            </button>
-          </div>
-        </details>
+        <span className="rail-caption eyebrow">Music, at home.</span>
         <nav aria-label="Main navigation">
           {sections.map((name, i) => (
             <button
@@ -328,22 +333,99 @@ export default function TheDen() {
             </button>
           ))}
         </nav>
+        <section
+          className="rail-playlists"
+          aria-labelledby="rail-playlists-title"
+        >
+          <h2 className="eyebrow" id="rail-playlists-title">
+            Your soundtrack
+          </h2>
+          {playlists.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => choosePlaylist(item)}
+              aria-current={playlist?.id === item.id ? "page" : undefined}
+            >
+              <SolarIcon name="playlist" />
+              {item.title}
+            </button>
+          ))}
+        </section>
+        <div className="rail-signoff">
+          <img src="/brand/the-den-house.png" alt="" />
+          <span>
+            A place to tune in.<small>Est. in the kitchen.</small>
+          </span>
+        </div>
+        <details
+          className="account-menu"
+          onClick={(e) => {
+            if (e.target.closest("a,button")) e.currentTarget.open = false;
+          }}
+        >
+          <summary>
+            <SolarIcon name="user-circle" />
+            Account
+            <SolarIcon name="alt-arrow-down" />
+          </summary>
+          <div>
+            <a href="/account">
+              <SolarIcon name="user-circle" />
+              Account
+            </a>
+            <button onClick={() => go("Settings")}>
+              <SolarIcon name="settings" />
+              Settings
+            </button>
+            <button onClick={() => go("Extras")}>
+              <SolarIcon name="widget" />
+              Extras
+            </button>
+          </div>
+        </details>
       </aside>
       <main>
-        <header>
-          <h1>
-            {section === "Now playing"
-              ? tracks[playing ?? preview].artist
-              : section}
-          </h1>
-          <input
-            aria-label="Search tracks"
-            type="search"
-            placeholder="Title or artist"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
+        <header className="main-header">
+          <div>
+            <span className="eyebrow">A little room for music</span>
+            <h1>
+              {section === "Now playing"
+                ? tracks[playing ?? preview].artist
+                : section}
+            </h1>
+          </div>
+          <label className="search-field">
+            <SolarIcon name="magnifier" />
+            <input
+              aria-label="Search tracks"
+              type="search"
+              placeholder="Find a track or an artist"
+              value={query}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (section !== "Search") go("Search");
+                setQuery(value);
+              }}
+            />
+          </label>
         </header>
+        {section === "Listen" && !query && (
+          <ListenDashboard
+            playing={playing}
+            audible={audible}
+            onTrack={activateTrack}
+            onPlay={(i) =>
+              playing === i && audible ? toggle() : start(i, false)
+            }
+            onPlaylist={choosePlaylist}
+            onPlayPlaylist={playPlaylist}
+            onBrowse={browse}
+            onGenre={(value) => {
+              browse();
+              setGenre(value);
+            }}
+          />
+        )}
         {section === "Library" && (
           <div
             className="library-switch"
@@ -357,6 +439,7 @@ export default function TheDen() {
                 onClick={() => {
                   setLibraryTab(tab);
                   setQuery("");
+                  setGenre(null);
                 }}
               >
                 {tab}
@@ -379,29 +462,21 @@ export default function TheDen() {
               ))}
           </section>
         )}
-        {(section === "Listen" ||
-          (section === "Library" && libraryTab === "Playlists")) &&
-          !query && (
-            <section className="collections" aria-label="Collections">
-              {playlists.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => {
-                    go(p.title);
-                    setPlaylist(p);
-                  }}
-                >
-                  <img
-                    src={p.cover}
-                    alt={p.alt}
-                    style={{ objectPosition: p.imagePosition }}
-                  />
-                  <strong>{p.title}</strong>
-                  <small>{p.tracks.length} tracks</small>
-                </button>
-              ))}{" "}
-            </section>
-          )}
+        {section === "Library" && libraryTab === "Playlists" && !query && (
+          <section className="collections" aria-label="Collections">
+            {playlists.map((p) => (
+              <button key={p.id} onClick={() => choosePlaylist(p)}>
+                <img
+                  src={p.cover}
+                  alt={p.alt}
+                  style={{ objectPosition: p.imagePosition }}
+                />
+                <strong>{p.title}</strong>
+                <small>{p.tracks.length} tracks</small>
+              </button>
+            ))}{" "}
+          </section>
+        )}
         {playlist && (
           <section className="playlist-hero" aria-label={playlist.title}>
             <img
@@ -411,12 +486,7 @@ export default function TheDen() {
             />
             <div>
               <span>{playlist.tracks.length} tracks</span>
-              <button
-                onClick={() => {
-                  setQueue(playlistOrder.slice(1));
-                  start(playlistOrder[0], false);
-                }}
-              >
+              <button onClick={() => playPlaylist(playlist)}>
                 <SolarIcon name="play" />
                 Play playlist
               </button>
@@ -446,44 +516,41 @@ export default function TheDen() {
             </div>
           </section>
         ) : (
-          <section
-            hidden={section === "Library" && libraryTab !== "Tracks" && !query}
-            aria-label="Track list"
-          >
-            {notice && <p role="status">{notice}</p>}
-            <h2>{section === "Up next" ? "Playback queue" : "Tracks"}</h2>
-            {results.map((i, position) => (
-              <button
-                className="track"
-                key={position}
-                onClick={() => {
-                  openTrack(i);
-                  setQueue((q) =>
-                    section === "Up next"
-                      ? q.slice(position + 1)
-                      : q.filter((n) => n !== i),
-                  );
-                  if (playing === i && audible) toggle();
-                  else start(i, false);
-                }}
-                aria-current={playing === i ? "true" : undefined}
-              >
-                <img src={tracks[i].art} alt="" />
-                <span>
-                  <b>{tracks[i].title}</b>
-                  <small>{tracks[i].artist}</small>
-                </span>
-                <span className="track-end">
-                  {playing === i && audible ? (
-                    "Playing"
-                  ) : (
-                    <span aria-hidden="true">···</span>
-                  )}
-                </span>
-              </button>
-            ))}
-            {!results.length && <p role="status">No tracks found.</p>}
-          </section>
+          section !== "Listen" && (
+            <section
+              hidden={
+                section === "Library" && libraryTab !== "Tracks" && !query
+              }
+              aria-label="Track list"
+            >
+              {notice && <p role="status">{notice}</p>}
+              <div className="section-heading">
+                <h2>
+                  {section === "Up next"
+                    ? "Playback queue"
+                    : genre
+                      ? `${genre} tracks`
+                      : "Tracks"}
+                </h2>
+                {genre && (
+                  <button onClick={() => setGenre(null)}>
+                    All genres <SolarIcon name="close-circle" />
+                  </button>
+                )}
+              </div>
+              {results.map((i, position) => (
+                <TrackRow
+                  key={`${tracks[i].id}-${position}`}
+                  track={tracks[i]}
+                  number={position + 1}
+                  current={playing === i}
+                  playing={audible}
+                  onClick={() => activateTrack(i, position)}
+                />
+              ))}
+              {!results.length && <p role="status">No tracks found.</p>}
+            </section>
+          )
         )}
       </main>
       {audioError && (

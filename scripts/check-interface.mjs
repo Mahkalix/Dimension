@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import path from "node:path";
 import { chromium } from "playwright-core";
 const origin = process.env.TEST_URL || "http://localhost:3140";
+const screenshotDir = process.env.SCREENSHOT_DIR || "docs/screens";
+fs.mkdirSync(screenshotDir, { recursive: true });
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 const results = [];
 try {
@@ -15,6 +18,19 @@ try {
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto(origin + "/player");
     assert.equal(await page.locator("html").getAttribute("lang"), "en");
+    await page
+      .getByRole("heading", { name: "After Service.", exact: true })
+      .waitFor();
+    assert.equal(await page.locator(".shelf-record").count(), 7);
+    assert.equal(await page.locator(".track").count(), 4);
+    assert.equal(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth > innerWidth,
+      ),
+      false,
+      "Dashboard overflow at " + width,
+    );
+    await page.getByRole("button", { name: "All tracks", exact: true }).click();
     assert.equal(await page.locator(".track").count(), 30);
     assert.equal(await page.locator("iframe").count(), 0);
     await page.locator(".track").first().click();
@@ -144,10 +160,121 @@ try {
     if ([390, 1280].includes(width)) {
       await page.getByRole("button", { name: "Listen", exact: true }).click();
       await page.locator(".track").first().click();
-      fs.mkdirSync("docs/screens", { recursive: true });
-      await page.screenshot({ path: "docs/screens/english-" + width + ".png" });
+      await page.screenshot({
+        path: path.join(screenshotDir, "english-" + width + ".png"),
+      });
     }
     await context.close();
+  }
+  for (const width of [390, 1280]) {
+    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    await page.goto(origin + "/player");
+    const nav = page.getByRole("navigation", { name: "Main navigation" });
+    const audio = page.locator("audio");
+    assert.equal(
+      await page
+        .getByRole("slider", { name: "Playback position" })
+        .isDisabled(),
+      true,
+    );
+    await page.locator(".spotlight-track").first().click();
+    await page.waitForFunction(() => !document.querySelector("audio").paused);
+    assert.match(await audio.getAttribute("src"), /tea-roots/);
+    assert.equal(
+      await page
+        .locator(".spotlight-track")
+        .first()
+        .getAttribute("aria-pressed"),
+      "true",
+    );
+    await page.locator(".spotlight-track").first().click();
+    await page.waitForFunction(() => document.querySelector("audio").paused);
+    await page
+      .getByRole("button", { name: "Play selection", exact: true })
+      .click();
+    await page.waitForFunction(
+      () =>
+        !document.querySelector("audio").paused &&
+        document.querySelector("audio").duration > 0,
+    );
+    assert.match(await audio.getAttribute("src"), /airport-lounge/);
+    await page.getByRole("slider", { name: "Playback position" }).fill("30");
+    assert.ok(
+      await audio.evaluate((el) => el.currentTime >= 30 && el.currentTime < 35),
+    );
+    await nav.getByRole("button", { name: "Up next", exact: true }).click();
+    assert.equal(await page.locator(".track").count(), 9);
+    assert.match(
+      await page.locator(".track").first().innerText(),
+      /Cylinder One/,
+    );
+
+    await nav.getByRole("button", { name: "Listen", exact: true }).click();
+    await page.getByRole("button", { name: "Jazz", exact: true }).click();
+    assert.deepEqual(await page.locator(".track-genre").allTextContents(), [
+      "Jazz",
+      "Jazz",
+      "Jazz",
+      "Jazz",
+      "Jazz",
+    ]);
+    await page.getByRole("button", { name: "All genres", exact: true }).click();
+    assert.equal(await page.locator(".track").count(), 30);
+    await nav.getByRole("button", { name: "Listen", exact: true }).click();
+    await page.locator(".shelf-record").last().click();
+    assert.equal(await page.locator("h1").innerText(), "Chaos");
+    assert.equal(await page.locator(".track").count(), 2);
+    assert.equal(
+      await page.evaluate(() => scrollY),
+      0,
+      "Playlist navigation returns to the heading",
+    );
+    await nav.getByRole("button", { name: "Listen", exact: true }).click();
+    await page
+      .getByRole("button", { name: "All playlists", exact: true })
+      .click();
+    assert.equal(await page.locator(".collections > button").count(), 7);
+    await page.getByRole("searchbox").fill("Carefree");
+    assert.equal(await page.locator("h1").innerText(), "Search");
+    assert.equal(await page.locator(".track").count(), 1);
+    await page.locator(".account-menu summary").click();
+    await page
+      .locator(".account-menu")
+      .getByRole("button", { name: "Settings", exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: "Chrome intensity", exact: false })
+      .click();
+    await page.getByRole("button", { name: "Polished", exact: true }).click();
+    assert.equal(
+      await page.locator(".den").getAttribute("data-chrome"),
+      "Polished",
+    );
+    await nav.getByRole("button", { name: "Listen", exact: true }).click();
+    await page.evaluate(() => document.fonts.ready);
+    await page.screenshot({
+      path: path.join(screenshotDir, "listen-" + width + ".png"),
+    });
+    assert.deepEqual(
+      await page
+        .locator("main img")
+        .evaluateAll((images) =>
+          images
+            .filter((img) => !img.complete || !img.naturalWidth)
+            .map((img) => img.src),
+        ),
+      [],
+    );
+    if (width === 1280) {
+      await page.locator(".track").first().click();
+      await page.locator(".track-preview").waitFor();
+      await page.setViewportSize({ width: 700, height: 900 });
+      await page.locator("dialog[open]").waitFor();
+      await page.setViewportSize({ width: 701, height: 900 });
+      await page.locator(".track-preview").waitFor();
+      assert.equal(await page.locator("dialog[open]").count(), 0);
+    }
+    await page.close();
   }
   const page = await browser.newPage({ reducedMotion: "reduce" });
   await page.goto(origin);
@@ -171,7 +298,7 @@ try {
     .getByRole("alert")
     .filter({ hasText: "Check your connection" })
     .waitFor();
-  await page.screenshot({ path: "docs/screens/login.png" });
+  await page.screenshot({ path: path.join(screenshotDir, "login.png") });
   console.log(JSON.stringify(results, null, 2));
   console.log(
     "Guest access, protected account, signup page, session/network messages, reduced motion, 30 tracks and responsive playback passed.",

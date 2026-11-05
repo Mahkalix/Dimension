@@ -1,4 +1,5 @@
 import "../styles/main.scss";
+import "@fontsource-variable/archivo";
 import RemoteKeys from "./RemoteKeys";
 export const metadata = {
   title: "The Den",
