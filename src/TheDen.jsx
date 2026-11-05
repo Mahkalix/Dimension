@@ -17,7 +17,7 @@ const artists = artistProfiles.map((artist) => ({
   tracks: tracks.filter((track) => track.artist === artist.name),
 }));
 
-export default function TheDen() {
+export default function TheDen({ signedIn = false }) {
   const [pins, setPins] = useState([]);
   const searchInput = useRef(null);
   useEffect(() => {
@@ -359,6 +359,12 @@ export default function TheDen() {
               <SolarIcon name="widget" />
               Extras
             </button>
+            <a href={signedIn ? "/auth/logout" : "/login?returnTo=%2Fplayer"}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <path d="M9 4H4v16h5M9 12h12m-4-4 4 4-4 4" />
+              </svg>
+              {signedIn ? "Sign out" : "Sign in"}
+            </a>
           </div>
         </details>
       </div>
