@@ -91,7 +91,7 @@
     width: 18px;
     height: 18px;
   }
-  > span {
+  > .playlist-brand {
     max-width: 115px;
     font-size: 9px;
     line-height: 1.6;
@@ -328,10 +328,10 @@
     position: absolute;
     top: 8px;
     left: 8px;
-    background: #efefedeb;
-    border-radius: 3px;
-    font-size: 8px;
-    padding: 2px 5px;
+    width: 24px;
+    height: 24px;
+    background: #3974bd;
+    mask: url("/brand/the-den-house.png") center / contain no-repeat;
   }
   > .solar-icon {
     position: absolute;

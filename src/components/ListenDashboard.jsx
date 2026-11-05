@@ -159,7 +159,7 @@ export default function ListenDashboard({
         </div>
         <div className="shelf-carousel">
           <div className="shelf-records" id="playlist-carousel" ref={shelf}>
-            {playlists.map((playlist, i) => (
+            {playlists.map((playlist) => (
               <button
                 key={playlist.id}
                 className="shelf-record"
@@ -171,7 +171,7 @@ export default function ListenDashboard({
                     alt={playlist.alt}
                     style={{ objectPosition: playlist.imagePosition }}
                   />
-                  <span aria-hidden="true">0{i + 1}</span>
+                  <span className="playlist-brand" aria-hidden="true" />
                   <SolarIcon name="arrow-right" />
                 </div>
                 <strong>{playlist.title}</strong>
