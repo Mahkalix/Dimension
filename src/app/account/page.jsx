@@ -16,7 +16,7 @@ export default async function Account() {
       <section className={styles.sheet}>
         <h1>Account</h1>
         <strong>{user.name || user.email || "The Den listener"}</strong>
-        {user.email && <span>{user.email}</span>}
+        {user.email && user.name && user.name !== user.email && <span>{user.email}</span>}
         <span>
           {user.email_verified ? "Email verified" : "Email not verified"}
         </span>

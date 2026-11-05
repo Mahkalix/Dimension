@@ -36,8 +36,10 @@ test("upload rejects unsupported formats and oversized files before decoding", a
 });
 
 test("all character choices have unique IDs, local images and sources", () => {
+  assert.equal(avatars.length, 10);
   assert.equal(new Set(avatars.map(a => a.id)).size, avatars.length);
   for (const avatar of avatars) {
+    assert.equal(avatar.portraitType, "character");
     assert.ok(avatar.name && avatar.source);
     assert.ok(fs.existsSync(new URL("../public" + avatar.image, import.meta.url)));
   }

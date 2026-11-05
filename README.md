@@ -85,6 +85,6 @@ The [implementation report](docs/IMPLEMENTATION.md) records earlier work and may
 
 ## Profile photos
 
-Signed-in listeners can select from 39 The Bear character/cast portraits or upload a JPG, PNG or WebP (8 MB maximum) in Account. Uploads are center-cropped and re-encoded to a 320 px JPEG locally. Save applies the photo to Account, the player header and Welcome back. The default icon can be restored.
+Signed-in listeners can select from 10 portraits of The Bear’s main restaurant crew or upload a JPG, PNG or WebP (8 MB maximum) in Account. Uploads are center-cropped and re-encoded to a 320 px JPEG locally. Save applies the photo to Account, the player header and Welcome back. The default icon can be restored.
 
-Photos are stored in localStorage under the Auth0 user ID, survive browser restarts and are isolated between accounts. They are not uploaded to Auth0 or synchronized across devices; clearing site data removes them. Portrait provenance is recorded in `src/data/avatars.json` (TVmaze character/cast pages; Carmy supplied by the project owner). These images are separate from the audio licenses.
+Photos are stored in localStorage under the Auth0 user ID, survive browser restarts and are isolated between accounts. They are not uploaded to Auth0 or synchronized across devices; clearing site data removes them. Portrait provenance is recorded in `src/data/avatars.json` (TVmaze character pages; Carmy supplied by the project owner). These images are separate from the audio licenses.
