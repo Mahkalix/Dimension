@@ -73,6 +73,8 @@ With a configured server running, set `TEST_URL` to its origin and run `node scr
 
 `npm run test:ui` uses installed Chrome against `TEST_URL` (default port 3140). It verifies playback, responsive overflow and personal playlist creation, editing, persistence, sharing and deletion at 390, 820 and 1440 px. It uses isolated browser contexts and does not touch your saved browser library.
 
+`npm run test:responsive` checks eight viewport sizes from 320 to 1440 px, including landscape, against `TEST_URL` (default port 3159). It checks header/player controls, the preview, long playlist titles, editing rows, sharing and login for horizontal overflow. Start the app on that port before running it.
+
 `npm run test:media` loads all 63 recordings in Chrome and **updates measured durations in `selection.json`**. It uses port 3142 and requires internet access for the artist-hosted tracks.
 
 ## Deployment

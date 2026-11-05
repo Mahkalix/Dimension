@@ -242,3 +242,14 @@
     padding: 0;
   }
 }
+
+@media (min-width: 701px) and (max-width: 1100px) {
+  .den { --rail-width: 180px; }
+  .app-topbar { grid-template-columns: 140px minmax(0, 1fr) 48px; gap: 12px; padding-inline: 16px; }
+  .den[data-preview="true"] { grid-template-columns: var(--rail-width) minmax(0, 1fr); }
+  .den[data-preview="true"] .track-preview { position: fixed; right: 0; width: min(360px, calc(100vw - 24px)); z-index: 7; box-shadow: -10px 0 30px #0005; }
+}
+@media (max-width: 380px) {
+  .app-topbar { padding-inline: 12px; gap: 10px; }
+  .den main { padding-inline: 12px; }
+}
