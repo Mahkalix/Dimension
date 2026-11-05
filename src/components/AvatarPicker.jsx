@@ -42,7 +42,6 @@ export default function AvatarPicker({ accountId }) {
         <span>{a.name}</span>
       </button>)}
     </div>
-    <p className={styles.note}>Photos from The Bear supplied for The Den. Additional character portraits via <a href="https://www.tvmaze.com/shows/54198/the-bear/cast" target="_blank" rel="noreferrer">TVmaze</a>.</p>
     <div className={styles.footer}>
       <Action variant="primary" disabled={busy} onClick={save}>{busy ? "Preparing photo…" : "Save photo"}</Action>
       <p className={styles.note}>Saved for your account on this browser. Not synced across devices.</p>

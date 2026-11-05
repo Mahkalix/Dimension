@@ -97,6 +97,11 @@ export function MenuPage({ page, go, prefs, select }) {
             </span>
           </div>
         ))}
+        <h2>Photos & character portraits</h2>
+        <div className="menu-row">
+          <b>The Bear</b>
+          <span>Photos from The Bear supplied for The Den. Additional character portraits via <a href="https://www.tvmaze.com/shows/54198/the-bear/cast" target="_blank" rel="noreferrer">TVmaze</a>. Some supplied images were found on Pinterest; their original photographers or publications have not been identified.</span>
+        </div>
         <h2>Dedication artwork</h2>
         <div className="menu-row">
           <b>Carmy & Sydney fan art</b>
