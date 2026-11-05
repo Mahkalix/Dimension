@@ -6,11 +6,9 @@ import tracks from "../data/library";
 export default function TrackPreview({
   track,
   context,
-  playing,
   queued,
   onClose,
   closeRef,
-  onPlay,
   onQueue,
   onPrevious,
   onNext,
@@ -147,8 +145,7 @@ export default function TrackPreview({
             ))}
           </div>
         </section>
-      </div>
-      <div className="preview-controls">
+
         <span className="sr-only" role="status">
           {notice}
         </span>
@@ -157,18 +154,6 @@ export default function TrackPreview({
             {error}
           </p>
         )}
-        <div className="transport">
-          <button aria-label="Previous track" onClick={onPrevious}>
-            <SolarIcon name="skip-previous" />
-          </button>
-          <button className="preview-play" onClick={onPlay}>
-            <SolarIcon name={playing ? "pause" : "play"} />
-            {playing ? "Pause" : "Play"}
-          </button>
-          <button aria-label="Next track" onClick={onNext}>
-            <SolarIcon name="skip-next" />
-          </button>
-        </div>
       </div>
     </>
   );

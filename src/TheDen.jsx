@@ -172,10 +172,6 @@ export default function TheDen() {
     const pane = dialog.current;
     return () => pane?.close();
   }, []);
-  const play = () => {
-    if (playing === preview && audible) toggle();
-    else start(preview, false);
-  };
   const playlistOrder = playlist?.tracks.map((id) =>
     tracks.findIndex((t) => t.id === id),
   );
@@ -248,11 +244,9 @@ export default function TheDen() {
             ? "Now playing"
             : "Track preview"
       }
-      playing={playing === preview && audible}
       queued={queue.includes(preview)}
       onClose={closePreview}
       closeRef={previewClose}
-      onPlay={play}
       onQueue={add}
       onPrevious={previous}
       onNext={next}

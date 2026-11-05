@@ -102,7 +102,6 @@
   .picks-list,
   .menu-row,
   .appearance-option,
-  .preview-controls,
   .search-field,
   .library-switch {
     background: var(--glass);
@@ -120,8 +119,7 @@
   .track,
   .rail-playlists,
   .account-menu,
-  .preview-topbar,
-  .preview-controls {
+  .preview-topbar {
     border-color: var(--line);
   }
   .solar-icon,
@@ -130,13 +128,11 @@
     filter: brightness(0) invert(1);
   }
   .paper-transport button:nth-child(2) .solar-icon,
-  .preview-play .solar-icon,
   .feature-actions button:first-child .solar-icon,
   .preview-badge .solar-icon,
   .related-play .solar-icon {
     filter: brightness(0);
   }
-  .preview-play,
   .paper-transport button:nth-child(2),
   .preview-add:disabled {
     background: #f5f5ef;

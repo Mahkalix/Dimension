@@ -80,10 +80,10 @@ try {
     const relatedButton = panel.locator(".preview-related button").first();
     await relatedButton.scrollIntoViewIfNeeded();
     const relatedBox = await relatedButton.boundingBox();
-    const controlsBox = await panel.locator(".preview-controls").boundingBox();
+    const controlsBox = await panel.boundingBox();
     assert.ok(
-      relatedBox.y + relatedBox.height <= controlsBox.y + 1,
-      "Related tracks remain above the fixed controls",
+      relatedBox.y + relatedBox.height <= controlsBox.y + controlsBox.height + 1,
+      "Related tracks remain inside the preview",
     );
     await scroller.evaluate((el) => el.scrollTo(0, 0));
     assert.equal(await page.locator('.track[aria-current="true"]').count(), 1);

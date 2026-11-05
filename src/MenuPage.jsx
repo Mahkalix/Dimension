@@ -7,7 +7,7 @@ export const options = {
   Backlight: ["Low", "Medium", "High"],
 };
 export const defaults = {
-  Appearance: "Paper",
+  Appearance: "Clear",
   "Navigation sounds": "On",
   Backlight: "Medium",
 };
