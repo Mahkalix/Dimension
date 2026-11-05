@@ -585,7 +585,7 @@ export default function TheDen({ signedIn = false, accountId }) {
         )}
         {section === "Library" && libraryTab === "Playlists" && (
           <div className="playlist-actions">
-            <button disabled={!libraryReady} onClick={() => { try { savePlaylist({ title: "My playlist #" + (personal.length + 1), cover: genericCover, tracks: [] }); } catch { setNotice("Could not create playlist."); } }}>Create playlist</button>
+            <button className="playlist-create" disabled={!libraryReady} onClick={() => { try { savePlaylist({ title: "My playlist #" + (personal.length + 1), cover: genericCover, tracks: [] }); } catch { setNotice("Could not create playlist."); } }}>Create playlist</button>
             {hidden.length > 0 && <button onClick={() => { try { persistPlaylists(personal, []); } catch { setNotice('Could not restore playlists.'); } }}>Restore The Den playlists</button>}
           </div>
         )}
