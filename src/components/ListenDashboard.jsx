@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import SolarIcon from "./SolarIcon";
 import TrackRow, { formatDuration } from "./TrackRow";
 import tracks from "../data/library";
@@ -18,6 +19,34 @@ export default function ListenDashboard({
   onBrowse,
   onGenre,
 }) {
+  const shelf = useRef(null);
+  const [edges, setEdges] = useState({ start: true, end: true });
+  useEffect(() => {
+    const element = shelf.current;
+    const update = () =>
+      setEdges({
+        start: element.scrollLeft <= 2,
+        end:
+          element.scrollLeft + element.clientWidth >= element.scrollWidth - 2,
+      });
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    element.addEventListener("scroll", update, { passive: true });
+    update();
+    return () => {
+      observer.disconnect();
+      element.removeEventListener("scroll", update);
+    };
+  }, []);
+  const scrollShelf = (direction) => {
+    const element = shelf.current;
+    element.scrollBy({
+      left: direction * element.clientWidth * 0.8,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+  };
   return (
     <div className="listen-dashboard">
       <section className="listen-feature" aria-label="Featured playlist">
@@ -128,26 +157,50 @@ export default function ListenDashboard({
             All playlists <SolarIcon name="arrow-right" />
           </button>
         </div>
-        <div className="shelf-records">
-          {playlists.map((playlist, i) => (
-            <button
-              key={playlist.id}
-              className="shelf-record"
-              onClick={() => onPlaylist(playlist)}
-            >
-              <div className="shelf-cover">
-                <img
-                  src={playlist.cover}
-                  alt={playlist.alt}
-                  style={{ objectPosition: playlist.imagePosition }}
-                />
-                <span aria-hidden="true">0{i + 1}</span>
-                <SolarIcon name="arrow-right" />
-              </div>
-              <strong>{playlist.title}</strong>
-              <small>{playlist.tracks.length} tracks</small>
-            </button>
-          ))}
+        <div className="shelf-carousel">
+          <div className="shelf-records" id="playlist-carousel" ref={shelf}>
+            {playlists.map((playlist, i) => (
+              <button
+                key={playlist.id}
+                className="shelf-record"
+                onClick={() => onPlaylist(playlist)}
+              >
+                <div className="shelf-cover">
+                  <img
+                    src={playlist.cover}
+                    alt={playlist.alt}
+                    style={{ objectPosition: playlist.imagePosition }}
+                  />
+                  <span aria-hidden="true">0{i + 1}</span>
+                  <SolarIcon name="arrow-right" />
+                </div>
+                <strong>{playlist.title}</strong>
+                <small>{playlist.tracks.length} tracks</small>
+              </button>
+            ))}
+          </div>
+          <button
+            className="shelf-arrow shelf-arrow-prev"
+            aria-label="Previous playlists"
+            aria-controls="playlist-carousel"
+            disabled={edges.start}
+            onClick={() => scrollShelf(-1)}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m14 5-7 7 7 7" />
+            </svg>
+          </button>
+          <button
+            className="shelf-arrow shelf-arrow-next"
+            aria-label="Next playlists"
+            aria-controls="playlist-carousel"
+            disabled={edges.end}
+            onClick={() => scrollShelf(1)}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m10 5 7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </section>
     </div>

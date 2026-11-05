@@ -250,8 +250,48 @@
   overflow-x: auto;
   padding: 2px 2px 14px;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: #aaa transparent;
+}
+.shelf-carousel {
+  position: relative;
+}
+.den .shelf-records {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.shelf-arrow {
+  position: absolute;
+  top: calc(50% - 30px);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border-radius: 50%;
+  background: #292d29;
+  color: #fff;
+  box-shadow: 0 2px 8px #0004;
+  &:hover {
+    background: #444b44;
+  }
+  &:disabled {
+    visibility: hidden;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+  }
+}
+.shelf-arrow-prev {
+  left: 4px;
+}
+.shelf-arrow-next {
+  right: 4px;
 }
 .shelf-record {
   flex: 0 0 calc((100% - 90px) / 6);
