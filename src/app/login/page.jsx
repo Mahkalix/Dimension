@@ -26,7 +26,7 @@ export default async function Login({ searchParams }) {
         />
         <div className={styles.content}>
           <h1>
-            {user ? "Welcome back" : signup ? "Create account" : "Sign in"}
+            {user ? "Welcome back" : signup ? "Make yourself at home." : <>Your soundtrack.<br />Before service.<br />After hours.</>}
           </h1>
           {user ? (
             <>
@@ -48,10 +48,7 @@ export default async function Login({ searchParams }) {
             </>
           ) : (
             <>
-              <p>
-                Use your email and password. Music is always available without
-                an account.
-              </p>
+              {signup && <p>Create your account and settle into The Den.</p>}
               {(messages[params.error] || !configured) && (
                 <p role="alert">{messages[params.error] || messages.config}</p>
               )}
@@ -64,10 +61,12 @@ export default async function Login({ searchParams }) {
                     (signup ? "&screen_hint=signup" : "")
                   }
                 >
-                  {signup ? "Sign up with email" : "Sign in with email"}
+                  {signup ? "Create account" : "Sign in"}
                 </a>
               )}
-              <a
+              <div className={styles.invitation}>
+                <p>{signup ? "Already part of The Den?" : "New to The Den?"}</p>
+                <a
                 href={
                   "/login?returnTo=" +
                   encodeURIComponent(returnTo) +
@@ -75,23 +74,22 @@ export default async function Login({ searchParams }) {
                 }
               >
                 {signup
-                  ? "Already have an account? Sign in"
+                  ? "Sign in"
                   : "Create an account"}
               </a>
-              <a href="/player">Continue without an account</a>
+              </div>
+              <a className={styles.guest} href="/player">Continue without an account</a>
             </>
           )}
         </div>
         <aside className={styles.story}>
-          <span>Music for the kitchen.</span>
+          <span>Before service. After hours.</span>
           <h2>
             A little room
             <br />
             for your soundtrack.
           </h2>
           <p>
-            Before service. After hours.
-            <br />
             Pull up a chair and press play.
           </p>
         </aside>

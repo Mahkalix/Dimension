@@ -29,7 +29,8 @@
   text-align: center;
   min-width: 0;
   h1 {
-    font-size: clamp(28px, 4vw, 38px);
+    font-size: clamp(26px, 3vw, 32px);
+    line-height: 1.2;
     margin: 0;
     letter-spacing: -0.04em;
   }
@@ -107,6 +108,16 @@
   flex: none;
   filter: brightness(0) invert(1);
 }
+.invitation {
+  margin-top: 8px;
+  a {
+    font-weight: 650;
+  }
+}
+.content .guest {
+  color: #c7c7c7;
+  font-size: 12px;
+}
 .story {
   display: flex;
   flex-direction: column;
@@ -135,8 +146,6 @@
 @media (max-width: 650px) {
   .sheet {
     padding-top: 72px;
-  }
-  .sheet {
     grid-template-columns: minmax(0, 1fr);
   }
   .story {

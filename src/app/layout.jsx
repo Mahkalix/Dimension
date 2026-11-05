@@ -3,7 +3,7 @@ import "@fontsource-variable/archivo";
 import RemoteKeys from "./RemoteKeys";
 export const metadata = {
   title: "The Den",
-  description: "Music for the kitchen, before and after service.",
+  description: "Your soundtrack. Before service. After hours.",
   manifest: "/manifest.json",
   icons: {
     icon: [
