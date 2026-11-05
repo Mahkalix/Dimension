@@ -28,7 +28,7 @@
   height: 160px;
   overflow: hidden;
   border-radius: 10px;
-  background: url("/images/kitchen-background.jpg?v=2") center / cover;
+  background: url("/images/kitchen-background.jpg?v=3") center / cover;
 }
 .appearance-sample > span {
   display: grid;
@@ -90,7 +90,7 @@
       var(--backlight-top, #00000066),
       var(--backlight-bottom, #00000099)
     ),
-    url("/images/kitchen-background.jpg?v=2") center / cover fixed;
+    url("/images/kitchen-background.jpg?v=3") center / cover fixed;
   color: var(--ink);
   .rail,
   .paper-player,
