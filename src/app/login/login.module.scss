@@ -59,15 +59,21 @@
     border-radius: 8px;
   }
 }
+.brand {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
 .mark {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  z-index: 1;
   width: 48px;
   height: 44px;
   object-fit: contain;
-  filter: brightness(0) invert(1) drop-shadow(0 2px 5px #0008);
+  filter: brightness(0) invert(1);
+}
+.wordmark {
+  width: 170px;
+  height: auto;
+  filter: brightness(0) invert(1);
 }
 .content .enter {
   background: #3974bd;
@@ -145,7 +151,6 @@
 }
 @media (max-width: 650px) {
   .sheet {
-    padding-top: 72px;
     grid-template-columns: minmax(0, 1fr);
   }
   .story {

@@ -17,14 +17,11 @@ export default async function Login({ searchParams }) {
   return (
     <main className={styles.entry}>
       <section className={styles.sheet} aria-label="Welcome to The Den">
-        <img
-          className={styles.mark}
-          src="/brand/the-den-house.png"
-          alt="The Den"
-          width="48"
-          height="44"
-        />
         <div className={styles.content}>
+          <div className={styles.brand}>
+            <img className={styles.mark} src="/brand/the-den-house.png" alt="" width="48" height="44" />
+            <img className={styles.wordmark} src="/brand/the-den-wordmark.png" alt="The Den" width="170" height="29" />
+          </div>
           <h1>
             {user ? "Welcome back" : signup ? "Make yourself at home." : <>Your soundtrack.<br />Before service.<br />After hours.</>}
           </h1>
