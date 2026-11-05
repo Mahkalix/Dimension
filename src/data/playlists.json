@@ -18,7 +18,8 @@
       "cylinder-7",
       "cylinder-8",
       "cylinder-9"
-    ]
+    ],
+    "logoStyle": "badge"
   },
   {
     "id": "service",
@@ -36,7 +37,8 @@
       "enter-the-party",
       "fork-and-spoon",
       "c-funk"
-    ]
+    ],
+    "logoStyle": "badge"
   },
   {
     "id": "plonge",
@@ -53,7 +55,8 @@
       "night-on-the-docks---sax",
       "sunday-dub",
       "dub-feral"
-    ]
+    ],
+    "logoStyle": "badge"
   },
   {
     "id": "money-money",
@@ -71,7 +74,8 @@
       "mining-by-moonlight"
     ],
     "sourceUrl": null,
-    "credit": "The Bear · FX, image supplied for The Den"
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
   },
   {
     "id": "happiness",
@@ -89,7 +93,8 @@
       "life-of-riley"
     ],
     "sourceUrl": null,
-    "credit": "The Bear · FX, image supplied for The Den"
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
   },
   {
     "id": "friendship",
@@ -108,7 +113,8 @@
       "sunshine"
     ],
     "sourceUrl": null,
-    "credit": "The Bear · FX, image supplied for The Den"
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
   },
   {
     "id": "chaos",
@@ -125,6 +131,7 @@
       "edm-detection-mode"
     ],
     "sourceUrl": null,
-    "credit": "The Bear · FX, image supplied for The Den"
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
   }
 ]

@@ -324,14 +324,34 @@
     object-fit: cover;
     display: block;
   }
-  > span {
+  > .playlist-brand {
     position: absolute;
     top: 8px;
     left: 8px;
-    width: 24px;
-    height: 24px;
-    background: #3974bd;
-    mask: url("/brand/the-den-house.png") center / contain no-repeat;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    border-radius: 6px;
+    background: #fff;
+    color: #245b9e;
+    box-shadow: 0 1px 5px #0005;
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: currentColor;
+      mask: url("/brand/the-den-house.png") center / contain no-repeat;
+    }
+    &[data-style="white"],
+    &[data-style="black"],
+    &[data-style="blue"] {
+      background: transparent;
+      box-shadow: none;
+    }
+    &[data-style="white"] { color: #fff; }
+    &[data-style="black"] { color: #000; }
+    &[data-style="blue"] { color: #3974bd; }
   }
   > .solar-icon {
     position: absolute;

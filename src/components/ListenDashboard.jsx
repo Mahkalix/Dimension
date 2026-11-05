@@ -171,7 +171,7 @@ export default function ListenDashboard({
                     alt={playlist.alt}
                     style={{ objectPosition: playlist.imagePosition }}
                   />
-                  <span className="playlist-brand" aria-hidden="true" />
+                  <span className="playlist-brand" data-style={playlist.logoStyle || "badge"} aria-hidden="true" />
                   <SolarIcon name="arrow-right" />
                 </div>
                 <strong>{playlist.title}</strong>
