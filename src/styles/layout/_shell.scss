@@ -99,13 +99,13 @@
 }
 .den[data-light="Low"] {
   --paper: #dbdbd8;
-  --backlight-top: #101a13cc;
-  --backlight-bottom: #0b1510e6;
+  --backlight-top: #000000b3;
+  --backlight-bottom: #000000d9;
 }
 .den[data-light="High"] {
   --paper: #fafaf8;
-  --backlight-top: #14231b40;
-  --backlight-bottom: #111c1866;
+  --backlight-top: #0000001a;
+  --backlight-bottom: #00000040;
 }
 @media (min-width: #{bp.$tablet-min}) and (max-width: 1100px) {
   .den {

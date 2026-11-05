@@ -9,8 +9,8 @@ body:has(
     [data-appearance="Blur"]
   )
 ) {
-  --scroll-thumb: #8e9d92;
-  --scroll-hover: #c4cfc7;
+  --scroll-thumb: #999999;
+  --scroll-hover: #cccccc;
 }
 html:has(
   .den:is(
@@ -19,9 +19,9 @@ html:has(
     [data-appearance="Blur"]
   )
 ) {
-  --scroll-thumb: #8e9d92;
-  --scroll-hover: #c4cfc7;
-  background: #17271f;
+  --scroll-thumb: #999999;
+  --scroll-hover: #cccccc;
+  background: #202020;
 }
 html,
 body,

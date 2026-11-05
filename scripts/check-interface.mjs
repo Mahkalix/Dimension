@@ -271,12 +271,12 @@ try {
       .getByRole("button", { name: "Settings", exact: true })
       .click();
     await page
-      .getByRole("button", { name: "Chrome intensity", exact: false })
+      .getByRole("button", { name: "Backlight", exact: false })
       .click();
-    await page.getByRole("button", { name: "Polished", exact: true }).click();
+    await page.getByRole("button", { name: "High", exact: true }).click();
     assert.equal(
-      await page.locator(".den").getAttribute("data-chrome"),
-      "Polished",
+      await page.locator(".den").getAttribute("data-light"),
+      "High",
     );
     await page.getByRole("button", { name: "Home", exact: true }).click();
     await page.evaluate(() => document.fonts.ready);

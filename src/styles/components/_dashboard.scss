@@ -234,13 +234,6 @@
     display: none;
   }
 }
-.note-foot {
-  display: block;
-  font-size: 9px;
-  color: var(--quiet);
-  line-height: 1.5;
-  max-width: 25ch;
-}
 .playlist-shelf {
   grid-column: 1 / -1;
 }
@@ -382,8 +375,7 @@
   .dashboard-side {
     grid-template-columns: minmax(0, 1fr);
   }
-  .listening-note > p,
-  .listening-note > .note-foot {
+  .listening-note > p {
     display: none;
   }
   .feature-copy {
