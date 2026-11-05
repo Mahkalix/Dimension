@@ -5,13 +5,11 @@ export const options = {
   Appearance: ["Paper", "Frosted", "Clear", "Blur"],
   Volume: ["Muted", "35%", "65%", "100%"],
   "Navigation sounds": ["On", "Off"],
-  "Chrome intensity": ["Matte", "Standard", "Polished"],
   Backlight: ["Low", "Medium", "High"],
 };
 export const defaults = {
   Appearance: "Paper",
-  "Navigation sounds": "Off",
-  "Chrome intensity": "Standard",
+  "Navigation sounds": "On",
   Backlight: "Medium",
 };
 export const menuPages = [

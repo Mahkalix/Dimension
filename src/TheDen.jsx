@@ -12,7 +12,7 @@ import playlists from "./data/playlists.json";
 import { MenuPage, menuPages, defaults } from "./MenuPage";
 const sections = ["Listen", "Library", "Up next", "Search"];
 
-export default function TheDen({ profile = null }) {
+export default function TheDen() {
   const [pins, setPins] = useState([]);
   const searchInput = useRef(null);
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function TheDen({ profile = null }) {
   const previewTrigger = useRef(null),
     previewClose = useRef(null);
   const [playing, setPlaying] = useState(null);
-  const [volume, setVolume] = useState(0.65);
+  const [volume, setVolume] = useState(0.35);
   const [queue, setQueue] = useState([]);
   const [notice, setNotice] = useState("");
   const audio = useRef(null),
@@ -96,7 +96,7 @@ export default function TheDen({ profile = null }) {
       const ctx = tone.current || (tone.current = new AudioContext());
       const osc = ctx.createOscillator(),
         gain = ctx.createGain();
-      gain.gain.value = 0.025;
+      gain.gain.value = 0.012 * volume;
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start();
@@ -256,7 +256,6 @@ export default function TheDen({ profile = null }) {
       className="den"
       data-section={section}
       data-preview={previewOpen}
-      data-chrome={prefs["Chrome intensity"]}
       data-light={prefs.Backlight}
       data-appearance={prefs.Appearance || "Paper"}
     >
@@ -336,15 +335,11 @@ export default function TheDen({ profile = null }) {
             if (e.target.closest("a,button")) e.currentTarget.open = false;
           }}
         >
-          <summary aria-label="Account menu" title={profile?.name || "Account"}>
+          <summary aria-label="Account menu" title="Account">
             <img
               className="profile-avatar"
-              src={profile?.picture || "/brand/the-den-house.png"}
+              src="/brand/account-avatar.svg"
               alt=""
-              onError={(event) => {
-                event.currentTarget.onerror = null;
-                event.currentTarget.src = "/brand/the-den-house.png";
-              }}
             />
           </summary>
           <div>
