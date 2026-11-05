@@ -7,5 +7,5 @@
   </defs>
   <path fill="url(#background)" d="M0 0h800v800H0z"/>
   <circle cx="400" cy="300" r="112" fill="#d6dee7"/>
-  <path d="M168 718v-55c0-126 104-210 232-210s232 84 232 210v55" fill="#d6dee7"/>
+  <path d="M168 800V663c0-126 104-210 232-210s232 84 232 210v137Z" fill="#d6dee7"/>
 </svg>
