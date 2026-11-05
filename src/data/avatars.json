@@ -10,42 +10,42 @@
     "id": "999510",
     "name": "Sydney Adamu",
     "image": "/images/avatars/999510.jpg",
-    "source": "https://www.tvmaze.com/characters/999510/the-bear-sydney-adamu",
+    "source": "User-provided Ayo Edebiri as “Sydney Adamu”.jpg",
     "portraitType": "character"
   },
   {
     "id": "999508",
     "name": "Richard \"Richie\" Jerimovich",
     "image": "/images/avatars/999508.jpg",
-    "source": "https://www.tvmaze.com/characters/999508/the-bear-richard-richie-jerimovich",
+    "source": "User-provided The Bear.jpg",
     "portraitType": "character"
   },
   {
     "id": "999511",
     "name": "Natalie \"Sugar\" Berzatto",
     "image": "/images/avatars/999511.jpg",
-    "source": "https://www.tvmaze.com/characters/999511/the-bear-natalie-sugar-berzatto",
+    "source": "User-provided téléchargement (11).jpg",
     "portraitType": "character"
   },
   {
     "id": "999514",
     "name": "Tina Marrero",
     "image": "/images/avatars/999514.jpg",
-    "source": "https://www.tvmaze.com/characters/999514/the-bear-tina-marrero",
+    "source": "User-provided the bear hulu.jpg",
     "portraitType": "character"
   },
   {
     "id": "999513",
     "name": "Marcus Brooks",
     "image": "/images/avatars/999513.jpg",
-    "source": "https://www.tvmaze.com/characters/999513/the-bear-marcus-brooks",
+    "source": "User-provided lionel boyce as marcus.jpg",
     "portraitType": "character"
   },
   {
     "id": "1129086",
     "name": "Neil Fak",
     "image": "/images/avatars/1129086.jpg",
-    "source": "https://www.tvmaze.com/characters/1129086/the-bear-neil-fak",
+    "source": "User-provided Matty Matheson as Neil Fak in The Bear on FX (1).jpg",
     "portraitType": "character"
   },
   {
@@ -67,6 +67,13 @@
     "name": "Angel",
     "image": "/images/avatars/999616.jpg",
     "source": "https://www.tvmaze.com/characters/999616/the-bear-angel",
+    "portraitType": "character"
+  },
+  {
+    "id": "1129091",
+    "name": "Claire",
+    "image": "/images/avatars/1129091.jpg",
+    "source": "User-provided Claire The Bear.jpg",
     "portraitType": "character"
   }
 ]

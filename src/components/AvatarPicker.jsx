@@ -30,7 +30,7 @@ export default function AvatarPicker({ accountId }) {
     <div className={styles.preview}>
       <img src={selected} alt="Selected profile photo" width="96" height="96"
         style={{ filter: selected === defaultAvatar ? "brightness(0) invert(1)" : "none" }} />
-      <div><h2 id="photo-title">Your profile photo</h2><p>Pick someone from the kitchen crew, or bring your own photo.</p></div>
+      <div><h2 id="photo-title">Your profile photo</h2><p>Pick a character from The Bear, or bring your own photo.</p></div>
     </div>
     <div className={styles.actions}>
       <label className={styles.upload}>Upload a photo<input type="file" accept="image/jpeg,image/png,image/webp" onChange={upload} disabled={busy} /></label>
@@ -45,7 +45,7 @@ export default function AvatarPicker({ accountId }) {
       </button>)}
     </div>
     {!matches.length && <p>No character matches your search.</p>}
-    <p className={styles.note}>The Bear character portraits via <a href="https://www.tvmaze.com/shows/54198/the-bear/cast" target="_blank" rel="noreferrer">TVmaze</a>. Carmy photo provided for The Den.</p>
+    <p className={styles.note}>Photos from The Bear supplied for The Den. Additional character portraits via <a href="https://www.tvmaze.com/shows/54198/the-bear/cast" target="_blank" rel="noreferrer">TVmaze</a>.</p>
     <div className={styles.footer}>
       <button className={styles.save} type="button" disabled={busy} onClick={save}>{busy ? "Preparing photo…" : "Save photo"}</button>
       <p className={styles.note}>Saved for your account on this browser. Not synced across devices.</p>
