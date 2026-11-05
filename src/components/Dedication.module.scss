@@ -7,14 +7,16 @@
   padding: 24px;
   display: flex;
   align-items: flex-end;
-  border: 1px solid #ffffff30;
+  border: 1px solid #454545;
   border-radius: 12px;
   color: #fff;
   background: linear-gradient(#0005, #000e), url("/images/playlists/apres-service.jpg") center / cover;
+  background-clip: padding-box;
 }
 .gif {
   position: absolute;
   inset: 0;
+  border-radius: 11px;
   z-index: -1;
   background: linear-gradient(#0005, #000e), url("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDRmdm1kamthdHlia2pzcDlheGgxczU5ZTdjMHcxZGg5eXM1bGVqdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/nOLKtKNN2dwTsYfZpl/giphy.gif") center / cover;
 }
