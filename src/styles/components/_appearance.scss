@@ -199,3 +199,5 @@
 @media (max-width: 700px) {
  .den:is([data-appearance="Frosted"], [data-appearance="Clear"], [data-appearance="Blur"]) .rail { backdrop-filter: none; -webkit-backdrop-filter: none; background: transparent; box-shadow: none; }
 }
+
+.den:is([data-appearance="Frosted"], [data-appearance="Clear"], [data-appearance="Blur"]) :is(.rail-signoff img, .listening-note > img) { filter: brightness(0) invert(1); mix-blend-mode: normal; }

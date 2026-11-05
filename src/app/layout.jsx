@@ -7,10 +7,10 @@ export const metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: "/brand/the-den-favicon.ico", type: "image/x-icon" },
-      { url: "/brand/the-den-favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/brand/the-den-favicon.ico?v=2", type: "image/x-icon" },
+      { url: "/brand/the-den-favicon.png?v=2", type: "image/png", sizes: "32x32" },
     ],
-    shortcut: "/brand/the-den-favicon.ico",
+    shortcut: "/brand/the-den-favicon.ico?v=2",
     apple: "/brand/house-180.png",
   },
   openGraph: {
