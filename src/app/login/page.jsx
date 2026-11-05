@@ -85,7 +85,7 @@ export default async function Login({ searchParams }) {
           )}
         </div>
         <aside className={styles.story}>
-          <span>Music, at home.</span>
+          <span>Music for the kitchen.</span>
           <h2>
             A little room
             <br />

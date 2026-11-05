@@ -304,7 +304,7 @@ export default function TheDen() {
             src="/brand/the-den-wordmark.png"
             alt="The Den"
           />
-          <span className="eyebrow">Music, at home.</span>
+          <span className="eyebrow">Music for the kitchen.</span>
         </button>
         <div className="topbar-search">
           <button
