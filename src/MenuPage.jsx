@@ -97,6 +97,12 @@ export function MenuPage({ page, go, prefs, select }) {
             </span>
           </div>
         ))}
+        <h2>Dedication artwork</h2>
+        <div className="menu-row">
+          <b>Carmy & Sydney fan art</b>
+          <span>Fan art by <a href="https://www.instagram.com/sunnnliwx/?hl=fr" target="_blank" rel="noreferrer">@sunnnliwx · Instagram</a>. Image supplied by the project owner.</span>
+        </div>
+        <div className="menu-row"><b>Carmy & Sydney photo</b><span>Image supplied by the project owner. Photographer not identified.</span></div>
         <h2>Playlist photos</h2>
         {playlists.map((p) => (
           <div className="menu-row" key={p.id}>
