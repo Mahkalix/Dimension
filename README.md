@@ -91,6 +91,6 @@ Photos are stored in localStorage under the Auth0 user ID, survive browser resta
 
 ## Personal playlists
 
-Library → Playlists → Create playlist opens a name, cover and track selector. Personal playlists support editing, sharing and deletion with confirmation. They are stored locally per account (or guest browser), without cloud sync. The Den playlists can be hidden locally and restored from the library.
+Library → Playlists → Create playlist immediately opens an empty playlist with a generic cover. Edit its name, description and photo, search the catalogue to add tracks, and reorder or remove them. Personal playlists support editing, sharing and deletion with confirmation. They are stored locally per account (or guest browser), without cloud sync. The Den playlists can be hidden locally and restored from the library.
 
-Share playlist copies a `/player#playlist=…` link containing a snapshot of its title, cover and track IDs. Anyone with the link can listen without signing in and save their own copy. Links are not private or revocable; later edits do not alter previously shared copies. Only known catalogue tracks and local covers are accepted when opening a link.
+Share playlist copies a `/player#playlist=…` link containing a snapshot of its title, description, cover and track IDs. Anyone with the link can listen without signing in and save their own copy. Links are not private or revocable; later edits do not alter previously shared copies. Only known catalogue tracks and bundled covers are accepted when opening a link. Uploaded JPG, PNG or WebP covers (up to 8 MB) stay in this browser; shared copies use the generic cover.

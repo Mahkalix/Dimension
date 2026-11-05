@@ -22,3 +22,6 @@
   img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
   small { display: block; margin-top: 3px; }
 }
+
+.preview { width: 120px; height: 120px; object-fit: cover; border-radius: 8px; }
+.dialog textarea { color: inherit; background: #292929; padding: 10px; min-height: 85px; border: 1px solid #777; border-radius: 8px; resize: vertical; }

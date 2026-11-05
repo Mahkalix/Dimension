@@ -1,0 +1,32 @@
+.page { background: #181818; color: #fff; border-radius: 14px; overflow: hidden; margin-bottom: 24px; }
+.hero { display: flex; gap: 24px; align-items: flex-end; padding: clamp(20px, 3vw, 40px); background: linear-gradient(#30415a, #172435);
+  > div { min-width: 0; }
+  p { overflow-wrap: anywhere; }
+}
+.cover { position: relative; padding: 0; width: clamp(140px, 20vw, 232px); aspect-ratio: 1; flex: none; overflow: hidden; border-radius: 8px;
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  span { position: absolute; bottom: 0; inset-inline: 0; padding: 12px; background: #000a; font-size: 12px; }
+}
+.title { padding: 0; display: block; text-align: left;
+  h2 { font-size: clamp(32px, 5vw, 76px); line-height: 1.05; margin: 12px 0 20px; overflow-wrap: anywhere; }
+}
+.content { padding: clamp(16px, 3vw, 32px); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 24px;
+  button, summary { background: #24364f; border-radius: 24px; padding: 8px 16px; min-height: 40px; cursor: pointer; font-size: 13px; }
+  details { position: relative; }
+  details > div { position: absolute; z-index: 2; top: 44px; left: 0; background: #242424; padding: 8px; border-radius: 8px; width: 180px; display: grid; gap: 4px; }
+}
+.page button:disabled { opacity: .4; cursor: default; }
+.row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #ffffff1a;
+  img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
+  span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  button { padding: 6px 8px; font-size: 12px; }
+}
+.find { border-top: 1px solid #444; margin-top: 24px; padding-top: 16px;
+  label { display: grid; gap: 8px; font-size: 13px; }
+  input { max-width: 510px; width: 100%; border: 1px solid #777; border-radius: 8px; background: #292929; color: #fff; padding: 12px; }
+}
+@media (max-width: 600px) { .hero { align-items: flex-start; flex-direction: column; } .cover { width: 140px; } .row { gap: 6px; } }
+
+.row small { display: block; margin-top: 4px; color: #ccc; }
+.title { background: transparent; border: 0; color: inherit; }

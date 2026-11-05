@@ -1,6 +1,7 @@
 "use client";
+import PersonalPlaylist from "./components/PersonalPlaylist";
 import PlaylistEditor from "./components/PlaylistEditor";
-import { normalizePlaylist, playlistShareHash, readSharedPlaylist } from "./lib/playlists";
+import { genericCover, normalizePlaylist, playlistShareHash, readSharedPlaylist } from "./lib/playlists";
 import AccountAvatar from "./components/AccountAvatar";
 import SolarIcon from "./components/SolarIcon";
 
@@ -14,7 +15,7 @@ import artistProfiles from "./data/artists.json";
 import curatedPlaylists from "./data/playlists.json";
 
 import { MenuPage, menuPages, defaults } from "./MenuPage";
-const coverChoices = curatedPlaylists.map(p => p.cover);
+const coverChoices = [genericCover, ...curatedPlaylists.map(p => p.cover)];
 const sections = ["Listen", "Library", "Up next", "Search"];
 const artists = artistProfiles.map((artist) => ({
   ...artist,
@@ -60,6 +61,13 @@ export default function TheDen({ signedIn = false, accountId }) {
     const item = { ...valid, id: value.custom ? value.id : 'custom-' + crypto.randomUUID(), custom: true };
     persistPlaylists([...personal.filter(p => p.id !== item.id), item], hidden);
     setEditor(null); choosePlaylist(item);
+  }
+  function updatePlaylist(value) {
+    const valid = normalizePlaylist(value, tracks, coverChoices);
+    if (!valid) throw new Error("Invalid playlist");
+    const item = { ...valid, id: value.id, custom: true };
+    persistPlaylists(personal.map(p => p.id === item.id ? item : p), hidden);
+    setPlaylist(item);
   }
   function removePlaylist(item) {
     const action = item.custom ? 'Delete' : 'Hide';
@@ -576,7 +584,7 @@ export default function TheDen({ signedIn = false, accountId }) {
         )}
         {section === "Library" && libraryTab === "Playlists" && (
           <div className="playlist-actions">
-            <button disabled={!libraryReady} onClick={() => setEditor({})}>Create playlist</button>
+            <button disabled={!libraryReady} onClick={() => { try { savePlaylist({ title: "My playlist #" + (personal.length + 1), cover: genericCover, tracks: [] }); } catch { setNotice("Could not create playlist."); } }}>Create playlist</button>
             {hidden.length > 0 && <button onClick={() => { try { persistPlaylists(personal, []); } catch { setNotice('Could not restore playlists.'); } }}>Restore The Den playlists</button>}
           </div>
         )}
@@ -665,7 +673,8 @@ export default function TheDen({ signedIn = false, accountId }) {
             ))}{" "}
           </section>
         )}
-        {playlist && (
+        {playlist?.custom && <PersonalPlaylist key={playlist.id} playlist={playlist} tracks={tracks} onEdit={() => setEditor(playlist)} onUpdate={updatePlaylist} onDelete={() => removePlaylist(playlist)} onShare={() => sharePlaylist(playlist)} onPlay={() => playPlaylist(playlist)} onQueue={() => queuePlaylist(playlist)} />}
+        {playlist && !playlist.custom && (
           <section className="playlist-hero" aria-label={playlist.title}>
             <img
               src={playlist.cover}
@@ -738,7 +747,7 @@ export default function TheDen({ signedIn = false, accountId }) {
             </div>
           </section>
         ) : (
-          section !== "Listen" && (
+          section !== "Listen" && !playlist?.custom && (
             <section
               hidden={
                 section === "Library" && libraryTab !== "Tracks" && !query
