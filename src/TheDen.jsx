@@ -7,10 +7,15 @@ import TrackRow from "./components/TrackRow";
 import TrackPreview from "./components/TrackPreview";
 import { useEffect, useRef, useState } from "react";
 import tracks from "./data/library";
+import artistProfiles from "./data/artists.json";
 import playlists from "./data/playlists.json";
 
 import { MenuPage, menuPages, defaults } from "./MenuPage";
 const sections = ["Listen", "Library", "Up next", "Search"];
+const artists = artistProfiles.map((artist) => ({
+  ...artist,
+  tracks: tracks.filter((track) => track.artist === artist.name),
+}));
 
 export default function TheDen() {
   const [pins, setPins] = useState([]);
@@ -176,8 +181,13 @@ export default function TheDen() {
   );
   const order =
     section === "Up next" ? queue : playlistOrder || tracks.map((_, i) => i);
+  const selectedArtist =
+    section === "Library" && libraryTab === "Artists"
+      ? artists.find((artist) => artist.name === query)
+      : null;
   const results = order.filter(
     (i) =>
+      (!selectedArtist || tracks[i].artist === selectedArtist.name) &&
       (!genre || tracks[i].genre === genre) &&
       (tracks[i].title + " " + tracks[i].artist)
         .toLowerCase()
@@ -499,17 +509,49 @@ export default function TheDen() {
         )}
         {section === "Library" && libraryTab === "Artists" && !query && (
           <section className="artist-list" aria-label="Artists">
-            {tracks
-              .filter(
-                (item, i) =>
-                  tracks.findIndex((t) => t.artist === item.artist) === i,
-              )
-              .map((item) => (
-                <button key={item.id} onClick={() => setQuery(item.artist)}>
-                  <img src={item.visual} alt="" />
-                  <strong>{item.artist}</strong>
-                </button>
-              ))}
+            {artists.map((item) => (
+              <button key={item.id} onClick={() => setQuery(item.name)}>
+                <img src={item.image} alt="" loading="lazy" />
+                <strong>{item.name}</strong>
+                <small>{item.tracks.length} tracks</small>
+              </button>
+            ))}
+          </section>
+        )}
+        {selectedArtist && (
+          <section className="artist-profile" aria-label={selectedArtist.name}>
+            <img src={selectedArtist.image} alt={selectedArtist.name} />
+            <div>
+              <button onClick={() => setQuery("")}>‹ All artists</button>
+              <h2>{selectedArtist.name}</h2>
+              <p>{selectedArtist.tracks.length} tracks in your library</p>
+              <p>
+                {[
+                  ...new Set(selectedArtist.tracks.map((track) => track.genre)),
+                ].join(" · ")}
+              </p>
+              <button
+                onClick={() =>
+                  playPlaylist({
+                    tracks: selectedArtist.tracks.map((track) => track.id),
+                  })
+                }
+              >
+                <SolarIcon name="play" /> Play all
+              </button>
+              <a href={selectedArtist.source} target="_blank" rel="noreferrer">
+                {selectedArtist.credit}
+              </a>
+              {selectedArtist.license && (
+                <a
+                  href={selectedArtist.license}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Photo license
+                </a>
+              )}
+            </div>
           </section>
         )}
         {section === "Library" && libraryTab === "Playlists" && !query && (

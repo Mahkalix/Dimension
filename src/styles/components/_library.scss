@@ -180,3 +180,47 @@
     padding-inline: 10px;
   }
 }
+
+.artist-list button {
+  max-width: 220px;
+  padding: 16px;
+}
+.artist-list small {
+  display: block;
+  margin-top: 8px;
+  color: var(--quiet);
+  font-size: 12px;
+}
+.artist-profile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+.artist-profile > img {
+  width: clamp(120px, 20vw, 220px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.artist-profile > div {
+  display: grid;
+  gap: 12px;
+  flex: 1;
+  min-width: min(240px, 100%);
+}
+.artist-profile h2,
+.artist-profile p {
+  margin: 0;
+}
+.artist-profile button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-self: start;
+}
+.artist-profile a {
+  font-size: 11px;
+  color: var(--quiet);
+}

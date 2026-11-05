@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Kevin MacLeod",
+    "id": "kevin-macleod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Kevin_Macleod.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Kevin_Macleod.jpg",
+    "credit": "Kevin MacLeod · CC BY 3.0",
+    "license": "https://creativecommons.org/licenses/by/3.0/",
+    "image": "/images/artists/kevin-macleod.jpg"
+  },
+  {
+    "name": "Chris Zabriskie",
+    "id": "chris-zabriskie",
+    "imageUrl": "https://chriszabriskie.com/img/portrait-600.jpg",
+    "source": "https://chriszabriskie.com/about/",
+    "credit": "Chris Zabriskie · Official portrait",
+    "image": "/images/artists/chris-zabriskie.jpg"
+  },
+  {
+    "name": "Jason Shaw",
+    "id": "jason-shaw",
+    "imageUrl": "https://i1.sndcdn.com/avatars-kUzaQsq29KWzjjHf-b6cXjg-t500x500.jpg",
+    "source": "https://soundcloud.com/audionautix",
+    "credit": "Audionautix · Official avatar",
+    "image": "/images/artists/jason-shaw.jpg"
+  }
+]
