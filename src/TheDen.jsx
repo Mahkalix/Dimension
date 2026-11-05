@@ -589,7 +589,7 @@ export default function TheDen({ signedIn = false, accountId }) {
             {hidden.length > 0 && <button onClick={() => { try { persistPlaylists(personal, []); } catch { setNotice('Could not restore playlists.'); } }}>Restore The Den playlists</button>}
           </div>
         )}
-        {editor && <PlaylistEditor playlist={editor.id ? editor : null} tracks={tracks} covers={coverChoices} onSave={savePlaylist} onClose={() => setEditor(null)} />}
+        {editor && <PlaylistEditor playlist={editor.id ? editor : null} onSave={savePlaylist} onClose={() => setEditor(null)} />}
         {section === "Library" && libraryTab === "Artists" && !query && (
           <section className="artist-list" aria-label="Artists">
             {artists.map((item) => (
