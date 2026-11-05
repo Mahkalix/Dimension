@@ -139,5 +139,23 @@
     "sourceUrl": null,
     "credit": "The Bear · FX, image supplied for The Den",
     "logoStyle": "badge"
+  },
+  {
+    "id": "love",
+    "title": "Love",
+    "cover": "/images/playlists/love.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "A tender moment between Carmy and Claire in The Bear.",
+    "tracks": [
+      "scott-buckley-reverie",
+      "scott-buckley-hymn",
+      "scott-buckley-first-snow",
+      "scott-buckley-childhood",
+      "scott-buckley-stars-in-her-skies",
+      "scott-buckley-a-kind-of-hope"
+    ],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
   }
 ]

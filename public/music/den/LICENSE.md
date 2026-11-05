@@ -343,3 +343,39 @@ Music by [John Bartmann](https://youtube.com/johnbartmannmusic). Licensed under 
 Music by [John Bartmann](https://youtube.com/johnbartmannmusic). Licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
 [Source](https://www.johnbartmann.com/music) · Audio: /music/den/john-bartmann-uptown-fatness.mp3
+
+## Reverie
+
+Music by [Scott Buckley](https://www.scottbuckley.com.au). Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+[Source](https://www.scottbuckley.com.au/library/reverie/) · Audio: /music/den/scott-buckley-reverie.mp3
+
+## Hymn
+
+Music by [Scott Buckley](https://www.scottbuckley.com.au). Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+[Source](https://www.scottbuckley.com.au/library/hymn/) · Audio: /music/den/scott-buckley-hymn.mp3
+
+## First Snow
+
+Music by [Scott Buckley](https://www.scottbuckley.com.au). Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+[Source](https://www.scottbuckley.com.au/library/first-snow/) · Audio: /music/den/scott-buckley-first-snow.mp3
+
+## Childhood
+
+Music by [Scott Buckley](https://www.scottbuckley.com.au). Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+[Source](https://www.scottbuckley.com.au/library/childhood/) · Audio: /music/den/scott-buckley-childhood.mp3
+
+## Stars In Her Skies
+
+Music by [Scott Buckley](https://www.scottbuckley.com.au). Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+[Source](https://www.scottbuckley.com.au/library/stars-in-her-skies/) · Audio: /music/den/scott-buckley-stars-in-her-skies.mp3
+
+## A Kind of Hope
+
+Music by [Scott Buckley](https://www.scottbuckley.com.au). Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+[Source](https://www.scottbuckley.com.au/library/a-kind-of-hope/) · Audio: /music/den/scott-buckley-a-kind-of-hope.mp3

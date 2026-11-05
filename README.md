@@ -10,7 +10,7 @@ The Den started with that question. Its little house emblem could be a mark Carm
 
 ## Features
 
-- 57 distinct recordings across seven playlists, with no track shared between playlists.
+- 63 distinct recordings across eight playlists, with no track shared between playlists.
 - Playlist covers, locally saved pins, artist pages, track images, search and a listening queue.
 - Persistent player with seeking, mute and a blue volume slider. A side preview shows the current track and credits.
 - Clear appearance by default, with Paper, Frosted and Blur alternatives. Appearance, backlight and navigation sounds are saved on the device.
@@ -44,7 +44,7 @@ Music works without signing in. Email/password authentication needs an Auth0 Reg
 
 ## Music and rights
 
-The library contains 57 distinct recordings by Kevin MacLeod, Chris Zabriskie, Jason Shaw, Scott Buckley and John Bartmann under CC BY 4.0 or CC0 1.0. It includes ambient, acoustic, jazz, bossa nova, world, lounge, hip-hop, rock, funk, dub and electronic music. Forty-eight MP3s are local; nine M4A recordings stream from the artist's own host and depend on its availability. Every recording has a source, attribution, license and measured duration in `src/data/selection.json`. Complete current credits are available in the app under Account → Extras → Credits. The [audio license document](public/music/den/LICENSE.md) lists all current recordings.
+The library contains 63 distinct recordings by Kevin MacLeod, Chris Zabriskie, Jason Shaw, Scott Buckley and John Bartmann under CC BY 4.0 or CC0 1.0. It includes ambient, acoustic, jazz, bossa nova, world, lounge, hip-hop, rock, funk, dub and electronic music. Fifty-four MP3s are local; nine M4A recordings stream from the artist's own host and depend on its availability. Every recording has a source, attribution, license and measured duration in `src/data/selection.json`. Complete current credits are available in the app under Account → Extras → Credits. The [audio license document](public/music/den/LICENSE.md) lists all current recordings.
 
 | Playlist | Tracks |
 | --- | ---: |
@@ -55,6 +55,7 @@ The library contains 57 distinct recordings by Kevin MacLeod, Chris Zabriskie, J
 | Happiness | 7 |
 | Friendship | 9 |
 | Chaos | 7 |
+| Love | 6 |
 
 Playlist photographs from The Bear were supplied by the project owner or referenced from editorial publications. They are separate from the freely licensed audio: publication rights for these photos have not been verified.
 
@@ -72,7 +73,7 @@ With a configured server running, set `TEST_URL` to its origin and run `node scr
 
 `npm run test:ui` uses installed Chrome against `TEST_URL` (default port 3140) for responsive interface and playback checks. Some login-copy assertions still reflect the earlier interface and need updating before treating the full suite as a release gate. Set `SCREENSHOT_DIR` to save captures outside `docs/screens`.
 
-`npm run test:media` loads all 57 recordings in Chrome and **updates measured durations in `selection.json`**. It uses port 3142 and requires internet access for the artist-hosted tracks.
+`npm run test:media` loads all 63 recordings in Chrome and **updates measured durations in `selection.json`**. It uses port 3142 and requires internet access for the artist-hosted tracks.
 
 ## Deployment
 
