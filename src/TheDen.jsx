@@ -340,11 +340,7 @@ export default function TheDen() {
           }}
         >
           <summary aria-label="Account menu" title="Account">
-            <img
-              className="profile-avatar"
-              src="/brand/account-avatar.svg"
-              alt=""
-            />
+            <SolarIcon name="user-circle" />
           </summary>
           <div>
             <a href="/account">
