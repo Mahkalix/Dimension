@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
+import Action from "./Action";
 import avatars from "../data/avatars.json";
 import { defaultAvatar, readAvatar, saveAvatar, prepareAvatar } from "../lib/avatar";
 import styles from "./AvatarPicker.module.scss";
 
 export default function AvatarPicker({ accountId }) {
   const [selected, setSelected] = useState(defaultAvatar);
-  const [query, setQuery] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -25,7 +25,6 @@ export default function AvatarPicker({ accountId }) {
     try { saveAvatar(accountId, selected); setError(""); setMessage("Profile photo saved."); }
     catch { setError("Your photo could not be saved. Check that browser storage is available."); }
   }
-  const matches = avatars.filter(a => a.name.toLowerCase().includes(query.toLowerCase().trim()));
   return <section className={styles.picker} aria-labelledby="photo-title">
     <div className={styles.preview}>
       <img src={selected} alt="Selected profile photo" width="96" height="96"
@@ -33,21 +32,19 @@ export default function AvatarPicker({ accountId }) {
       <div><h2 id="photo-title">Your profile photo</h2><p>Pick a character from The Bear, or bring your own photo.</p></div>
     </div>
     <div className={styles.actions}>
-      <label className={styles.upload}>Upload a photo<input type="file" accept="image/jpeg,image/png,image/webp" onChange={upload} disabled={busy} /></label>
-      <button type="button" onClick={() => choose(defaultAvatar)} disabled={busy}>Use default icon</button>
+      <Action as="label" className={styles.upload}>Upload a photo<input type="file" accept="image/jpeg,image/png,image/webp" onChange={upload} disabled={busy} /></Action>
+      <Action onClick={() => choose(defaultAvatar)} disabled={busy}>Use default icon</Action>
     </div>
     <p className={styles.note}>JPG, PNG or WebP, up to 8 MB. Your photo is cropped to a square.</p>
-    <label className={styles.search}>Find a character<input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="Carmy, Sydney, Richie…" /></label>
     <div className={styles.gallery} aria-label="The Bear profile photos">
-      {matches.map(a => <button type="button" key={a.id} aria-pressed={selected === a.image} onClick={() => choose(a.image)} disabled={busy}>
+      {avatars.map(a => <button type="button" key={a.id} aria-pressed={selected === a.image} onClick={() => choose(a.image)} disabled={busy}>
         <img src={a.image} alt="" width="72" height="72" loading="lazy" />
         <span>{a.name}</span>
       </button>)}
     </div>
-    {!matches.length && <p>No character matches your search.</p>}
     <p className={styles.note}>Photos from The Bear supplied for The Den. Additional character portraits via <a href="https://www.tvmaze.com/shows/54198/the-bear/cast" target="_blank" rel="noreferrer">TVmaze</a>.</p>
     <div className={styles.footer}>
-      <button className={styles.save} type="button" disabled={busy} onClick={save}>{busy ? "Preparing photo…" : "Save photo"}</button>
+      <Action variant="primary" disabled={busy} onClick={save}>{busy ? "Preparing photo…" : "Save photo"}</Action>
       <p className={styles.note}>Saved for your account on this browser. Not synced across devices.</p>
     </div>
     <p role="status">{message}</p>

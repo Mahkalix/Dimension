@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { getSession } from "../../lib/identity";
 import styles from "./account.module.scss";
+import Action from "../../components/Action";
 import AvatarPicker from "../../components/AvatarPicker";
 export const dynamic = "force-dynamic";
 export default async function Account() {
@@ -21,8 +22,10 @@ export default async function Account() {
           {user.email_verified ? "Email verified" : "Email not verified"}
         </span>
         <AvatarPicker accountId={user.sub} />
-        <a href="/auth/logout">Sign out</a>
-        <a href="/player">Back to music</a>
+        <nav className={styles.actions} aria-label="Account actions">
+          <Action href="/player">Back to music</Action>
+          <Action href="/auth/logout">Sign out</Action>
+        </nav>
       </section>
     </main>
   );

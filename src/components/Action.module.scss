@@ -1,0 +1,22 @@
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 36px;
+  padding: 7px 12px;
+  border: 1px solid #666;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  &:focus-visible, &:focus-within { outline: 3px solid #91bfff; outline-offset: 3px; }
+  &:disabled { opacity: .6; cursor: wait; }
+}
+.secondary { background: #282828; &:hover { background: #363636; } }
+.primary { background: #3974bd; border-color: #3974bd; &:hover { background: #4585d5; } }
+@media (pointer: coarse) { .action { min-height: 44px; } }
