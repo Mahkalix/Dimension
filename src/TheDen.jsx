@@ -451,7 +451,6 @@ export default function TheDen() {
       <main>
         <header className="main-header">
           <div>
-            <span className="eyebrow">A little room for music</span>
             <h1>
               {section === "Now playing"
                 ? tracks[playing ?? preview].artist
