@@ -138,3 +138,15 @@
     display: none;
   }
 }
+@media (max-height: 720px) {
+  .entry {
+    padding-block: 16px;
+  }
+  .content {
+    padding-block: 24px;
+    gap: 12px;
+  }
+  .story {
+    min-height: 0;
+  }
+}
