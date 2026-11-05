@@ -4,12 +4,12 @@ import SolarIcon from "./components/SolarIcon";
 import PlayerBar from "./components/PlayerBar";
 import ListenDashboard from "./components/ListenDashboard";
 import TrackRow from "./components/TrackRow";
+import TrackPreview from "./components/TrackPreview";
 import { useEffect, useRef, useState } from "react";
 import tracks from "./data/library";
 import playlists from "./data/playlists.json";
 
 import { MenuPage, menuPages, defaults } from "./MenuPage";
-const art = tracks.map((t) => t.art);
 const sections = ["Listen", "Library", "Up next", "Search"];
 
 export default function TheDen() {
@@ -123,7 +123,6 @@ export default function TheDen() {
   };
   const menu = menuPages.includes(section);
   const dialog = useRef(null);
-  const touch = useRef(null);
   const track = tracks[preview];
   const previous = () =>
     setPreview((i) => (i - 1 + tracks.length) % tracks.length);
@@ -201,68 +200,27 @@ export default function TheDen() {
     return () => media.removeEventListener("change", adapt);
   }, [previewOpen]);
   const previewContent = (
-    <>
-      <button className="return" ref={previewClose} onClick={closePreview}>
-        <SolarIcon name="close-circle" />
-        <span>Back to tracks</span>
-      </button>
-      <div
-        className="stage"
-        onTouchStart={(e) => {
-          touch.current = [e.touches[0].clientX, e.touches[0].clientY];
-        }}
-        onTouchCancel={() => {
-          touch.current = null;
-        }}
-        onTouchEnd={(e) => {
-          if (!touch.current) return;
-          const dx = e.changedTouches[0].clientX - touch.current[0],
-            dy = e.changedTouches[0].clientY - touch.current[1];
-          touch.current = null;
-          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
-            if (dx > 0) previous();
-            else next();
-          }
-        }}
-      >
-        <img
-          className="neighbor side0"
-          src={art[(preview + 1) % tracks.length]}
-          alt=""
-        />
-        <figure>
-          <picture>
-            <source media="(min-width:701px)" srcSet={track.visual} />
-            <img src={art[preview]} alt="" />
-          </picture>
-          <figcaption aria-live="polite">
-            <b>{track.title}</b>
-            <small>{track.artist}</small>
-          </figcaption>
-        </figure>
-      </div>
-      <div className="transport">
-        <span className="sr-only" role="status">
-          {notice}
-        </span>
-        <button aria-label="Previous track" onClick={previous}>
-          <SolarIcon name="skip-previous" />
-        </button>
-        <button onClick={play}>
-          <SolarIcon name={playing === preview && audible ? "pause" : "play"} />{" "}
-          {playing === preview && audible ? "Pause" : "Play"}
-        </button>
-        <button onClick={add}>Add to queue</button>
-        <button aria-label="Next track" onClick={next}>
-          <SolarIcon name="skip-next" />
-        </button>
-        {audioError && (
-          <p className="preview-error" role="alert">
-            {audioError}
-          </p>
-        )}
-      </div>
-    </>
+    <TrackPreview
+      track={track}
+      context={
+        playlist?.tracks.includes(track.id)
+          ? playlist.title
+          : playing === preview
+            ? "Now playing"
+            : "Track preview"
+      }
+      playing={playing === preview && audible}
+      queued={queue.includes(preview)}
+      onClose={closePreview}
+      closeRef={previewClose}
+      onPlay={play}
+      onQueue={add}
+      onPrevious={previous}
+      onNext={next}
+      onRelated={(i) => start(i, false)}
+      notice={notice}
+      error={audioError}
+    />
   );
   return (
     <div
@@ -582,8 +540,16 @@ export default function TheDen() {
           setTime((t) => ({ ...t, position: Number(e.target.value) }));
         }}
       />{" "}
-      <dialog ref={dialog} aria-label="Track preview" className="record">
-        {previewContent}
+      <dialog
+        ref={dialog}
+        aria-label="Track preview"
+        className="record"
+        onCancel={(event) => {
+          event.preventDefault();
+          closePreview();
+        }}
+      >
+        {!previewOpen && previewContent}
       </dialog>
       {previewOpen && (
         <aside

@@ -36,9 +36,9 @@ Translated active UI, page metadata, playlist copy, alternatives, accessible lab
 
 ## 7. Preview
 
-The preview uses grid rows `auto minmax(0,1fr) auto`, `min-height:0`, viewport-relative height and contained artwork. Track information and controls keep their space while artwork shrinks. Secondary source/queue cards were removed from this panel; full credits and queue remain available in their existing destinations. Mobile keeps the full-page preview and return control. The decorative neighboring cover is condensed on short screens.
+The preview is a right-hand panel with a fixed header and transport controls around an independently scrolling body. A tall monochrome artwork fades into the paper surface, followed by the title, artist, queue action, recording credits and two related tracks selected by genre and artist. Source and license links use the library's existing attribution data. No video or lyrics are shown because the library does not provide them.
 
-Checked Chrome at widths 360, 390, 700, 701, 820, 1024, 1280 and 1440, all with height 600: no panel scroll, visible controls and metadata, no horizontal page overflow. No content-clipping workaround was introduced. Example screenshots: `docs/screens/english-390.png` and `docs/screens/english-1280.png`.
+Mobile uses the same content in a full-screen native dialog. Closing restores the track's keyboard focus; changing tracks resets the panel scroll; the panel adapts when crossing the mobile breakpoint. Checked Chrome at widths 360, 390, 700, 701, 820, 1024, 1280 and 1440, all with height 600: the body scrolls without moving the page, controls remain visible, related tracks are reachable and there is no horizontal page overflow. Screenshots: `docs/screens/preview-sidebar-desktop.png` and `docs/screens/preview-sidebar-mobile.png`.
 
 ## 8. House
 

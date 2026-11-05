@@ -1,119 +1,314 @@
 @use "../abstracts/breakpoints" as bp;
-// Artwork yields its height before controls and metadata do.
+
 .track-preview,
 .record[open] {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: var(--gap);
   min-width: 0;
   min-height: 0;
-  padding: var(--gap);
+  padding: 0;
   color: var(--ink);
-  background: var(--dock);
+  background: var(--dock) var(--grain);
+  overflow: hidden;
+}
+.preview-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px 8px 18px;
+  border-bottom: 1px solid #24242415;
   .return {
-    position: static;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0;
-    min-height: 44px;
-    text-align: left;
-    font-size: 14px;
-  }
-  .stage {
     display: grid;
-    min-height: 0;
-    margin: 0;
+    place-items: center;
+    flex: none;
+    padding: 10px;
+    width: 44px;
+    height: 44px;
   }
-  .stage figure {
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto;
-    min-height: 0;
-    height: 100%;
+  .solar-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+.preview-context {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+  overflow-wrap: anywhere;
+  .solar-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+.preview-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #b1b1ac transparent;
+  scroll-padding-block: 12px;
+  padding: 0 16px 24px;
+}
+.preview-feature {
+  margin: 0 0 20px;
+}
+.preview-artwork {
+  position: relative;
+  height: clamp(160px, calc(100dvh - 390px), 440px);
+  margin: 0 -16px;
+  overflow: hidden;
+  touch-action: pan-y;
+  > img {
     width: 100%;
-    margin: 0;
-    overflow: visible;
-    box-shadow: none;
-  }
-  .stage picture {
+    height: 100%;
     display: block;
-    width: 100%;
-    min-height: 0;
-    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1);
   }
-  .stage figure img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    aspect-ratio: auto;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 55% 0 0;
+    background: linear-gradient(transparent, var(--dock));
+    pointer-events: none;
   }
-  .stage figcaption {
-    position: static;
-    background: transparent;
-    color: var(--ink);
-    backdrop-filter: none;
-    padding: 8px 0 0;
-    font-size: clamp(18px, 2vw, 24px);
-    line-height: 1.25;
+}
+.preview-badge {
+  position: absolute;
+  z-index: 1;
+  bottom: 22px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 20px;
+  background: #f8f8f6eb;
+  color: var(--ink);
+  font-size: 10px;
+  .solar-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+.preview-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  padding-top: 4px;
+  > div {
+    min-width: 0;
+  }
+  h2 {
+    margin: 0;
+    font-size: clamp(21px, 2vw, 28px);
+    line-height: 1.12;
+    letter-spacing: -0.045em;
+    font-weight: 650;
     overflow-wrap: anywhere;
   }
-  .stage figcaption b {
-    display: block;
-  }
-  .stage figcaption small {
+  p {
+    margin: 7px 0 0;
+    font-size: 12px;
     color: var(--quiet);
-    font-size: 14px;
-    line-height: 1.4;
   }
+}
+.preview-add {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 1px solid #24242430;
+  border-radius: 50%;
+  &:disabled {
+    background: var(--ink);
+    color: var(--dock);
+    cursor: default;
+  }
+}
+.preview-credits {
+  margin-block: 22px;
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--ink) var(--grain);
+  color: var(--dock);
+  h3 {
+    margin: 0 0 18px;
+    font-size: 12px;
+    font-weight: 550;
+  }
+  > strong {
+    display: block;
+    font-size: 23px;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    font-weight: 550;
+    overflow-wrap: anywhere;
+  }
+  dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 18px 0;
+  }
+  dt {
+    font-size: 10px;
+    color: #ccc;
+  }
+  dd {
+    font-size: 13px;
+    margin: 4px 0 0;
+  }
+}
+.preview-sources {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid #ffffff35;
+  padding-top: 8px;
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    min-height: 32px;
+    text-underline-offset: 3px;
+  }
+  .solar-icon {
+    width: 14px;
+    height: 14px;
+    filter: invert(1);
+  }
+}
+.preview-related {
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+  > div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  button {
+    display: block;
+    padding: 0;
+    text-align: left;
+    min-width: 0;
+  }
+  b {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.25;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  small {
+    display: block;
+    font-size: 10px;
+    color: var(--quiet);
+    margin-top: 4px;
+  }
+}
+.related-artwork {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 6px;
+  > img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(1);
+  }
+}
+.related-play {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  bottom: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--dock);
+  .solar-icon {
+    width: 15px;
+    height: 15px;
+  }
+}
+.preview-controls {
+  padding: 12px 16px;
+  border-top: 1px solid #24242420;
+  background: var(--dock);
   .transport {
     display: grid;
     grid-template-columns: 44px minmax(0, 1fr) 44px;
     gap: 8px;
-    margin: 0;
   }
-  .transport button {
+  button {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    padding: 8px;
     min-height: 44px;
   }
-  .transport button:nth-of-type(3) {
-    grid-column: 1 / -1;
-    grid-row: 2;
+  .preview-play {
+    border-radius: 24px;
+    background: var(--ink);
+    color: var(--dock);
+    font-size: 12px;
   }
-  .preview-error {
-    grid-column: 1 / -1;
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.4;
+  .preview-play .solar-icon {
+    filter: invert(1);
+    width: 18px;
+    height: 18px;
   }
+}
+.preview-error {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.4;
 }
 .track-preview {
   position: sticky;
-  top: 0;
-  height: calc(100dvh - var(--player-height));
-  border-left: 1px solid var(--line);
-  .neighbor {
-    display: none;
-  }
+  top: 12px;
+  height: calc(100dvh - var(--player-height) - 24px);
+  margin: 12px 12px 12px 0;
+  border: 1px solid #24242426;
+  border-radius: 12px;
 }
 @media (min-width: #{bp.$tablet-min}) {
   .den[data-preview="true"] {
     grid-template-columns: var(--rail-width) minmax(0, 1fr) clamp(
-        260px,
-        27vw,
-        360px
+        300px,
+        28vw,
+        400px
       );
   }
   .den[data-preview="true"] main {
     padding-inline: 24px;
   }
 }
-@media (min-width: #{bp.$tablet-min}) and (max-width:1100px) {
+@media (min-width: #{bp.$tablet-min}) and (max-width: 1100px) {
   .den[data-preview="true"] {
-    grid-template-columns: var(--rail-width) minmax(0, 1fr) 260px;
+    grid-template-columns: var(--rail-width) minmax(0, 1fr) 270px;
   }
   .den[data-preview="true"] main {
     padding-inline: 16px;
@@ -121,8 +316,20 @@
   .den[data-preview="true"] .collections {
     grid-template-columns: minmax(0, 1fr);
   }
+  .preview-scroll {
+    padding-inline: 12px;
+  }
+  .preview-artwork {
+    margin-inline: -12px;
+  }
+  .preview-credits {
+    padding: 16px;
+  }
 }
 @media (max-width: #{bp.$mobile-max}) {
+  body:has(.record[open]) {
+    overflow: hidden;
+  }
   .track-preview {
     display: none;
   }
@@ -136,26 +343,13 @@
     margin: 0;
     border: 0;
     border-radius: 0;
-    padding-top: max(var(--gap), env(safe-area-inset-top));
-    padding-bottom: max(var(--gap), env(safe-area-inset-bottom));
-    .stage figure {
-      width: 74%;
-      z-index: 1;
-      justify-self: center;
-    }
-    .neighbor {
-      height: 65%;
-      object-fit: contain;
-      width: 40%;
-      right: 0;
-    }
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
   }
-}
-@media (max-height: 600px) {
-  .record[open] .neighbor {
-    display: none;
+  .preview-artwork {
+    height: clamp(180px, calc(100dvh - 330px), 480px);
   }
-  .record[open] .stage figure {
-    width: 100%;
+  .preview-title h2 {
+    font-size: 26px;
   }
 }

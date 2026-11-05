@@ -47,7 +47,11 @@ try {
       height: el.clientHeight,
       scroll: el.scrollHeight,
       box: el.getBoundingClientRect().toJSON(),
-      children: [...el.querySelectorAll("button,figcaption")].map((n) => ({
+      children: [
+        ...el.querySelectorAll(
+          ".preview-topbar button, .preview-controls button",
+        ),
+      ].map((n) => ({
         text: n.textContent,
         box: n.getBoundingClientRect().toJSON(),
       })),
@@ -64,10 +68,34 @@ try {
           child.box.right <= width + 1,
         JSON.stringify({ width, child }),
       );
+    const pageScroll = await page.evaluate(() => scrollY);
+    const scroller = panel.locator(".preview-scroll");
+    await scroller.evaluate((el) => el.scrollTo(0, el.scrollHeight));
+    assert.ok(await scroller.evaluate((el) => el.scrollTop > 0));
+    assert.equal(
+      await page.evaluate(() => scrollY),
+      pageScroll,
+      "Preview scroll must not move the page",
+    );
+    const relatedButton = panel.locator(".preview-related button").first();
+    await relatedButton.scrollIntoViewIfNeeded();
+    const relatedBox = await relatedButton.boundingBox();
+    const controlsBox = await panel.locator(".preview-controls").boundingBox();
+    assert.ok(
+      relatedBox.y + relatedBox.height <= controlsBox.y + 1,
+      "Related tracks remain above the fixed controls",
+    );
+    await scroller.evaluate((el) => el.scrollTo(0, 0));
     assert.equal(await page.locator('.track[aria-current="true"]').count(), 1);
     await panel
       .getByRole("button", { name: "Add to queue", exact: true })
       .click();
+    assert.equal(
+      await panel
+        .getByRole("button", { name: "In queue", exact: true })
+        .isDisabled(),
+      true,
+    );
     assert.ok(
       await panel.evaluate((el) => el.scrollHeight <= el.clientHeight + 1),
     );
@@ -152,7 +180,7 @@ try {
     results.push({
       width,
       height: 600,
-      panelScroll: false,
+      independentPreviewScroll: true,
       audio: true,
       keyboard: true,
       errorsHandled: true,
@@ -273,6 +301,32 @@ try {
       await page.setViewportSize({ width: 701, height: 900 });
       await page.locator(".track-preview").waitFor();
       assert.equal(await page.locator("dialog[open]").count(), 0);
+      const panel = page.locator(".track-preview");
+      const related = panel.locator(".preview-related button").first();
+      const nextTitle = (await related.getAttribute("aria-label")).replace(
+        /^Play /,
+        "",
+      );
+      await related.click();
+      await page.waitForFunction(() => !document.querySelector("audio").paused);
+      assert.equal(
+        await panel.locator(".preview-title h2").innerText(),
+        nextTitle,
+      );
+      assert.equal(
+        await panel.locator(".preview-scroll").evaluate((el) => el.scrollTop),
+        0,
+      );
+      assert.equal(await panel.locator(".preview-credits a").count(), 2);
+      await page.keyboard.press("Escape");
+      assert.equal(await page.locator(".track-preview").count(), 0);
+      assert.equal(
+        await page
+          .locator(".track")
+          .first()
+          .evaluate((el) => el === document.activeElement),
+        true,
+      );
     }
     await page.close();
   }
