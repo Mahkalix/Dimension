@@ -329,12 +329,16 @@
   gap: 8px;
   border-radius: 28px;
   padding: 12px 20px;
-  background: var(--wash);
+  background: #142134;
+  color: #fff;
 }
 .artist-actions .artist-play {
-  background: #3974bd;
+  background: #142134;
   color: white;
   min-height: 54px;
+}
+.artist-actions button:hover {
+  background: #20344f;
 }
 .den .artist-play .solar-icon {
   filter: brightness(0) invert(1);
