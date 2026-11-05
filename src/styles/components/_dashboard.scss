@@ -1,0 +1,234 @@
+.listen-dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 26%);
+  gap: 16px 28px;
+  > * {
+    min-width: 0;
+  }
+}
+.listen-feature {
+  position: relative;
+  min-height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  color: #fafaf8;
+  background: #343432;
+  display: flex;
+  align-items: flex-end;
+  > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, #141412bd, #14141224 90%),
+      linear-gradient(0deg, #141412aa, transparent 80%);
+  }
+}
+.feature-copy {
+  position: relative;
+  z-index: 1;
+  padding: 28px;
+  .eyebrow {
+    color: #f2f2ef;
+    font-size: 9px;
+  }
+  h2 {
+    font-size: clamp(38px, 4.6vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.065em;
+    margin: 12px 0;
+    font-weight: 650;
+  }
+  h2 span {
+    color: #b8b8b2;
+  }
+  p {
+    margin: 0 0 22px;
+    font-size: 12px;
+    color: #f2f2ef;
+  }
+}
+.feature-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 24px;
+    font-size: 12px;
+  }
+  button:first-child {
+    color: var(--ink);
+    background: #f2f2ee;
+    padding-inline: 18px;
+  }
+  button:nth-child(2) {
+    border: 1px solid #ffffff80;
+    width: 44px;
+    padding: 10px;
+  }
+  button:hover {
+    background: #d9d9d3;
+    color: var(--ink);
+  }
+  button:nth-child(2) .solar-icon {
+    filter: invert(1);
+  }
+  button:nth-child(2):hover .solar-icon {
+    filter: none;
+  }
+  .solar-icon {
+    width: 18px;
+    height: 18px;
+  }
+  > .playlist-brand {
+    max-width: 115px;
+    font-size: 9px;
+    line-height: 1.6;
+    color: #f2f2ef;
+    margin-left: 5px;
+  }
+}
+.feature-edition {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  font-size: 8px;
+  letter-spacing: 0.17em;
+}
+.rotation {
+  grid-column: 1;
+}
+.rotation .track {
+  min-height: 52px;
+  padding-block: 7px;
+}
+.rotation .track > img {
+  width: 34px;
+  height: 34px;
+}
+.dashboard-side {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.playlist-shelf {
+  grid-column: 1 / -1;
+}
+.shelf-records {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 2px 2px 14px;
+  scroll-snap-type: x mandatory;
+}
+.shelf-carousel {
+  position: relative;
+}
+.den .shelf-records {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.shelf-arrow {
+  position: absolute;
+  top: calc(50% - 30px);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border-radius: 50%;
+  background: #292d29;
+  color: #fff;
+  box-shadow: 0 2px 8px #0004;
+  &:hover {
+    background: #444b44;
+  }
+  &:disabled {
+    visibility: hidden;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+  }
+}
+.shelf-arrow-prev {
+  left: 4px;
+}
+.shelf-arrow-next {
+  right: 4px;
+}
+.shelf-record {
+  flex: 0 0 calc((100% - 90px) / 6);
+  min-width: 130px;
+  scroll-snap-align: start;
+}
+@container (max-width: 760px) {
+  .listen-dashboard {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .dashboard-side {
+    grid-column: 1;
+    grid-row: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  .playlist-shelf {
+    grid-row: 3;
+  }
+  .listen-feature {
+    min-height: 240px;
+  }
+  .feature-copy h2 {
+    font-size: 48px;
+  }
+  .shelf-record {
+    flex-basis: 31%;
+    min-width: 140px;
+  }
+}
+@container (max-width: 440px) {
+  .dashboard-side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feature-copy {
+    padding: 24px 20px;
+  }
+  .feature-copy h2 {
+    font-size: 42px;
+  }
+  .feature-actions > span {
+    display: none;
+  }
+  .feature-edition {
+    font-size: 7px;
+  }
+  .listen-feature {
+    min-height: 260px;
+  }
+  .shelf-record {
+    flex-basis: 44%;
+  }
+}

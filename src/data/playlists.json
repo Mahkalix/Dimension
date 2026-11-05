@@ -1,0 +1,161 @@
+[
+  {
+    "id": "apres-service",
+    "title": "After Service",
+    "cover": "/images/playlists/apres-service.jpg",
+    "imagePosition": "55% 50%",
+    "alt": "Carmy sitting in the kitchen after service in The Bear.",
+    "sourceUrl": "https://www.harpersbazaar.com/culture/film-tv/a44335574/the-bear-season-2-ending-explained-finale-recap/",
+    "credit": "The Bear · FX, photo published by Harper’s Bazaar",
+    "tracks": [
+      "airport-lounge",
+      "cylinder-1",
+      "cylinder-2",
+      "cylinder-3",
+      "cylinder-4",
+      "cylinder-5",
+      "cylinder-6",
+      "cylinder-7",
+      "cylinder-8",
+      "cylinder-9",
+      "scott-buckley-hiraeth"
+    ],
+    "logoStyle": "badge"
+  },
+  {
+    "id": "service",
+    "title": "During Service",
+    "cover": "/images/playlists/service.jpg",
+    "imagePosition": "45% 50%",
+    "alt": "Carmy working at the stove during a busy service in The Bear.",
+    "sourceUrl": null,
+    "credit": "The Bear · FX, image supplied for The Den",
+    "tracks": [
+      "shaw-hip-hop-1",
+      "shaw-acoustic-shuffle",
+      "shaw-cool-steel-breeze",
+      "style-funk",
+      "enter-the-party",
+      "fork-and-spoon",
+      "c-funk",
+      "scott-buckley-origami"
+    ],
+    "logoStyle": "badge"
+  },
+  {
+    "id": "plonge",
+    "title": "Washing Up",
+    "cover": "/images/playlists/plonge.jpg",
+    "imagePosition": "48% 45%",
+    "alt": "Richie and a colleague polishing glassware in The Bear.",
+    "sourceUrl": "https://www.esquire.com/entertainment/tv/a44402420/the-bear-season-2-restaurant-references/",
+    "credit": "The Bear · FX, photo published by Esquire",
+    "tracks": [
+      "local-forecast",
+      "bossa-antigua",
+      "george-street-shuffle",
+      "night-on-the-docks---sax",
+      "sunday-dub",
+      "dub-feral",
+      "john-bartmann-mellow-cafe-vibe"
+    ],
+    "logoStyle": "badge"
+  },
+  {
+    "id": "money-money",
+    "title": "Money Money",
+    "cover": "/images/playlists/money-money.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "The Bear team together with cans of tomatoes.",
+    "tracks": [
+      "shaw-plumber-s-rag",
+      "shaw-saloon-rag",
+      "got-funk",
+      "protofunk",
+      "funky-chunk",
+      "funky-one",
+      "mining-by-moonlight",
+      "john-bartmann-uptown-fatness"
+    ],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
+  },
+  {
+    "id": "happiness",
+    "title": "Happiness",
+    "cover": "/images/playlists/happiness.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "The Bear team gathered in the kitchen.",
+    "tracks": [
+      "carefree",
+      "tea-roots",
+      "shaw-pennywhistle",
+      "sneaky-snitch",
+      "monkeys-spinning-monkeys",
+      "fluffing-a-duck",
+      "life-of-riley"
+    ],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
+  },
+  {
+    "id": "friendship",
+    "title": "Friendship",
+    "cover": "/images/playlists/friendship.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "Sydney and Carmy planning together at a table.",
+    "tracks": [
+      "shaw-acoustic-guitar-1",
+      "shaw-folk-bed",
+      "shaw-paper-wings",
+      "shaw-solo-acoustic-3",
+      "shaw-solo-acoustic-5",
+      "shaw-words",
+      "wallpaper",
+      "sunshine",
+      "scott-buckley-undertow"
+    ],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
+  },
+  {
+    "id": "chaos",
+    "title": "Chaos",
+    "cover": "/images/playlists/chaos.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "Carmy facing flames at the stove in The Bear.",
+    "tracks": [
+      "shaw-acoustic-rock",
+      "shaw-falling-sky",
+      "cut-and-run",
+      "cipher",
+      "decisions",
+      "edm-detection-mode",
+      "john-bartmann-coffee-time-rock"
+    ],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
+  },
+  {
+    "id": "love",
+    "title": "Love",
+    "cover": "/images/playlists/love.jpg",
+    "imagePosition": "50% 50%",
+    "alt": "A tender moment between Carmy and Claire in The Bear.",
+    "tracks": [
+      "scott-buckley-reverie",
+      "scott-buckley-hymn",
+      "scott-buckley-first-snow",
+      "scott-buckley-childhood",
+      "scott-buckley-stars-in-her-skies",
+      "scott-buckley-a-kind-of-hope"
+    ],
+    "sourceUrl": null,
+    "credit": "The Bear · FX, image supplied for The Den",
+    "logoStyle": "badge"
+  }
+]

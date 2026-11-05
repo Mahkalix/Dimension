@@ -1,51 +1,30 @@
 {
-  "name": "dimension",
-  "version": "0.1.0",
+  "name": "the-den",
+  "version": "0.2.0",
   "private": true,
-  "dependencies": {
-    "@auth0/auth0-react": "^2.1.0",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.4.0",
-    "domm": "^0.0.3",
-    "html-webpack-plugin": "^5.5.3",
-    "react": "^18.2.0",
-    "react-audio-player": "^0.17.0",
-    "react-dom": "^18.2.0",
-    "react-router": "^6.11.1",
-    "react-router-dom": "^6.14.1",
-    "react-scripts": "^5.0.1",
-    "sass": "^1.62.1",
-    "web-vitals": "^2.1.4"
-  },
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "dev": "next dev",
+    "build": "next build",
+    "preview": "next start",
+    "start": "next start",
+    "test": "node --test scripts/library.test.mjs scripts/avatar.test.mjs scripts/playlists.test.mjs",
+    "test:ui": "node scripts/check-interface.mjs",
+    "test:media": "node scripts/check-media.mjs"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@auth0/nextjs-auth0": "^4.33.0",
+    "@fontsource-variable/archivo": "^5.2.6",
+    "next": "^15.5.28",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "gh-pages": "^3.0.0"
+    "@types/node": "^20.19.43",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "playwright-core": "^1.64.1",
+    "sass": "^1.107.1",
+    "typescript": "^5.7.2"
   }
 }

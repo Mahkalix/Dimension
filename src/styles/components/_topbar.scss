@@ -1,0 +1,244 @@
+.app-topbar {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 600px) 1fr;
+  align-items: center;
+  gap: 16px;
+  min-height: 80px;
+  padding: 12px 24px;
+  background: var(--paper);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-search {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.home-button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--wash);
+}
+.app-topbar .search-field {
+  width: 100%;
+  background: var(--wash);
+}
+.search-field kbd {
+  flex: none;
+  font-size: 10px;
+  opacity: 0.65;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+.app-topbar .account-menu {
+  grid-column: 3;
+  justify-self: end;
+  position: relative;
+  top: auto;
+  right: auto;
+  padding: 0;
+  border: 0;
+  order: initial;
+}
+.app-topbar .account-menu summary {
+  justify-content: center;
+  padding: 5px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--wash);
+}
+.app-topbar .account-menu summary > .solar-icon {
+  margin: 0;
+  width: 30px;
+  height: 30px;
+}
+.app-topbar .account-menu > div {
+  top: calc(100% + 8px);
+  right: 0;
+  left: auto;
+  bottom: auto;
+  width: 200px;
+}
+.den {
+  --rail-width: 260px;
+}
+.rail-playlist-row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.rail-playlists .rail-playlist-open {
+  min-width: 0;
+  padding: 8px 4px;
+  gap: 10px;
+  flex: 1;
+}
+.rail-playlist-open > img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 5px;
+  flex: none;
+}
+.rail-playlist-open > span {
+  min-width: 0;
+}
+.rail-playlist-open b {
+  display: block;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rail-playlist-open small {
+  font-size: 10px;
+  margin-top: 4px;
+}
+.rail-playlists .pin-playlist {
+  width: 30px;
+  min-width: 30px;
+  padding: 6px;
+  justify-content: center;
+}
+.rail-playlist-row button,
+.rail-playlist-row button:hover {
+  background: transparent;
+}
+.den .rail-playlists .pin-playlist[aria-pressed="true"] {
+  color: #fff;
+}
+.den:is(
+    [data-appearance="Frosted"],
+    [data-appearance="Clear"],
+    [data-appearance="Blur"]
+  )
+  .app-topbar {
+  background:
+    linear-gradient(var(--glass), var(--glass)),
+    linear-gradient(var(--backlight-top, #00000066), var(--backlight-bottom, #00000099)),
+    url("/images/kitchen-background.jpg?v=3") center / cover fixed;
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .den {
+    --rail-width: 200px;
+  }
+  .rail-playlist-open > img {
+    width: 34px;
+    height: 34px;
+  }
+  .rail-playlist-open b {
+    font-size: 11px;
+  }
+}
+@media (max-width: 700px) {
+  .app-topbar {
+    display: flex;
+    padding: 12px 16px;
+    gap: 10px;
+    min-height: 72px;
+  }
+  .topbar-search {
+    flex: 1;
+    gap: 8px;
+  }
+  .app-topbar .search-field {
+    padding: 0 10px;
+  }
+  .search-field kbd {
+    display: none;
+  }
+  .app-topbar .account-menu {
+    flex: none;
+  }
+  .home-button {
+    width: 40px;
+  }
+  .rail {
+    padding-top: 16px;
+  }
+}
+
+@media (min-width: 701px) {
+  .app-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 6;
+  }
+  .rail {
+    top: 80px;
+    height: calc(100dvh - 80px);
+  }
+  .track-preview {
+    top: 80px;
+    height: calc(100dvh - var(--player-height) - 80px);
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+.header-brand {
+  grid-column: 1;
+  justify-self: start;
+  display: grid;
+  gap: 5px;
+  padding: 4px;
+  text-align: left;
+}
+.header-brand .logo {
+  width: 134px;
+  height: auto;
+}
+.header-brand .eyebrow {
+  font-size: 8px;
+}
+.rail-playlists {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.rail-playlists h2 {
+  margin: 0 0 14px;
+}
+.rail-playlists .library-heading {
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0;
+  min-height: 44px;
+  padding: 4px;
+}
+@media (min-width: 701px) {
+  .rail nav {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .app-topbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .header-brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .app-topbar .account-menu {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .topbar-search {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .rail {
+    padding: 0;
+  }
+}

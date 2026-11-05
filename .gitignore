@@ -21,3 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+dist/
+*.tsbuildinfo
+.next/
+.env*.local
+
+# Local UI verification captures
+/docs/screens/
+
+/.next-verify/

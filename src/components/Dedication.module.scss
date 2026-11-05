@@ -1,0 +1,58 @@
+.story {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  flex: 1;
+  min-height: 300px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid #454545;
+  border-radius: 12px;
+  color: #fff;
+  background: #181818;
+  background-clip: padding-box;
+}
+.stills {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  img:first-child { inset: 16px 16px auto auto; width: 80px; height: 96px; z-index: 1; border: 2px solid #fff9; border-radius: 8px; box-shadow: 0 4px 16px #0005; }
+  &::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 25%, #0005 50%, #000e); }
+}
+.gif {
+  position: absolute;
+  inset: 0;
+  border-radius: 11px;
+  z-index: -1;
+  background: linear-gradient(#0005, #000e), url("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGNwaXRyYTh0cXliMGJuemprMnkzOWxhN2NnM29udHZ1OWl5NXBucCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/cBTTTOflV6A7FBJHs6/giphy.gif") center / cover;
+}
+.story[data-paused="true"] .gif { display: none; }
+.dedication {
+  span { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+  h2 { font-size: 24px; line-height: 1.12; margin: 16px 0; }
+  p { color: #eee; font-size: 12px; line-height: 1.6; }
+  > a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; font-size: 13px; font-weight: 650; text-underline-offset: 4px; }
+}
+.motionToggle {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: #0008;
+  &:hover { background: #000b; }
+}
+.dedication > a { margin-right: 32px; }
+.dedication > .artCredit { display: none; font-size: 11px; min-height: 44px; }
+.story[data-paused="true"] .artCredit { display: flex; }
+@media (prefers-reduced-motion: reduce) {
+  .gif, .motionToggle { display: none; }
+  .dedication > .artCredit { display: flex; }
+}

@@ -1,0 +1,268 @@
+.appearance-intro {
+  margin: 0 0 12px;
+  max-width: 55ch;
+  color: var(--quiet);
+  font-size: 14px;
+}
+.appearance-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 18px;
+}
+.appearance-option {
+  min-width: 0;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--dock);
+  border-radius: 16px;
+}
+.appearance-option[aria-pressed="true"] {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.appearance-sample {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: url("/images/kitchen-background.jpg?v=3") center / cover;
+}
+.appearance-sample > span {
+  display: grid;
+  place-items: center;
+  width: 82%;
+  height: 70%;
+  border: 1px solid #ffffff85;
+  border-radius: 24px;
+  color: white;
+  font-size: 26px;
+  letter-spacing: -0.04em;
+  text-shadow: 0 1px 5px #0008;
+}
+.appearance-sample[data-material="Paper"] > span {
+  background: #efefed;
+  color: #242424;
+  text-shadow: none;
+}
+.appearance-sample[data-material="Frosted"] > span {
+  background: #e6e6e633;
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 1px #fff8;
+}
+.appearance-sample[data-material="Clear"] > span {
+  background: #10101022;
+  backdrop-filter: blur(2px);
+  box-shadow:
+    inset 0 0 0 1px #fff5,
+    inset 0 -12px 24px #fff2;
+}
+.appearance-sample[data-material="Blur"] > span {
+  background: #29292966;
+  backdrop-filter: blur(32px);
+}
+.appearance-caption {
+  display: grid;
+  gap: 4px;
+  padding: 14px 6px 8px;
+}
+.appearance-caption > span {
+  font-size: 12px;
+  color: var(--quiet);
+}
+.den:is(
+  [data-appearance="Frosted"],
+  [data-appearance="Clear"],
+  [data-appearance="Blur"]
+) {
+  --ink: #f5f5ef;
+  --quiet: #e0e4dc;
+  --line: #ffffff40;
+  --wash: #ffffff20;
+  --dock: #292929;
+  --focus: 3px solid #f5f5ef;
+  --glass: #292929d9;
+  --glass-filter: blur(18px);
+  background:
+    linear-gradient(
+      var(--backlight-top, #00000066),
+      var(--backlight-bottom, #00000099)
+    ),
+    url("/images/kitchen-background.jpg?v=3") center / cover fixed;
+  color: var(--ink);
+  .rail,
+  .paper-player,
+  .track-preview,
+  .record[open],
+  .account-menu > div,
+  .audio-error,
+  .menu-row,
+  .appearance-option,
+  .search-field,
+  .library-switch {
+    background: var(--glass);
+    backdrop-filter: var(--glass-filter);
+    -webkit-backdrop-filter: var(--glass-filter);
+    border-color: var(--line);
+    box-shadow:
+      inset 0 1px 0 #ffffff25,
+      0 8px 24px #00000012;
+  }
+  .rail nav button[aria-current="page"],
+  .library-switch button[aria-pressed="true"] {
+    background: #ffffff24;
+  }
+  .track,
+  .rail-playlists,
+  .account-menu,
+  .preview-topbar {
+    border-color: var(--line);
+  }
+  .solar-icon,
+  .nav-icon,
+  .logo {
+    filter: brightness(0) invert(1);
+  }
+  .paper-transport button:nth-child(2) .solar-icon,
+  .feature-actions button:first-child .solar-icon,
+  .preview-badge .solar-icon,
+  .related-play .solar-icon {
+    filter: brightness(0);
+  }
+  .paper-transport button:nth-child(2),
+  .preview-add:disabled {
+    background: #f5f5ef;
+    color: #1c2922;
+  }
+  .preview-badge {
+    color: #242424;
+  }
+  .related-play {
+    background: #efefed;
+  }
+  .preview-credits {
+    background: #181818d9;
+    color: #f5f5ef;
+  }
+  .feature-actions button:first-child {
+    color: #242424;
+  }
+  .rail-signoff img { mix-blend-mode: normal; }
+  input::placeholder {
+    color: #d7ded5;
+  }
+}
+.den[data-appearance="Frosted"] {
+  --glass: #70707080;
+  --glass-filter: blur(18px);
+}
+.den[data-appearance="Clear"] {
+  --glass: #18181870;
+  --glass-filter: blur(2px);
+}
+.den[data-appearance="Blur"] {
+  --glass: #383838a8;
+  --glass-filter: blur(36px);
+}
+@media (max-width: 700px) {
+  .den:is(
+      [data-appearance="Frosted"],
+      [data-appearance="Clear"],
+      [data-appearance="Blur"]
+    )
+    .rail
+    nav {
+    background: var(--glass);
+    backdrop-filter: var(--glass-filter);
+    border-color: var(--line);
+  }
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .den:is(
+    [data-appearance="Frosted"],
+    [data-appearance="Clear"],
+    [data-appearance="Blur"]
+  ) {
+    --glass: #292929f5;
+  }
+}
+
+@media (max-width: 700px) {
+  .den:is(
+      [data-appearance="Frosted"],
+      [data-appearance="Clear"],
+      [data-appearance="Blur"]
+    )
+    .rail {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+.den:is(
+    [data-appearance="Frosted"],
+    [data-appearance="Clear"],
+    [data-appearance="Blur"]
+  )
+  .rail-signoff img {
+  filter: brightness(0) invert(1);
+  mix-blend-mode: normal;
+}
+
+// Keep the kitchen visible while protecting text with local reading surfaces.
+.den:is(
+  [data-appearance="Frosted"],
+  [data-appearance="Clear"],
+  [data-appearance="Blur"]
+) {
+  main {
+    background: linear-gradient(#202020b8, #202020a6);
+  }
+  .rotation,
+  section[aria-label="Track list"] {
+    background: #181818;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .track {
+    border-color: #ffffff26;
+  }
+  .track:hover,
+  .track:focus-visible,
+  .track[aria-current="true"] {
+    background: #303030;
+  }
+  .track-number,
+  .track-genre,
+  .track-end,
+  .track small,
+  .eyebrow {
+    color: #d6d6d6;
+  }
+  .section-heading button {
+    color: #eee;
+  }
+  .artist-banner .eyebrow {
+    color: #eee;
+  }
+  .menu-row {
+    background: #292929eb;
+  }
+
+}
+.track b {
+  font-size: 14px;
+}
+.track small,
+.track-end,
+.track-genre,
+.track-number {
+  font-size: 12px;
+}
+.artist-banner .eyebrow {
+  color: #eee;
+}

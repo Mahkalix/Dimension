@@ -1,0 +1,61 @@
+:root {
+  --scroll-thumb: #9b9d97;
+  --scroll-hover: #646960;
+}
+body:has(
+  .den:is(
+    [data-appearance="Frosted"],
+    [data-appearance="Clear"],
+    [data-appearance="Blur"]
+  )
+) {
+  --scroll-thumb: #999999;
+  --scroll-hover: #cccccc;
+}
+html:has(
+  .den:is(
+    [data-appearance="Frosted"],
+    [data-appearance="Clear"],
+    [data-appearance="Blur"]
+  )
+) {
+  --scroll-thumb: #999999;
+  --scroll-hover: #cccccc;
+  background: #202020;
+}
+html,
+body,
+.den,
+.den * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) transparent;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scroll-hover);
+}
+.rail,
+.preview-scroll {
+  scrollbar-gutter: stable;
+}
+@media (forced-colors: active) {
+  html,
+  body,
+  .den,
+  .den * {
+    scrollbar-color: auto;
+  }
+}

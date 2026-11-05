@@ -1,0 +1,191 @@
+.frame {
+  min-height: 100dvh;
+  background: #101010;
+  display: grid;
+  place-items: center;
+}
+.sheet {
+  width: min(100%, 177.78dvh);
+  min-height: min(100dvh, 56.25vw);
+  padding: clamp(20px, 4vh, 48px);
+  background: var(--paper) var(--grain);
+  color: var(--ink);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+  gap: 8px;
+}
+.mark {
+  width: min(12vh, 100px);
+}
+.sheet h1 {
+  font-size: clamp(40px, 6vw, 88px);
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+.sheet p {
+  margin: 0;
+  max-width: 48ch;
+  letter-spacing: normal;
+}
+.sheet a,
+.sheet button {
+  display: inline-grid;
+  place-items: center;
+  min-height: 72px;
+  padding: 0 24px;
+}
+.enter {
+  margin: 16px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  font-size: 24px;
+  text-decoration: none;
+  min-width: 240px;
+}
+.accounts {
+  display: flex;
+  gap: var(--gap);
+}
+.accounts > div {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  padding: 12px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+@media (max-width: 650px) {
+  .sheet {
+    width: 100%;
+    min-height: 100dvh;
+  }
+  .accounts {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+.entry {
+  position: relative;
+  min-height: 100svh;
+  color: #f5f5f3;
+  background:
+    linear-gradient(#0008, #000b),
+    url("/images/kitchen-background.jpg?v=3") center / cover fixed;
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+}
+.identity {
+  display: grid;
+  justify-items: center;
+  gap: clamp(24px, 5vh, 40px);
+  width: min(300px, 72vw);
+}
+.signature {
+  position: relative;
+  display: block;
+  width: min(240px, 58vw, 40svh);
+  aspect-ratio: 463 / 408;
+  border-radius: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+.house {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+  animation: inkAppears 1800ms cubic-bezier(0.2, 0, 0.2, 1) both;
+}
+.signature:hover .house {
+  opacity: 0.85;
+}
+.signature:focus-visible {
+  outline: var(--focus);
+  outline-offset: 12px;
+}
+.signature:focus-visible .house {
+  animation: none;
+}
+.wordmark {
+  width: 100%;
+  margin: 0;
+  line-height: 0;
+}
+.wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+  animation: nameAppears 1200ms 900ms ease-out both;
+}
+
+.entry > p {
+  position: absolute;
+  bottom: 16px;
+  text-align: center;
+}
+.charge {
+  position: absolute;
+  bottom: 20%;
+  width: min(260px, 60vw);
+  height: 8px;
+  accent-color: var(--accent-navy);
+}
+@keyframes inkAppears {
+  from {
+    opacity: 0;
+    clip-path: inset(100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+  }
+}
+@keyframes nameAppears {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .house,
+  .wordmark img {
+    animation: none;
+  }
+}
+
+.entry > div {
+  display: grid;
+  place-items: center;
+}
+.credit {
+  position: absolute;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 8px 16px;
+  color: #d6d6d6;
+  font-size: 14px;
+  text-decoration: none;
+}
+.credit:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.entry:has([role="alert"]) .credit {
+  bottom: 72px;
+}
+.sheet a:has(> img),
+.sheet button:has(> img) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

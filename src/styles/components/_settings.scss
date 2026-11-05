@@ -1,0 +1,33 @@
+@use "../abstracts/breakpoints" as bp;
+
+.den .menu-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82px;
+  padding: 16px 24px;
+  background: var(--wash);
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 12px;
+}
+
+.menu-row[aria-pressed="true"] {
+  outline: 1px solid var(--quiet);
+}
+
+.back-link {
+  justify-self: start;
+}
+
+@media (max-width: #{bp.$mobile-max}) {
+  .menu-row {
+    min-height: 64px;
+  }
+}

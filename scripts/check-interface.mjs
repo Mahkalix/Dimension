@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { chromium } from 'playwright-core';
+const origin = process.env.TEST_URL || 'http://localhost:3140';
+const catalogue = JSON.parse(fs.readFileSync('src/data/selection.json', 'utf8'));
+const playlists = JSON.parse(fs.readFileSync('src/data/playlists.json', 'utf8'));
+const browser = await chromium.launch({ channel: 'chrome', headless: true });
+try {
+  for (const width of [390, 820, 1440]) {
+    const context = await browser.newContext({ viewport: { width, height: 900 } });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    await page.goto(origin + '/player');
+    await page.getByRole('heading', { name: 'After Service.', exact: true }).waitFor();
+    assert.equal(await page.locator('.shelf-record').count(), playlists.length);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    await page.getByRole('button', {name:'Play selection',exact:true}).click();
+    await page.waitForFunction(() => !document.querySelector('audio').paused && document.querySelector('audio').currentTime > 0);
+    await page.getByRole('button', {name:'All playlists',exact:true}).click();
+    await page.getByRole('button', {name:'Create playlist',exact:true}).click();
+    await page.getByRole('button', {name:'Edit playlist name'}).click();
+    const dialog = page.getByRole('dialog');
+    await dialog.getByLabel('Name', {exact:true}).fill('Regression playlist');
+    await dialog.getByLabel('Description', {exact:true}).fill('Saved from the interface check');
+    await dialog.getByRole('button', {name:'Save',exact:true}).click();
+    const search = page.getByRole('searchbox', {name:'Find tracks'});
+    await search.fill(catalogue[0].title);
+    await page.getByRole('button', {name:'Add '+catalogue[0].title,exact:true}).click();
+    await page.getByRole('button', {name:'Move '+catalogue[0].title+' up',exact:true}).waitFor();
+    await page.reload();
+    await page.getByRole('button', {name:'All playlists',exact:true}).click();
+    await page.getByRole('button', {name:'Open Regression playlist',exact:true}).click();
+    await page.getByText('Saved from the interface check', {exact:true}).waitFor();
+    await page.getByLabel('Playlist options', {exact:true}).click();
+    await page.getByRole('button', {name:'Share playlist',exact:true}).click();
+    const link = await page.getByRole('textbox', {name:'Share link',exact:true}).inputValue();
+    await page.goto(link);
+    await page.getByLabel('Playlist options', {exact:true}).click();
+    await page.getByRole('button', {name:'Save to library',exact:true}).waitFor();
+    await page.getByRole('button', {name:'Back to previous page'}).click();
+    await page.getByRole('button', {name:'Open Regression playlist',exact:true}).click();
+    await page.getByLabel('Playlist options', {exact:true}).click();
+    page.once('dialog', dialog => dialog.accept());
+    await page.getByRole('button', {name:'Delete playlist',exact:true}).click();
+    assert.equal(await page.getByRole('button', {name:'Open Regression playlist',exact:true}).count(), 0);
+    assert.deepEqual(errors, []);
+    console.log('Passed: '+width+'px, playback, playlist edit/add/persist/share/delete, no runtime errors');
+    await context.close();
+  }
+} finally { await browser.close(); }

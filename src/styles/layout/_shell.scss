@@ -1,0 +1,141 @@
+@use "../abstracts/breakpoints" as bp;
+.den {
+  --rail-width: 208px;
+  --player-height: 96px;
+  display: grid;
+  grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  align-items: start;
+  min-height: 100dvh;
+  background: var(--paper) var(--grain);
+}
+.den main {
+  container-type: inline-size;
+  min-width: 0;
+  padding: 28px clamp(20px, 3vw, 48px) calc(var(--player-height) + 32px);
+  animation: refresh var(--refresh);
+}
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+.den h1 {
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.055em;
+  margin: 5px 0 0;
+}
+.den h2 {
+  letter-spacing: -0.035em;
+}
+.den small {
+  display: block;
+  color: var(--quiet);
+}
+.eyebrow {
+  font-size: 10px;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--quiet);
+}
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(360px, 50%);
+  min-width: 0;
+  padding: 0 16px;
+  background: #00000004;
+  border: 1px solid #24242426;
+  border-radius: 24px;
+  .solar-icon {
+    width: 18px;
+    height: 18px;
+  }
+  input {
+    border: 0;
+    background: transparent;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    font-size: 12px;
+  }
+  input:focus {
+    outline: 0;
+  }
+  &:focus-within {
+    outline: var(--focus);
+    outline-offset: 3px;
+  }
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  margin-bottom: 8px;
+  h2 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 650;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px;
+    font-size: 11px;
+    color: var(--quiet);
+  }
+  .solar-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+.den[data-light="Low"] {
+  --paper: #dbdbd8;
+  --backlight-top: #000000b3;
+  --backlight-bottom: #000000d9;
+}
+.den[data-light="High"] {
+  --paper: #fafaf8;
+  --backlight-top: #0000001a;
+  --backlight-bottom: #00000040;
+}
+@media (min-width: #{bp.$tablet-min}) and (max-width: 1100px) {
+  .den {
+    --rail-width: 180px;
+  }
+}
+@media (max-width: #{bp.$mobile-max}) {
+  .den {
+    display: block;
+    --player-height: 176px;
+  }
+  .den main {
+    padding: 16px 20px
+      calc(var(--player-height) + 32px + env(safe-area-inset-bottom));
+  }
+  .main-header {
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .main-header > div {
+    flex: 1;
+  }
+  .main-header > div > .eyebrow {
+    font-size: 9px;
+  }
+  .search-field {
+    width: 100%;
+  }
+  .den h1 {
+    font-size: 30px;
+  }
+}

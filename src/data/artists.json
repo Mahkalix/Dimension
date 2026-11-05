@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Kevin MacLeod",
+    "id": "kevin-macleod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Kevin_Macleod.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Kevin_Macleod.jpg",
+    "credit": "Kevin MacLeod · CC BY 3.0",
+    "license": "https://creativecommons.org/licenses/by/3.0/",
+    "image": "/images/artists/kevin-macleod.jpg"
+  },
+  {
+    "name": "Chris Zabriskie",
+    "id": "chris-zabriskie",
+    "imageUrl": "https://chriszabriskie.com/img/portrait.jpg",
+    "source": "https://chriszabriskie.com/about/",
+    "credit": "Chris Zabriskie · Official portrait",
+    "image": "/images/artists/chris-zabriskie.jpg?v=2"
+  },
+  {
+    "name": "Jason Shaw",
+    "id": "jason-shaw",
+    "source": "https://audionautix.com/about-jason.php",
+    "credit": "The Den · Generic artist illustration",
+    "image": "/images/artists/generic-artist.svg"
+  },
+  {
+    "id": "scott-buckley",
+    "name": "Scott Buckley",
+    "image": "/images/artists/scott-buckley.jpg?v=2",
+    "imageUrl": "https://secure.gravatar.com/avatar/5c79fa02e8462cc5ec7f1a4401bd1fd1267ab677286082bdbf59302a1cc1ac1b?s=1024&d=404",
+    "source": "https://www.scottbuckley.com.au/about/",
+    "credit": "Scott Buckley · Official portrait"
+  },
+  {
+    "id": "john-bartmann",
+    "name": "John Bartmann",
+    "image": "/images/artists/john-bartmann.jpg?v=2",
+    "imageUrl": "https://f4.bcbits.com/img/0018859752_0.jpg",
+    "source": "https://lavidalocal.bandcamp.com/music",
+    "credit": "John Bartmann · Official Bandcamp portrait"
+  }
+]
