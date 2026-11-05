@@ -123,7 +123,10 @@
     [data-appearance="Blur"]
   )
   .app-topbar {
-  background: var(--glass);
+  background:
+    linear-gradient(var(--glass), var(--glass)),
+    linear-gradient(var(--backlight-top, #00000066), var(--backlight-bottom, #00000099)),
+    url("/images/kitchen-background.jpg?v=3") center / cover fixed;
 }
 @media (min-width: 701px) and (max-width: 1100px) {
   .den {
