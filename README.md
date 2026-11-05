@@ -22,7 +22,7 @@ Built with Next.js 15, React 18, Sass and the official Auth0 SDK.
 
 ## Run
 
-From the repository's `app` directory, with Node.js 20 or newer:
+From the repository root, with Node.js 20 or newer:
 
 ```sh
 npm ci
@@ -37,9 +37,9 @@ Music works without signing in. Email/password authentication needs an Auth0 Reg
 ## Routes
 
 - `/`: animated house introduction; the house is clickable and the intro automatically opens the sign-in screen, with guest access to the player. Reduced motion is respected.
-- `/player`: listening dashboard with a featured playlist, house picks, genre shortcuts and a horizontal playlist shelf. The sidebar opens the library; the header provides search and the player provides the queue; the bottom player keeps audio controls available throughout. Settings and credits remain in the Account menu.
+- `/player`: listening dashboard with a featured playlist, track selection, a dedication and a horizontal playlist shelf. The sidebar opens the library; the header provides search and the player provides the queue; the bottom player keeps audio controls available throughout. Settings and credits remain in the Account menu.
 - `/login`: kitchen-backed sign-in / sign-up entry after the introduction, with guest access, readable errors and a continue screen for signed-in listeners.
-- `/account`: protected account, displaying only identity claims from Auth0.
+- `/account`: protected account with Auth0 identity details, profile photo selection and sign-out.
 - `/auth/login`, `/auth/callback`, `/auth/logout`: handled by the official Auth0 SDK.
 
 ## Music and rights
@@ -71,13 +71,13 @@ npm start -- --port 3140
 
 With a configured server running, set `TEST_URL` to its origin and run `node scripts/check-auth.mjs` to check Auth0 redirects, PKCE, cookies, invalid callbacks and account protection. This does not replace a real login/signup round trip. Set `APP_BASE_URL` and Auth0 callback/logout allowlists to match the port you use.
 
-`npm run test:ui` uses installed Chrome against `TEST_URL` (default port 3140) for responsive interface and playback checks. Some login-copy assertions still reflect the earlier interface and need updating before treating the full suite as a release gate. Captures are generated locally in the ignored `docs/screens` directory; set `SCREENSHOT_DIR` to choose another location.
+`npm run test:ui` uses installed Chrome against `TEST_URL` (default port 3140). It verifies playback, responsive overflow and personal playlist creation, editing, persistence, sharing and deletion at 390, 820 and 1440 px. It uses isolated browser contexts and does not touch your saved browser library.
 
 `npm run test:media` loads all 63 recordings in Chrome and **updates measured durations in `selection.json`**. It uses port 3142 and requires internet access for the artist-hosted tracks.
 
 ## Deployment
 
-Deploy the `app` directory as a Next.js project on Vercel. Configure server-only Auth0 variables for the intended environment and redeploy after changes. Use the stable preview alias in the exact callback/logout allowlists. Preview origins normally come from `VERCEL_BRANCH_URL`; do not apply a production `APP_BASE_URL` globally to previews.
+Deploy the repository root as a Next.js project on Vercel. Configure server-only Auth0 variables for the intended environment and redeploy after changes. Use the stable preview alias in the exact callback/logout allowlists. Preview origins normally come from `VERCEL_BRANCH_URL`; do not apply a production `APP_BASE_URL` globally to previews.
 
 Deployment protection can redirect unauthenticated command-line checks to Vercel instead of the app. Verify production domains and Auth0 allowlists separately before a production cutover.
 
@@ -94,3 +94,16 @@ Photos are stored in localStorage under the Auth0 user ID, survive browser resta
 Library → Playlists → Create playlist immediately opens an empty playlist with a generic cover. Edit its name, description and photo, search the catalogue to add tracks, and reorder or remove them. Personal playlists support editing, sharing and deletion with confirmation. They are stored locally per account (or guest browser), without cloud sync. The Den playlists can be hidden locally and restored from the library.
 
 Share playlist copies a `/player#playlist=…` link containing a snapshot of its title, description, cover and track IDs. Anyone with the link can listen without signing in and save their own copy. Links are not private or revocable; later edits do not alter previously shared copies. Only known catalogue tracks and bundled covers are accepted when opening a link. Uploaded JPG, PNG or WebP covers (up to 8 MB) stay in this browser; shared copies use the generic cover.
+
+## Code organization
+
+- `src/TheDen.jsx`: player state, library navigation and queue orchestration.
+- `src/components`: reusable playlist cards, actions, editor, account controls, player and preview.
+- `src/lib`: playlist validation/sharing, profile photo storage and authentication.
+- `src/data`: catalogue, curated playlists, artist and character metadata.
+- `src/styles`: shared tokens, layout and page styles; component styles live beside their components.
+- `public`: bundled artwork, branding and licensed audio.
+
+Primary controls use warm white; navy remains the accent. Playlist cards use outlined translucent play controls. Playlist pages group secondary actions in the options menu and provide a back button.
+
+To verify while the development server is running, set `NEXT_BUILD_DIR=.next-verify` for both `npm run build` and `npm start`. This prevents development and production from overwriting the same Next.js build files. In PowerShell: `$env:NEXT_BUILD_DIR=".next-verify"`.

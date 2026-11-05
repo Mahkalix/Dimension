@@ -98,8 +98,6 @@
   .record[open],
   .account-menu > div,
   .audio-error,
-  .listening-note,
-  .picks-list,
   .menu-row,
   .appearance-option,
   .search-field,
@@ -151,10 +149,7 @@
   .feature-actions button:first-child {
     color: #242424;
   }
-  .rail-signoff img,
-  .listening-note > img {
-    mix-blend-mode: normal;
-  }
+  .rail-signoff img { mix-blend-mode: normal; }
   input::placeholder {
     color: #d7ded5;
   }
@@ -213,7 +208,7 @@
     [data-appearance="Clear"],
     [data-appearance="Blur"]
   )
-  :is(.rail-signoff img, .listening-note > img) {
+  .rail-signoff img {
   filter: brightness(0) invert(1);
   mix-blend-mode: normal;
 }
@@ -254,15 +249,10 @@
   .artist-banner .eyebrow {
     color: #eee;
   }
-  .menu-row,
-  .listening-note {
+  .menu-row {
     background: #292929eb;
   }
-  .picks-list {
-    background: #181818;
-    backdrop-filter: none;
-    border-color: #ffffff1a;
-  }
+
 }
 .track b {
   font-size: 14px;

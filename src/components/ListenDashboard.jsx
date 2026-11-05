@@ -15,7 +15,6 @@ export default function ListenDashboard({
   onTrack,
   queue,
   onToggleQueue,
-  onQueue,
   onPlaylist,
   onPlayPlaylist,
   onBrowse,

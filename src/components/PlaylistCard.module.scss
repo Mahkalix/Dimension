@@ -14,5 +14,3 @@
 @media (hover: none) { .card .play { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .card, .card .play { transition: none; } }
 
-.card.card { padding: 10px; }
-.card.card:hover, .card.card:focus-within { background: #ffffff14; }

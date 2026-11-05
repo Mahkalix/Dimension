@@ -29,3 +29,5 @@ dist/
 
 # Local UI verification captures
 /docs/screens/
+
+/.next-verify/
