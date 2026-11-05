@@ -221,3 +221,58 @@
   filter: brightness(0) invert(1);
   mix-blend-mode: normal;
 }
+
+// Stable reading surfaces keep contrast independent of the background photograph.
+.den:is(
+  [data-appearance="Frosted"],
+  [data-appearance="Clear"],
+  [data-appearance="Blur"]
+) {
+  main {
+    background: #181818;
+  }
+  .rotation,
+  section[aria-label="Track list"] {
+    background: #181818;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .track {
+    border-color: #ffffff26;
+  }
+  .track:hover,
+  .track:focus-visible,
+  .track[aria-current="true"] {
+    background: #303030;
+  }
+  .track-number,
+  .track-genre,
+  .track-end,
+  .track small,
+  .eyebrow {
+    color: #d6d6d6;
+  }
+  .section-heading button {
+    color: #eee;
+  }
+  .artist-banner .eyebrow {
+    color: #eee;
+  }
+  .menu-row,
+  .picks-list,
+  .listening-note {
+    background: #242424;
+  }
+}
+.track b {
+  font-size: 14px;
+}
+.track small,
+.track-end,
+.track-genre,
+.track-number {
+  font-size: 12px;
+}
+.artist-banner .eyebrow {
+  color: #eee;
+}

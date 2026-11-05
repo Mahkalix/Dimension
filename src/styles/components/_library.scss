@@ -129,23 +129,71 @@
 .playlist-hero {
   display: flex;
   align-items: flex-end;
-  gap: 24px;
+  gap: 28px;
   margin-block: 24px;
-  img {
-    width: min(44%, 240px);
+  padding: clamp(20px, 3vw, 40px);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #28496c, #142235);
+  color: #fff;
+  > img {
+    width: min(36%, 240px);
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px #0005;
   }
-  div {
-    display: grid;
-    gap: 16px;
+  .playlist-info {
+    min-width: 0;
+    flex: 1;
   }
+  .eyebrow {
+    color: #e5edf8;
+  }
+  h2 {
+    font-size: clamp(30px, 5vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+    margin: 14px 0 20px;
+    overflow-wrap: anywhere;
+  }
+  p {
+    font-size: 14px;
+    color: #e5edf8;
+  }
+}
+.playlist-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
   button {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--wash);
+    padding: 12px 20px;
+    border-radius: 28px;
+    background: #27384d;
+    color: white;
+    border: 1px solid #a6b9d0;
+  }
+  .playlist-play {
+    order: -1;
+    background: #3974bd;
+    border-color: #3974bd;
+  }
+  .solar-icon {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+  }
+}
+@container (max-width: 560px) {
+  .playlist-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .playlist-hero > img {
+    width: min(60%, 200px);
   }
 }
 @container (max-width: 560px) {

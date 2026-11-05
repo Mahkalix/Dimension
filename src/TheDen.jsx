@@ -596,18 +596,37 @@ export default function TheDen() {
               alt={playlist.alt}
               style={{ objectPosition: playlist.imagePosition }}
             />
-            <div>
-              <span>{playlist.tracks.length} tracks</span>
-              <button
-                aria-pressed={pins.includes(playlist.id)}
-                onClick={() => togglePin(playlist.id)}
-              >
-                {pins.includes(playlist.id) ? "Unpin playlist" : "Pin playlist"}
-              </button>
-              <button onClick={() => playPlaylist(playlist)}>
-                <SolarIcon name="play" />
-                Play playlist
-              </button>
+            <div className="playlist-info">
+              <span className="eyebrow">Playlist</span>
+              <h2>{playlist.title}</h2>
+              <p>
+                The Den · {playlist.tracks.length} tracks ·{" "}
+                {Math.round(
+                  playlist.tracks.reduce(
+                    (total, id) =>
+                      total + tracks.find((track) => track.id === id).duration,
+                    0,
+                  ) / 60,
+                )}{" "}
+                min
+              </p>
+              <div className="playlist-actions">
+                <button
+                  aria-pressed={pins.includes(playlist.id)}
+                  onClick={() => togglePin(playlist.id)}
+                >
+                  {pins.includes(playlist.id)
+                    ? "Unpin playlist"
+                    : "Pin playlist"}
+                </button>
+                <button
+                  className="playlist-play"
+                  onClick={() => playPlaylist(playlist)}
+                >
+                  <SolarIcon name="play" />
+                  Play playlist
+                </button>
+              </div>
             </div>
           </section>
         )}
