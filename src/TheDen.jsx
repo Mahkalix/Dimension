@@ -298,45 +298,6 @@ export default function TheDen({ profile = null }) {
           <span className="eyebrow">Music, at home.</span>
         </button>
         <div className="topbar-search">
-          <details
-            className="header-navigation"
-            onClick={(event) => {
-              if (event.target.closest("button"))
-                event.currentTarget.open = false;
-            }}
-          >
-            <summary aria-label="Navigation" title="Navigation">
-              <SolarIcon name="widget" />
-            </summary>
-            <nav aria-label="Quick navigation">
-              {sections.map((name, index) => (
-                <button
-                  key={name}
-                  aria-current={section === name ? "page" : undefined}
-                  onClick={() => {
-                    go(name);
-                    if (name === "Search") searchInput.current?.focus();
-                  }}
-                >
-                  <img
-                    className="nav-icon"
-                    src={
-                      "/" +
-                      [
-                        "headphones-round",
-                        "library",
-                        "playlist",
-                        "solar-magnifier",
-                      ][index] +
-                      ".svg"
-                    }
-                    alt=""
-                  />
-                  {name}
-                </button>
-              ))}
-            </nav>
-          </details>
           <button
             className="home-button"
             aria-label="Home"
