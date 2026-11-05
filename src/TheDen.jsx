@@ -1,4 +1,5 @@
 "use client";
+import AccountAvatar from "./components/AccountAvatar";
 import SolarIcon from "./components/SolarIcon";
 
 import PlayerBar from "./components/PlayerBar";
@@ -17,7 +18,7 @@ const artists = artistProfiles.map((artist) => ({
   tracks: tracks.filter((track) => track.artist === artist.name),
 }));
 
-export default function TheDen({ signedIn = false }) {
+export default function TheDen({ signedIn = false, accountId }) {
   const [pins, setPins] = useState([]);
   const searchInput = useRef(null);
   useEffect(() => {
@@ -345,7 +346,7 @@ export default function TheDen({ signedIn = false }) {
           }}
         >
           <summary aria-label="Account menu" title="Account">
-            <SolarIcon name="user-circle" />
+            {signedIn ? <AccountAvatar accountId={accountId} /> : <SolarIcon name="user-circle" />}
           </summary>
           <div>
             <a href="/account">

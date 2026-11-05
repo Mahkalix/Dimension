@@ -1,4 +1,5 @@
 import { getSession, configured } from "../../lib/identity";
+import AccountAvatar from "../../components/AccountAvatar";
 import styles from "./login.module.scss";
 export const dynamic = "force-dynamic";
 const messages = {
@@ -29,13 +30,7 @@ export default async function Login({ searchParams }) {
             <>
               <p>Your music. Your own pace.</p>
               <div className={styles.account}>
-                <img
-                  className={styles.avatar}
-                  src="/solar-user-circle.svg"
-                  alt=""
-                  width="44"
-                  height="44"
-                />
+                <AccountAvatar accountId={user.sub} size={44} />
                 <strong>{user.name || user.email || "The Den listener"}</strong>
                 <a href="/auth/logout">Not you?</a>
               </div>

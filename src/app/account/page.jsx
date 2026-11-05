@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { getSession } from "../../lib/identity";
-import styles from "../opening.module.scss";
+import styles from "./account.module.scss";
+import AvatarPicker from "../../components/AvatarPicker";
 export const dynamic = "force-dynamic";
 export default async function Account() {
   const session = await getSession();
@@ -14,17 +15,12 @@ export default async function Account() {
     <main className={styles.entry}>
       <section className={styles.sheet}>
         <h1>Account</h1>
-        <img
-          src={user.picture || "/brand/house-180.png"}
-          width="80"
-          height="80"
-          alt="Account avatar"
-        />
         <strong>{user.name || user.email || "The Den listener"}</strong>
         {user.email && <span>{user.email}</span>}
         <span>
           {user.email_verified ? "Email verified" : "Email not verified"}
         </span>
+        <AvatarPicker accountId={user.sub} />
         <a href="/auth/logout">Sign out</a>
         <a href="/player">Back to music</a>
       </section>
