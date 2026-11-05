@@ -283,6 +283,8 @@
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #0006 12%, #000d 25%, #000 38%);
+  mask-image: linear-gradient(90deg, transparent 0%, #0006 12%, #000d 25%, #000 38%);
 }
 .artist-banner::after {
   content: "";
