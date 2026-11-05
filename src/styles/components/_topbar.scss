@@ -114,9 +114,8 @@
 .rail-playlist-row button:hover {
   background: transparent;
 }
-.den .rail-playlists .pin-playlist[aria-pressed="true"] .solar-icon {
-  filter: brightness(0) invert(1);
-  opacity: 1;
+.den .rail-playlists .pin-playlist[aria-pressed="true"] {
+  color: #fff;
 }
 .den:is(
     [data-appearance="Frosted"],
