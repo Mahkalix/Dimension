@@ -18,7 +18,7 @@ export default async function Opening({ searchParams }) {
           >
             <img
               className={styles.house}
-              src="/brand/the-den-house.png"
+              src="/brand/the-den-house.svg"
               alt=""
               width="463"
               height="408"
@@ -26,7 +26,7 @@ export default async function Opening({ searchParams }) {
           </a>
           <h1 className={styles.wordmark}>
             <img
-              src="/brand/the-den-wordmark.png"
+              src="/brand/the-den-wordmark.svg"
               alt="The Den"
               width="452"
               height="76"

@@ -299,7 +299,7 @@ export default function TheDen({ signedIn = false }) {
         >
           <img
             className="logo"
-            src="/brand/the-den-wordmark.png"
+            src="/brand/the-den-wordmark.svg"
             alt="The Den"
           />
           <span className="eyebrow">Before service. After hours.</span>
@@ -452,7 +452,7 @@ export default function TheDen({ signedIn = false }) {
           ))}
         </section>
         <div className="rail-signoff">
-          <img src="/brand/the-den-house.png" alt="" />
+          <img src="/brand/the-den-house.svg" alt="" />
           <span>
             A place to tune in.<small>Est. in the kitchen.</small>
           </span>

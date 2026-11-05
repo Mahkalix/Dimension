@@ -19,8 +19,8 @@ export default async function Login({ searchParams }) {
       <section className={styles.sheet} aria-label="Welcome to The Den">
         <div className={styles.content}>
           <div className={styles.brand}>
-            <img className={styles.mark} src="/brand/the-den-house.png" alt="" width="48" height="44" />
-            <img className={styles.wordmark} src="/brand/the-den-wordmark.png" alt="The Den" width="170" height="29" />
+            <img className={styles.mark} src="/brand/the-den-house.svg" alt="" width="48" height="44" />
+            <img className={styles.wordmark} src="/brand/the-den-wordmark.svg" alt="The Den" width="170" height="29" />
           </div>
           <h1>
             {user ? "Welcome back" : signup ? "Make yourself at home." : <>Your soundtrack.<br />Before service.<br />After hours.</>}
