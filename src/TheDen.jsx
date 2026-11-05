@@ -596,7 +596,7 @@ export default function TheDen({ signedIn = false, accountId }) {
         )}
         {selectedArtist && (
           <section className="artist-profile" aria-label={selectedArtist.name}>
-            <div className="artist-banner">
+            <div className="artist-banner" data-artist={selectedArtist.id}>
               <img src={selectedArtist.image} alt={selectedArtist.name} />
               <div className="artist-banner-copy">
                 <button onClick={() => setQuery("")}>‹ All artists</button>
