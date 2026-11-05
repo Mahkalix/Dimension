@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import SolarIcon from "./SolarIcon";
+import Dedication from "./Dedication";
 import TrackRow, { formatDuration } from "./TrackRow";
 import tracks from "../data/library";
 import playlists from "../data/playlists.json";
@@ -17,7 +18,6 @@ export default function ListenDashboard({
   onPlaylist,
   onPlayPlaylist,
   onBrowse,
-  onGenre,
 }) {
   const shelf = useRef(null);
   const [edges, setEdges] = useState({ start: true, end: true });
@@ -131,23 +131,7 @@ export default function ListenDashboard({
             })}
           </div>
         </section>
-        <section className="listening-note" aria-labelledby="note-title">
-          <span className="eyebrow">Pull up a chair</span>
-          <img src="/brand/the-den-house.png" alt="" />
-          <h2 id="note-title">
-            Good music.
-            <br />
-            Your own pace.
-          </h2>
-          <div className="genre-links" aria-label="Explore genres">
-            {["Jazz", "Acoustic", "Ambient"].map((genre) => (
-              <button key={genre} onClick={() => onGenre(genre)}>
-                {genre}
-                <SolarIcon name="arrow-right" />
-              </button>
-            ))}
-          </div>
-        </section>
+        <Dedication />
       </aside>
 
       <section className="playlist-shelf" aria-labelledby="shelf-title">

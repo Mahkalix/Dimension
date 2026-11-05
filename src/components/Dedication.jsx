@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./login.module.scss";
+import styles from "./Dedication.module.scss";
 
 export default function Dedication() {
   const [paused, setPaused] = useState(false);
