@@ -1,6 +1,8 @@
 # The Den
 
-A paper-inspired music player for the kitchen, before and after service. Built with Next.js App Router, React and modular SCSS. The existing grayscale palette, typography, house emblem and Solar icons are preserved.
+Imagine Carmy alone in the kitchen at *The Bear*. A stockpot is already on the stove. His notebook is open on the counter, and in the margin of yesterday’s prep list he’s scribbled the name of a record. He has a few minutes before the others arrive. He wipes his hands on his apron, finds the track and lets it play. What would the player under his hand look like?
+
+The Den started with that question. Its little house emblem could be a mark Carmy drew on a scrap of paper. The muted grays and paper-like surfaces belong beside his handwritten notes. Open the library, pick a record and queue the next track. For a moment, you get to decide what’s playing when someone pushes through the kitchen door.
 
 ## Run
 
