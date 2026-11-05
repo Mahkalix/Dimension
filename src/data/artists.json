@@ -23,5 +23,21 @@
     "source": "https://soundcloud.com/audionautix",
     "credit": "Audionautix · Official avatar",
     "image": "/images/artists/jason-shaw.jpg"
+  },
+  {
+    "id": "scott-buckley",
+    "name": "Scott Buckley",
+    "image": "/images/artists/scott-buckley.jpg",
+    "imageUrl": "https://secure.gravatar.com/avatar/5c79fa02e8462cc5ec7f1a4401bd1fd1267ab677286082bdbf59302a1cc1ac1b?s=256&d=mm&r=g",
+    "source": "https://www.scottbuckley.com.au/about/",
+    "credit": "Scott Buckley · Official portrait"
+  },
+  {
+    "id": "john-bartmann",
+    "name": "John Bartmann",
+    "image": "/images/artists/john-bartmann.jpg",
+    "imageUrl": "https://f4.bcbits.com/img/0018859752_21.jpg",
+    "source": "https://lavidalocal.bandcamp.com/music",
+    "credit": "John Bartmann · Official Bandcamp portrait"
   }
 ]

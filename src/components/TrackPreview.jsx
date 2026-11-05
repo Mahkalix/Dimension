@@ -111,6 +111,7 @@ export default function TrackPreview({
             </div>
           </dl>
           <div className="preview-sources">
+            {track.attributionUrl && <a href={track.attributionUrl} target="_blank" rel="noreferrer">Music by {track.artist}</a>}
             <a href={track.sourceUrl} target="_blank" rel="noreferrer">
               {track.sourceName}
               <SolarIcon name="arrow-right" />

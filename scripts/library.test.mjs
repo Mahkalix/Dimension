@@ -8,8 +8,8 @@ const tracks = JSON.parse(
 const playlists = JSON.parse(
   fs.readFileSync(new URL("../src/data/playlists.json", import.meta.url)),
 );
-test("library contains at least 51 distinct licensed playable recordings", () => {
-  assert.ok(tracks.length >= 51);
+test("library contains at least 57 distinct licensed playable recordings", () => {
+  assert.ok(tracks.length >= 57);
   validateLibrary(tracks, playlists);
   for (const t of tracks)
     if (t.url.startsWith("/"))

@@ -86,7 +86,7 @@ export function MenuPage({ page, go, prefs, select }) {
           <div className="menu-row" key={t.id}>
             <b>{t.title}</b>
             <span>
-              {t.artist} ·{" "}
+              {t.attributionUrl ? <a href={t.attributionUrl} target="_blank" rel="noreferrer">Music by {t.artist}</a> : t.artist} ·{" "}
               <a href={t.sourceUrl} target="_blank" rel="noreferrer">
                 {t.sourceName}
               </a>{" "}
