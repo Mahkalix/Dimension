@@ -77,15 +77,15 @@
   filter: brightness(0) invert(1);
 }
 .content .enter {
-  background: var(--accent-navy);
-  color: white;
+  background: var(--button-primary);
+  color: var(--button-primary-text);
   border-radius: 32px;
   min-height: 54px;
   padding: 12px 28px;
   font-weight: 650;
   text-decoration: none;
   &:hover {
-    background: var(--accent-navy-hover);
+    background: var(--button-primary-hover);
   }
 }
 .account {

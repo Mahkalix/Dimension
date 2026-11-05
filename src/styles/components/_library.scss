@@ -390,3 +390,11 @@
   &:hover { background: var(--accent-navy-hover); }
 }
 @media (pointer: coarse) { .playlist-back { min-height: 44px; } }
+
+.artist-actions button, .artist-actions .artist-play, .playlist-actions .playlist-create, .playlist-back {
+  background: var(--button-primary);
+  color: var(--button-primary-text);
+  border: 0;
+  &:hover { background: var(--button-primary-hover); }
+}
+.den .artist-play .solar-icon { filter: brightness(0); }
