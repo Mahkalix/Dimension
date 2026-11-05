@@ -510,7 +510,9 @@ export default function TheDen({ signedIn = false }) {
           <section className="artist-list" aria-label="Artists">
             {artists.map((item) => (
               <button key={item.id} onClick={() => setQuery(item.name)}>
-                <img src={item.image} alt="" loading="lazy" />
+                <span className="artist-avatar" data-artist={item.id}>
+                  <img src={item.image} alt="" loading="lazy" />
+                </span>
                 <strong>{item.name}</strong>
                 <small>{item.tracks.length} tracks</small>
               </button>
