@@ -206,6 +206,13 @@ export default function TheDen({ signedIn = false, accountId }) {
     setQueue(indices.slice(1));
     start(indices[0], false);
   };
+  const queuePlaylist = (item) => {
+    const indices = item.tracks
+      .map((id) => tracks.findIndex((track) => track.id === id))
+      .filter((index) => index >= 0);
+    setQueue((current) => [...new Set([...current, ...indices])]);
+    setNotice(`${item.title} added to Up next. Tracks already queued are kept once.`);
+  };
   const browse = (tab = "Tracks") => {
     go("Library");
     setLibraryTab(tab);
@@ -627,6 +634,9 @@ export default function TheDen({ signedIn = false, accountId }) {
                 >
                   <SolarIcon name="play" />
                   Play playlist
+                </button>
+                <button onClick={() => queuePlaylist(playlist)}>
+                  Add playlist to Up next
                 </button>
               </div>
             </div>
