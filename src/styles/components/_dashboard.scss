@@ -336,7 +336,7 @@
     padding: 4px;
     border-radius: 6px;
     background: #fff;
-    color: #245b9e;
+    color: var(--accent-navy);
     box-shadow: 0 1px 5px #0005;
     &::before {
       content: "";
@@ -354,7 +354,7 @@
     }
     &[data-style="white"] { color: #fff; }
     &[data-style="black"] { color: #000; }
-    &[data-style="blue"] { color: #3974bd; }
+    &[data-style="blue"] { color: var(--accent-navy); }
   }
   > .solar-icon {
     position: absolute;

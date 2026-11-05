@@ -12,7 +12,7 @@
 }
 .content { padding: clamp(16px, 3vw, 32px); }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 24px;
-  button, summary { background: #24364f; border-radius: 24px; padding: 8px 16px; min-height: 40px; cursor: pointer; font-size: 13px; }
+  button, summary { background: var(--accent-navy); border-radius: 24px; padding: 8px 16px; min-height: 40px; cursor: pointer; font-size: 13px; }
   details { position: relative; }
   details > div { position: absolute; z-index: 2; top: 44px; left: 0; background: #242424; padding: 8px; border-radius: 8px; width: 180px; display: grid; gap: 4px; }
 }

@@ -199,8 +199,8 @@
   }
   .playlist-play {
     order: -1;
-    background: #3974bd;
-    border-color: #3974bd;
+    background: var(--accent-navy);
+    border-color: var(--accent-navy);
   }
   .solar-icon {
     width: 22px;
@@ -331,16 +331,16 @@
   gap: 8px;
   border-radius: 28px;
   padding: 12px 20px;
-  background: #142134;
+  background: var(--accent-navy);
   color: #fff;
 }
 .artist-actions .artist-play {
-  background: #142134;
+  background: var(--accent-navy);
   color: white;
   min-height: 54px;
 }
 .artist-actions button:hover {
-  background: #20344f;
+  background: var(--accent-navy-hover);
 }
 .den .artist-play .solar-icon {
   filter: brightness(0) invert(1);

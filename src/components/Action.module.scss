@@ -18,5 +18,5 @@
   &:disabled { opacity: .6; cursor: wait; }
 }
 .secondary { background: #282828; &:hover { background: #363636; } }
-.primary { background: #3974bd; border-color: #3974bd; &:hover { background: #4585d5; } }
+.primary { background: var(--accent-navy); border-color: var(--accent-navy); &:hover { background: var(--accent-navy-hover); } }
 @media (pointer: coarse) { .action { min-height: 44px; } }

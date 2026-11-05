@@ -132,7 +132,7 @@
   bottom: 20%;
   width: min(260px, 60vw);
   height: 8px;
-  accent-color: #3974bd;
+  accent-color: var(--accent-navy);
 }
 @keyframes inkAppears {
   from {
