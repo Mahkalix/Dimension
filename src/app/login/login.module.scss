@@ -169,3 +169,5 @@
     min-height: 0;
   }
 }
+
+@media (max-width: 380px) { .entry { padding-inline: 12px; } .content { padding: 24px 18px; } }

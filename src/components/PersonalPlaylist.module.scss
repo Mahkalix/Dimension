@@ -25,3 +25,11 @@
 
 .row small { display: block; margin-top: 4px; color: #ccc; }
 .title { background: transparent; border: 0; color: inherit; }
+
+@container (max-width: 560px) { .hero { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 480px) {
+  .row { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto auto; }
+  .row > span { grid-column: 2 / -1; }
+  .row > button { min-width: 44px; min-height: 44px; }
+  .row > button:first-of-type { grid-column: 2; justify-self: end; }
+}

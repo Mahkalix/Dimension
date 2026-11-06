@@ -2,16 +2,24 @@
 .den {
   --rail-width: 208px;
   --player-height: 96px;
+  --player-clearance: var(--player-height);
   display: grid;
   grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
   align-items: start;
+  height: 100dvh;
   min-height: 100dvh;
+  overflow: hidden;
   background: var(--paper) var(--grain);
 }
 .den main {
   container-type: inline-size;
   min-width: 0;
-  padding: 28px clamp(20px, 3vw, 48px) calc(var(--player-height) + 32px);
+  min-height: 0;
+  height: max(0px, calc(100% - var(--player-clearance)));
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  padding: 28px clamp(20px, 3vw, 48px) 32px;
   animation: refresh var(--refresh);
 }
 .main-header {
@@ -114,12 +122,13 @@
 }
 @media (max-width: #{bp.$mobile-max}) {
   .den {
-    display: block;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
     --player-height: 176px;
+    --player-clearance: calc(165px + max(0px, env(safe-area-inset-bottom) - 8px));
   }
   .den main {
-    padding: 16px 20px
-      calc(var(--player-height) + 32px + env(safe-area-inset-bottom));
+    padding: min(16px, 2dvh) 20px min(32px, 2dvh);
   }
   .main-header {
     flex-wrap: wrap;
@@ -139,3 +148,6 @@
     font-size: 30px;
   }
 }
+
+.main-header > div { min-width: 0; }
+.den h1 { overflow-wrap: anywhere; }
