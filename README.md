@@ -109,3 +109,13 @@ Share playlist copies a `/player#playlist=…` link containing a snapshot of its
 Primary controls use warm white; navy remains the accent. Playlist cards use outlined translucent play controls. Playlist pages group secondary actions in the options menu and provide a back button.
 
 To verify while the development server is running, set `NEXT_BUILD_DIR=.next-verify` for both `npm run build` and `npm start`. This prevents development and production from overwriting the same Next.js build files. In PowerShell: `$env:NEXT_BUILD_DIR=".next-verify"`.
+
+## Install as an app (PWA)
+
+On Chrome or Edge, use the browser install icon/menu. On iPhone or iPad, open The Den in Safari and choose Share → Add to Home Screen. The installed app opens the player in a standalone window. HTTPS is required (localhost also works for testing).
+
+After one online visit, a branded offline page is available when navigation fails. Music still requires a connection: audio, account pages, authentication responses and personal data are never cached by the service worker. Existing local playlists/preferences remain on the device. Service worker registration runs only in production; updates activate when previous app windows are closed, avoiding playback interruptions.
+
+Implementation follows the [Next.js PWA guide](https://nextjs.org/docs/app/guides/progressive-web-apps). Physical iOS/Android installation should also be checked before release.
+
+Run `TEST_URL=http://localhost:3158 npm run test:pwa` against a production server to verify registration, manifest/icon dimensions, cache isolation, offline fallback and online recovery. In PowerShell set `$env:TEST_URL` before the command.

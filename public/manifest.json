@@ -1,10 +1,10 @@
 {
   "name": "The Den",
   "short_name": "The Den",
-  "start_url": "/",
+  "start_url": "/player",
   "display": "standalone",
-  "theme_color": "#efefed",
-  "background_color": "#efefed",
+  "theme_color": "#142134",
+  "background_color": "#142134",
   "icons": [
     {
       "src": "/brand/house-192.png",
@@ -17,5 +17,12 @@
       "type": "image/png"
     }
   ],
-  "lang": "en"
+  "lang": "en",
+  "id": "/",
+  "scope": "/",
+  "description": "Your soundtrack. Before service. After hours.",
+  "categories": [
+    "music",
+    "entertainment"
+  ]
 }

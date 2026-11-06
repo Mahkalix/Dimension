@@ -15,6 +15,6 @@ export async function middleware(request) {
 export const config = {
   runtime: "nodejs",
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|music/|images/|brand/|.*\\.(?:svg|png|jpg|ico|json)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|sw\\.js$|offline\\.html$|music/|images/|brand/|.*\\.(?:svg|png|jpg|ico|json)$).*)",
   ],
 };
